@@ -53,3 +53,8 @@ jobs:
     # 압축한 프로젝트를 S3로 전송합니다.
     - name: Upload to S3
       run: aws s3 cp --region ap-northeast-2 ./mainproject024-deploy.zip s3://$S3_BUCKET_NAME/mainproject024-deploy.zip
+      
+    # 권한
+    - name: Add permission
+      run: chmod +x ./gradlew
+
