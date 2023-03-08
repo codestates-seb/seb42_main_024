@@ -37,13 +37,13 @@
 #
 # 2. ECS 작업 정의, ECS 클러스터 및 ECS 서비스를 생성합니다.
 # 예를 들어 ECS 콘솔의 시작 가이드를 따릅니다:
-# https://us-east-2.console.aws.amazon.com/ecs/home?region=us-east-2#/first Run
+#   https://us-east-2.console.aws.amazon.com/ecs/home?region=us-east-2#/first Run
 # 아래 워크플로우의 'ECS_SERVICE' 환경 변수 값을 Amazon ECS 서비스에 대해 설정한 이름으로 바꿉니다.
-# 아래 워크플로의 'ECS_CLUSTER' 환경 변수 값을 클러스터에 대해 설정한 이름으로 바꿉니다.
+# 아래 워크플로우의 'ECS_CLUSTER' 환경 변수 값을 클러스터에 대해 설정한 이름으로 바꿉니다.
 #
 # 3. 저장소에 ECS 작업 정의를 JSON 파일로 저장합니다.
-# 형식은 "awsecs register-task-definition --generate-cli-skeleton"의 출력을 따라야 합니다.
-# 'ECS_'의 값을 바꿉니다아래 워크플로우의 TASK_DEFINITION' 환경 변수(JSON 파일의 경로 포함).
+# 형식은 'aws ecs register-task-definition --generate-cli-skeleton'의 출력을 따라야 합니다.
+# 아래 워크플로우의 환경 변수(JSON 파일의 경로 포함)'ECS_TASK_DEFINITION'의 값을 바꿉니다. .
 # 아래 워크플로우의 'CONTRANE_NAME' 환경 변수 값을 컨테이너 이름으로 바꿉니다.
 # 작업 정의의 '컨테이너 정의' 섹션에 있습니다.
 #
