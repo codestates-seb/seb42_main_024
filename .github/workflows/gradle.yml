@@ -57,4 +57,4 @@ jobs:
     # 권한
     - name: Add permission
       run: chmod +x ./gradlew
-      
+
