@@ -1,41 +1,25 @@
 spring:
-  datasource:
-    url: jdbc:mysql://ls-666e6634dde537c7039d54e835178d57878b069f.cgw31hjdgukx.ap-northeast-2.rds.amazonaws.com/serverDB?createDatabaseIfNotExist=true
-    username: ${MYSQL-USERNAME}
-    password: ${MYSQL-PASSWORD}
-    driver-class-name: com.mysql.cj.jdbc.Driver
-
   jpa:
-    hibernate:
-      ddl-auto: create # 서버가 실행될때마다 db의 테이블 초기화 및 생성
     properties:
       hibernate:
-        format_sql: true
-        default_batch_fetch_size: 100 # 페이징 처리에 필요
-    database: mysql
-    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+        default_batch_fetch_size: 100
+    open-in-view: true
 
 
-logging:
-  level:
-    org.hibernate.SQL: debug
+#logging:
+#  level:
+#    org.hibernate.SQL: debug
 
-decorator:
-  datasource:
-    p6spy:
-      enable-logging: true
+#decorator:
+#  datasource:
+#    p6spy:
+#      enable-logging: false
 
 # 시큐리티
 jwt:
   key: ${JWT_SECRET_KEY}
   access-token-expiration-minutes: 30
   refresh-token-expiration-minutes: 420
-
-#server:
-#  ssl:
-#    key-store: classpath:localhost.p12
-#    key-store-type: PKCS12
-#    key-store-password: ${SSL-PASSWORD}
 
 config:
   domain: "*"
