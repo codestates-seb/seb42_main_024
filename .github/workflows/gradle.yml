@@ -64,11 +64,11 @@ jobs:
       
       
     - name: deploy with AWS codeDeploy
-      run: >
+      run:
         aws deploy create-deployment
         --application-name mainprojectCD
         --deployment-config-name CodeDeployDefault.AllAtOnce
-        --deployment-group-name Codedeploy-githubaction
+        --deployment-group-name deploy
         --s3-location bucket=$S3_BUCKET_NAME,bundleType=zip,key=mainproject024-deploy.zip
         
         
