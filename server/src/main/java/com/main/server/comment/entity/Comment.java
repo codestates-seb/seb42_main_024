@@ -1,5 +1,6 @@
 package com.main.server.comment.entity;
 
+import com.main.server.audit.Auditable;
 import com.main.server.member.entity.Member;
 import com.main.server.playlist.entity.Playlist;
 import lombok.Getter;
@@ -12,24 +13,24 @@ import javax.persistence.*;
 @Getter
 @Setter
 @NoArgsConstructor
-public class Comment {
+public class Comment extends Auditable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long commentId;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "MEMBER_ID")
     private Member member;
     // MEMBER_ID
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "PLAYLIST_ID")
     private Playlist playlist;
     // PLAYLIST_ID
 
 
-    @Column(length = 100,nullable = false, unique = true)
+    @Column(length = 1000,nullable = false)
     private String content;
     //length
 
