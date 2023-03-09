@@ -1,10 +1,3 @@
-# This workflow uses actions that are not certified by GitHub.
-# They are provided by a third-party and are governed by
-# separate terms of service, privacy policy, and support
-# documentation.
-# This workflow will build a Java project with Gradle and cache/restore any dependencies to improve the workflow execution time
-# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-java-with-gradle
-
 name: Java CI with Gradle
 
 on:
@@ -60,15 +53,15 @@ jobs:
       run: aws configure list
     
     # 배포 자동화를 시작합니다.
-    - name: 배포 자동화
+    - name: CD
       uses: appleboy/scp-action@master
       with:
         host: ${{ secrets.LIGHTSAIL_HOST }}
         username: ${{env.LIGHTSAIL_USERNAME}}
         key: ${{ secrets.LIGHTSAIL_SSH_KEY }}
-        source: './server/build/libs/server-0.0.1-SNAPSHOT.jar'
+        source: '/server/build/libs/server-0.0.1-SNAPSHOT.jar'
         strip_components: 1
-        target: '/home/ubuntu/server-0.0.1-SNAPSHOT.jar'
+        target: 'server-0.0.1-SNAPSHOT.jar'
 
     - name: start java process
       uses: appleboy/ssh-action@master
