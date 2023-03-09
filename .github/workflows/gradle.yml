@@ -15,7 +15,7 @@ permissions:
   contents: read
 
 env:
-  S3_BUCKET_NAME: mainprojects3
+  S3_BUCKET_NAME: mainprojects4
   
 jobs:
   build:
