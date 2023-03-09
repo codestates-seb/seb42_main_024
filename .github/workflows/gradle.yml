@@ -59,7 +59,7 @@ jobs:
         host: ${{ secrets.LIGHTSAIL_HOST }}
         username: ${{env.LIGHTSAIL_USERNAME}}
         key: ${{ secrets.LIGHTSAIL_SSH_KEY }}
-        source: '/server/build/libs/server-0.0.1-SNAPSHOT.jar'
+        source: './server/build/libs/server-0.0.1-SNAPSHOT.jar'
         strip_components: 1
         target: 'server-0.0.1-SNAPSHOT.jar'
 
