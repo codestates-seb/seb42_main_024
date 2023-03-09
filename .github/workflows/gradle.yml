@@ -16,6 +16,9 @@ permissions:
 
 env:
   S3_BUCKET_NAME: mainprojects4
+  LIGHTSAIL_SSH_KEY: ${{ secrets.LIGHTSAIL_SSH_KEY }}
+  LIGHTSAIL_HOST: ${{ secrets.LIGHTSAIL_HOST }}
+  LIGHTSAIL_USERNAME: codedeploy-user
   
 jobs:
   build:
@@ -39,6 +42,9 @@ jobs:
     - name: Build with Gradle
       run: ./gradlew clean build --debug
       working-directory: ${{ env.working-directory }}
+    
+    - name: Check Build Files
+      run: ls -la
         
 
 
@@ -58,18 +64,18 @@ jobs:
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }} # 등록한 Github Secret이 자동으로 불려옵니다.
         aws-region: ap-northeast-2
     
+    # AWS 인증이 완료되었는지 테스트합니다.
+    - name: Connect AWS Lightsail
+      run: aws configure list
+    
     # 압축한 프로젝트를 S3로 전송합니다.
     - name: Upload to S3
       run: aws s3 cp --region ap-northeast-2 ./mainproject024-deploy.zip s3://$S3_BUCKET_NAME/mainproject024-deploy.zip
-      
-      
-    - name: deploy with AWS codeDeploy
-      run:
-        aws deploy create-deployment
-        --application-name mainprojectCD
-        --deployment-config-name CodeDeployDefault.AllAtOnce
+        
+    # CodeDeploy에게 배포 명령을 내립니다.
+    - name: Code Deploy
+      run: >
+        aws deploy create-deployment --application-name mainprojectCD
+        --deployment-config-name CodeDeployDefault.OneAtATime
         --deployment-group-name deploy
         --s3-location bucket=$S3_BUCKET_NAME,bundleType=zip,key=mainproject024-deploy.zip
-        
-        
-        
