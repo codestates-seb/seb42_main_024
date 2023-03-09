@@ -45,16 +45,7 @@ jobs:
     
     - name: Check Build Files
       run: ls -la
-        
 
-
- # build한 후 프로젝트를 압축합니다.
-    - name: Make zip file
-      run: zip -r ./mainproject024-deploy.zip .
-      shell: bash
-    
-    
-    
     # Access Key와 Secret Access Key를 통해 권한을 확인합니다.
     # 아래 코드에 Access Key와 Secret Key를 직접 작성하지 않습니다.
     - name: Configure AWS credentials
@@ -68,14 +59,23 @@ jobs:
     - name: Connect AWS Lightsail
       run: aws configure list
     
-    # 압축한 프로젝트를 S3로 전송합니다.
-    - name: Upload to S3
-      run: aws s3 cp --region ap-northeast-2 ./mainproject024-deploy.zip s3://$S3_BUCKET_NAME/mainproject024-deploy.zip
+    # 배포 자동화를 시작합니다.
+    - name: 배포 자동화
+      uses: appleboy/scp-action@master
+      with:
+        host: ${{ secrets.LIGHTSAIL_HOST }}
+        username: ${{env.LIGHTSAIL_USERNAME}}
+        key: ${{ secrets.LIGHTSAIL_SSH_KEY }}
+        source: './server/build/libs/server-0.0.1-SNAPSHOT.jar'
+        strip_components: 1
+        target: '/home/ubuntu/server-0.0.1-SNAPSHOT.jar'
+
+    - name: start java process
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.LIGHTSAIL_HOST }}
+        username: ${{env.LIGHTSAIL_USERNAME}}
+        key: ${{ secrets.LIGHTSAIL_SSH_KEY }}
+        script: java -jar server-0.0.1-SNAPSHOT.jar
         
-    # CodeDeploy에게 배포 명령을 내립니다.
-    - name: Code Deploy
-      run: >
-        aws deploy create-deployment --application-name mainprojectCD
-        --deployment-config-name CodeDeployDefault.OneAtATime
-        --deployment-group-name deploy
-        --s3-location bucket=$S3_BUCKET_NAME,bundleType=zip,key=mainproject024-deploy.zip
+        
