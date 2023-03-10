@@ -1,25 +1,28 @@
 package com.main.server.like.entity;
 
+
 import com.main.server.member.entity.Member;
 import com.main.server.board.entity.Board;
+import com.main.server.audit.Auditable;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
 
-@Entity
+
+@Entity(name = "likes")
 @Getter
 @Setter
 @NoArgsConstructor
-
-public class Like {
+public class Like extends Auditable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long likeId;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "MEMBER_ID")
     private Member member;
     // MEMBER_ID

@@ -1,6 +1,7 @@
 package com.main.server.playlist.entity;
 
 
+import com.main.server.audit.Auditable;
 import com.main.server.comment.entity.Comment;
 import com.main.server.like.entity.Like;
 import com.main.server.member.entity.Member;
@@ -8,7 +9,6 @@ import com.main.server.song.entity.Song;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.apache.catalina.User;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -18,21 +18,19 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
-
-public class Playlist {
+public class Playlist extends Auditable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long playlistId;
 
-    @Column(length = 100,nullable = false, unique = true)
+    @Column(length = 100,nullable = false)
     private String title;
     //length
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "MEMBER_ID")
     private Member member;
-    // MEMBER_ID
 
     @OneToMany(mappedBy = "playlist")
     private List<Comment> comments = new ArrayList<>();
@@ -54,6 +52,4 @@ public class Playlist {
         this.title = title;
         this.member = member;
     }
-
-
 }
