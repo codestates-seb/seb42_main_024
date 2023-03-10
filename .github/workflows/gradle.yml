@@ -41,7 +41,7 @@ jobs:
     - name: Check print working directory
       run: pwd
     - name: Find jar file
-      run: find . -name "SNAPSHOT.jar"
+      run: find . -name "SNAPSHOT"
       
 
     # Access Key와 Secret Access Key를 통해 권한을 확인합니다.
