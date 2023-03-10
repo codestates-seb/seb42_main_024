@@ -37,12 +37,7 @@ jobs:
       working-directory: ${{ env.working-directory }}
     
     - name: Check Build Files
-      run: ls -la
-    - name: Check print working directory
-      run: pwd
-    - name: Find jar file
-      run: find . -name "SNAPSHOT"
-      
+      run: ls -la      
 
     # Access Key와 Secret Access Key를 통해 권한을 확인합니다.
     # 아래 코드에 Access Key와 Secret Key를 직접 작성하지 않습니다.
@@ -64,9 +59,8 @@ jobs:
         host: ${{ secrets.LIGHTSAIL_HOST }}
         username: ${{env.LIGHTSAIL_USERNAME}}
         key: ${{ secrets.LIGHTSAIL_SSH_KEY }}
-        source: './server/build/libs/server-0.0.1-SNAPSHOT.jar'
-        strip_components: 1
-        target: 'server-0.0.1-SNAPSHOT.jar'
+        source: ${{ env.working-directory }}
+        target: ${{ env.working-directory }}
 
     - name: start java process
       uses: appleboy/ssh-action@master
