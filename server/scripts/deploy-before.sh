@@ -1,4 +1,4 @@
-if [ -d /home/ec2-user/build ]; then
-    sudo rm -rf /home/ec2-user/build/
+if [ -d /home/ubuntu/build ]; then
+    sudo rm -rf /home/ubuntu/build/
 fi
-sudo mkdir -vp /home/ec2-user/build/
+sudo mkdir -vp /home/ubuntu/build/

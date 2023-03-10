@@ -1,20 +1,18 @@
 version: 0.0
 os: linux
 files:
-  - source: /
-    destination: /home/ec2-user/build/
+  - source:  /
+    destination: /home/ubuntu/action
+    overwrite: yes
 
 permissions:
   - object: /
-    owner: ec2-user
-    group: ec2-user
-    mode: 755
-    
+    pattern: "**"
+    owner: ubuntu
+    group: ubuntu
+
 hooks:
-  BeforeInstall:
-    - location: scripts/deploy-before.sh
-      runas: ec2-user
   ApplicationStart:
-    - location: scripts/deploy.sh
-      timeout: 60
-      runas: ec2-user
+    - location: deploy.sh
+      timeout: 100
+      runas: ubuntu
