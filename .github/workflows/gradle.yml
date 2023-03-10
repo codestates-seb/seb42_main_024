@@ -60,7 +60,7 @@ jobs:
         username: ${{env.LIGHTSAIL_USERNAME}}
         key: ${{ secrets.LIGHTSAIL_SSH_KEY }}
         source: ${{ env.working-directory }}
-        target: ${{ env.working-directory }}
+        target: ./
 
     - name: start java process
       uses: appleboy/ssh-action@master
