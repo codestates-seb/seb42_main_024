@@ -72,15 +72,7 @@ jobs:
                 nohup java -jar ./server/build/libs/server-0.0.1-SNAPSHOT.jar &
                 for attempt in {1..20}
                 do sleep 1
-                if <test-command>
-                then echo ready
-                break
-                fi
-                echo waiting...
                 done
-        
-
-                
     
     # sudo kill -9 종료시킬 PID 번호로 어플리케이션 강제 종료 가능
     - name: Check jar PID 
