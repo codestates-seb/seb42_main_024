@@ -2,7 +2,7 @@ package com.main.server.playlist.entity;
 
 
 import com.main.server.comment.entity.Comment;
-import com.main.server.like.entity.Likevote;
+import com.main.server.like.entity.Like;
 import com.main.server.member.entity.Member;
 import com.main.server.song.entity.Song;
 import lombok.Getter;
@@ -29,13 +29,10 @@ public class Playlist {
     private String title;
     //length
 
-    @Column(length = 100,nullable = false, unique = true)
-    private String content;
-    //length
-
     @ManyToOne
     @JoinColumn(name = "MEMBER_ID")
-    private Member memberId;
+    private Member member;
+    // MEMBER_ID
 
     @OneToMany(mappedBy = "playlist")
     private List<Comment> comments = new ArrayList<>();
@@ -44,7 +41,7 @@ public class Playlist {
     private List<Song> songs = new ArrayList<>();
 
     @OneToMany(mappedBy = "playlist")
-    private List<Likevote> likes = new ArrayList<>();
+    private List<Like> likes = new ArrayList<>();
 
 
 
@@ -53,10 +50,9 @@ public class Playlist {
 
 
 
-    public Playlist(String title, String content, Member memberId) {
+    public Playlist(String title, Member member) {
         this.title = title;
-        this.content = content;
-        this.memberId = memberId;
+        this.member = member;
     }
 
 

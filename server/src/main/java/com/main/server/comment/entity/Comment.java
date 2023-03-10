@@ -1,5 +1,6 @@
 package com.main.server.comment.entity;
 
+import com.main.server.board.entity.Board;
 import com.main.server.member.entity.Member;
 import com.main.server.playlist.entity.Playlist;
 import lombok.Getter;
@@ -24,23 +25,24 @@ public class Comment {
     // MEMBER_ID
 
     @ManyToOne
-    @JoinColumn(name = "PLAYLIST_ID")
-    private Playlist playlist;
-    // PLAYLIST_ID
+    @JoinColumn(name = "Board_ID")
+    private Board board;
+    // Board_ID
 
 
     @Column(length = 100,nullable = false, unique = true)
     private String content;
     //length
 
+    /*
+
     private Boolean isSong;
     // 구상 - 댓글 단 시점 가져와서 선착순으로 정렬, 공간 조금 할애해서 신청곡 리스트 편성.
+    */
 
-
-    public Comment(Member member, Playlist playlist, String content, Boolean isSong) {
+    public Comment(Member member, Board board, String content) {
         this.member = member;
-        this.playlist = playlist;
+        this.board = board;
         this.content = content;
-        this.isSong = isSong;
     }
 }
