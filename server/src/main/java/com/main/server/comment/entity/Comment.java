@@ -27,9 +27,14 @@ public class Comment extends Auditable {
 
 
     @ManyToOne
-    @JoinColumn(name = "Board_ID")
+    @JoinColumn(name = "BOARD_ID")
     private Board board;
-    // Board_ID
+    // BOARD_ID
+
+    @ManyToOne
+    @JoinColumn(name = "PLAYLIST_ID")
+    private Playlist playlist;
+    // PLAYLIST_ID
 
 
 

@@ -32,7 +32,7 @@ public class Playlist extends Auditable {
     @JoinColumn(name = "MEMBER_ID")
     private Member member;
 
-    /*
+
     @OneToMany(mappedBy = "playlist")
     private List<Comment> comments = new ArrayList<>();
 
@@ -41,7 +41,7 @@ public class Playlist extends Auditable {
 
     @OneToMany(mappedBy = "playlist")
     private List<Like> likes = new ArrayList<>();
-*/
+
 
 
     public Playlist(String title, Member member) {
