@@ -24,6 +24,7 @@ export const NavContainer = styled.div`
 
 export const NavList = styled.ul`
   width: 100%;
+  padding: 0;
 `;
 
 export const NavItems = styled.li`
@@ -64,6 +65,7 @@ export const NavFooter = styled.div`
   left: 0;
   bottom: 0;
   margin-left: 15px;
+  margin-bottom: 50px;
   width: 250px;
 
   p {
