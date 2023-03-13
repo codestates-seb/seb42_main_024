@@ -44,7 +44,9 @@ const Nav = () => {
           </p>
         </NavItems>
       </NavList>
-      <NavFooter>Footer Test</NavFooter>
+      <NavFooter>
+        <p>CodeStates SEB 42th</p>
+      </NavFooter>
     </NavContainer>
   );
 };

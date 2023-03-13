@@ -64,4 +64,9 @@ export const NavFooter = styled.div`
   left: 0;
   bottom: 0;
   margin-left: 15px;
+  width: 250px;
+
+  p {
+    font-size: 12px;
+  }
 `;
