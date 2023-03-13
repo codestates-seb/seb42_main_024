@@ -1,44 +1,44 @@
 @font-face {
-  font-family: "pretendardBlack";
+  font-family: 'pretendardBlack';
   src: url(./Pretendard-Black.ttf);
 }
 
 @font-face {
-  font-family: "pretendardBold";
+  font-family: 'pretendardBold';
   src: url(./Pretendard-Bold.ttf);
 }
 
 @font-face {
-  font-family: "pretendardExtraBold";
+  font-family: 'pretendardExtraBold';
   src: url(./Pretendard-ExtraBold.ttf);
 }
 
 @font-face {
-  font-family: "pretendardExtraLight";
+  font-family: 'pretendardExtraLight';
   src: url(./Pretendard-ExtraLight.ttf);
 }
 
 @font-face {
-  font-family: "pretendardLight";
+  font-family: 'pretendardLight';
   src: url(./Pretendard-Light.ttf);
 }
 
 @font-face {
-  font-family: "pretendardMedium";
+  font-family: 'pretendardMedium';
   src: url(./Pretendard-Medium.ttf);
 }
 
 @font-face {
-  font-family: "pretendardRegular";
+  font-family: 'pretendardRegular';
   src: url(./Pretendard-Regular.ttf);
 }
 
 @font-face {
-  font-family: "pretendardSemiBold";
+  font-family: 'pretendardSemiBold';
   src: url(./Pretendard-SemiBold.ttf);
 }
 
 @font-face {
-  font-family: "pretendardThin";
+  font-family: 'pretendardThin';
   src: url(./Pretendard-Thin.ttf);
 }

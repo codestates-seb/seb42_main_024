@@ -1,5 +1,5 @@
-import { SET_CURRENT_SONG_URL } from "../actions/actions";
-import { initialState } from "./initialState";
+import { SET_CURRENT_SONG_URL } from '../actions/actions';
+import { initialState } from './initialState';
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
