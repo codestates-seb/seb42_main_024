@@ -1,14 +1,14 @@
 :root {
   /* fonts */
-  --ft-pretendardBlack: "pretendardBlack";
-  --ft-pretendardBold: "pretendardBold";
-  --ft-pretendardExtraBold: "pretendardExtraBold";
-  --ft-pretendardExtraLight: "pretendardExtraLight";
-  --ft-pretendardLight: "pretendardLight";
-  --ft-pretendardMedium: "pretendardMedium";
-  --ft-pretendardRegular: "pretendardRegular";
-  --ft-pretendardSemiBold: "pretendardSemiBold";
-  --ft-pretendardThin: "pretendardThin";
+  --ft-pretendardBlack: 'pretendardBlack';
+  --ft-pretendardBold: 'pretendardBold';
+  --ft-pretendardExtraBold: 'pretendardExtraBold';
+  --ft-pretendardExtraLight: 'pretendardExtraLight';
+  --ft-pretendardLight: 'pretendardLight';
+  --ft-pretendardMedium: 'pretendardMedium';
+  --ft-pretendardRegular: 'pretendardRegular';
+  --ft-pretendardSemiBold: 'pretendardSemiBold';
+  --ft-pretendardThin: 'pretendardThin';
 
   /* colors */
   --color1: rgb(0, 0, 0);
@@ -21,6 +21,7 @@
   --color8: rgb(245, 245, 245);
   --color9: rgb(255, 255, 255);
   --color10: rgb(216, 22, 22);
+  --color11: rgb(27, 27, 27);
 
   /* shadow */
   --shadow: 0 10px 24px hsla(0, 0%, 0%, 0.05), 0 20px 48px hsla(0, 0%, 0%, 0.05),

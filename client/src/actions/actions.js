@@ -1,5 +1,5 @@
 // action type
-export const SET_CURRENT_SONG_URL = "SET_CURRENT_SONG_URL";
+export const SET_CURRENT_SONG_URL = 'SET_CURRENT_SONG_URL';
 
 // action controller
 export const setCurrentSongURL = (url) => {
