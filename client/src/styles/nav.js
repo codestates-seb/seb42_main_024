@@ -5,13 +5,20 @@ export const NavContainer = styled.div`
   height: 1285px;
   background-color: var(--color1);
   position: fixed;
+  font-family: var(--ft-pretendardMedium);
 
   .nav-logo {
     color: var(--color6);
-    margin: 30px 0px 15px 15px;
+    margin: 30px 0px 20px 15px;
     font-size: 25px;
     display: flex;
-    align-items: center;
+    text-align: center;
+  }
+
+  span {
+    display: flex;
+    text-align: center;
+    height: 25px;
   }
 `;
 
@@ -37,12 +44,17 @@ export const NavItems = styled.li`
 
   .nav-home,
   .nav-add-playlist {
-    padding-bottom: 12px;
+    padding-bottom: 14px;
   }
 
   p {
     display: flex;
     align-items: center;
+  }
+
+  span {
+    padding-left: 10px;
+    height: 16px;
   }
 `;
 

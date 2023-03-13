@@ -7,33 +7,40 @@ const Nav = () => {
   return (
     <NavContainer>
       <div className='nav-logo'>
-        <FaQuestion className='icons-logo' /> LOGO
+        <FaQuestion className='icons-logo' />
+        <span>LOGO</span>
       </div>
       <NavList>
         <NavItems>
           <p className='nav-userinfo'>
-            <FaUserCircle /> USERNAME
+            <FaUserCircle />
+            <span>USERNAME</span>
           </p>
         </NavItems>
         <NavItems>
           <p className='nav-home'>
-            <BiHome /> 홈
+            <BiHome />
+            <span>홈</span>
           </p>
           <p className='nav-liveroom'>
-            <FaHeadphones /> 라이브룸
+            <FaHeadphones />
+            <span>라이브룸</span>
           </p>
         </NavItems>
         <NavItems>
           <p className='nav-add-playlist'>
-            <BsPlusCircle /> 플레이리스트 만들기
+            <BsPlusCircle />
+            <span>플레이리스트 만들기</span>
           </p>
           <p className='nav-storage'>
-            <BsFillSuitHeartFill className='heart' /> 보관함
+            <BsFillSuitHeartFill className='heart' />
+            <span>보관함</span>
           </p>
         </NavItems>
         <NavItems>
           <p className='nav-logout'>
-            <BiLogOut /> 로그아웃
+            <BiLogOut />
+            <span>로그아웃</span>
           </p>
         </NavItems>
       </NavList>
