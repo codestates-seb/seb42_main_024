@@ -28,13 +28,10 @@ public class Playlist extends Auditable {
     private String title;
     //length
 
-    @Column(length = 1000,nullable = false)
-    private String content;
-    //length
-
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "MEMBER_ID")
     private Member member;
+
 
     @OneToMany(mappedBy = "playlist")
     private List<Comment> comments = new ArrayList<>();
@@ -47,14 +44,8 @@ public class Playlist extends Auditable {
 
 
 
-
-
-
-
-
-    public Playlist(String title, String content, Member member) {
+    public Playlist(String title, Member member) {
         this.title = title;
-        this.content = content;
         this.member = member;
     }
 }

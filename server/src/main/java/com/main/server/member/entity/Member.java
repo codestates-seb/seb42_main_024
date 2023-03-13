@@ -34,15 +34,12 @@ public class Member extends Auditable {
     private String password;
     // length
 
-    private String memberImage;
-    // 타입 확인 요망
 
 
-    public Member( String nickname, String email, String password, String memberImage) {
+    public Member( String nickname, String email, String password) {
         this.nickname = nickname;
         this.email = email;
         this.password = password;
-        this.memberImage = memberImage;
     }
 
 
