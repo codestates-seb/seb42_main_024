@@ -1,10 +1,11 @@
 import './styles/GlobalStyle.css';
 import './styles/variables.css';
+import Nav from './components/Nav';
 
 function App() {
   return (
     <div>
-      <h1>main024 ㅎㅇㅌ</h1>
+      <Nav />
     </div>
   );
 }
