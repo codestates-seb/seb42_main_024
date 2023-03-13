@@ -42,5 +42,6 @@ public class Like {
         this.member = member;
         this.board = board;
         this.playlist = playlist;
+        /**/
     }
 }
