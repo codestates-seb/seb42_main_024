@@ -12,7 +12,7 @@ import javax.persistence.*;
 @Getter
 @Setter
 @NoArgsConstructor
-public class Song extends Auditable {
+public class Song {
 
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)

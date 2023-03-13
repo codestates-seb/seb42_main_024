@@ -1,6 +1,7 @@
 package com.main.server.board.entity;
 
 
+import com.main.server.audit.Auditable;
 import com.main.server.member.entity.Member;
 import com.main.server.playlist.entity.Playlist;
 import lombok.Getter;
@@ -10,10 +11,9 @@ import lombok.Setter;
 import javax.persistence.*;
 @Entity
 @Getter
-@Setter
 @NoArgsConstructor
 
-public class Board {
+public class Board extends Auditable {
 
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,12 +29,12 @@ public class Board {
         private Playlist playlist;
         // Board_ID
 
-        @Column(length = 100,nullable = false, unique = true)
+        @Column(length = 100,nullable = false)
         private String content;
         //length
 
 
-        @Column(length = 100,nullable = false, unique = true)
+        @Column(length = 100,nullable = false)
         private String title;
         //length
 

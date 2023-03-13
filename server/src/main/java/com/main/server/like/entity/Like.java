@@ -16,7 +16,7 @@ import javax.persistence.*;
 @Getter
 @Setter
 @NoArgsConstructor
-public class Like extends Auditable {
+public class Like {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
