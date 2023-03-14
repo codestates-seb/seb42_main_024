@@ -3,6 +3,7 @@ const PlayListBox = styled.div``;
 const PlayListLiContainer = styled.li`
   color: white;
   height: 60px;
+  width: 100%;
   display: flex;
   align-items: center;
   margin: 0 20px;
