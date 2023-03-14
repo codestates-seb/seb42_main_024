@@ -9,18 +9,18 @@ import org.springframework.web.socket.config.annotation.*;
 @EnableWebSocket
 @EnableWebSocketMessageBroker
 @RequiredArgsConstructor
-public class WebSocketConfig implements WebSocketConfigurer, WebSocketMessageBrokerConfigurer {
+public class WebSocketConfig implements WebSocketMessageBrokerConfigurer { // , WebSocketConfigurer {
 
-    private final WebSocketHandler webSocketHandler;
-    @Override
-    public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {
-        registry.addHandler(webSocketHandler, "/chat")
-                .setAllowedOriginPatterns("*");
-    }
+//    private final WebSocketHandler webSocketHandler;
+//    @Override
+//    public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {
+//        registry.addHandler(webSocketHandler, "/chat")
+//                .setAllowedOriginPatterns("*");
+//    }
 
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {
-        registry.addEndpoint("/ws") // apic 접속 url ->  ws://localhost:8080/ws
+        registry.addEndpoint("/ws") // 웹소켓을 생성한다
                 .setAllowedOriginPatterns("*")
                 .withSockJS();
     }

@@ -13,13 +13,13 @@ function setConnected(connected) {
 }
 
 function connect() {
-  var socket = new SockJS('/ws');
+  var socket = new SockJS('http://localhost:8080/ws');
   stompClient = Stomp.over(socket);
   stompClient.connect({}, function (frame) {
     setConnected(true);
     console.log('Connected: ' + frame);
     stompClient.subscribe('/sub/chat/room/chatroom1', function (join) {
-      showJoinMessage(JSON.parse(join.body).message + JSON.parse(join.body).memberName + JSON.parse(join.body).chatroomId);
+      showJoinMessage('< ' + JSON.parse(join.body).memberName + ' > : ' + JSON.parse(join.body).message);
     });
   });
 }
@@ -33,7 +33,11 @@ function disconnect() {
 }
 
 function sendName() {
-  stompClient.send("/pub/chat/join", {}, JSON.stringify({'message': 'message' , 'memberName': $("#name").val() , 'chatroomId': 'chatroom1'}));
+  stompClient.send("/pub/chat/join", {}, JSON.stringify({'message': $("#message").val() , 'memberName': $("#name").val() , 'chatroomId': 'chatroom1'}));
+}
+
+function sendMessage() {
+  stompClient.send("/pub/chat/message", {}, JSON.stringify({'message': $("#message").val() , 'memberName': $("#name").val() , 'chatroomId': 'chatroom1'}));
 }
 
 function showJoinMessage(message) {
@@ -46,5 +50,5 @@ $(function () {
   });
   $( "#connect" ).click(function() { connect(); });
   $( "#disconnect" ).click(function() { disconnect(); });
-  $( "#send" ).click(function() { sendName(); });
+  $( "#send" ).click(function() { sendMessage(); });
 });

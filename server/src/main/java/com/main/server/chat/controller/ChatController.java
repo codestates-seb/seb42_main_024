@@ -33,11 +33,10 @@ public class ChatController {
         log.info("CHAT6 {}", headerAccessor.getSessionAttributes());
     }
 
-    @MessageMapping("/chat/message/{chatroomId}")
-    public void sendMessage(@Payload ChatMessageDto dto,
-                            @PathVariable String chatroomId) {
+    @MessageMapping("/chat/message")
+    public void sendMessage(@Payload ChatMessageDto dto) {
         log.info("Chat2 {}", dto.getMessage());
-        log.info("Chat3 {}", chatroomId);
+//        log.info("Chat3 {}", chatroomId);
         log.info("Chat5 {}", dto.getChatroomId());
 
         chatService.sendMessage(dto);
