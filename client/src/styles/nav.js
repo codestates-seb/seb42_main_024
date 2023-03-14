@@ -13,6 +13,7 @@ export const NavContainer = styled.div`
     font-size: 25px;
     display: flex;
     text-align: center;
+    cursor: pointer;
   }
 
   span {
@@ -48,14 +49,112 @@ export const NavItems = styled.li`
     padding-bottom: 14px;
   }
 
-  p {
+  .nav-userinfo,
+  .nav-home,
+  .nav-liveroom,
+  .nav-add-playlist,
+  .nav-storage,
+  .nav-logout {
     display: flex;
     align-items: center;
   }
+`;
 
-  span {
-    padding-left: 10px;
-    height: 16px;
+export const UserInfo = styled.button`
+  margin-left: 10px;
+  height: 16px;
+  cursor: pointer;
+  border: none;
+  background-color: var(--color1);
+  color: var(--color9);
+
+  &:hover {
+    cursor: pointer;
+    background-color: var(--color5);
+  }
+`;
+
+export const Home = styled.button`
+  margin-left: 10px;
+  height: 16px;
+  cursor: pointer;
+  border: none;
+  background-color: var(--color1);
+  color: var(--color9);
+
+  &:hover {
+    cursor: pointer;
+    background-color: var(--color5);
+  }
+`;
+
+export const LiveRoom = styled.button`
+  margin-left: 10px;
+  height: 16px;
+  cursor: pointer;
+  border: none;
+  background-color: var(--color1);
+  color: var(--color9);
+
+  &:hover {
+    cursor: pointer;
+    background-color: var(--color5);
+  }
+`;
+
+export const AddPlayList = styled.button`
+  margin-left: 10px;
+  height: 16px;
+  cursor: pointer;
+  border: none;
+  background-color: var(--color1);
+  color: var(--color9);
+
+  &:hover {
+    cursor: pointer;
+    background-color: var(--color5);
+  }
+`;
+
+export const Storage = styled.button`
+  margin-left: 10px;
+  height: 16px;
+  cursor: pointer;
+  border: none;
+  background-color: var(--color1);
+  color: var(--color9);
+
+  &:hover {
+    cursor: pointer;
+    background-color: var(--color5);
+  }
+`;
+
+export const Login = styled.button`
+  margin-left: 10px;
+  height: 16px;
+  cursor: pointer;
+  border: none;
+  background-color: var(--color1);
+  color: var(--color9);
+
+  &:hover {
+    cursor: pointer;
+    background-color: var(--color5);
+  }
+`;
+
+export const Logout = styled.button`
+  margin-left: 10px;
+  height: 16px;
+  cursor: pointer;
+  border: none;
+  background-color: var(--color1);
+  color: var(--color9);
+
+  &:hover {
+    cursor: pointer;
+    background-color: var(--color5);
   }
 `;
 
