@@ -3,7 +3,6 @@ const PlayBoxWarp = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: red;
   color: var(--color9);
 `;
 const PlayBoxImg = styled.img`
@@ -21,23 +20,23 @@ const PlayBoxInfo = styled.div`
 `;
 const PlayBoxTitle = styled.span`
   font-size: 15px;
-  font-weight: var(--ft-pretendardExtraBold);
+  font-family: var(--ft-pretendardBold);
 `;
 const PlayBoxContent = styled.span`
-  font-weight: var(--ft-pretendardRegular);
+  font-family: var(--ft-pretendardRegular);
   font-size: 12px;
 `;
 
 function PlayBox() {
-    return (
-        <PlayBoxWarp>
-            <PlayBoxImg />
-            <PlayBoxInfo>
-                <PlayBoxTitle>타이틀</PlayBoxTitle>
-                <PlayBoxContent>가수제목</PlayBoxContent>
-            </PlayBoxInfo>
-        </PlayBoxWarp>
-    );
+  return (
+    <PlayBoxWarp>
+      <PlayBoxImg />
+      <PlayBoxInfo>
+        <PlayBoxTitle>타이틀</PlayBoxTitle>
+        <PlayBoxContent>가수제목</PlayBoxContent>
+      </PlayBoxInfo>
+    </PlayBoxWarp>
+  );
 }
 
 export default PlayBox;

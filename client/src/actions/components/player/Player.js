@@ -7,7 +7,6 @@ const PlayWarp = styled.div`
   align-items: center;
   display: flex;
   flex-direction: column;
-  background-color: blue;
   margin-left: 4.2vw;
 `;
 const PlayerBtnContainer = styled.div`
@@ -32,14 +31,22 @@ const PlayerBtnContainer = styled.div`
     cursor: pointer;
   }
 `;
+const TestBox = styled.div`
+  width: 600px;
+  height: 5px;
+  background-color: red;
+  border-radius: 3px;
+`;
 function Player() {
-    return (
-        <PlayWarp>
-            <PlayerBtnContainer>
-                <MdSkipNext className='PreBtn' /> <GoPlay className='StartBtn' /><MdSkipNext className='NextBtn' />
-            </PlayerBtnContainer>
-        </PlayWarp>
-    )
+  return (
+    <PlayWarp>
+      <PlayerBtnContainer>
+        <MdSkipNext className='PreBtn' /> <GoPlay className='StartBtn' />
+        <MdSkipNext className='NextBtn' />
+      </PlayerBtnContainer>
+      <TestBox />
+    </PlayWarp>
+  );
 }
 
 export default Player;
