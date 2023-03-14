@@ -32,6 +32,18 @@ public class Playlist extends Auditable {
     @JoinColumn(name = "MEMBER_ID")
     private Member member;
 
+
+    @OneToMany(mappedBy = "playlist")
+    private List<Comment> comments = new ArrayList<>();
+
+    @OneToMany(mappedBy = "playlist")
+    private List<Song> songs = new ArrayList<>();
+
+    @OneToMany(mappedBy = "playlist")
+    private List<Like> likes = new ArrayList<>();
+
+
+
     public Playlist(String title, Member member) {
         this.title = title;
         this.member = member;
