@@ -2,6 +2,7 @@ package com.main.server.member.entity;
 
 
 import com.main.server.audit.Auditable;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -12,7 +13,6 @@ import java.util.ArrayList;
 import java.util.List;
 @Entity
 @Getter
-@Setter
 @NoArgsConstructor
  // 주석 = 바꿔야 할 부분
 public class Member extends Auditable {
@@ -36,7 +36,8 @@ public class Member extends Auditable {
 
 
 
-    public Member( String nickname, String email, String password) {
+    @Builder
+    public Member(String nickname, String email, String password) {
         this.nickname = nickname;
         this.email = email;
         this.password = password;
