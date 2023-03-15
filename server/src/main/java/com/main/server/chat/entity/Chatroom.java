@@ -1,53 +1,54 @@
 package com.main.server.chat.entity;
 
-import com.main.server.chat.dto.ChatMessageDto;
-import com.main.server.chat.service.ChatroomService;
+import com.main.server.member.entity.Member;
 import lombok.*;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.socket.WebSocketSession;
 
+import javax.persistence.*;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
-//@Entity
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
-@Getter
+@Entity
 @Slf4j
+@Getter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Chatroom {
 
-    private String memberName;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long chatroomId;
 
-    private String chatroomId;
+    @ManyToOne
+    @JoinColumn(name = "member_id")
+    private Member member;
 
     private String title;
 
-    private Integer maxCount;
+    private Integer maxCount = 4;
 
+    @CollectionTable(name = "user_list",
+            joinColumns = @JoinColumn(name = "room_id"))
+    @ElementCollection(fetch = FetchType.LAZY)
     List<String> users = new ArrayList<>();
 
     @Builder
-    public Chatroom(String memberName, String chatroomId, String title, Integer macCount) {
-        this.memberName = memberName;
-        this.chatroomId = chatroomId;
+    public Chatroom(Member member, String title) {
+        this.member = member;
         this.title = title;
-        this.maxCount = macCount;
     }
 
-    @Transactional
-    public void handlerActions(WebSocketSession session,
-                               ChatMessageDto chatMessageDto,
-                               ChatroomService chatRoomService) {
-        log.info("@ @ @ @ @ handlerActions @ @ @ @ @");
-    }
-
-    @Transactional
-    public <T> void sendMessage(T message, ChatroomService chatRoomService) {
-        log.info("@ @ @ @ @ sendMessage @ @ @ @ @");
-        Set<WebSocketSession> sessions = new HashSet<>();
-        sessions.parallelStream()
-                .forEach(session -> chatRoomService.sendMessage(session, message));
-    }
+    //    @Transactional
+//    public void handlerActions(WebSocketSession session,
+//                               ChatMessageDto chatMessageDto,
+//                               ChatroomService chatRoomService) {
+//        log.info("@ @ @ @ @ handlerActions @ @ @ @ @");
+//    }
+//
+//    @Transactional
+//    public <T> void sendMessage(T message, ChatroomService chatRoomService) {
+//        log.info("@ @ @ @ @ sendMessage @ @ @ @ @");
+//        Set<WebSocketSession> sessions = new HashSet<>();
+//        sessions.parallelStream()
+//                .forEach(session -> chatRoomService.sendMessage(session, message));
+//    }
 }

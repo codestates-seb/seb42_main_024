@@ -1,7 +1,6 @@
 package com.main.server.chat.controller;
 
-import com.main.server.chat.dto.ChatMessageDto;
-import com.main.server.chat.entity.Chatroom;
+import com.main.server.chat.dto.ChatRequestDto;
 import com.main.server.chat.service.ChatService;
 import com.main.server.chat.service.ChatroomService;
 import lombok.RequiredArgsConstructor;
@@ -9,8 +8,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.messaging.simp.SimpMessageHeaderAccessor;
-import org.springframework.messaging.simp.SimpMessagingTemplate;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -23,7 +20,7 @@ public class ChatController {
     private final ChatService chatService;
 
     @MessageMapping("/chat/join")
-    public void enterUser(@Payload ChatMessageDto dto,
+    public void enterUser(@Payload ChatRequestDto dto,
                           SimpMessageHeaderAccessor headerAccessor) { // 알아볼것
 
         chatService.enterUser(dto);
@@ -34,7 +31,7 @@ public class ChatController {
     }
 
     @MessageMapping("/chat/message")
-    public void sendMessage(@Payload ChatMessageDto dto) {
+    public void sendMessage(@Payload ChatRequestDto dto) {
         log.info("Chat2 {}", dto.getMessage());
 //        log.info("Chat3 {}", chatroomId);
         log.info("Chat5 {}", dto.getChatroomId());

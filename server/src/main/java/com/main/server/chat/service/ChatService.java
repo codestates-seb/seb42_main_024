@@ -1,7 +1,10 @@
 package com.main.server.chat.service;
 
-import com.main.server.chat.dto.ChatMessageDto;
+import com.main.server.chat.dto.ChatRequestDto;
+import com.main.server.chat.entity.Chat;
 import com.main.server.chat.entity.Chatroom;
+import com.main.server.chat.repository.ChatRepository;
+import com.main.server.chat.repository.ChatroomRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
@@ -16,8 +19,10 @@ public class ChatService {
 
     private final ChatroomService chatroomService;
     private final SimpMessagingTemplate template; // 알아볼것
+    private final ChatRepository chatRepository;
 
-    public void enterUser(ChatMessageDto dto) {
+
+    public void enterUser(ChatRequestDto dto) {
         Chatroom room = chatroomService.findVerifiedRoomId(dto.getChatroomId());
 
         if (!room.getUsers().contains(dto.getMemberName())) {
@@ -28,7 +33,15 @@ public class ChatService {
         template.convertAndSend("/sub/chat/room/" + dto.getChatroomId(), dto);
     }
 
-    public void sendMessage(ChatMessageDto dto) {
+    public void sendMessage(ChatRequestDto dto) {
         template.convertAndSend("/sub/chat/room/" + dto.getChatroomId(), dto);
+
+        Chat chat = Chat.builder()
+                .member(null)
+                .chatroom(chatroomService.findVerifiedRoomId(dto.getChatroomId()))
+                .content(dto.getMessage())
+                .build();
+
+        chatRepository.save(chat);
     }
 }

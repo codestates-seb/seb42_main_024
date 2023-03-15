@@ -5,6 +5,9 @@ import lombok.Data;
 @Data
 public class ChatroomPostDto {
 
-    private String memberName;
     private String title;
+
+//    private boolean secret;
+//
+//    private String pwd;
 }
