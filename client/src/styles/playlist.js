@@ -228,3 +228,42 @@ export const Song = styled.div`
     }
   }
 `;
+
+// MainPage - PlaylistThumbnail
+export const PlaylistThumnailContainer = styled.div`
+  width: 260px;
+  color: var(--color9);
+  position: relative;
+  img.playlistImg {
+    width: 100%;
+    height: 260px;
+    object-fit: cover;
+  }
+  img.onAir {
+    width: 30px;
+    position: absolute;
+    right: 3px;
+    bottom: 42px;
+  }
+  .title {
+    font-family: var(--ft-pretendardSemiBold);
+    font-size: 15px;
+    margin: 5px 1px;
+  }
+  .flexBox {
+    display: flex;
+    justify-content: space-between;
+    font-family: var(--ft-pretendardLight);
+    .playtime {
+      font-size: 10px;
+    }
+    .author {
+      display: flex;
+      gap: 3px;
+      margin: 1px;
+      .displayName {
+        font-size: 12px;
+      }
+    }
+  }
+`;
