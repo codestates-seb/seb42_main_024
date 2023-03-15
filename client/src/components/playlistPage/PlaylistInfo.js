@@ -1,4 +1,4 @@
-import { PlaylistInfoContainer } from '../../styles/playlist';
+import { PlaylistInfoContainer, PlaylistInfoMain } from '../../styles/playlist';
 import { useState } from 'react';
 import { FaPlay } from 'react-icons/fa';
 import { IoMdAddCircleOutline, IoMdClose } from 'react-icons/io';
@@ -71,55 +71,57 @@ const PlaylistInfo = () => {
         height='350px'
       />
       <div className='info'>
-        <div className='title'>{dummyData.playlistTitle}</div>
-        <div className='desc'>{dummyData.playlistDesc}</div>
-        <button onClick={toggleIsModalOpen} className='moreInfo'>
-          더보기
-        </button>
-        <ReactModal
-          isOpen={isModalOpen}
-          shouldCloseOnEsc={true}
-          shouldCloseOnOverlayClick={true}
-          onRequestClose={toggleIsModalOpen}
-          style={{
-            content: {
-              width: '584px',
-              height: '584px',
-              margin: 'auto',
-              backgroundColor: 'var(--color11)',
-              padding: '30px',
-            },
-          }}>
-          <IoMdClose
-            onClick={toggleIsModalOpen}
-            size='35'
-            color='var(--color4)'
-          />
-          <p
+        <PlaylistInfoMain>
+          <div className='title'>{dummyData.playlistTitle}</div>
+          <div className='desc'>{dummyData.playlistDesc}</div>
+          <button onClick={toggleIsModalOpen} className='moreInfo'>
+            더보기
+          </button>
+          <ReactModal
+            isOpen={isModalOpen}
+            shouldCloseOnEsc={true}
+            shouldCloseOnOverlayClick={true}
+            onRequestClose={toggleIsModalOpen}
             style={{
-              color: 'var(--color9)',
-              fontFamily: 'var(--ft-pretendardExtraBold)',
-              fontSize: '50px',
+              content: {
+                width: '584px',
+                height: '584px',
+                margin: 'auto',
+                backgroundColor: 'var(--color11)',
+                padding: '30px',
+              },
             }}>
-            {dummyData.playlistTitle}
-          </p>
-          <p style={{ marginTop: '20px', color: 'var(--color4)' }}>
-            {dummyData.playlistDesc}
-          </p>
-        </ReactModal>
-        <div className='btns'>
-          <button className='btn1'>
-            <FaPlay />
-            <div>재생</div>
-          </button>
-          <button className='btn2'>
-            <IoMdAddCircleOutline />
-            <div>추가</div>
-          </button>
-          <button className='btn1'>
-            <div>수정</div>
-          </button>
-        </div>
+            <IoMdClose
+              onClick={toggleIsModalOpen}
+              size='35'
+              color='var(--color4)'
+            />
+            <p
+              style={{
+                color: 'var(--color9)',
+                fontFamily: 'var(--ft-pretendardExtraBold)',
+                fontSize: '50px',
+              }}>
+              {dummyData.playlistTitle}
+            </p>
+            <p style={{ marginTop: '20px', color: 'var(--color4)' }}>
+              {dummyData.playlistDesc}
+            </p>
+          </ReactModal>
+          <div className='btns'>
+            <button className='btn1'>
+              <FaPlay />
+              <div>재생</div>
+            </button>
+            <button className='btn2'>
+              <IoMdAddCircleOutline />
+              <div>추가</div>
+            </button>
+            <button className='btn1'>
+              <div>수정</div>
+            </button>
+          </div>
+        </PlaylistInfoMain>
       </div>
     </PlaylistInfoContainer>
   );

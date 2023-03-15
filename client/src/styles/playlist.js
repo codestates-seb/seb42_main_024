@@ -1,6 +1,55 @@
 import styled from 'styled-components';
 
 // PlaylistPage - PlaylistInfoContainer component
+export const PlaylistInfoMain = styled.div`
+  .title {
+    font-size: 50px;
+    font-family: var(--ft-pretendardExtraBold);
+    margin: 25px 0;
+  }
+  .desc {
+    width: 584px;
+    height: 122px;
+    font-size: 15px;
+    font-family: var(--ft-pretendardThin);
+    overflow-y: hidden;
+  }
+  .moreInfo {
+    margin: 10px 0;
+    background-color: var(--color11);
+    border: 1px solid var(--color9);
+    border-radius: 5px;
+    color: var(--color9);
+    width: 40px;
+    height: 20px;
+  }
+  .btns {
+    width: fit-content;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 18px;
+    button {
+      width: 80px;
+      height: 30px;
+      border-radius: 5px;
+      border: 1px solid var(--color9);
+      font-size: 15px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 5px;
+      &.btn1 {
+        background-color: var(--color9);
+      }
+      &.btn2 {
+        background-color: var(--color2);
+        color: var(--color9);
+      }
+    }
+  }
+`;
+
 export const PlaylistInfoContainer = styled.div`
   background-color: var(--color11);
   height: 520px;
@@ -10,52 +59,6 @@ export const PlaylistInfoContainer = styled.div`
   color: var(--color9);
   .info {
     margin-left: 25px;
-    .title {
-      font-size: 50px;
-      font-family: var(--ft-pretendardExtraBold);
-      margin: 25px 0;
-    }
-    .desc {
-      width: 584px;
-      height: 122px;
-      font-size: 15px;
-      font-family: var(--ft-pretendardThin);
-      overflow-y: hidden;
-    }
-    .moreInfo {
-      margin: 10px 0;
-      background-color: var(--color11);
-      border: 1px solid var(--color9);
-      border-radius: 5px;
-      color: var(--color9);
-      width: 40px;
-      height: 20px;
-    }
-    .btns {
-      width: fit-content;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 18px;
-      button {
-        width: 80px;
-        height: 30px;
-        border-radius: 5px;
-        border: 1px solid var(--color9);
-        font-size: 15px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 5px;
-        &.btn1 {
-          background-color: var(--color9);
-        }
-        &.btn2 {
-          background-color: var(--color2);
-          color: var(--color9);
-        }
-      }
-    }
   }
 `;
 
@@ -143,56 +146,16 @@ export const PlaylistImageContainer = styled.div`
   }
 `;
 
-export const PlaylistTrendyInfoContainer = styled.div`
+export const PlaylistTrendyInfoContainer = styled(PlaylistInfoMain)`
   width: 850px;
   background-color: var(--color11);
   color: var(--color9);
   padding-left: 25px;
   .title {
-    font-size: 50px;
-    font-family: var(--ft-pretendardExtraBold);
     margin: 15px 0;
   }
   .desc {
-    width: 584px;
     height: 35px;
-    font-size: 15px;
-    font-family: var(--ft-pretendardThin);
-    overflow-y: hidden;
-  }
-  .moreInfo {
-    margin: 10px 0;
-    background-color: var(--color11);
-    border: 1px solid var(--color9);
-    border-radius: 5px;
-    color: var(--color9);
-    width: 40px;
-    height: 20px;
-  }
-  .btns {
-    width: fit-content;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 18px;
-    button {
-      width: 80px;
-      height: 30px;
-      border-radius: 5px;
-      border: 1px solid var(--color9);
-      font-size: 15px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 5px;
-      &.btn1 {
-        background-color: var(--color9);
-      }
-      &.btn2 {
-        background-color: var(--color2);
-        color: var(--color9);
-      }
-    }
   }
 `;
 
