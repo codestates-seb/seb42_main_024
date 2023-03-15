@@ -1,39 +1,43 @@
 import styled from 'styled-components';
 
-export const Container = styled.div`
-  height: 100vh;
-  background-color: var(--color1);
-  overflow-y: scroll;
-`;
-
-export const InfoBoxContainer = styled.div`
+// PlaylistPage - PlaylistInfoContainer component
+export const PlaylistInfoContainer = styled.div`
   background-color: var(--color11);
   height: 520px;
   display: flex;
   justify-content: center;
   align-items: center;
   color: var(--color9);
-  & .info {
+  .info {
     margin-left: 25px;
-    & .title {
+    .title {
       font-size: 50px;
       font-family: var(--ft-pretendardExtraBold);
       margin: 25px 0;
     }
-    & .desc {
+    .desc {
       width: 584px;
       height: 122px;
       font-size: 15px;
       font-family: var(--ft-pretendardThin);
       overflow-y: hidden;
     }
-    & .btns {
+    .moreInfo {
+      margin: 10px 0;
+      background-color: var(--color11);
+      border: 1px solid var(--color9);
+      border-radius: 5px;
+      color: var(--color9);
+      width: 40px;
+      height: 20px;
+    }
+    .btns {
       width: fit-content;
       display: flex;
       justify-content: center;
       align-items: center;
       gap: 18px;
-      & button {
+      button {
         width: 80px;
         height: 30px;
         border-radius: 5px;
@@ -55,11 +59,12 @@ export const InfoBoxContainer = styled.div`
   }
 `;
 
-export const ListBoxContainer = styled.div`
+// PlaylistPage - PlaylistList component
+export const PlaylistListContainer = styled.div`
   margin: 120px;
   background-color: var(--color2);
   padding: 100px;
-  & .row {
+  .row {
     background-color: inherit;
     border: none;
     width: 100%;
@@ -71,23 +76,23 @@ export const ListBoxContainer = styled.div`
     &:first-child {
       border-bottom: 1px solid var(--color3);
     }
-    & > * {
+    > * {
       flex-basis: 0;
       text-align: left;
     }
-    & .num {
+    .num {
       flex-grow: 1;
     }
-    & .title {
+    .title {
       flex-grow: 4;
     }
-    & .artist {
+    .artist {
       flex-grow: 3;
     }
-    & .album {
+    .album {
       flex-grow: 3;
     }
-    & .playtime {
+    .playtime {
       flex-grow: 1;
       text-align: right;
     }
@@ -95,4 +100,11 @@ export const ListBoxContainer = styled.div`
       background-color: rgba(217, 217, 217, 0.5);
     }
   }
+`;
+
+// PlaylistPage
+export const PlaylistContainer = styled.div`
+  height: 100vh;
+  background-color: var(--color1);
+  overflow-y: scroll;
 `;
