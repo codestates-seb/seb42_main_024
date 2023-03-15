@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 import { BsFillGearFill } from 'react-icons/bs';
+import LSBPlayList from './LSBPlayList';
+import { useEffect, useState } from 'react';
 
 const LiveroomSideBarContainer = styled.div`
   width: 1000px;
@@ -8,11 +10,11 @@ const LiveroomSideBarContainer = styled.div`
   border: 1px solid var(--color3);
   display: flex;
   flex-direction: column;
-  padding: 80px;
+  padding: 50px;
 `;
 
 const LSBHeaderContainer = styled.div`
-  flex-grow: 1;
+  height: 10%;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -22,11 +24,11 @@ const LSBHeaderContainer = styled.div`
 const LSBPlayListContainer = styled.div`
   display: flex;
   flex-direction: column;
-  flex-grow: 8;
+  height: 45%;
 `;
 const LSBChatContianer = styled.div`
-margin-top: 20px;
-  flex-grow: 8;
+  margin-top: 20px;
+  height: 45%;
 `;
 const LSBOutBtn = styled.button`
   font-size: 38px;
@@ -37,15 +39,58 @@ const LSBOutBtn = styled.button`
 `;
 
 const LSBMemberContainer = styled.div`
-  flex-grow: 1;
+  height: 10%;
 `;
-const LSBPlayList = styled.div`
+
+const LSBPlayListWrap = styled.div`
   border-radius: 20px;
-  flex-grow: 10;
+  height: 90%;
   background-color: var(--color2);
+  padding: 50px;
+  display: flex;
+  flex-direction: column;
+  overflow:auto;
 `;
 
 function LiveroomSideBar() {
+  const [data, setdata] = useState([]);
+  useEffect(() => {
+    const dummyData = [
+      {
+        key: 1,
+        singer:'누진스',
+        musicTitle: '하입보잉',
+        thumnailURL:
+          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQGgD01x0AuTfakEpAznMC27k-2jSuoGMiu8mGo1aVuYkeGU_E0C1-_cH6WHNOyMcXGaW4&usqp=CAU',
+        playtime: '3:30',
+      },
+      {
+        key: 2,
+        singer:'누진스',
+        musicTitle: '하입보잉',
+        thumnailURL:
+          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQGgD01x0AuTfakEpAznMC27k-2jSuoGMiu8mGo1aVuYkeGU_E0C1-_cH6WHNOyMcXGaW4&usqp=CAU',
+        playtime: '3:30',
+      },
+      {
+        key: 3,
+        singer:'누진스',
+        musicTitle: '하입보잉',
+        thumnailURL:
+          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQGgD01x0AuTfakEpAznMC27k-2jSuoGMiu8mGo1aVuYkeGU_E0C1-_cH6WHNOyMcXGaW4&usqp=CAU',
+        playtime: '3:30',
+      },
+      {
+        key: 4,
+        singer:'누진스',
+        musicTitle: '하입보잉',
+        thumnailURL:
+          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQGgD01x0AuTfakEpAznMC27k-2jSuoGMiu8mGo1aVuYkeGU_E0C1-_cH6WHNOyMcXGaW4&usqp=CAU',
+        playtime: '3:30',
+      },
+    ];
+    setdata(dummyData);
+  }, []);
   return (
     <LiveroomSideBarContainer>
       <LSBHeaderContainer>
@@ -54,10 +99,13 @@ function LiveroomSideBar() {
       </LSBHeaderContainer>
       <LSBPlayListContainer>
         <LSBMemberContainer></LSBMemberContainer>
-        <LSBPlayList></LSBPlayList>
+        <LSBPlayListWrap>
+          {data.map((e) => {
+            return <LSBPlayList key={e.key} playListData={e}></LSBPlayList>;
+          })}
+        </LSBPlayListWrap>
       </LSBPlayListContainer>
-      <LSBChatContianer>
-      </LSBChatContianer>
+      <LSBChatContianer></LSBChatContianer>
     </LiveroomSideBarContainer>
   );
 }
