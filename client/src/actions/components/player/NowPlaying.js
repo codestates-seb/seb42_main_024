@@ -1,8 +1,11 @@
 import styled from 'styled-components';
 import PlayBox from './PlayBox';
 import Player from './Player';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import PlayList from './PlayList';
+import axios from 'axios';
+// import { useDispatch } from 'react-redux';
+// import { setCurrentSongURL } from '../../actions';
 const PlayWarp = styled.div``;
 const NowPlayingWrap = styled.div`
   position: fixed;
@@ -52,7 +55,51 @@ function NowPlaying() {
     setIsOpen(!isOpen);
     console.log(isOpen);
   };
+  // const dispatch = useDispatch();
+  const [playlist, setPlaylist] = useState([]);
 
+  // useEffect(() => {
+  //   const fetchVideoData = async () => {
+  //     const videoId = 'sVTy_wmn5SU';
+  //     const API_KEY = 'AIzaSyCApUdc9PuxJJYqjgNNNL2I2fkLuFIBasA';
+  //     const url = `https://www.googleapis.com/youtube/v3/videos?part=snippet&id=${videoId}&key=${API_KEY}`;
+
+  //     try {
+  //       const response = await axios.get(url);
+  //       const video = response.data.items[0].snippet;
+  //       setVideoData({
+  //         title: video.title,
+  //         thumbnail: video.thumbnails.high.url,
+  //       });
+
+  //       dispatch(
+  //         setCurrentSongURL(`https://www.youtube.com/watch?v=${videoId}`)
+  //       );
+  //       console.log('video', video);
+  //     } catch (error) {
+  //       console.error(error);
+  //       setVideoData(null);
+  //     }
+  //   };
+
+  //   fetchVideoData();
+  // }, [dispatch]);
+  useEffect(() => {
+    // const videoId = 'UC3IZKseVpdzPSBaWxBxundA';
+    // const API_KEY = 'AIzaSyCApUdc9PuxJJYqjgNNNL2I2fkLuFIBasA';
+    axios
+      .get(
+        `https://www.googleapis.com/youtube/v3/playlists?part=snippet&channelId=UC3IZKseVpdzPSBaWxBxundA&maxResults=50&key=AIzaSyCApUdc9PuxJJYqjgNNNL2I2fkLuFIBasA`
+      )
+      .then((res) => {
+        console.log(res);
+        setPlaylist(res.data.items);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  }, []);
+  console.log(playlist);
   return (
     <PlayWarp>
       {/* NowPlaying */}
@@ -65,7 +112,7 @@ function NowPlaying() {
         <PlayListCover>
           <PlayListImg />
         </PlayListCover>
-        <PlayList />
+        <PlayList playlist={playlist} />
       </PlayListBox>
     </PlayWarp>
   );
