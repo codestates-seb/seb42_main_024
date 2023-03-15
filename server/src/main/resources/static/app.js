@@ -32,12 +32,15 @@ function disconnect() {
   console.log("Disconnected");
 }
 
-function sendName() {
+function enterUser() {
   stompClient.send("/pub/chat/join", {}, JSON.stringify({'message': $("#message").val() , 'memberName': $("#name").val() , 'chatroomId': 1}));
 }
 
 function sendMessage() {
   stompClient.send("/pub/chat/message", {}, JSON.stringify({'message': $("#message").val() , 'memberName': $("#name").val() , 'chatroomId': 1}));
+}
+function leaveRoom() {
+  stompClient.send("/pub/chat/leave", {}, JSON.stringify({'message': $("#message").val() , 'memberName': $("#name").val() , 'chatroomId': 1}));
 }
 
 function showJoinMessage(message) {
@@ -50,5 +53,5 @@ $(function () {
   });
   $( "#connect" ).click(function() { connect(); });
   $( "#disconnect" ).click(function() { disconnect(); });
-  $( "#send" ).click(function() { sendMessage(); });
+  $( "#send" ).click(function() { leaveRoom(); });
 });
