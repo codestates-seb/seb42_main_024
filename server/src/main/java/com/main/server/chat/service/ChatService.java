@@ -44,4 +44,14 @@ public class ChatService {
 
         chatRepository.save(chat);
     }
+
+
+    public void leaveRoom(ChatRequestDto dto) {
+        Chatroom room = chatroomService.findVerifiedRoomId(dto.getChatroomId());
+        if (!room.getUsers().contains(dto.getMemberName())) {
+            room.getUsers().remove(dto.getMemberName());
+            dto.setMessage("< " + dto.getMemberName() + " > 님이 퇴장하셨습니다.");
+        }
+        template.convertAndSend("/sub/chat/room/" + dto.getChatroomId(), dto);
+    }
 }

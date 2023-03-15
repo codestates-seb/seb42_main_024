@@ -9,7 +9,7 @@ public class ChatRequestDto {
 
     private String message;
 
-    private MessageType type = MessageType.TALK;
+    private MessageType type;
 
     private String memberName;
 
@@ -26,4 +26,9 @@ public class ChatRequestDto {
     public enum MessageType {
         ENTER, TALK, LEAVE;
     }
+//    public void closeConnect() {
+//        this.type = MessageType.LEAVE;
+//    }
+
+
 }

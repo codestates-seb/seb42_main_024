@@ -34,6 +34,11 @@ public class ChatroomService {
         return chatroom;
     }
 
+    public void deleteChatRoom(Long chatroomId) {
+        Chatroom chatroom = findVerifiedRoomId(chatroomId);
+        chatroomRepository.delete(chatroom);
+    }
+
 //    public <T> void sendMessage(WebSocketSession session, T message) {
 //        log.info("sendMessage is used");
 //        try {
