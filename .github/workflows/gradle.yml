@@ -36,7 +36,7 @@ jobs:
       run: chmod +x ./gradlew
       working-directory: ${{ env.working-directory }}
     - name: Build with Gradle
-      run: ./gradlew clean build --debug
+      run: ./gradlew clean build
       working-directory: ${{ env.working-directory }}
     
     - name: Check Build Files
