@@ -108,3 +108,123 @@ export const PlaylistContainer = styled.div`
   background-color: var(--color1);
   overflow-y: scroll;
 `;
+
+// MainPage - PlaylistTrendy component
+export const PlaylistTrendyContainer = styled.div`
+  width: 1260px;
+  height: 350px;
+  display: flex;
+`;
+
+export const PlaylistImageContainer = styled.div`
+  width: 410px;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
+    &.blurred {
+      filter: blur(10px);
+    }
+  }
+  button.playBtn {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+    background: none;
+    .icon {
+      color: var(--color4);
+    }
+  }
+`;
+
+export const PlaylistTrendyInfoContainer = styled.div`
+  width: 850px;
+  background-color: var(--color11);
+  color: var(--color9);
+  padding-left: 25px;
+  .title {
+    font-size: 50px;
+    font-family: var(--ft-pretendardExtraBold);
+    margin: 15px 0;
+  }
+  .desc {
+    width: 584px;
+    height: 35px;
+    font-size: 15px;
+    font-family: var(--ft-pretendardThin);
+    overflow-y: hidden;
+  }
+  .moreInfo {
+    margin: 10px 0;
+    background-color: var(--color11);
+    border: 1px solid var(--color9);
+    border-radius: 5px;
+    color: var(--color9);
+    width: 40px;
+    height: 20px;
+  }
+  .btns {
+    width: fit-content;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 18px;
+    button {
+      width: 80px;
+      height: 30px;
+      border-radius: 5px;
+      border: 1px solid var(--color9);
+      font-size: 15px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 5px;
+      &.btn1 {
+        background-color: var(--color9);
+      }
+      &.btn2 {
+        background-color: var(--color2);
+        color: var(--color9);
+      }
+    }
+  }
+`;
+
+export const SongListContainer = styled.div`
+  /* width: 684px; */
+  width: 450px;
+  margin: 15px 0;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 20px;
+  align-items: center;
+`;
+
+export const Song = styled.div`
+  display: flex;
+  align-items: center;
+  img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+  }
+  .info {
+    color: var(--color9);
+    margin-left: 10px;
+    .title {
+      font-size: 15px;
+      font-family: var(--ft-pretendardExtraBold);
+      margin: 5px 0;
+    }
+    .artist {
+      font-size: 12px;
+      font-family: var(--ft-pretendardThin);
+    }
+  }
+`;
