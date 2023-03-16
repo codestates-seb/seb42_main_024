@@ -1,10 +1,11 @@
 import './styles/GlobalStyle.css';
 import './styles/variables.css';
-import Playlist from './components/Playlist';
+import Nav from './components/Nav';
+
 function App() {
   return (
     <div>
-      <Playlist />
+      <Nav />
     </div>
   );
 }
