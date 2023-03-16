@@ -36,16 +36,11 @@ public class OAuth2MemberSuccessHandler extends SimpleUrlAuthenticationSuccessHa
                                         Authentication authentication) throws IOException, ServletException {
         var oAuth2User = (OAuth2User)authentication.getPrincipal();
         String email = String.valueOf(oAuth2User.getAttributes().get("email"));
+        String profile = String.valueOf(oAuth2User.getAttributes().get("profile"));
         List<String> authorities = authorityUtils.createRoles(email);
 
-        saveMember(email);
+//        createMember(email, profile);
         redirect(request, response, email, authorities);
-    }
-
-    private void saveMember(String email) {
-        /**
-         * saveMember
-         */
     }
 
     private void redirect(HttpServletRequest request,
@@ -56,35 +51,10 @@ public class OAuth2MemberSuccessHandler extends SimpleUrlAuthenticationSuccessHa
         String accessToken = jwtTokenizer.delegateAccessToken(username, authorities);
         String refreshToken = jwtTokenizer.delegateRefreshToken(username);
 
-        // 검토 필요
         String uri = createURI(accessToken, refreshToken).toString();
         getRedirectStrategy().sendRedirect(request, response, uri);
     }
 
-//    private String delegateAccessToken(String username, List<String> authorities) {
-//        Map<String, Object> claims = new HashMap<>();
-//        claims.put("username", username);
-//        claims.put("roles", authorities);
-//
-//        String subject = username;
-//        Date expiration = jwtTokenizer.getTokenExpiration(jwtTokenizer.getAccessTokenExpirationMinutes());
-//
-//        String accessToken = jwtTokenizer.generateAccessToken(claims, subject, expiration);
-//
-//        return accessToken;
-//    }
-//
-//    private String delegateRefreshToken(String username) {
-//        Date expiration = jwtTokenizer.getTokenExpiration(jwtTokenizer.getRefreshTokenExpirationMinutes());
-//
-//        String refreshToken = jwtTokenizer.generateRefreshToken(username, expiration);
-//
-//        return refreshToken;
-//    }
-
-    /**
-     * 필요성 검토필요
-     */
     private URI createURI(String accessToken, String refreshToken) {
         MultiValueMap<String, String> queryParams = new LinkedMultiValueMap<>();
         queryParams.add("access_token", accessToken);
@@ -94,7 +64,7 @@ public class OAuth2MemberSuccessHandler extends SimpleUrlAuthenticationSuccessHa
                 .newInstance()
                 .scheme("http")
                 .host("localhost")
-                .port(80)
+                .port(8080)
                 .path("/receive-token.html")
                 .queryParams(queryParams)
                 .build()

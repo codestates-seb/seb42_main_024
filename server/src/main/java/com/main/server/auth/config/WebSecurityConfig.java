@@ -54,7 +54,8 @@ public class WebSecurityConfig {
                 .authenticationEntryPoint(new MemberAuthenticationEntryPoint())
                 .accessDeniedHandler(new MemberAccessDeniedHandler())
                 .and()
-//                .apply() 해야함해야함
+                .apply(new CustomFilterConfigurer())
+                .and()
                 .authorizeHttpRequests(authorize -> authorize
                         .anyRequest().permitAll()
                 )

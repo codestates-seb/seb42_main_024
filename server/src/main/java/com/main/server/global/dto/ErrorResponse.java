@@ -1,4 +1,4 @@
-package com.main.server.global;
+package com.main.server.global.dto;
 
 import com.main.server.exception.ExceptionCode;
 import lombok.AllArgsConstructor;
