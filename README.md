@@ -107,6 +107,7 @@ song entity 추가
 
 
     - Visual Studio Code
+    - Node version ?
 
 ### @배포 
 
