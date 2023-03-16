@@ -11,11 +11,12 @@ public class MemberRequestDto {
         private String nickname;
         private String password;
 
-        public Member toEntity() {
+/*        public Member toEntity() {
             return Member.builder()
                     .email(email)
                     .nickname(nickname)
                     .password(password)
                     .build();
-        }
+                            }
+ */
 }
