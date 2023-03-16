@@ -4,7 +4,7 @@ import { MdSkipNext, MdPauseCircleFilled } from 'react-icons/md';
 import { useSelector, useDispatch } from 'react-redux';
 import ReactPlayer from 'react-player';
 import { useState } from 'react';
-import { setCurrentSongURL } from '../../actions';
+import { setCurrentSongURL } from '../../actions/actions';
 const PlayWarp = styled.div`
   width: 654px;
   justify-content: center;
