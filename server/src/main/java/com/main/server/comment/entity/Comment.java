@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
 @Getter
@@ -39,18 +40,18 @@ public class Comment extends Auditable {
 
 
     @Column(length = 1000,nullable = false)
-    private String content;
+    private String commentContent;
     //length
 
-    /*
+    private Long likeCount = 0L;
 
-    private Boolean isSong;
-    // 구상 - 댓글 단 시점 가져와서 선착순으로 정렬, 공간 조금 할애해서 신청곡 리스트 편성.
-    */
+    private LocalDateTime createdAt;
+    private LocalDateTime modifiedAt;
 
-    public Comment(Member member, Board board, String content) {
+
+    public Comment(Member member, Board board, String commentContent) {
         this.member = member;
         this.board = board;
-        this.content = content;
+        this.commentContent = commentContent;
     }
 }
