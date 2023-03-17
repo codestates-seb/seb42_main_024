@@ -105,7 +105,7 @@ song entity 추가
         - Axios
         - Redux
 
-
+    - Node 18.12.1
     - Visual Studio Code
 
 ### @배포 
