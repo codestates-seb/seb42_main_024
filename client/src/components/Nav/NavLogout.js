@@ -1,5 +1,6 @@
 import { BiHome } from 'react-icons/bi';
 import { FaUserCircle, FaHeadphones } from 'react-icons/fa';
+
 import { NavList, NavItems, Home, LiveRoom, Login } from '../../styles/nav';
 
 const NavLogout = ({ openModal }) => {

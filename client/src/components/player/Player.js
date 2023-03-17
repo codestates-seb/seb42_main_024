@@ -1,8 +1,11 @@
+import { useState } from 'react';
 import { GoPlay } from 'react-icons/go';
 import { MdSkipNext, MdPauseCircleFilled } from 'react-icons/md';
-import { useSelector, useDispatch } from 'react-redux';
 import ReactPlayer from 'react-player';
-import { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+
+import styled from 'styled-components';
+
 import { setCurrentSongURL } from '../../actions/actions';
 import {
   PlayWarp,

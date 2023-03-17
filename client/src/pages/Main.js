@@ -1,9 +1,11 @@
-import PlaylistTrendy from '../components/mainPage/PlaylistTrendy';
-import PlaylistThumbnail from '../components/mainPage/PlaylistThumbnail';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { MainContent, StyledSlider } from '../styles/main';
+
 import axios from 'axios';
+
+import PlaylistThumbnail from '../components/mainPage/PlaylistThumbnail';
+import PlaylistTrendy from '../components/mainPage/PlaylistTrendy';
+import { MainContent, StyledSlider } from '../styles/main';
 
 const Main = () => {
   const [playlist, setPlaylist] = useState([]);

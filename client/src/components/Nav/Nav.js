@@ -1,9 +1,11 @@
-import { NavContainer, NavFooter } from '../../styles/nav';
-import { FaQuestion } from 'react-icons/fa';
 import { useState } from 'react';
+import { FaQuestion } from 'react-icons/fa';
+
 import Modal from './Modal';
 import NavLogin from './NavLogin';
 import NavLogout from './NavLogout';
+
+import { NavContainer, NavFooter } from '../../styles/nav';
 
 const Nav = () => {
   const [isLogin, setIsLogin] = useState(false);

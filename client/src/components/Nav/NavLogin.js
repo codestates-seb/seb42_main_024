@@ -1,6 +1,7 @@
-import { BsPlusCircle, BsFillSuitHeartFill } from 'react-icons/bs';
 import { BiHome, BiLogOut } from 'react-icons/bi';
+import { BsPlusCircle, BsFillSuitHeartFill } from 'react-icons/bs';
 import { FaUserCircle, FaHeadphones } from 'react-icons/fa';
+
 import {
   NavList,
   NavItems,
