@@ -1,3 +1,9 @@
+import { useState } from 'react';
+import { FaPlay } from 'react-icons/fa';
+import { IoMdClose } from 'react-icons/io';
+import { TbPlayerPlay, TbPlayerPause } from 'react-icons/tb';
+import ReactModal from 'react-modal';
+
 import {
   PlaylistTrendyContainer,
   PlaylistImageContainer,
@@ -5,11 +11,6 @@ import {
   SongListContainer,
   Song,
 } from '../../styles/playlist';
-import { useState } from 'react';
-import { TbPlayerPlay, TbPlayerPause } from 'react-icons/tb';
-import { FaPlay } from 'react-icons/fa';
-import { IoMdClose } from 'react-icons/io';
-import ReactModal from 'react-modal';
 
 const dummyData = {
   playlistId: 1,
