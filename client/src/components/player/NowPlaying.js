@@ -53,7 +53,7 @@ function NowPlaying() {
 
   const handlePlayList = () => {
     setIsOpen(!isOpen);
-    console.log(isOpen);
+    // console.log(isOpen);
   };
   // const dispatch = useDispatch();
   const [playlist, setPlaylist] = useState([]);
@@ -92,14 +92,14 @@ function NowPlaying() {
         `https://www.googleapis.com/youtube/v3/playlists?part=snippet&channelId=UC3IZKseVpdzPSBaWxBxundA&maxResults=50&key=AIzaSyCApUdc9PuxJJYqjgNNNL2I2fkLuFIBasA`
       )
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         setPlaylist(res.data.items);
       })
       .catch((e) => {
         console.log(e);
       });
   }, []);
-  console.log(playlist);
+  // console.log(playlist);
   return (
     <PlayWarp>
       {/* NowPlaying */}

@@ -50,7 +50,7 @@ function PlayBox() {
         dispatch(
           setCurrentSongURL(`https://www.youtube.com/watch?v=${videoId}`)
         );
-        console.log('video', video);
+        // console.log('video', video);
       } catch (error) {
         console.error(error);
         setVideoData(null);

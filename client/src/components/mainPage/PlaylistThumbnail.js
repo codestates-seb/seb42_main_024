@@ -4,27 +4,23 @@ import onAirIcon from '../../assets/onAirIcon.png';
 import PropTypes from 'prop-types';
 
 // main page에서 map 돌릴 컴포넌트
-const PlaylistThumbnail = ({
-  playlistImgSrc,
-  isLive,
-  playlistTitle,
-  playlistTotalTime,
-  playlistAuthor,
-}) => {
+const PlaylistThumbnail = ({ playlist }) => {
   return (
     <PlaylistThumnailContainer>
       <img
-        src={playlistImgSrc}
+        src={playlist.playlistImgSrc}
         alt='playlist thumbnail'
         className='playlistImg'
       />
-      {isLive && <img src={onAirIcon} alt='on Air icon' className='onAir' />}
-      <div className='title'>{playlistTitle}</div>
+      {playlist.isLive && (
+        <img src={onAirIcon} alt='on Air icon' className='onAir' />
+      )}
+      <div className='title'>{playlist.playlistTitle}</div>
       <div className='flexBox'>
-        <div className='playtime'>{playlistTotalTime}</div>
+        <div className='playtime'>{playlist.playlistTotalTime}</div>
         <div className='author'>
           <BsPersonCircle size='12px' />
-          <div className='displayName'>{playlistAuthor}</div>
+          <div className='displayName'>{playlist.playlistAuthor}</div>
         </div>
       </div>
     </PlaylistThumnailContainer>

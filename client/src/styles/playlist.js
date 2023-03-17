@@ -117,6 +117,9 @@ export const PlaylistTrendyContainer = styled.div`
   width: 1260px;
   height: 350px;
   display: flex;
+  position: absolute;
+  left: 300px;
+  top: 50px;
 `;
 
 export const PlaylistImageContainer = styled.div`
@@ -194,9 +197,17 @@ export const Song = styled.div`
 
 // MainPage - PlaylistThumbnail
 export const PlaylistThumnailContainer = styled.div`
+  /* width: 260px;
+  color: var(--color9);
+  position: relative; */
+  background-color: var(--color1);
   width: 260px;
+  margin-right: 20px;
+  margin-bottom: 20px;
   color: var(--color9);
   position: relative;
+  flex: none;
+
   img.playlistImg {
     width: 100%;
     height: 260px;
