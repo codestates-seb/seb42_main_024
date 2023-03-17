@@ -1,5 +1,8 @@
 import { useState } from 'react';
 import { IoClose } from 'react-icons/io5';
+
+import GoogleLogin from '../assets/GoogleLogin.png';
+import GoogleLoginHover from '../assets/GoogleLoginHover.png';
 import { ModalBox, ModalCloseButton, LoginButton } from '../styles/modal';
 
 const Modal = ({ setIsLogin, setModalOpen }) => {
@@ -24,10 +27,8 @@ const Modal = ({ setIsLogin, setModalOpen }) => {
         onClick={loginHandler}
         onMouseOver={() => setIsHover(true)}
         onMouseOut={() => setIsHover(false)}>
-        <img
-          src={isHover ? 'img/google_hover.png' : 'img/google.png'}
-          alt='login'
-        />
+        {!isHover && <img src={GoogleLogin} alt='login hover' />}
+        {isHover && <img src={GoogleLoginHover} alt='login hover' />}
       </LoginButton>
     </ModalBox>
   );

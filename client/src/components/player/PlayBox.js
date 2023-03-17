@@ -1,7 +1,9 @@
-import styled from 'styled-components';
 import { useState, useEffect } from 'react';
-import axios from 'axios';
 import { useDispatch } from 'react-redux';
+
+import axios from 'axios';
+import styled from 'styled-components';
+
 import { setCurrentSongURL } from '../../actions/actions';
 const PlayBoxWarp = styled.div`
   display: flex;
