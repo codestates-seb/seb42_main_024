@@ -2,6 +2,7 @@ package com.main.server.member.entity;
 
 
 import com.main.server.audit.Auditable;
+import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -12,11 +13,10 @@ import java.util.ArrayList;
 import java.util.List;
 @Entity
 @Getter
-@Setter
-@NoArgsConstructor
+//@Setter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
  // 주석 = 바꿔야 할 부분
 public class Member extends Auditable {
-
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,16 +30,26 @@ public class Member extends Auditable {
     private String email;
     // length
 
-    @Column(length = 1000, nullable = false)
-    private String password;
-    // length
+    @Column(length = 500)
+    private String picture;
+
+//    @Column(length = 1000, nullable = false)
+//    private String password;
+//    // length
+
+    @ElementCollection(fetch = FetchType.EAGER)
+    private List<String> roles = new ArrayList<>();
 
 
 
-    public Member( String nickname, String email, String password) {
+    public Member( String nickname,
+                   String email,
+                   String picture,
+                   List<String> roles) {
         this.nickname = nickname;
         this.email = email;
-        this.password = password;
+        this.picture = picture;
+        this.roles = roles;
     }
 
 
