@@ -1,11 +1,12 @@
 package com.main.server.chat.dto;
 
-import lombok.AllArgsConstructor;
+import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class ChatResponseDto {
 
     private String message;
@@ -16,18 +17,37 @@ public class ChatResponseDto {
 
     private Long chatroomId;
 
+    private Integer memberNumber;
+
+
     @Builder
     public ChatResponseDto(String message,
-                           MessageType type,
                            String memberName,
-                           Long chatroomId) {
+                           Long chatroomId,
+                           Integer memberNumber) {
         this.message = message;
-        this.type = type;
         this.memberName = memberName;
         this.chatroomId = chatroomId;
+        this.memberNumber = memberNumber;
+    }
+
+    public ChatResponseDto isEnterType() {
+        this.type = MessageType.ENTER;
+        return this;
+    }
+
+    public ChatResponseDto isLeaveType() {
+        this.type = MessageType.LEAVE;
+        return this;
+    }
+
+    public ChatResponseDto isErrorType(String message) {
+        this.type = MessageType.ERROR;
+        this.message = message;
+        return this;
     }
 
     public enum MessageType {
-        ENTER, TALK, LEAVE;
+        ENTER, TALK, LEAVE, ERROR;
     }
 }

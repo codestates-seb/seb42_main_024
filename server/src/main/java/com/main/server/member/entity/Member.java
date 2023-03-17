@@ -2,10 +2,7 @@ package com.main.server.member.entity;
 
 
 import com.main.server.audit.Auditable;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -42,6 +39,7 @@ public class Member extends Auditable {
 
 
 
+    @Builder
     public Member( String nickname,
                    String email,
                    String picture,

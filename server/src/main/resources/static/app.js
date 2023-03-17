@@ -19,7 +19,7 @@ function connect() {
     setConnected(true);
     console.log('Connected: ' + frame);
     stompClient.subscribe('/sub/chat/room/1', function (join) {
-      showJoinMessage('< ' + JSON.parse(join.body).memberName + ' > : ' + JSON.parse(join.body).message);
+      showJoinMessage(JSON.parse(join.body).memberNumber + ' < ' + JSON.parse(join.body).memberName + ' > : ' + JSON.parse(join.body).message);
     });
   });
 }
@@ -33,11 +33,11 @@ function disconnect() {
 }
 
 function sendName() {
-  stompClient.send("/pub/chat/join", {}, JSON.stringify({'message': $("#message").val() , 'memberName': $("#name").val() , 'chatroomId': 1}));
+  stompClient.send("/pub/chat/join", {}, JSON.stringify({'memberId' : 1 , 'memberName': $("#name").val() , 'message': $("#message").val() , 'chatroomId': 1}));
 }
 
 function sendMessage() {
-  stompClient.send("/pub/chat/message", {}, JSON.stringify({'message': $("#message").val() , 'memberName': $("#name").val() , 'chatroomId': 1}));
+  stompClient.send("/pub/chat/message", {}, JSON.stringify({'memberId' : 1 , 'memberName': $("#name").val() , 'message': $("#message").val() , 'chatroomId': 1}));
 }
 
 function showJoinMessage(message) {

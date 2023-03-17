@@ -50,8 +50,10 @@ public class JwtVerificationFilter extends OncePerRequestFilter {
         String authorization = request.getHeader("Authorization");
         String refresh = request.getHeader("Refresh");
 
-        return (authorization == null || !authorization.startsWith("Bearer"))
+        boolean bool =  (authorization == null || !authorization.startsWith("Bearer"))
                 && refresh == null;
+
+        return bool;
     }
 
     private Map<String, Object> verifyJws(HttpServletRequest request,

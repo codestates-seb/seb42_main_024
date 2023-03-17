@@ -6,8 +6,8 @@
 </head>
 <body>
 <script type="text/javascript">
-        let accessToken = (new URL(location.href)).searchParams.get('access_token');
-        let refreshToken = (new URL(location.href)).searchParams.get('refresh_token');
+        let accessToken = (new URL(location.href)).searchParams.get('Authorization');
+        let refreshToken = (new URL(location.href)).searchParams.get('Refresh');
 
         localStorage.setItem("accessToken", accessToken)
         localStorage.setItem("refreshToken", refreshToken)

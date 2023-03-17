@@ -57,15 +57,17 @@ public class OAuth2MemberSuccessHandler extends SimpleUrlAuthenticationSuccessHa
 
     private URI createURI(String accessToken, String refreshToken) {
         MultiValueMap<String, String> queryParams = new LinkedMultiValueMap<>();
-        queryParams.add("access_token", accessToken);
-        queryParams.add("refresh_token", refreshToken);
+        queryParams.add("Authorization", "Bearer" + accessToken);
+        queryParams.add("Refresh", refreshToken);
         
         return UriComponentsBuilder
                 .newInstance()
                 .scheme("http")
                 .host("localhost")
-                .port(8080)
-                .path("/receive-token.html")
+//                .port(8080)
+                .port(3000)
+//                .path("/receive-token.html")
+                .path("/")
                 .queryParams(queryParams)
                 .build()
                 .toUri();
