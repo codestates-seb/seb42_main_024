@@ -5,4 +5,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface BoardRepository extends JpaRepository<Board,Long> {
     Board findByBoardId(Long boardId);
+
+
+    void addLikeCount(Board board);
+    void subLikeCount(Board board);
 }

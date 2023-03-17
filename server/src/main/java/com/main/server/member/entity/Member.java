@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 @Entity
-@Getter
+@Getter@Setter
 //@Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
  // 주석 = 바꿔야 할 부분
