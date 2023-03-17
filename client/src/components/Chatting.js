@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 const ChattingContianer = styled.div`
   color: var(--color5);
-  font-size: 50px;
+  font-size: 30px;
 `;
 const EnterMessage = styled.pre`
   text-align: center;
@@ -13,18 +13,18 @@ const CommonChatMessage = styled.pre`
 `;
 const UserName = styled.p`
   display: inline;
-  color: ${props => props.usercolor || 'var(--color7)'};
+  color: ${(props) => props.usercolor || 'var(--color7)'};
 `;
 
 function Chatting({ chatData }) {
-  const isEnter = chatData.message.includes('님이 입장하셨습니다.');
+  const isEnter = chatData.type !== 'TALK';
   return (
     <ChattingContianer>
       {isEnter ? (
         <EnterMessage>{chatData.message}</EnterMessage>
       ) : (
         <CommonChatMessage>
-          <UserName >{chatData.memberName}</UserName>
+          <UserName>{chatData.memberName}</UserName>
           {` : ${chatData.message}`}
         </CommonChatMessage>
       )}
