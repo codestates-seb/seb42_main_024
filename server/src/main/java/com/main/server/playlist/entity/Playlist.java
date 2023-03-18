@@ -39,8 +39,8 @@ public class Playlist extends Auditable {
     @OneToMany(mappedBy = "playlist")
     private List<Song> songs = new ArrayList<>();
 
-    @OneToMany(mappedBy = "playlist")
-    private List<Like> likes = new ArrayList<>();
+//    @OneToMany(mappedBy = "playlist")
+//    private List<Like> likes = new ArrayList<>();
 
 
 
