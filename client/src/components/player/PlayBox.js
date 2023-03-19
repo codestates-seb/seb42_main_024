@@ -2,38 +2,17 @@ import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 
 import axios from 'axios';
-import styled from 'styled-components';
 
 import { setCurrentSongURL } from '../../actions/actions';
-const PlayBoxWarp = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: var(--color9);
-`;
-const PlayBoxImg = styled.img`
-  width: 50px;
-  height: 50px;
-  border-radius: 10px;
-  margin-right: 11px;
-`;
-const PlayBoxInfo = styled.div`
-  flex-direction: column;
-  display: flex;
-  justify-content: center;
-  width: 150px;
-`;
-const PlayBoxTitle = styled.span`
-  font-size: 15px;
-  font-family: var(--ft-pretendardBold);
-`;
-const PlayBoxContent = styled.span`
-  font-family: var(--ft-pretendardRegular);
-  font-size: 12px;
-`;
-
+import {
+  PlayBoxWarp,
+  PlayBoxImg,
+  PlayBoxInfo,
+  PlayBoxTitle,
+  PlayBoxContent,
+} from '../../styles/player/playbox';
 function PlayBox() {
-  const [videoDate, setVideoData] = useState([]);
+  const [videoDate, setVideoData] = useState({});
   const dispatch = useDispatch();
   useEffect(() => {
     const fetchVideoData = async () => {
@@ -43,19 +22,19 @@ function PlayBox() {
 
       try {
         const response = await axios.get(url);
-        const video = response.data.items[0].snippet;
+        const video = response?.data?.items?.[0]?.snippet;
         setVideoData({
-          title: video.title,
-          thumbnail: video.thumbnails.high.url,
+          title: video?.title,
+          thumbnail: video?.thumbnails.high.url,
         });
 
         dispatch(
           setCurrentSongURL(`https://www.youtube.com/watch?v=${videoId}`)
         );
         console.log('video', video);
-      } catch (error) {
-        console.error(error);
-        setVideoData(null);
+      } catch (e) {
+        console.log(e);
+        setVideoData({});
       }
     };
 
@@ -63,9 +42,9 @@ function PlayBox() {
   }, [dispatch]);
   return (
     <PlayBoxWarp>
-      <PlayBoxImg src={videoDate.thumbnail} />
+      <PlayBoxImg src={videoDate?.thumbnail} />
       <PlayBoxInfo>
-        <PlayBoxTitle>{videoDate.title}</PlayBoxTitle>
+        <PlayBoxTitle>{videoDate?.title}</PlayBoxTitle>
         <PlayBoxContent>가수제목</PlayBoxContent>
       </PlayBoxInfo>
     </PlayBoxWarp>
