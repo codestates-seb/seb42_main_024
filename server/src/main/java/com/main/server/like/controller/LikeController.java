@@ -42,6 +42,4 @@ public class LikeController {
                 .body(new ResponseDto(id, 200));
 
     }
-
-
 }

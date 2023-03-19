@@ -7,8 +7,4 @@ import org.springframework.web.socket.server.standard.ServerEndpointExporter;
 
 @SpringBootTest
 class ServerApplicationTests {
-
-	@Test
-	void contextLoads() {
-	}
 }

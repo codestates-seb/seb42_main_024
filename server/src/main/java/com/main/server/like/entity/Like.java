@@ -1,35 +1,22 @@
 package com.main.server.like.entity;
-
-
-import com.main.server.member.entity.Member;
 import com.main.server.board.entity.Board;
-import com.main.server.audit.Auditable;
-
-import com.main.server.playlist.entity.Playlist;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import com.main.server.member.entity.Member;
+import lombok.*;
+import org.hibernate.validator.internal.util.stereotypes.Lazy;
 
 import javax.persistence.*;
 
-
-@Entity(name = "likes")
-@Getter
-@Setter
-@NoArgsConstructor
+@Data
+@Entity
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Like {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @JoinColumn(name = "like Id")
     private Long likeId;
-
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "MEMBER_ID")
-    private Member member;
-    // MEMBER_ID
-
-    @ManyToOne
-    @JoinColumn(name = "BOARD_ID")
+    @JoinColumn(name = "board_Id")
     private Board board;
 
     private Integer likeQ;
@@ -38,6 +25,7 @@ public class Like {
         this.member = member;
         this.board = board;
         this.likeQ = likeQ;
+
     }
 
 

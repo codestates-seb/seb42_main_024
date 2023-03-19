@@ -39,7 +39,4 @@ public class LikeService {
             throw new BusinessLogicException(ExceptionCode.ALREADY_LIKED);
         }
     }
-
-
-
 }
