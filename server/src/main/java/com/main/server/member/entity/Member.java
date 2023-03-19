@@ -34,7 +34,7 @@ public class Member extends Auditable {
 //    private String password;
 //    // length
 
-    @ElementCollection(fetch = FetchType.EAGER)
+    @ElementCollection(fetch = FetchType.LAZY)
     private List<String> roles = new ArrayList<>();
 
 

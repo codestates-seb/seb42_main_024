@@ -1,5 +1,7 @@
 package com.main.server.playlist.service;
 
+import com.main.server.exception.BusinessLogicException;
+import com.main.server.exception.ExceptionCode;
 import com.main.server.member.service.MemberService;
 import com.main.server.playlist.dto.PlaylistCreateDto;
 import com.main.server.playlist.entity.Playlist;
@@ -32,5 +34,10 @@ public class PlaylistService {
                 .addSongs(songList);
 
         return playlistRepository.save(playlist);
+    }
+
+    public Playlist findPlaylistById(Long playlistId) {
+        return playlistRepository.findById(playlistId)
+                .orElseThrow(() -> new BusinessLogicException(ExceptionCode.PLAYLIST_NOT_FOUND));
     }
 }
