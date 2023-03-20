@@ -48,6 +48,7 @@ public class Comment extends Auditable {
     private LocalDateTime createdAt;
     private LocalDateTime modifiedAt;
 
+    private Long groupId;
 
     public Comment(Member member, Board board, String commentContent) {
         this.member = member;
