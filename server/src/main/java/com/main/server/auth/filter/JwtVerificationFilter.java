@@ -34,7 +34,6 @@ public class JwtVerificationFilter extends OncePerRequestFilter {
                                     HttpServletResponse response,
                                     FilterChain filterChain) throws ServletException, IOException {
 
-
         try {
             Map<String, Object> claims = verifyJws(request, response);
             setAuthenticationToContext(claims);
