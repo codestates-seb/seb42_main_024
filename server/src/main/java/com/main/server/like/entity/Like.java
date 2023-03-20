@@ -31,17 +31,30 @@ public class Like {
     @ManyToOne
     @JoinColumn(name = "BOARD_ID")
     private Board board;
-    // BOARD_ID
 
-    @ManyToOne
-    @JoinColumn(name = "PLAYLIST_ID")
-    private Playlist playlist;
-    // BOARD_ID
+    private Integer likeQ;
 
-    public Like(Member member, Board board, Playlist playlist) {
+    public Like(Integer likeQ, Member member, Board board) {
         this.member = member;
         this.board = board;
-        this.playlist = playlist;
-        /**/
+        this.likeQ = likeQ;
     }
+
+
+    // BOARD_ID
+
+//    @ManyToOne
+//    @JoinColumn(name = "PLAYLIST_ID")
+//    private Playlist playlist;
+
+
+
+    // BOARD_ID
+
+//    public Like(Member member, Board board, Playlist playlist) {
+//        this.member = member;
+//        this.board = board;
+//        this.playlist = playlist;
+        /**/
+//    }
 }
