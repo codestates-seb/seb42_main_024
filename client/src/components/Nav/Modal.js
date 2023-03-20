@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import { IoClose } from 'react-icons/io5';
-import { ModalBox, ModalCloseButton, LoginButton } from '../../styles/modal';
+
 import GoogleLogin from '../../assets/GoogleLogin.png';
 import GoogleLoginHover from '../../assets/GoogleLoginHover.png';
+import { ModalBox, ModalCloseButton, LoginButton } from '../../styles/modal';
 
 const Modal = ({ setIsLogin, setModalOpen }) => {
   const [isHover, setIsHover] = useState(false);
