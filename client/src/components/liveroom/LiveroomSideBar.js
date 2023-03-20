@@ -1,57 +1,17 @@
-import styled from 'styled-components';
-import { BsFillGearFill } from 'react-icons/bs';
-import LSBPlayList from './LSBPlayList';
 import { useEffect, useState } from 'react';
-import LSBChat from './LSBChat';
+import { BsFillGearFill } from 'react-icons/bs';
 
-const LiveroomSideBarContainer = styled.div`
-  width: 1000px;
-  height: 100vh;
-  background-color: var(--color1);
-  border: 1px solid var(--color3);
-  display: flex;
-  flex-direction: column;
-  padding: 50px;
-`;
-
-const LSBHeaderContainer = styled.div`
-  height: 5%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  color: var(--color9);
-  font-size: 100px;
-`;
-const LSBPlayListContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  height: 47.5%;
-`;
-const LSBChatContianer = styled.div`
-  margin-top: 20px;
-  height: 47.5%;
-`;
-const LSBOutBtn = styled.button`
-  font-size: 38px;
-  font-weight: 600;
-  width: 160px;
-  height: 90px;
-  border-radius: 10px;
-`;
-
-const LSBMemberContainer = styled.div`
-  height: 10%;
-`;
-
-const LSBPlayListWrap = styled.div`
-  border-radius: 20px;
-  height: 90%;
-  background-color: var(--color2);
-  padding: 50px;
-  display: flex;
-  flex-direction: column;
-  overflow: auto;
-`;
+import {
+  LSBChatContianer,
+  LSBHeaderContainer,
+  LSBMemberContainer,
+  LSBOutBtn,
+  LSBPlayListContainer,
+  LSBPlayListWrap,
+  LiveroomSideBarContainer,
+} from '../../styles/liveroomsidebar';
+import LSBChat from '../LSBChat';
+import LSBPlayList from '../LSBPlayList';
 
 function LiveroomSideBar() {
   const [data, setdata] = useState([]);
