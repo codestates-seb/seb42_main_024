@@ -1,6 +1,9 @@
 import { useEffect, useState } from 'react';
 import { BsFillGearFill } from 'react-icons/bs';
 
+import LSBChat from './LSBChat';
+import LSBPlayList from './LSBPlayList';
+
 import {
   LSBChatContianer,
   LSBHeaderContainer,
@@ -10,8 +13,6 @@ import {
   LSBPlayListWrap,
   LiveroomSideBarContainer,
 } from '../../styles/liveroomsidebar';
-import LSBChat from '../LSBChat';
-import LSBPlayList from '../LSBPlayList';
 
 function LiveroomSideBar() {
   const [data, setdata] = useState([]);
