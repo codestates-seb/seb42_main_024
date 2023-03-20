@@ -1,7 +1,9 @@
-import { PlaylistThumnailContainer } from '../../styles/playlist';
 import { BsPersonCircle } from 'react-icons/bs';
-import onAirIcon from '../../assets/onAirIcon.png';
+
 import PropTypes from 'prop-types';
+
+import onAirIcon from '../../assets/onAirIcon.png';
+import { PlaylistThumnailContainer } from '../../styles/playlist';
 
 // main page에서 map 돌릴 컴포넌트
 const PlaylistThumbnail = ({

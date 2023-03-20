@@ -1,6 +1,10 @@
-import { FaQuestion, FaUserCircle, FaHeadphones } from 'react-icons/fa';
-import { BsPlusCircle, BsFillSuitHeartFill } from 'react-icons/bs';
+import { useState } from 'react';
 import { BiHome, BiLogOut } from 'react-icons/bi';
+import { BsPlusCircle, BsFillSuitHeartFill } from 'react-icons/bs';
+import { FaQuestion, FaUserCircle, FaHeadphones } from 'react-icons/fa';
+
+import Modal from './Modal';
+
 import {
   NavContainer,
   NavList,
@@ -14,8 +18,6 @@ import {
   Logout,
   NavFooter,
 } from '../styles/nav';
-import { useState } from 'react';
-import Modal from './Modal';
 
 const Nav = () => {
   const [isLogin, setIsLogin] = useState(false);

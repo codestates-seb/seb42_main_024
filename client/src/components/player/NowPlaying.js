@@ -1,9 +1,12 @@
+import { useState, useEffect } from 'react';
+
+import axios from 'axios';
 import styled from 'styled-components';
+
 import PlayBox from './PlayBox';
 import Player from './Player';
-import { useState, useEffect } from 'react';
 import PlayList from './PlayList';
-import axios from 'axios';
+
 // import { useDispatch } from 'react-redux';
 // import { setCurrentSongURL } from '../../actions';
 const PlayWarp = styled.div``;
