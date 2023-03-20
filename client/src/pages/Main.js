@@ -32,7 +32,7 @@ const Main = () => {
 
   return (
     <MainContent>
-      {playlist.length > 0 && <PlaylistTrendy playlist={playlist[0]} />}
+      {playlist.length > 0 && <PlaylistTrendy playlist={playlist[1]} />}
       <div className='test'>test!</div>
       <StyledSlider {...settings} afterChange={(idx) => setCurrentIndex(idx)}>
         {playlist &&
