@@ -19,7 +19,7 @@ public class PlaylistController {
 
     @PostMapping
     public ResponseEntity createPlaylist(@RequestBody PlaylistCreateDto dto, @AuthenticationPrincipal String email) {
-        Playlist playlist = playlistService.createPlaylist(dto, email);
+        Playlist playlist = playlistService.createPlaylist(dto, "admin@google.com");
 
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(PlaylistResponseDto.createByEntity(playlist));
