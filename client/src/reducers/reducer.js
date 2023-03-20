@@ -1,3 +1,5 @@
+import { initialState } from './initialState';
+
 import {
   TOGGLE_PLAY,
   TOGGLE_PAUSE,
@@ -8,7 +10,7 @@ import {
   SET_AS_LAST_SONG,
   FETCH_PREV_SONG,
   STORE_CURRENT_SONG,
-} from "../actions/actions";
+} from '../actions/actions';
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
