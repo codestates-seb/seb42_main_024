@@ -16,9 +16,7 @@ public class Chat {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long chatId;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private Member member;
+    private Long memberId;
 
     @ManyToOne
     @JoinColumn(name = "chatroom_id")
@@ -27,10 +25,10 @@ public class Chat {
     private String content;
 
     @Builder
-    protected Chat(Member member,
+    protected Chat(Long memberId,
                  Chatroom chatroom,
                  String content) {
-        this.member = member;
+        this.memberId = memberId;
         this.chatroom = chatroom;
         this.content = content;
     }

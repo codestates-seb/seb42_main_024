@@ -17,7 +17,6 @@ import java.time.LocalDateTime;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-
 public class Board extends Auditable {
 
         @Id
@@ -60,4 +59,4 @@ public class Board extends Auditable {
 
 
 
-    }
+}

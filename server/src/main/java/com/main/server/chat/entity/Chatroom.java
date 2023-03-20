@@ -26,10 +26,10 @@ public class Chatroom {
 
     private Integer maxCount = 4;
 
-    @CollectionTable(name = "user_list",
-            joinColumns = @JoinColumn(name = "room_id"))
+    @CollectionTable(name = "chatroom_member",
+            joinColumns = @JoinColumn(name = "chatroom_id"))
     @ElementCollection(fetch = FetchType.LAZY)
-    List<String> users = new ArrayList<>();
+    List<String> members = new ArrayList<>();
 
     @Builder
     public Chatroom(Member member, String title) {
@@ -37,18 +37,29 @@ public class Chatroom {
         this.title = title;
     }
 
-    //    @Transactional
-//    public void handlerActions(WebSocketSession session,
-//                               ChatMessageDto chatMessageDto,
-//                               ChatroomService chatRoomService) {
-//        log.info("@ @ @ @ @ handlerActions @ @ @ @ @");
-//    }
-//
-//    @Transactional
-//    public <T> void sendMessage(T message, ChatroomService chatRoomService) {
-//        log.info("@ @ @ @ @ sendMessage @ @ @ @ @");
-//        Set<WebSocketSession> sessions = new HashSet<>();
-//        sessions.parallelStream()
-//                .forEach(session -> chatRoomService.sendMessage(session, message));
-//    }
+    public Chatroom enterMember(String memberName) {
+        if (!members.contains(memberName)) {
+            List<String> membersEdit = new ArrayList<>(members);
+            membersEdit.add(memberName);
+            members = membersEdit;
+        }
+        return this;
+    }
+
+    public Chatroom leaveMember(String memberName) {
+        if (members.contains(memberName)) {
+            List<String> membersEdit = new ArrayList<>(members);
+            membersEdit.remove(memberName);
+            members = membersEdit;
+        }
+        return this;
+    }
+
+    public Integer getMemberNumber(String memberName) {
+        if (members.contains(memberName)) {
+            return members.indexOf(memberName);
+        } else {
+            return 0;
+        }
+    }
 }

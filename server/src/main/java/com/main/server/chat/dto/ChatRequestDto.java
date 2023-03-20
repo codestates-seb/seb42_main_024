@@ -7,23 +7,20 @@ import lombok.*;
 @AllArgsConstructor
 public class ChatRequestDto {
 
-    private String message;
-
-    private MessageType type = MessageType.TALK;
+    private Long memberId;
 
     private String memberName;
 
+    private String message;
+
     private Long chatroomId;
 
-//    public void newConnect() {
-//        this.type = MessageType.ENTER;
-//    }
-//
-//    public void closeConnect() {
-//        this.type = MessageType.LEAVE;
-//    }
-
-    public enum MessageType {
-        ENTER, TALK, LEAVE;
+    public ChatResponseDto toResponseDto(Integer memberNumber) {
+        return ChatResponseDto.builder()
+                .message(message)
+                .memberName(memberName)
+                .chatroomId(chatroomId)
+                .memberNumber(memberNumber)
+                .build();
     }
 }
