@@ -24,6 +24,10 @@ export const StyledSlider = styled(Slider)`
   position: absolute;
   background-color: var(--color1);
 
+  .slick-list {
+    width: 100%;
+  }
+
   .slick-prev {
     left: -45px;
     top: 130px;

@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './styles/GlobalStyle.css';
 import './styles/variables.css';
-import Nav from './components/Nav';
+import Nav from './components/Nav/Nav';
 import NowPlaying from './components/player/NowPlaying';
 import Main from './pages/Main';
 

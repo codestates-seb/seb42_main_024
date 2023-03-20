@@ -187,6 +187,7 @@ export const Song = styled.div`
       font-size: 15px;
       font-family: var(--ft-pretendardExtraBold);
       margin: 5px 0;
+      width: 85px;
     }
     .artist {
       font-size: 12px;
@@ -196,7 +197,7 @@ export const Song = styled.div`
 `;
 
 // MainPage - PlaylistThumbnail
-export const PlaylistThumnailContainer = styled.div`
+export const PlaylistThumbnailContainer = styled.div`
   /* width: 260px;
   color: var(--color9);
   position: relative; */
