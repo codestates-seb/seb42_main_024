@@ -12,6 +12,7 @@ export const NowPlayingWrap = styled.div`
   display: flex;
   padding-left: 18vw;
   border-top: 0.5px solid rgb(85, 85, 85);
+  align-items: center;
 `;
 // Modal
 export const PlayListBox = styled.div`

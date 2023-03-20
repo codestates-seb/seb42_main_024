@@ -5,6 +5,7 @@ import axios from 'axios';
 import PlayBox from './PlayBox';
 import Player from './Player';
 import PlayList from './PlayList';
+import Volume from './Volume ';
 
 import {
   PlayWarp,
@@ -46,11 +47,12 @@ function NowPlaying() {
       <NowPlayingWrap onClick={handlePlayList}>
         <PlayBox />
         <Player volume={volume} />
+        <Volume volume={volume} onVolumeChange={handleVolumeChange} />
       </NowPlayingWrap>
       {/* PlayList */}
       <PlayListBox isOpen={isOpen} onClick={handlePlayList}>
         <PlayListCover>
-          <PlayListImg onClick={handleVolumeChange} />
+          <PlayListImg />
         </PlayListCover>
         <PlayList playlist={playlist} />
       </PlayListBox>
