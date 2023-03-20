@@ -5,14 +5,12 @@ import com.main.server.audit.Auditable;
 import lombok.*;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+
 @Entity
 @Getter
-//@Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
- // 주석 = 바꿔야 할 부분
 public class Member extends Auditable {
 
     @Id
@@ -21,22 +19,15 @@ public class Member extends Auditable {
 
     @Column(length = 100, nullable = false, unique = true)
     private String nickname;
-    // length
 
     @Column(length = 100, nullable = false, unique = true)
     private String email;
-    // length
 
     @Column(length = 500)
     private String picture;
 
-//    @Column(length = 1000, nullable = false)
-//    private String password;
-//    // length
-
-    @ElementCollection(fetch = FetchType.EAGER)
+    @ElementCollection(fetch = FetchType.LAZY)
     private List<String> roles = new ArrayList<>();
-
 
 
     @Builder
@@ -49,6 +40,4 @@ public class Member extends Auditable {
         this.picture = picture;
         this.roles = roles;
     }
-
-
 }

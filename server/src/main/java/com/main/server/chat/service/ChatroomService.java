@@ -41,13 +41,4 @@ public class ChatroomService {
     public Chatroom save(Chatroom chatroom) {
         return chatroomRepository.save(chatroom);
     }
-
-//    public <T> void sendMessage(WebSocketSession session, T message) {
-//        log.info("sendMessage is used");
-//        try {
-//            session.sendMessage(new TextMessage(objectMapper.writeValueAsString(message)));
-//        } catch (IOException e) {
-//            log.error(e.getMessage(), e);
-//        }
-//    }
 }

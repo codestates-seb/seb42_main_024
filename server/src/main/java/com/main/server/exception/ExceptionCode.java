@@ -9,7 +9,8 @@ public enum ExceptionCode {
     ALREADY_LIKED(400, "board not found"),
     MEMBER_EXISTS(400, "member exists"),
     INVALID_TOKEN(400, "invalid token"),
-    NO_PERMISSION(400, "no permission");
+    NO_PERMISSION(400, "no permission"),
+    PLAYLIST_NOT_FOUND(400, "playlist not found");
 
     @Getter
     private int status;
