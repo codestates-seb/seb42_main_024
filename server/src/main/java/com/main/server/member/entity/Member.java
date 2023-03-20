@@ -1,11 +1,7 @@
 package com.main.server.member.entity;
-
-
 import com.main.server.audit.Auditable;
 import lombok.*;
-
 import javax.persistence.*;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 @Entity
@@ -48,6 +44,27 @@ public class Member extends Auditable {
         this.email = email;
         this.picture = picture;
         this.roles = roles;
+    }
+
+
+//팔로우 기능 추가
+    @ManyToMany
+    @JoinTable(name = "follow",
+            joinColumns = @JoinColumn(name = "follower_id"),
+            inverseJoinColumns = @JoinColumn(name = "following_id"))
+    private List<Member> followings = new ArrayList<>();
+
+    @ManyToMany(mappedBy = "followings")
+    private List<Member> followers = new ArrayList<>();
+
+    public void addFollowing(Member member) {
+        this.followings.add(member);
+        member.getFollowers().add(this);
+    }
+
+    public void removeFollowing(Member member) {
+        this.followings.remove(member);
+        member.getFollowers().remove(this);
     }
 
 

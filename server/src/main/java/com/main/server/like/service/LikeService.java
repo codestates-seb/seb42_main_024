@@ -14,8 +14,6 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.util.Optional;
 
-import static com.main.server.like.entity.QLike.like;
-
 @Service
 @Transactional
 @RequiredArgsConstructor
@@ -39,7 +37,4 @@ public class LikeService {
             throw new BusinessLogicException(ExceptionCode.ALREADY_LIKED);
         }
     }
-
-
-
 }
