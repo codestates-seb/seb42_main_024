@@ -4,8 +4,6 @@ import { MdSkipNext, MdPauseCircleFilled } from 'react-icons/md';
 import ReactPlayer from 'react-player';
 import { useSelector, useDispatch } from 'react-redux';
 
-import styled from 'styled-components';
-
 import { setCurrentSongURL } from '../../actions/actions';
 import {
   PlayWarp,

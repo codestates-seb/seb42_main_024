@@ -156,8 +156,10 @@ export const PlaylistTrendyInfoContainer = styled(PlaylistInfoMain)`
   padding-left: 25px;
   .title {
     margin: 15px 0;
+    font-size: 45px;
   }
   .desc {
+    width: 90%;
     height: 35px;
   }
 `;
@@ -188,6 +190,11 @@ export const Song = styled.div`
       font-family: var(--ft-pretendardExtraBold);
       margin: 5px 0;
       width: 85px;
+      height: 15px;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      word-break: break-all;
     }
     .artist {
       font-size: 12px;
@@ -224,6 +231,11 @@ export const PlaylistThumbnailContainer = styled.div`
     font-family: var(--ft-pretendardSemiBold);
     font-size: 15px;
     margin: 5px 1px;
+    height: 18px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    word-break: break-all;
   }
   .flexBox {
     display: flex;

@@ -1,27 +1,30 @@
-import styled from 'styled-components';
 import Slider from 'react-slick';
+
+import styled from 'styled-components';
+
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
 export const MainContent = styled.div`
-  .test {
+  .playlist-name {
+    width: 500px;
     color: var(--color9);
     font-size: 30px;
     display: block;
-    position: absolute;
+    position: relative;
     left: 310px;
-    top: 410px;
+    top: 440px;
   }
 `;
 
 export const StyledSlider = styled(Slider)`
   max-width: 1300px;
   min-width: 1120px;
-  padding-bottom: 200px;
+  padding-bottom: 70px;
   top: 460px;
   left: 310px;
   display: flex;
-  position: absolute;
+  position: relative;
   background-color: var(--color1);
 
   .slick-list {
