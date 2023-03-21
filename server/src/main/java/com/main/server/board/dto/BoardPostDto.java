@@ -11,4 +11,6 @@ import java.util.List;
 public class BoardPostDto {
     private Long memberId;
     private String boardContent;
+
+    private String boardTitle;
 }

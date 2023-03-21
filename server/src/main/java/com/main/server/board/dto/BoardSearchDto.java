@@ -9,5 +9,8 @@ public class BoardSearchDto {
     private String keyword; // 검색 키워드
     private int sortBy; // 정렬 방식
     private int sortDir;
+    private String boardContent;
+
+    private String title;
 
 }

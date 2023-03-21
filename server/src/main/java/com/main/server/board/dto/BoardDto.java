@@ -12,6 +12,7 @@ public class BoardDto {
     private Long boardId;
     private Long groupId;
     private String boardContent;
+    private String boardTitle;
     private LocalDateTime createdAt;
     private LocalDateTime modifiedAt;
     private Long likeCount;
