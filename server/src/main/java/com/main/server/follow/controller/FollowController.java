@@ -1,6 +1,9 @@
 package com.main.server.follow.controller;
 
 import com.main.server.follow.service.FollowService;
+import com.main.server.global.dto.ResponseDto;
+import com.main.server.member.entity.Member;
+import com.main.server.member.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,19 +19,17 @@ import javax.validation.constraints.Positive;
 @RequiredArgsConstructor
 public class FollowController {
     private final FollowService followService;
+    private final MemberService memberService;
 
-    @PostMapping("/{followingId}")
-    public ResponseEntity<?> follow(@PathVariable("followingId") @Positive Long followingId,
-                                    @AuthenticationPrincipal Long followerId) {
-        followService.follow(followerId, followingId);
-        return ResponseEntity.status(HttpStatus.CREATED).body("Followed successfully");
+    @PostMapping("{member-id}")
+    public ResponseEntity addLike(@PathVariable("member-id")@Positive Long id,
+                                  @AuthenticationPrincipal String email ) {
+        Member member = memberService.findByEmail("admin@google.com");
+        followService.addFollow(id);
+        return ResponseEntity
+                .status(HttpStatus.CREATED)
+                .body(new ResponseDto(id, 200));
     }
 
-    @DeleteMapping("/{followingId}")
-    public ResponseEntity<?> unfollow(@PathVariable("followingId") @Positive Long followingId,
-                                      @AuthenticationPrincipal Long followerId) {
-        followService.unfollow(followerId, followingId);
-        return ResponseEntity.status(HttpStatus.NO_CONTENT).body("Unfollowed successfully");
-    }
 }
 

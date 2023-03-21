@@ -7,7 +7,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 
-@Entity
+@Entity(name = "follows")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -17,16 +17,11 @@ public class Follow {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "follower_id")
-    private Member follower;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "MEMBER_ID")
+    private Member member;
 
-    @ManyToOne
-    @JoinColumn(name = "following_id")
-    private Member following;
-
-    public Follow(Member follower, Member following) {
-        this.follower = follower;
-        this.following = following;
+    public Follow(Member member) {
+        this.member = member;
     }
 }

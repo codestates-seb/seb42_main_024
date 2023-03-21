@@ -37,21 +37,5 @@ public class MemberController {
     }
 
 
-    //팔로윙 확인 기능
-    @GetMapping("/{memberId}/followings")
-    public ResponseEntity<?> getFollowings(@PathVariable("memberId") @Positive Long memberId) {
-        Member member = memberRepository.findById(memberId)
-                .orElseThrow(() -> new NotFoundException("Member not found"));
-        List<Member> followings = new ArrayList<>(member.getFollowings());
-        return ResponseEntity.ok(followings);
-    }
 
-    //팔로워 확인 기능
-    @GetMapping("/{memberId}/followers")
-    public ResponseEntity<?> getFollowers(@PathVariable("memberId") @Positive Long memberId) {
-        Member member = memberRepository.findById(memberId)
-                .orElseThrow(() -> new NotFoundException("Member not found"));
-        List<Member> followers = new ArrayList<>(member.getFollowers());
-        return ResponseEntity.ok(followers);
-    }
 }

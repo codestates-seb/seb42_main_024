@@ -44,7 +44,6 @@ public class BoardService {
         member.setMemberId(1L);
 
         Board board = Board.builder()
-                .boardId(1L)
                 .member(member)
                 .boardContent("content")
                 .boardTitle("title")
