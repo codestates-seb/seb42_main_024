@@ -1,6 +1,6 @@
 import './styles/GlobalStyle.css';
 import './styles/variables.css';
-import Nav from './components/Nav/Nav';
+import Nav from './components/nav/Nav';
 
 function App() {
   return (

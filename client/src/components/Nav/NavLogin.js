@@ -1,6 +1,7 @@
 import { BiHome, BiLogOut } from 'react-icons/bi';
 import { BsPlusCircle, BsFillSuitHeartFill } from 'react-icons/bs';
 import { FaUserCircle, FaHeadphones } from 'react-icons/fa';
+import { MdOutlineLibraryMusic } from 'react-icons/md';
 
 import {
   NavList,
@@ -8,6 +9,7 @@ import {
   UserInfo,
   Home,
   LiveRoom,
+  CreateLiveRoom,
   AddPlayList,
   Storage,
   Logout,
@@ -31,6 +33,10 @@ const NavLogin = ({ user, logoutHandler }) => {
           <div className='nav-liveroom'>
             <FaHeadphones />
             <LiveRoom>라이브룸</LiveRoom>
+          </div>
+          <div className='nav-create-liveroom'>
+            <MdOutlineLibraryMusic />
+            <CreateLiveRoom>라이브룸 만들기</CreateLiveRoom>
           </div>
         </NavItems>
         <NavItems>

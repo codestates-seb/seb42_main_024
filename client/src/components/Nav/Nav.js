@@ -16,6 +16,11 @@ const Nav = () => {
     setModalOpen(true);
   };
 
+  const loginHandler = () => {
+    setIsLogin(true);
+    setModalOpen(false);
+  };
+
   const logoutHandler = () => {
     setUser(null);
     setIsLogin(false);
@@ -33,7 +38,11 @@ const Nav = () => {
         <>
           <NavLogout openModal={openModal} />
           {modalOpen && !isLogin && (
-            <Modal setIsLogin={setIsLogin} setModalOpen={setModalOpen} />
+            <Modal
+              setIsLogin={setIsLogin}
+              setModalOpen={setModalOpen}
+              loginHandler={loginHandler}
+            />
           )}
         </>
       )}

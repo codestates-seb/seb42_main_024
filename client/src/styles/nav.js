@@ -45,6 +45,7 @@ export const NavItems = styled.li`
   }
 
   .nav-home,
+  .nav-liveroom,
   .nav-add-playlist {
     padding-bottom: 14px;
   }
@@ -52,6 +53,7 @@ export const NavItems = styled.li`
   .nav-userinfo,
   .nav-home,
   .nav-liveroom,
+  .nav-create-liveroom,
   .nav-add-playlist,
   .nav-storage,
   .nav-logout {
@@ -89,6 +91,20 @@ export const Home = styled.button`
 `;
 
 export const LiveRoom = styled.button`
+  margin-left: 10px;
+  height: 16px;
+  cursor: pointer;
+  border: none;
+  background-color: var(--color1);
+  color: var(--color9);
+
+  &:hover {
+    cursor: pointer;
+    background-color: var(--color5);
+  }
+`;
+
+export const CreateLiveRoom = styled.button`
   margin-left: 10px;
   height: 16px;
   cursor: pointer;

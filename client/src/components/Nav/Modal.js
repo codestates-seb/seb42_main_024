@@ -5,13 +5,8 @@ import GoogleLogin from '../../assets/GoogleLogin.png';
 import GoogleLoginHover from '../../assets/GoogleLoginHover.png';
 import { ModalBox, ModalCloseButton, LoginButton } from '../../styles/modal';
 
-const Modal = ({ setIsLogin, setModalOpen }) => {
+const Modal = ({ setModalOpen, loginHandler }) => {
   const [isHover, setIsHover] = useState(false);
-
-  const loginHandler = () => {
-    setIsLogin(true);
-    setModalOpen(false);
-  };
 
   const closeModal = () => {
     setModalOpen(false);
