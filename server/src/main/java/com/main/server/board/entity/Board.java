@@ -45,13 +45,6 @@ public class Board extends Auditable {
         @OneToMany(fetch = FetchType.LAZY, mappedBy = "board", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
         private List<Like> likes = new ArrayList<>();
 
-        public Like addLike(Like like) {
-                List<Like> newLike = new ArrayList<>(likes);
-                newLike.add(like);
-                this.likes = newLike;
-                return like;
-        }
-
         private LocalDateTime createdAt;
         //작성시각
 
@@ -65,13 +58,10 @@ public class Board extends Auditable {
 
         private Long groupId;
 
-        // 좋아요 수를 증가시키는 메서드
-        public void increaseLikeCount() {
-                this.likeCount++;
-        }
-
-        // 좋아요 수를 감소시키는 메서드
-        public void decreaseLikeCount() {
-                this.likeCount--;
+        public Like addLike(Like like) {
+                List<Like> newLike = new ArrayList<>(likes);
+                newLike.add(like);
+                this.likes = newLike;
+                return like;
         }
 }

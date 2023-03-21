@@ -1,15 +1,10 @@
 package com.main.server.like.entity;
 
-
 import com.main.server.member.entity.Member;
 import com.main.server.board.entity.Board;
-import com.main.server.audit.Auditable;
-
-import com.main.server.playlist.entity.Playlist;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
 import javax.persistence.*;
 
 
@@ -40,21 +35,4 @@ public class Like {
         this.likeQ = likeQ;
     }
 
-
-    // BOARD_ID
-
-//    @ManyToOne
-//    @JoinColumn(name = "PLAYLIST_ID")
-//    private Playlist playlist;
-
-
-
-    // BOARD_ID
-
-//    public Like(Member member, Board board, Playlist playlist) {
-//        this.member = member;
-//        this.board = board;
-//        this.playlist = playlist;
-        /**/
-//    }
 }
