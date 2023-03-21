@@ -5,6 +5,8 @@ import com.main.server.comment.repository.CommentRepository;
 //import com.main.server.exception.BusinessLogicException;
 //import com.main.server.exception.ExceptionCode;
 import com.main.server.board.entity.Board;
+import com.main.server.exception.BusinessLogicException;
+import com.main.server.exception.ExceptionCode;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -34,9 +36,7 @@ CommentService {
         Comment comment = commentRepository.findById(commentId).get();
         if (comment.getMember().getMemberId().equals(memberId)) {
             commentRepository.delete(comment);
-        } else {
-          //  throw new BusinessLogicException(ExceptionCode.NOT_ALLOWED);
-        }
+        } else throw new BusinessLogicException(ExceptionCode.NOT_ALLOWED);
     }
 
     public void patchComment(Comment comment, Long memberId) {
@@ -44,7 +44,7 @@ CommentService {
             comment.setModifiedAt(LocalDateTime.now());
             commentRepository.save(comment);
         } else {
-           // throw new BusinessLogicException(ExceptionCode.NOT_ALLOWED);
+            throw new BusinessLogicException(ExceptionCode.NOT_ALLOWED);
         }
     }
 }

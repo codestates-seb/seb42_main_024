@@ -44,8 +44,8 @@ public class CommentMapper {
         }
         return comment;
     }
-}
-/*  Like 구문
+
+
     public CommentResponseDto commentToCommentResponseDto(Comment comment) {
         CommentResponseDto commentResponseDto = new CommentResponseDto();
         commentResponseDto.setCommentId(comment.getCommentId());
@@ -53,17 +53,8 @@ public class CommentMapper {
         commentResponseDto.setCreatedAt(comment.getCreatedAt());
         commentResponseDto.setModifiedAt(comment.getModifiedAt());
         commentResponseDto.setMemberId(comment.getMember().getMemberId());
-         commentResponseDto.setLikeCount(voteRepository.countAllByCommentAndVoteTypeNot(comment, Vote.VoteType.HATE));
-        commentResponseDto.setHateCount(voteRepository.countAllByCommentAndVoteTypeNot(comment, Vote.VoteType.LIKE));
-          System.out.println("//////////////////////////////////////////////////////////////////////////////////////");
-         System.out.println(voteRepository.findByCommentAndMember(comment, comment.getMember()));
-        if(voteRepository.findByCommentAndMember(comment, comment.getMember()) != null) {
-           commentResponseDto.setIsVote(true);
-         } else {
-             commentResponseDto.setIsVote(false);
-          }
-         return commentResponseDto;
-          }
+        return commentResponseDto;
+    }
+}
 
 
- */

@@ -14,6 +14,7 @@ import com.main.server.board.entity.Board;
 import com.main.server.board.mapper.BoardMapper;
 import com.main.server.board.repository.BoardRepository;
 import com.main.server.board.service.BoardService;
+import com.main.server.dto.SingleResponseDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
@@ -43,13 +44,13 @@ public class BoardController {
         boardService.saveBoard(boardMapper.boardPostDtoToBoard(boardDto));
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
-/* Like 구문 구현되면 실행 가능
+
     @GetMapping("/{board-id}/{member-id}")
     public ResponseEntity getBoard(@PathVariable(name="board-id") Long boardId, @PathVariable(name="member-id") Long memberId) {
         BoardResponseDto board = boardService.findBoard(boardId, memberId);
         return new ResponseEntity<>(new SingleResponseDto<>(board), HttpStatus.OK);
     }
-*/
+
     @DeleteMapping("/{board-id}/{member-id}")
     public ResponseEntity deleteBoard(@PathVariable(name="board-id") Long boardId, @PathVariable(name="member-id") Long memberId) {
         boardService.deleteBoard(boardId, memberId);

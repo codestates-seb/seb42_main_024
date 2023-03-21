@@ -12,5 +12,6 @@ import lombok.Setter;
 public class BoardResponseDto<T> {
     private BoardDto board;
     private T comments; // 코멘트
+    private Boolean isVote;
 }
 
