@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { GoPlay } from 'react-icons/go';
 import { MdSkipNext, MdPauseCircleFilled } from 'react-icons/md';
 import ReactPlayer from 'react-player';
@@ -31,6 +31,7 @@ function Player({ volume }) {
   const listLength = useSelector((state) => state?.currentSongList?.length);
   //진행도 표시
   const [progress, setProgress] = useState(0);
+  const playerRef = useRef(null);
   const dispatch = useDispatch();
   //플레이 버튼
   const handlePause = (e) => {
@@ -76,12 +77,14 @@ function Player({ volume }) {
     const clickX = e.clientX - e.target.offsetLeft;
     const progressPercentage = (clickX / boxWidth) * 100;
     const newProgress = progressPercentage / 100;
-    dispatch(togglePause());
     setProgress(newProgress);
-    console.log(newProgress);
+    seekTo(newProgress);
   };
   const handleProgress = (state) => {
-    setProgress(state?.played);
+    setProgress(state.played);
+  };
+  const seekTo = (newProgress) => {
+    playerRef.current.seekTo(newProgress);
   };
   return (
     <PlayWarp>
@@ -91,6 +94,7 @@ function Player({ volume }) {
         style={{ display: 'none' }}
         onProgress={handleProgress}
         volume={volume}
+        ref={playerRef}
       />
       <PlayerBtnContainer>
         <MdSkipNext className='PreBtn' onClick={handlePre} />

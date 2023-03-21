@@ -12,12 +12,6 @@ import {
 function PlayBox() {
   const playIdx = useSelector((state) => state?.currentSongIdx);
   const playData = useSelector((state) => state?.currentSongList?.[playIdx]);
-  const legnth = useSelector((state) => state?.currentSongList.length);
-  const test = () => {
-    console.log('data', playData);
-    console.log('Idx', playIdx);
-    console.log('legnth', legnth);
-  };
   return (
     <PlayBoxWarp>
       {playData?.thumbnail ? (
@@ -29,12 +23,12 @@ function PlayBox() {
       )}
       {playData ? (
         <PlayBoxInfo>
-          <PlayBoxTitle onClick={test}>{playData?.musicTitle}</PlayBoxTitle>
+          <PlayBoxTitle>{playData?.musicTitle}</PlayBoxTitle>
           <PlayBoxContent>{playData?.artist}</PlayBoxContent>
         </PlayBoxInfo>
       ) : (
         <PlayBoxInfo>
-          <PlayBoxTitle onClick={test}>선택해주세요</PlayBoxTitle>
+          <PlayBoxTitle>선택해주세요</PlayBoxTitle>
           <PlayBoxContent>비어있습니다</PlayBoxContent>
         </PlayBoxInfo>
       )}
