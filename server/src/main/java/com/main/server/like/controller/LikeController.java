@@ -3,6 +3,7 @@ package com.main.server.like.controller;
 import com.main.server.global.dto.ResponseDto;
 import com.main.server.like.service.LikeService;
 import com.main.server.member.entity.Member;
+import com.main.server.member.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.constraints.Email;
 import javax.validation.constraints.Positive;
 
 @Validated
@@ -21,27 +23,17 @@ import javax.validation.constraints.Positive;
 @RequiredArgsConstructor
 public class LikeController {
     private final LikeService likeService;
+    private final MemberService memberService;
 
-    @PostMapping("{board-id}/likes/up")
+
+    @PostMapping("up/{board-id}")
     public ResponseEntity addLike(@PathVariable("board-id")@Positive Long id,
-                                  @AuthenticationPrincipal Long memberId) {
-
-        likeService.addLike(id,memberId,1);
+                                  @AuthenticationPrincipal String email ) {
+        Member member = memberService.findByEmail(email);
+        likeService.addLike(id,member,-1);
         return ResponseEntity
                 .status(HttpStatus.CREATED)
                 .body(new ResponseDto(id, 200));
 
     }
-    @PostMapping("{board-id}/likes/down")
-    public ResponseEntity subLike(@PathVariable("board-id")@Positive Long id,
-                                  @AuthenticationPrincipal Long memberId) {
-
-        likeService.addLike(id,memberId,-1);
-        return ResponseEntity
-                .status(HttpStatus.CREATED)
-                .body(new ResponseDto(id, 200));
-
-    }
-
-
 }
