@@ -158,6 +158,9 @@ export const PlaylistTrendyContainer = styled.div`
   width: 1260px;
   height: 350px;
   display: flex;
+  position: absolute;
+  left: 300px;
+  top: 50px;
 `;
 
 export const PlaylistImageContainer = styled.div`
@@ -194,8 +197,10 @@ export const PlaylistTrendyInfoContainer = styled(PlaylistInfoMain)`
   padding-left: 25px;
   .title {
     margin: 15px 0;
+    font-size: 45px;
   }
   .desc {
+    width: 90%;
     height: 35px;
   }
 `;
@@ -224,6 +229,12 @@ export const Song = styled.div`
       font-size: 15px;
       font-family: var(--ft-pretendardExtraBold);
       margin: 5px 0;
+      width: 85px;
+      height: 15px;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      word-break: break-all;
     }
     .artist {
       font-size: 12px;
@@ -233,10 +244,18 @@ export const Song = styled.div`
 `;
 
 // MainPage - PlaylistThumbnail
-export const PlaylistThumnailContainer = styled.div`
+export const PlaylistThumbnailContainer = styled.div`
+  /* width: 260px;
+  color: var(--color9);
+  position: relative; */
+  background-color: var(--color1);
   width: 260px;
+  margin-right: 20px;
+  margin-bottom: 20px;
   color: var(--color9);
   position: relative;
+  flex: none;
+
   img.playlistImg {
     width: 100%;
     height: 260px;
@@ -252,6 +271,11 @@ export const PlaylistThumnailContainer = styled.div`
     font-family: var(--ft-pretendardSemiBold);
     font-size: 15px;
     margin: 5px 1px;
+    height: 18px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    word-break: break-all;
   }
   .flexBox {
     display: flex;
