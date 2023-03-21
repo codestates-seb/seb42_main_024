@@ -22,17 +22,27 @@ import javax.validation.constraints.Positive;
 public class LikeController {
     private final LikeService likeService;
 
-    @PostMapping("{board-id}/likes/up")
-    public ResponseEntity addLike(@PathVariable("board-id")@Positive Long id,
-                                  @AuthenticationPrincipal Long memberId) {
+//    @PostMapping("up/{board-id}")
+//    public ResponseEntity addLike(@PathVariable("board-id")@Positive Long id,
+//                                  @AuthenticationPrincipal Long memberId) {
+//
+//        likeService.addLike(id,memberId,1);
+//        return ResponseEntity
+//                .status(HttpStatus.CREATED)
+//                .body(new ResponseDto(id, 200));
+//
+//    }
 
-        likeService.addLike(id,memberId,1);
+    @PostMapping("up/{board-id}")
+    public ResponseEntity addLike(@PathVariable("board-id") @Positive Long id) {
+
+        Long memberId = 1L; // 임시로 멤버 ID를 설정.
+        likeService.addLike(id, memberId, 1);
         return ResponseEntity
                 .status(HttpStatus.CREATED)
                 .body(new ResponseDto(id, 200));
-
     }
-    @PostMapping("{board-id}/likes/down")
+    @PostMapping("down/{board-id}")
     public ResponseEntity subLike(@PathVariable("board-id")@Positive Long id,
                                   @AuthenticationPrincipal Long memberId) {
 

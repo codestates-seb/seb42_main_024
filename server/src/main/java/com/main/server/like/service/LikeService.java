@@ -23,18 +23,38 @@ public class LikeService {
     private final FindBoardService findBoardService;
 
 
-    public void addLike(Long id,Long memberId, Integer like) {
-        Member member = findMemberService.id(memberId);
-        Board board = findBoardService.id(id);
+//    public void addLike(Long id,Long memberId, Integer like) {
+//        Member member = findMemberService.id(memberId);
+//        Board board = findBoardService.id(id);
+//
+//        verifyExistsLike(member, board);
+//        likeRepository.save(board.addLike(new Like(like, member, board)));
+//    }
+public void addLike(Long id, Long memberId, Integer like) {
+    Member member = findMemberService.id(memberId);
+    Board board = findBoardService.id(id);
 
+    if (like > 0) {
         verifyExistsLike(member, board);
         likeRepository.save(board.addLike(new Like(like, member, board)));
+    } else {
+        removeLike(member, board);
     }
+
+}
 
     public void verifyExistsLike(Member member, Board board) {
         Optional<Like> like = likeRepository.findByMemberAndBoard(member, board);
         if (like.isPresent()) {
             throw new BusinessLogicException(ExceptionCode.ALREADY_LIKED);
         }
+    }
+
+    public void removeLike(Member member, Board board) {
+        Like like = likeRepository.findByMemberAndBoard(member, board)
+                .orElseThrow(() -> new BusinessLogicException(ExceptionCode.ALREADY_LIKED));
+        board.getLikes().remove(like);
+        board.setLikeCount(board.getLikeCount() - 1);
+        likeRepository.delete(like);
     }
 }

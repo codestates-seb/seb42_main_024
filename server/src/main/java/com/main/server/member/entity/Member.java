@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 @Entity
 @Getter
-//@Setter
+@Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
  // 주석 = 바꿔야 할 부분
 public class Member extends Auditable {
