@@ -32,7 +32,7 @@ public class CommentMapper {
         Member member = memberRepository.findById(commentPostDto.getMemberId()).get();
         comment.setMember(member);
         Board board = boardRepository.findById(commentPostDto.getBoardId()).get();
-
+        comment.setGroupId(board.getGroupId());
         return comment;
     }
 
@@ -49,6 +49,7 @@ public class CommentMapper {
     public CommentResponseDto commentToCommentResponseDto(Comment comment) {
         CommentResponseDto commentResponseDto = new CommentResponseDto();
         commentResponseDto.setCommentId(comment.getCommentId());
+        commentResponseDto.setGroupId(comment.getGroupId());
         commentResponseDto.setCommentContent(comment.getCommentContent());
         commentResponseDto.setCreatedAt(comment.getCreatedAt());
         commentResponseDto.setModifiedAt(comment.getModifiedAt());

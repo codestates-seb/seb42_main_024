@@ -42,6 +42,8 @@ public class BoardMapper {
         BoardDto boardDto = new BoardDto();
         boardDto.setBoardId(board.getBoardId());
         boardDto.setBoardContent(board.getBoardContent());
+        boardDto.setGroupId(board.getGroupId());
+        boardDto.setNickname(board.getMember().getNickname());
         boardDto.setCreatedAt(board.getCreatedAt());
         boardDto.setModifiedAt(board.getModifiedAt());
         boardDto.setLikeCount(board.getLikeCount());
