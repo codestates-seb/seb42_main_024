@@ -1,3 +1,5 @@
+import ReactModal from 'react-modal';
+
 import styled from 'styled-components';
 
 // PlaylistPage - PlaylistInfoContainer component
@@ -56,9 +58,32 @@ export const PlaylistInfoContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  img {
+    width: 412px;
+    height: 350px;
+  }
   color: var(--color9);
   .info {
     margin-left: 25px;
+  }
+`;
+
+// PlaylistPage - PlaylistInfo component - modal
+export const PlaylistInfoModal = styled(ReactModal)`
+  width: 584px;
+  height: 584px;
+  padding: 30px;
+  background-color: var(--color11);
+  overflow-y: scroll;
+  margin: auto;
+  .title {
+    color: var(--color9);
+    font-family: var(--ft-pretendardExtraBold);
+    font-size: 50px;
+  }
+  .desc {
+    margin-top: 20px;
+    color: var(--color4);
   }
 `;
 

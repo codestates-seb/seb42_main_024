@@ -1,52 +1,15 @@
 import { useState } from 'react';
 import { FaPlay } from 'react-icons/fa';
 import { IoMdClose } from 'react-icons/io';
-import { TbPlayerPlay, TbPlayerPause } from 'react-icons/tb';
 import ReactModal from 'react-modal';
+
+import PlaylistImage from './PlaylistImage';
+import SongList from './Songlist';
 
 import {
   PlaylistTrendyContainer,
-  PlaylistImageContainer,
   PlaylistTrendyInfoContainer,
-  SongListContainer,
-  Song,
-} from '../../styles/playlist';
-
-const PlaylistImage = ({ playlist }) => {
-  const [isPlaying, setIsPlaying] = useState(false);
-  return (
-    <PlaylistImageContainer>
-      <img
-        src={playlist.thumbnail}
-        alt='playlist thumbnail'
-        className={isPlaying ? '' : 'blurred'}
-      />
-      <button className='playBtn' onClick={() => setIsPlaying(!isPlaying)}>
-        {isPlaying ? (
-          <TbPlayerPause className='icon' size='50px' />
-        ) : (
-          <TbPlayerPlay className='icon' size='50px' />
-        )}
-      </button>
-    </PlaylistImageContainer>
-  );
-};
-
-const SongList = ({ songlist }) => {
-  return (
-    <SongListContainer>
-      {songlist.map((song) => (
-        <Song key={song.id}>
-          <img src={song.imgSrc} alt='song thumbnail' />
-          <div className='info'>
-            <div className='title'>{song.title}</div>
-            <div className='artist'>{song.artist}</div>
-          </div>
-        </Song>
-      ))}
-    </SongListContainer>
-  );
-};
+} from '../../../styles/playlist';
 
 ReactModal.setAppElement('#root');
 

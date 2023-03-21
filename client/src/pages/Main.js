@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
 import PlaylistThumbnail from '../components/mainPage/PlaylistThumbnail';
-import PlaylistTrendy from '../components/mainPage/PlaylistTrendy';
+import PlaylistTrendy from '../components/mainPage/PlaylistTrendy/PlaylistTrendy';
 import { MainContent, StyledSlider } from '../styles/main';
 
 const sliderNames = [
