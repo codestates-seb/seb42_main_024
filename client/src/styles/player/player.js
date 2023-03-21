@@ -40,6 +40,7 @@ export const PlayBox = styled.div`
   height: 5px;
   background-color: var(--color7);
   border-radius: 3px;
+  cursor: pointer;
 `;
 export const PlayBoxonProgress = styled.div`
   width: ${(props) => props.width || 0}%;

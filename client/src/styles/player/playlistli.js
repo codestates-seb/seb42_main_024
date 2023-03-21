@@ -18,6 +18,10 @@ export const PlayListLiCover = styled.img`
   border-radius: 10px;
   margin-right: 10px;
   background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  object-fit: cover;
 `;
 export const PlayListLiContentBox = styled.div`
   display: flex;

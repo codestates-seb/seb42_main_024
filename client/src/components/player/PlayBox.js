@@ -1,52 +1,43 @@
-import { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { IoMdMusicalNote } from 'react-icons/io';
+import { useSelector } from 'react-redux';
 
-import axios from 'axios';
-
-import { setCurrentSongURL } from '../../actions/actions';
 import {
-  PlayBoxWarp,
   PlayBoxImg,
+  PlayBoxWarp,
+  PlayBoxDataImg,
   PlayBoxInfo,
   PlayBoxTitle,
   PlayBoxContent,
 } from '../../styles/player/playbox';
 function PlayBox() {
-  const [videoDate, setVideoData] = useState({});
-  const dispatch = useDispatch();
-  useEffect(() => {
-    const fetchVideoData = async () => {
-      const videoId = 'sVTy_wmn5SU';
-      const API_KEY = 'AIzaSyCApUdc9PuxJJYqjgNNNL2I2fkLuFIBasA';
-      const url = `https://www.googleapis.com/youtube/v3/videos?part=snippet&id=${videoId}&key=${API_KEY}`;
-
-      try {
-        const response = await axios.get(url);
-        const video = response?.data?.items?.[0]?.snippet;
-        setVideoData({
-          title: video?.title,
-          thumbnail: video?.thumbnails.high.url,
-        });
-
-        dispatch(
-          setCurrentSongURL(`https://www.youtube.com/watch?v=${videoId}`)
-        );
-        console.log('video', video);
-      } catch (e) {
-        console.log(e);
-        setVideoData({});
-      }
-    };
-
-    fetchVideoData();
-  }, [dispatch]);
+  const playIdx = useSelector((state) => state?.currentSongIdx);
+  const playData = useSelector((state) => state?.currentSongList?.[playIdx]);
+  const legnth = useSelector((state) => state?.currentSongList.length);
+  const test = () => {
+    console.log('data', playData);
+    console.log('Idx', playIdx);
+    console.log('legnth', legnth);
+  };
   return (
     <PlayBoxWarp>
-      <PlayBoxImg src={videoDate?.thumbnail} />
-      <PlayBoxInfo>
-        <PlayBoxTitle>{videoDate?.title}</PlayBoxTitle>
-        <PlayBoxContent>가수제목</PlayBoxContent>
-      </PlayBoxInfo>
+      {playData?.thumbnail ? (
+        <PlayBoxDataImg src={playData?.thumbnail} />
+      ) : (
+        <PlayBoxImg>
+          <IoMdMusicalNote className='Note' />
+        </PlayBoxImg>
+      )}
+      {playData ? (
+        <PlayBoxInfo>
+          <PlayBoxTitle onClick={test}>{playData?.musicTitle}</PlayBoxTitle>
+          <PlayBoxContent>{playData?.artist}</PlayBoxContent>
+        </PlayBoxInfo>
+      ) : (
+        <PlayBoxInfo>
+          <PlayBoxTitle onClick={test}>선택해주세요</PlayBoxTitle>
+          <PlayBoxContent>비어있습니다</PlayBoxContent>
+        </PlayBoxInfo>
+      )}
     </PlayBoxWarp>
   );
 }

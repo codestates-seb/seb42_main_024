@@ -1,6 +1,4 @@
-import { useState, useEffect } from 'react';
-
-import axios from 'axios';
+import { useState } from 'react';
 
 import PlayBox from './PlayBox';
 import Player from './Player';
@@ -22,25 +20,9 @@ function NowPlaying() {
   const handleVolumeChange = (VolumeValue) => {
     setVolume(VolumeValue);
   };
-
   const handlePlayList = () => {
     setIsOpen((pre) => !pre);
   };
-  const [playlist, setPlaylist] = useState([]);
-  useEffect(() => {
-    const videoId = 'UC3IZKseVpdzPSBaWxBxundA';
-    const API_KEY = 'AIzaSyCApUdc9PuxJJYqjgNNNL2I2fkLuFIBasA';
-    axios
-      .get(
-        `https://www.googleapis.com/youtube/v3/videos?part=snippet&id=${videoId}&key=${API_KEY}`
-      )
-      .then((res) => {
-        setPlaylist(res?.data?.items);
-      })
-      .catch((e) => {
-        console.log(e);
-      });
-  }, []);
   return (
     <PlayWarp>
       {/* NowPlaying */}
@@ -54,7 +36,7 @@ function NowPlaying() {
         <PlayListCover>
           <PlayListImg />
         </PlayListCover>
-        <PlayList playlist={playlist} />
+        <PlayList />
       </PlayListBox>
     </PlayWarp>
   );

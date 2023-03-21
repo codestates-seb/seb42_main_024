@@ -4,52 +4,104 @@ import { MdSkipNext, MdPauseCircleFilled } from 'react-icons/md';
 import ReactPlayer from 'react-player';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { setCurrentSongURL } from '../../actions/actions';
+import {
+  togglePlay,
+  togglePause,
+  fetchPrevSong,
+  toNextSong,
+  toPrevSong,
+  storeCurrentSong,
+} from '../../actions/actions';
 import {
   PlayWarp,
   PlayerBtnContainer,
   PlayBox,
   PlayBoxonProgress,
 } from '../../styles/player/player';
+
 function Player({ volume }) {
   //플레이버튼
-  const [isPlaying, setIsPlaying] = useState(false);
-  const data = useSelector((state) => state.currentSongURL);
+  const isPlaying = useSelector((state) => state?.isPlaying);
+  //인덱스 불러오기
+  const playIdx = useSelector((state) => state?.currentSongIdx);
+  const dataUrl = useSelector(
+    (state) => state?.currentSongList?.[playIdx]?.musicUrl
+  );
+  //리스트 불러오기
+  const listLength = useSelector((state) => state?.currentSongList?.length);
   //진행도 표시
   const [progress, setProgress] = useState(0);
   const dispatch = useDispatch();
   //플레이 버튼
+  const handlePause = (e) => {
+    e.stopPropagation();
+    if (isPlaying) {
+      dispatch(togglePause());
+    }
+  };
+  //Pause
   const handlePlay = (e) => {
     e.stopPropagation();
-    setIsPlaying((pre) => !pre);
+    dispatch(togglePause());
+    if (listLength !== 0) {
+      if (playIdx === null) {
+        dispatch(fetchPrevSong());
+      }
+      dispatch(togglePlay());
+    }
+  };
+  //Next
+  const handleNext = (e) => {
+    e.stopPropagation();
+    if (playIdx === listLength - 1) {
+      dispatch(togglePause());
+      dispatch(storeCurrentSong());
+    } else {
+      dispatch(toNextSong());
+    }
+  };
+  //Pre
+  const handlePre = (e) => {
+    e.stopPropagation();
+    if (playIdx === 0) {
+      dispatch(togglePause());
+      dispatch(storeCurrentSong());
+    } else {
+      dispatch(toPrevSong());
+    }
   };
   //진행도 전달
+  const handlePlayBoxClick = (e) => {
+    const boxWidth = e.target.offsetWidth;
+    const clickX = e.clientX - e.target.offsetLeft;
+    const progressPercentage = (clickX / boxWidth) * 100;
+    const newProgress = progressPercentage / 100;
+    dispatch(togglePause());
+    setProgress(newProgress);
+    console.log(newProgress);
+  };
   const handleProgress = (state) => {
     setProgress(state?.played);
-  };
-  const test = (e) => {
-    e.stopPropagation();
-    dispatch(setCurrentSongURL(`https://www.youtube.com/watch?v=Y8JFxS1HlDo`));
   };
   return (
     <PlayWarp>
       <ReactPlayer
-        url={data}
+        url={dataUrl}
         playing={isPlaying}
         style={{ display: 'none' }}
         onProgress={handleProgress}
         volume={volume}
       />
       <PlayerBtnContainer>
-        <MdSkipNext className='PreBtn' />
+        <MdSkipNext className='PreBtn' onClick={handlePre} />
         {isPlaying ? (
-          <MdPauseCircleFilled className='PausetBtn' onClick={handlePlay} />
+          <MdPauseCircleFilled className='PausetBtn' onClick={handlePause} />
         ) : (
           <GoPlay className='StartBtn' onClick={handlePlay} />
         )}
-        <MdSkipNext className='NextBtn' onClick={test} />
+        <MdSkipNext className='NextBtn' onClick={handleNext} />
       </PlayerBtnContainer>
-      <PlayBox>
+      <PlayBox onClick={handlePlayBoxClick}>
         <PlayBoxonProgress width={progress * 100} />
       </PlayBox>
     </PlayWarp>
