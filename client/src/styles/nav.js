@@ -26,6 +26,11 @@ export const NavContainer = styled.div`
 export const NavList = styled.ul`
   width: 100%;
   padding: 0;
+
+  svg {
+    width: 16px;
+    height: 16px;
+  }
 `;
 
 export const NavItems = styled.li`
@@ -44,6 +49,11 @@ export const NavItems = styled.li`
     color: var(--color10);
   }
 
+  .user-circle {
+    width: 30px;
+    height: 30px;
+  }
+
   .nav-home,
   .nav-liveroom,
   .nav-add-playlist {
@@ -60,6 +70,12 @@ export const NavItems = styled.li`
     display: flex;
     align-items: center;
   }
+
+  .profile-pic {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+  }
 `;
 
 export const UserInfo = styled.button`
@@ -69,6 +85,7 @@ export const UserInfo = styled.button`
   border: none;
   background-color: var(--color1);
   color: var(--color9);
+  font-size: 15px;
 
   &:hover {
     cursor: pointer;
@@ -153,6 +170,7 @@ export const Login = styled.button`
   border: none;
   background-color: var(--color1);
   color: var(--color9);
+  font-size: 15px;
 
   &:hover {
     cursor: pointer;

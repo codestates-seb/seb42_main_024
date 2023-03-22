@@ -1,6 +1,6 @@
 import { BiHome, BiLogOut } from 'react-icons/bi';
 import { BsPlusCircle, BsFillSuitHeartFill } from 'react-icons/bs';
-import { FaUserCircle, FaHeadphones } from 'react-icons/fa';
+import { IoRadio } from 'react-icons/io5';
 import { MdOutlineLibraryMusic } from 'react-icons/md';
 
 import {
@@ -21,8 +21,8 @@ const NavLogin = ({ user, logoutHandler }) => {
       <NavList>
         <NavItems>
           <div className='nav-userinfo'>
-            <FaUserCircle />
-            <UserInfo user={user}>USERNAME</UserInfo>
+            <img className='profile-pic' src={user.picture} alt='profile-pic' />
+            <UserInfo>{user.nickname}</UserInfo>
           </div>
         </NavItems>
         <NavItems>
@@ -31,7 +31,7 @@ const NavLogin = ({ user, logoutHandler }) => {
             <Home>홈</Home>
           </div>
           <div className='nav-liveroom'>
-            <FaHeadphones />
+            <IoRadio />
             <LiveRoom>라이브룸</LiveRoom>
           </div>
           <div className='nav-create-liveroom'>
