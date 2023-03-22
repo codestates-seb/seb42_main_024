@@ -27,25 +27,15 @@ public class LikeController {
     @PostMapping("up/{board-id}")
     public ResponseEntity addLike(@PathVariable("board-id")@Positive Long id,
                                   @AuthenticationPrincipal String email ) {
+        //이메일을 불러옴 지금 정상작동안해서 임의로 값 넣음
         Member member = memberService.findByEmail("admin@google.com");
+        //id 랑 멤버 추가해 버림
         likeService.addLike(id,member);
         return ResponseEntity
                 .status(HttpStatus.CREATED)
                 .body(new ResponseDto(id, 200));
 
     }
-
-    // Controller
-    @DeleteMapping("down/{board-id}")
-    public ResponseEntity deleteLike(@PathVariable("board-id") @Positive Long id,
-                                     @AuthenticationPrincipal String email) {
-        Member member = memberService.findByEmail("admin@google.com"); //이메일은 임시로 넣음
-        likeService.deleteLike(id, member);
-        return ResponseEntity
-                .status(HttpStatus.OK)
-                .body(new ResponseDto(id, 200));
-    }
-
 
 
 }

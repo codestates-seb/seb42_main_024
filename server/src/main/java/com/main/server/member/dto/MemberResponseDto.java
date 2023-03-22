@@ -24,10 +24,6 @@ public class MemberResponseDto {
 
     // private String grade;
 
-    private Integer follow;
-
-    private Boolean followState;
-
     // private Integer rank;
 
     private Role role;

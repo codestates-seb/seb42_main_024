@@ -5,17 +5,14 @@ import com.main.server.comment.dto.CommentResponseDto;
 import com.main.server.comment.entity.Comment;
 import com.main.server.comment.mapper.CommentMapper;
 import com.main.server.comment.repository.CommentRepository;
-//import com.main.server.exception.BusinessLogicException;
-//import com.main.server.exception.ExceptionCode;
-import com.main.server.board.dto.BoardDto;
 import com.main.server.board.dto.BoardResponseDto;
 import com.main.server.board.entity.Board;
 import com.main.server.board.mapper.BoardMapper;
 import com.main.server.board.repository.BoardRepository;
 import com.main.server.exception.BusinessLogicException;
 import com.main.server.exception.ExceptionCode;
+import com.main.server.like.service.FindLikeService;
 import com.main.server.member.entity.Member;
-import com.main.server.member.repository.MemberRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -39,6 +36,9 @@ public class BoardService {
     private CommentMapper commentMapper;
     private BoardMapper boardMapper;
 
+    private FindLikeService findLikeService;
+    private FindBoardService findBoardService;
+
     @PostConstruct
     public void init() {
 
@@ -54,6 +54,8 @@ public class BoardService {
         boardRepository.save(board);
     }
 
+
+
     public void saveBoard(Board board) {
         String time = "";
         SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHssSSS");
@@ -63,7 +65,6 @@ public class BoardService {
         Long unique = Long.parseLong(time + random);
         board.setGroupId(unique);
 
-        board.setLikeCount(0L);
         board.setCreatedAt(LocalDateTime.now());
 
         boardRepository.save(board);

@@ -1,6 +1,7 @@
 package com.main.server.like.service;
 
 import com.main.server.board.entity.Board;
+import com.main.server.board.repository.BoardRepository;
 import com.main.server.board.service.FindBoardService;
 import com.main.server.exception.BusinessLogicException;
 import com.main.server.exception.ExceptionCode;
@@ -19,29 +20,21 @@ public class LikeService {
     private final FindBoardService findBoardService;
 
 
-    public void addLike(Long id, Member member) {
-        Board board = findBoardService.id(id);
-        //likeRepository에 없으면 추가하고
-    if (!likeRepository.existsByMember(member)) {
 
-        likeRepository.save(board.addLike(new Like(member, board)));
+    public void addLike(Long id, Member member) {
+        //findByBoardId 이걸로 보드 기준 세워줌
+        Board board = findBoardService.id(id);
+        //likeRepository에 memberId 없으면
+    if (!likeRepository.existsByMemberAndBoard(member,board)) {
+        // 호출되면 board에 있는 count 증가
+        board.setLikeCount(board.getLikeCount()+1);
+        // likeRepository에 memberId 값이랑 boardId값 저장해버림
+        likeRepository.save(new Like(member, board));
         //아니면 삭제해라
     } else {
-        likeRepository.deleteByMember(member);
+        board.setLikeCount(board.getLikeCount()-1);
+        likeRepository.deleteByMemberAndBoard(member,board);
+
     }
   }
-
-    public void deleteLike(Long id, Member member) {
-        Board board = findBoardService.id(id);
-        //likeRepository에 있으면 삭제하고
-        if (likeRepository.existsByMember(member)) {
-            likeRepository.deleteByMember(member);
-            //아니면 메세지
-        } else
-            {   //없으면 Internal Server Error 터질꺼임
-                throw new BusinessLogicException(ExceptionCode.LIKE_NOT_FOUND);
-            }
-
-    }
-
 }

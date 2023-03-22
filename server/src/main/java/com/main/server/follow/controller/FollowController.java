@@ -15,21 +15,25 @@ import javax.validation.constraints.Positive;
 
 @Validated
 @RestController
-@RequestMapping("/follow")
+@RequestMapping("/follows")
 @RequiredArgsConstructor
 public class FollowController {
     private final FollowService followService;
     private final MemberService memberService;
 
     @PostMapping("{member-id}")
-    public ResponseEntity addLike(@PathVariable("member-id")@Positive Long id,
+    public ResponseEntity postFollow(@PathVariable("member-id")@Positive Long id,
                                   @AuthenticationPrincipal String email ) {
         Member member = memberService.findByEmail("admin@google.com");
-        followService.addFollow(id);
+        followService.addFollow(id,member);
         return ResponseEntity
                 .status(HttpStatus.CREATED)
                 .body(new ResponseDto(id, 200));
     }
-
 }
+
+/* 예를들어 맴버 A와 B가 있다.
+* 맴버A가 로그인을 한다.
+* 로그인 중인 맴버A가 다른 맴버B를 팔로우 하면 맴버B에게 A가 저장된다.
+* */
 

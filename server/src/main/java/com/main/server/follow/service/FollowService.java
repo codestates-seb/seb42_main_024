@@ -1,14 +1,10 @@
 package com.main.server.follow.service;
-import com.main.server.board.entity.Board;
 import com.main.server.follow.entity.Follow;
 import com.main.server.follow.repository.FollowRepository;
-import com.main.server.like.entity.Like;
 import com.main.server.member.entity.Member;
-import com.main.server.member.repository.MemberRepository;
 import com.main.server.member.service.FindMemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
 import javax.transaction.Transactional;
 
 @Service
@@ -17,14 +13,17 @@ import javax.transaction.Transactional;
 public class FollowService {
     private final FindMemberService findMemberService;
     private final FollowRepository followRepository;
-
-    public void addFollow(Long id) {
-        Member member = findMemberService.id(id);
-
-        if (!followRepository.existsByMember(member)) {
-            followRepository.save(member.addFollow(new Follow(member)));
-        } else {
-                followRepository.deleteByMember(member);
+//맴버가 맴버를 좋아요 하면 그게 팔로우
+    public void addFollow(Long id, Member follower) {
+        //Member id 끌고오기
+        Member target = findMemberService.id(id);
+        //followRepository memberId가 없으면
+        if (!followRepository.existsByFollowerAndTarget(follower,target)) {
+            //followRepository에 추가
+            followRepository.save(new Follow(follower, target));
+        } //아니면 삭제
+        else {
+                followRepository.deleteByFollowerAndTarget(follower,target);
         }
     }
 }

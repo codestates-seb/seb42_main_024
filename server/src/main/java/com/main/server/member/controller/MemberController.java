@@ -1,6 +1,7 @@
 package com.main.server.member.controller;
 
 import com.main.server.follow.entity.Follow;
+import com.main.server.global.dto.ResponseDto;
 import com.main.server.member.dto.MemberSimpleDto;
 import com.main.server.member.entity.Member;
 import com.main.server.member.repository.MemberRepository;
@@ -9,10 +10,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.webjars.NotFoundException;
 
 import javax.validation.constraints.Positive;

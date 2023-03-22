@@ -35,6 +35,8 @@ public class Member extends Auditable {
     @ElementCollection(fetch = FetchType.EAGER)
     private List<String> roles = new ArrayList<>();
 
+    private Integer numberOfFollower = 0;
+
 
 
     @Builder
@@ -51,17 +53,17 @@ public class Member extends Auditable {
 
 //팔로우 기능 추가
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "member", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
-    private List<Follow> follows = new ArrayList<>();
-
-public Follow addFollow(Follow follow) {
-    List<Follow> newFollow = new ArrayList<>(follows);
-    newFollow.add(follow);
-    this.follows = newFollow;
-    return follow;
+//    @OneToMany(fetch = FetchType.LAZY, mappedBy = "member", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
+//    private List<Follow> followers = new ArrayList<>();
+//
+//public Follow addFollow(Follow follow) {
+//    List<Follow> newFollow = new ArrayList<>(followers);
+//    newFollow.add(follow);
+//    this.followers = newFollow;
+//    return follow;
 }
 
 
 
 
-}
+
