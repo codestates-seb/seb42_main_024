@@ -61,6 +61,7 @@ public class BoardService {
         time = sdf.format(dateTime.getTime());
         String random = String.valueOf((int) (Math.random() * 100));
         Long unique = Long.parseLong(time + random);
+        board.setGroupId(unique);
 
         board.setLikeCount(0L);
         board.setCreatedAt(LocalDateTime.now());
