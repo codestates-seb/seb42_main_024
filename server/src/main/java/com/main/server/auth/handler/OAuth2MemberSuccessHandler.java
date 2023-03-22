@@ -2,7 +2,6 @@ package com.main.server.auth.handler;
 
 import com.main.server.auth.jwt.JwtTokenizer;
 import com.main.server.auth.util.CustomAuthorityUtils;
-import com.main.server.member.entity.Member;
 import com.main.server.member.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
@@ -17,10 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.net.URI;
-import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 
 @RequiredArgsConstructor
@@ -39,7 +35,6 @@ public class OAuth2MemberSuccessHandler extends SimpleUrlAuthenticationSuccessHa
         String profile = String.valueOf(oAuth2User.getAttributes().get("profile"));
         List<String> authorities = authorityUtils.createRoles(email);
 
-//        createMember(email, profile);
         redirect(request, response, email, authorities);
     }
 

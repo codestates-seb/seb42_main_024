@@ -1,39 +1,39 @@
 package com.main.server.playlist.dto;
 
-
+import com.main.server.playlist.entity.Playlist;
+import com.main.server.song.dto.SongResponseDto;
+import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
-import java.time.LocalDateTime;
 import java.util.List;
+import java.util.stream.Collectors;
 
-@AllArgsConstructor
-@Getter
-@Setter
-@Builder
+@Data
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class PlaylistResponseDto {
-    private long playlistId;
 
-    private long memberId;
-
-    private String name;
-
-    private String content;
-
-    private boolean status;
+    private Long playlistId;
 
     private String title;
 
-    private int like;
+    private String author;
 
-    private List<PlaylistItemResponseDto> playlistItems;
+    private String thumbnail;
 
-    private List<String> categoryList;
+    private List<SongResponseDto> songList;
 
-    private LocalDateTime createdAt;
+    private Integer songCount;
 
-    private LocalDateTime modifiedAt;
-
+    public static PlaylistResponseDto createByEntity(Playlist playlist) {
+        return new PlaylistResponseDto(
+                playlist.getPlaylistId(),
+                playlist.getTitle(),
+                playlist.getMember().getNickname(),
+                playlist.getThumbnail(),
+                playlist.getSongs().stream()
+                        .map(SongResponseDto::createByEntity)
+                        .collect(Collectors.toList()),
+                playlist.getSongs().size());
+    }
 }
