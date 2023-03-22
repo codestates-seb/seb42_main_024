@@ -23,24 +23,30 @@ public class BoardMapper {
     public Board boardPostDtoToBoard(BoardPostDto boardPostDto) {
         Board board = new Board();
         board.setBoardContent(boardPostDto.getBoardContent());
-        System.out.println(boardPostDto.getMemberId());
+        board.setBoardTitle(boardPostDto.getBoardTitle());
+
         Member member = memberRepository.findById(boardPostDto.getMemberId()).get();
         board.setMember(member);
+        //태그
         return board;
     }
 
     public Board boardPatchDtoToBoard(BoardPatchDto boardPatchDto, Long boardId) {
         Board board = boardRepository.findById(boardId).get();
-
+        if(boardPatchDto.getBoardTitle() != null) {
+            board.setBoardTitle(boardPatchDto.getBoardTitle());
+        }
         if(boardPatchDto.getBoardContent() != null) {
             board.setBoardContent(boardPatchDto.getBoardContent());
         }
+        //태그
         return board;
     }
 
     public BoardDto boardToBoardResponseDto(Board board) {
         BoardDto boardDto = new BoardDto();
         boardDto.setBoardId(board.getBoardId());
+        boardDto.setBoardTitle(board.getBoardTitle());
         boardDto.setBoardContent(board.getBoardContent());
         boardDto.setGroupId(board.getGroupId());
         boardDto.setNickname(board.getMember().getNickname());
@@ -49,6 +55,7 @@ public class BoardMapper {
         boardDto.setLikeCount(board.getLikeCount());
         boardDto.setViewCount(board.getViewCount());
         boardDto.setMemberId(board.getMember().getMemberId());
+        //    boardDto.setIsVote();
         return boardDto;
     }
 
