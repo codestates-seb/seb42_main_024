@@ -2,7 +2,6 @@ import {
   PlayListBox,
   PlayListLiContainer,
   PlayListLiCover,
-  PlayListLiContent,
   PlayListLiTitle,
   PlayListLiContentBox,
 } from '../../styles/player/playlistli';
@@ -12,8 +11,7 @@ function PlayListLi({ data }) {
       <PlayListLiContainer>
         <PlayListLiCover src={data.thumbnail} />
         <PlayListLiContentBox>
-          <PlayListLiTitle>{data.musicTitle}</PlayListLiTitle>
-          <PlayListLiContent>{data.artist}</PlayListLiContent>
+          <PlayListLiTitle>{data.title}</PlayListLiTitle>
         </PlayListLiContentBox>
         <p>0:00</p>
       </PlayListLiContainer>

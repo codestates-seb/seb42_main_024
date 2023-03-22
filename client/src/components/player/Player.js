@@ -24,11 +24,9 @@ function Player({ volume }) {
   const isPlaying = useSelector((state) => state?.isPlaying);
   //인덱스 불러오기
   const playIdx = useSelector((state) => state?.currentSongIdx);
-  const dataUrl = useSelector(
-    (state) => state?.currentSongList?.[playIdx]?.musicUrl
-  );
+  const dataUrl = useSelector((state) => state?.songList?.[playIdx]?.videoId);
   //리스트 불러오기
-  const listLength = useSelector((state) => state?.currentSongList?.length);
+  const listLength = useSelector((state) => state?.songList?.length);
   //진행도 표시
   const [progress, setProgress] = useState(0);
   const playerRef = useRef(null);
@@ -73,6 +71,7 @@ function Player({ volume }) {
   };
   //진행도 전달
   const handlePlayBoxClick = (e) => {
+    e.stopPropagation();
     const boxWidth = e.target.offsetWidth;
     const clickX = e.clientX - e.target.offsetLeft;
     const progressPercentage = (clickX / boxWidth) * 100;
@@ -89,7 +88,7 @@ function Player({ volume }) {
   return (
     <PlayWarp>
       <ReactPlayer
-        url={dataUrl}
+        url={`https://www.youtube.com/watch?v=${dataUrl}`}
         playing={isPlaying}
         style={{ display: 'none' }}
         onProgress={handleProgress}

@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
 
 import PlayBox from './PlayBox';
 import Player from './Player';
@@ -14,6 +15,8 @@ import {
 } from '../../styles/player/nowplaying';
 
 function NowPlaying() {
+  const playIdx = useSelector((state) => state?.currentSongIdx);
+  const dataUrl = useSelector((state) => state?.songList?.[playIdx]?.thumbnail);
   const [isOpen, setIsOpen] = useState(false);
   const [volume, setVolume] = useState(1);
   //볼륨 컴포넌트에 전달
@@ -34,7 +37,7 @@ function NowPlaying() {
       {/* PlayList */}
       <PlayListBox isOpen={isOpen} onClick={handlePlayList}>
         <PlayListCover>
-          <PlayListImg />
+          <PlayListImg src={dataUrl} />
         </PlayListCover>
         <PlayList />
       </PlayListBox>

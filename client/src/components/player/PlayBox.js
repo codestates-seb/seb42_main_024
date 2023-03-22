@@ -7,11 +7,10 @@ import {
   PlayBoxDataImg,
   PlayBoxInfo,
   PlayBoxTitle,
-  PlayBoxContent,
 } from '../../styles/player/playbox';
 function PlayBox() {
   const playIdx = useSelector((state) => state?.currentSongIdx);
-  const playData = useSelector((state) => state?.currentSongList?.[playIdx]);
+  const playData = useSelector((state) => state?.songList?.[playIdx]);
   return (
     <PlayBoxWarp>
       {playData?.thumbnail ? (
@@ -23,13 +22,11 @@ function PlayBox() {
       )}
       {playData ? (
         <PlayBoxInfo>
-          <PlayBoxTitle>{playData?.musicTitle}</PlayBoxTitle>
-          <PlayBoxContent>{playData?.artist}</PlayBoxContent>
+          <PlayBoxTitle>{playData?.title}</PlayBoxTitle>
         </PlayBoxInfo>
       ) : (
         <PlayBoxInfo>
           <PlayBoxTitle>선택해주세요</PlayBoxTitle>
-          <PlayBoxContent>비어있습니다</PlayBoxContent>
         </PlayBoxInfo>
       )}
     </PlayBoxWarp>
