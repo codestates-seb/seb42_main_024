@@ -3,7 +3,6 @@ package com.main.server.auth.service;
 import com.main.server.auth.dto.OAuthAttributes;
 import com.main.server.auth.dto.SessionMember;
 import com.main.server.member.entity.Member;
-import com.main.server.member.repository.MemberRepository;
 import com.main.server.member.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -14,7 +13,6 @@ import org.springframework.security.oauth2.core.OAuth2AuthenticationException;
 import org.springframework.security.oauth2.core.user.DefaultOAuth2User;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import javax.servlet.http.HttpSession;
 import java.util.Collections;
