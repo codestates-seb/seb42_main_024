@@ -32,8 +32,6 @@ public class MemberResponseDto {
 
     private LocalDateTime modifiedAt;
 
-    // private MultiResponseDto<SimplePlaylistResponseDto> playlist;
-
     private String content;
 
 }

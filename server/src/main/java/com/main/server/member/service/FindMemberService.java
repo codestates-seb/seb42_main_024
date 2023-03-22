@@ -20,11 +20,6 @@ public class FindMemberService {
         return memberRepository.findById(id)
                 .orElseThrow(() -> new BusinessLogicException(ExceptionCode.MEMBER_NOT_FOUND));
         }
-//    public Member id2(Long id2){
-//
-//        return memberRepository.findById(id2)
-//                .orElseThrow(() -> new BusinessLogicException(ExceptionCode.MEMBER_NOT_FOUND));
-//    }
 
 }
 
