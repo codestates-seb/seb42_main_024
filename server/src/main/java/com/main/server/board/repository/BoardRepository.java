@@ -16,7 +16,7 @@ public interface BoardRepository extends JpaRepository<Board,Long> {
     Page<Board> findByBoardContentContaining(String searchString, Pageable pageable);
 
 
-    //보드 표시
+
 
 
 
