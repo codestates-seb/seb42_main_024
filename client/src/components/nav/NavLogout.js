@@ -1,5 +1,6 @@
 import { BiHome } from 'react-icons/bi';
-import { FaUserCircle, FaHeadphones } from 'react-icons/fa';
+import { FaUserCircle } from 'react-icons/fa';
+import { IoRadio } from 'react-icons/io5';
 
 import { NavList, NavItems, Home, LiveRoom, Login } from '../../styles/nav';
 
@@ -9,7 +10,7 @@ const NavLogout = ({ openModal }) => {
       <NavList>
         <NavItems>
           <div className='nav-userinfo'>
-            <FaUserCircle />
+            <FaUserCircle className='user-circle' />
             <Login onClick={openModal}>LOGIN</Login>
           </div>
         </NavItems>
@@ -19,8 +20,8 @@ const NavLogout = ({ openModal }) => {
             <Home>홈</Home>
           </div>
           <div className='nav-liveroom'>
-            <FaHeadphones />
-            <LiveRoom>라이브룸</LiveRoom>
+            <IoRadio />
+            <LiveRoom onClick={openModal}>로그인하고 라이브 즐기기</LiveRoom>
           </div>
         </NavItems>
       </NavList>
