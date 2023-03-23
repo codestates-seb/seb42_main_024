@@ -1,4 +1,5 @@
 package com.main.server.follow.service;
+import com.main.server.follow.dto.FollowResponseDto;
 import com.main.server.follow.entity.Follow;
 import com.main.server.follow.repository.FollowRepository;
 import com.main.server.member.entity.Member;
@@ -39,15 +40,27 @@ public class FollowService {
 
     //가장 최근 코드
     //이건 내가 팔로우 하고 있는 유저들을 보여준다.
-public List<Long> getTargets(Long followerId) {
-    Member follower = findMemberService.id(followerId);
-    return followRepository.findTargetIdsByFollower(follower);
-}
+//public List<Long> getTargets(Long followerId) {
+//    Member follower = findMemberService.id(followerId);
+//    return followRepository.findTargetIdsByFollower(follower);
+//}
+
+    public List<FollowResponseDto> getTargets(Long followerId) {
+        Member follower = findMemberService.id(followerId);
+        List<Long> targetIds = followRepository.findTargetIdsByFollower(follower);
+        return targetIds.stream().map(FollowResponseDto::new).collect(Collectors.toList());
+    }
 
     // 이건 나를 팔로우 하고 있는 유저들을 보여준다.
-    public List<Long> getFollowers(Long targetId) {
+//    public List<Long> getFollowers(Long targetId) {
+//        Member target = findMemberService.id(targetId);
+//        return followRepository.findFollowerIdsByTarget(target);
+//    }
+
+    public List<FollowResponseDto> getFollowers(Long targetId) {
         Member target = findMemberService.id(targetId);
-        return followRepository.findFollowerIdsByTarget(target);
+        List<Long> followerIds = followRepository.findFollowerIdsByTarget(target);
+        return followerIds.stream().map(FollowResponseDto::new).collect(Collectors.toList());
     }
 
 
