@@ -5,13 +5,8 @@ import GoogleLogin from '../../assets/GoogleLogin.png';
 import GoogleLoginHover from '../../assets/GoogleLoginHover.png';
 import { ModalBox, ModalCloseButton, LoginButton } from '../../styles/modal';
 
-const Modal = ({ setIsLogin, setModalOpen }) => {
+const Modal = ({ setModalOpen, oAuthHandler }) => {
   const [isHover, setIsHover] = useState(false);
-
-  const loginHandler = () => {
-    setIsLogin(true);
-    setModalOpen(false);
-  };
 
   const closeModal = () => {
     setModalOpen(false);
@@ -24,7 +19,7 @@ const Modal = ({ setIsLogin, setModalOpen }) => {
       </ModalCloseButton>
       <span>Google 계정으로 간편 로그인</span>
       <LoginButton
-        onClick={loginHandler}
+        onClick={oAuthHandler}
         onMouseOver={() => setIsHover(true)}
         onMouseOut={() => setIsHover(false)}>
         {!isHover && <img src={GoogleLogin} alt='login hover' />}
