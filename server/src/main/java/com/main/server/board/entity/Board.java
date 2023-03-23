@@ -42,8 +42,7 @@ public class Board extends Auditable {
         private String boardContent;
         //내용
 
-        @OneToMany(fetch = FetchType.LAZY, mappedBy = "board", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
-        private List<Like> likes = new ArrayList<>();
+
 
         private LocalDateTime createdAt;
         //작성시각
@@ -58,10 +57,5 @@ public class Board extends Auditable {
 
         private Long groupId;
 
-        public Like addLike(Like like) {
-                List<Like> newLike = new ArrayList<>(likes);
-                newLike.add(like);
-                this.likes = newLike;
-                return like;
-        }
+
 }

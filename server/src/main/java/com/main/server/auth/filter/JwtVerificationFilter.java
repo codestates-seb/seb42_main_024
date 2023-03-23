@@ -34,7 +34,6 @@ public class JwtVerificationFilter extends OncePerRequestFilter {
                                     HttpServletResponse response,
                                     FilterChain filterChain) throws ServletException, IOException {
 
-
         try {
             Map<String, Object> claims = verifyJws(request, response);
             setAuthenticationToContext(claims);
@@ -64,16 +63,26 @@ public class JwtVerificationFilter extends OncePerRequestFilter {
             return claims;
         }
 
+        /**
+         * 계정이 있는지 없는지만 검증하고있다.
+         * 스케쥴러가 없어서 RefreshToken을  db에 저장하면 데이터가 정리가 안되고 계속해서 쌓일것.
+         * 보안 필요.
+         */
+
         String jws = request.getHeader("Refresh");
-        Member member = null;
-//                memberRepository.findByEmail(jwtTokenizer.getUsername(jws))
-//                .orElseThrow(() -> new BusinessLogicException(ExceptionCode.INVALID_TOKEN));
+        Member member =
+                memberService.findByEmail(jwtTokenizer.getUsername(jws));
 
         String accessToken =
                 jwtTokenizer.delegateAccessToken(
                         member.getEmail(),
                         authorityUtils.createRoles(member.getEmail()));
+
+        String refreshToken =
+                jwtTokenizer.delegateRefreshToken(member.getEmail());
+
         response.setHeader("Authorization", "Bearer " + accessToken);
+        response.setHeader("Refresh", refreshToken);
 
         Claims claims = jwtTokenizer.getClaims(accessToken).getBody();
         return claims;

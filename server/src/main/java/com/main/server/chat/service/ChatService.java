@@ -21,14 +21,14 @@ import org.springframework.web.socket.messaging.SessionDisconnectEvent;
 public class ChatService {
 
     private final ChatroomService chatroomService;
-    private final SimpMessagingTemplate template; // 알아볼것
+    private final SimpMessagingTemplate template;
     private final ChatRepository chatRepository;
 
 
     public void enterUser(ChatRequestDto dto) {
         Chatroom chatroom = chatroomService.findVerifiedRoomId(dto.getChatroomId());
 
-        if (chatroom.getMembers().size() < 100) {
+        if (chatroom.getMembers().size() < 10) {
             Integer memberNumber = chatroom
                     .enterMember(dto.getMemberName())
                     .getMemberNumber(dto.getMemberName());
@@ -84,5 +84,10 @@ public class ChatService {
                 .isLeaveType();
 
         template.convertAndSend("/sub/chat/room/" + chatroomId, dto);
+    }
+
+    public void sendSystemMessage(Long chatroomId, String message) {
+        template.convertAndSend("/sub/chat/room/" + chatroomId, 
+                ChatResponseDto.builder().build().isSystemType(message)); // 별로인듯
     }
 }

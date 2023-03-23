@@ -15,18 +15,17 @@ public class Follow {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long followId;
+    @ManyToOne
+    @JoinColumn(name = "Follower_ID")
+    private Member follower; //로그인 한 사람
 
     @ManyToOne
-    @JoinColumn(name = "follower_id")
-    private Member follower;
+    @JoinColumn(name = "target_ID")
+    private Member target; //팔로우 당하는 사람
 
-    @ManyToOne
-    @JoinColumn(name = "following_id")
-    private Member following;
-
-    public Follow(Member follower, Member following) {
+    public Follow(Member follower, Member target) {
         this.follower = follower;
-        this.following = following;
+        this.target = target;
     }
 }

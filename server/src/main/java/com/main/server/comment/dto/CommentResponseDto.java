@@ -16,4 +16,6 @@ public class CommentResponseDto {
 //     private Boolean isVote; 이미 투표를 햇는지 안햇는지 , 이 기능은 보드에도 들어가야 함.
     private Long likeCount;
     private Long memberId;
+
+    private Boolean isVote;
 }

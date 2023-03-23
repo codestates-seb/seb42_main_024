@@ -14,12 +14,14 @@ import com.main.server.board.entity.Board;
 import com.main.server.board.mapper.BoardMapper;
 import com.main.server.board.repository.BoardRepository;
 import com.main.server.board.service.BoardService;
+import com.main.server.dto.SingleResponseDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @CrossOrigin("*")
@@ -39,17 +41,17 @@ public class BoardController {
     }
 
     @PostMapping
-    public ResponseEntity postBoard(@RequestBody BoardPostDto boardDto) {
+    public ResponseEntity postBoard(@Valid @RequestBody BoardPostDto boardDto) {
         boardService.saveBoard(boardMapper.boardPostDtoToBoard(boardDto));
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
-/* Like 구문 구현되면 실행 가능
+
     @GetMapping("/{board-id}/{member-id}")
     public ResponseEntity getBoard(@PathVariable(name="board-id") Long boardId, @PathVariable(name="member-id") Long memberId) {
         BoardResponseDto board = boardService.findBoard(boardId, memberId);
         return new ResponseEntity<>(new SingleResponseDto<>(board), HttpStatus.OK);
     }
-*/
+
     @DeleteMapping("/{board-id}/{member-id}")
     public ResponseEntity deleteBoard(@PathVariable(name="board-id") Long boardId, @PathVariable(name="member-id") Long memberId) {
         boardService.deleteBoard(boardId, memberId);

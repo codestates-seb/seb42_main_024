@@ -47,7 +47,13 @@ public class ChatResponseDto {
         return this;
     }
 
+    public ChatResponseDto isSystemType(String message) {
+        this.type = MessageType.SYSTEM;
+        this.message = message;
+        return this;
+    }
+
     public enum MessageType {
-        ENTER, TALK, LEAVE, ERROR;
+        ENTER, TALK, LEAVE, SYSTEM, ERROR;
     }
 }
