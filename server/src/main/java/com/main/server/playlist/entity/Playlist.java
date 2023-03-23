@@ -35,7 +35,7 @@ public class Playlist extends Auditable {
 
     @OneToMany(mappedBy = "playlist", cascade = CascadeType.ALL)
     private List<Song> songs = new ArrayList<>();
-
+    
 
     public static Playlist createByDto(PlaylistCreateDto dto, Member member) {
         return new Playlist(
