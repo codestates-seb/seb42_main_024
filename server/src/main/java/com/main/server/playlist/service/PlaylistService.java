@@ -8,15 +8,20 @@ import com.main.server.playlist.entity.Playlist;
 import com.main.server.playlist.repository.PlaylistRepository;
 import com.main.server.song.entity.Song;
 import com.main.server.song.service.SongService;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.Transient;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-@Transactional
+@Transactional // 해당 어노테이션 붙이면 yml 프로퍼티값을 못얻어옴 (or 초기화됨), 원인 모름
 @RequiredArgsConstructor
 public class PlaylistService {
 

@@ -8,6 +8,7 @@ import com.main.server.member.entity.Member;
 import com.main.server.playlist.dto.PlaylistCreateDto;
 import com.main.server.song.entity.Song;
 import lombok.*;
+import org.springframework.beans.factory.annotation.Value;
 
 import javax.persistence.*;
 import java.util.ArrayList;

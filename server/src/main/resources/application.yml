@@ -35,3 +35,7 @@ jwt:
 
 config:
   domain: "*"
+  chatroom:
+    max-size: 10
+  playlist:
+    max-size: 20
