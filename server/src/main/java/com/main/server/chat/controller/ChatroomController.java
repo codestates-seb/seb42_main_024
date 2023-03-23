@@ -20,7 +20,7 @@ import javax.validation.Valid;
 @Slf4j
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/rooms")
+@RequestMapping("/api/rooms")
 public class ChatroomController {
 
     private final ChatroomService chatRoomService;

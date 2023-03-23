@@ -10,17 +10,19 @@ import org.springframework.context.event.EventListener;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.messaging.simp.SimpMessageHeaderAccessor;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.socket.messaging.SessionDisconnectEvent;
 
 @Slf4j
 @RestController
 @RequiredArgsConstructor
+@RequestMapping("/api/chat")
 public class ChatController {
 
     private final ChatService chatService;
 
-    @MessageMapping("/chat/join")
+    @MessageMapping("/join")
     public void enterUser(@Payload ChatRequestDto dto,
                           SimpMessageHeaderAccessor headerAccessor) { // 알아볼것
 
@@ -31,7 +33,7 @@ public class ChatController {
         log.info("session: {}", headerAccessor.getSessionAttributes());
     }
 
-    @MessageMapping("/chat/message")
+    @MessageMapping("/message")
     public void sendMessage(@Payload ChatRequestDto dto) {
         chatService.sendMessage(dto);
     }

@@ -1,4 +1,7 @@
 spring:
+  profiles:
+    active: local
+
   jpa:
     properties:
       hibernate:

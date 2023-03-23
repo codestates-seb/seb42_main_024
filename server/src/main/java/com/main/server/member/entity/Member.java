@@ -1,5 +1,7 @@
 package com.main.server.member.entity;
 import com.main.server.audit.Auditable;
+import com.main.server.follow.entity.Follow;
+import com.main.server.like.entity.Like;
 import lombok.*;
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -27,6 +29,8 @@ public class Member extends Auditable {
     @ElementCollection(fetch = FetchType.LAZY)
     private List<String> roles = new ArrayList<>();
 
+    private Integer numberOfFollower = 0;
+
 
     @Builder
     public Member( String nickname,
@@ -39,24 +43,9 @@ public class Member extends Auditable {
         this.roles = roles;
     }
 
-
-//팔로우 기능 추가
-    @ManyToMany
-    @JoinTable(name = "follow",
-            joinColumns = @JoinColumn(name = "follower_id"),
-            inverseJoinColumns = @JoinColumn(name = "following_id"))
-    private List<Member> followings = new ArrayList<>();
-
-    @ManyToMany(mappedBy = "followings")
-    private List<Member> followers = new ArrayList<>();
-
-    public void addFollowing(Member member) {
-        this.followings.add(member);
-        member.getFollowers().add(this);
-    }
-
-    public void removeFollowing(Member member) {
-        this.followings.remove(member);
-        member.getFollowers().remove(this);
-    }
 }
+
+
+
+
+

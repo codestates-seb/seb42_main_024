@@ -24,10 +24,6 @@ public class MemberResponseDto {
 
     // private String grade;
 
-    private Integer follow;
-
-    private Boolean followState;
-
     // private Integer rank;
 
     private Role role;
@@ -35,8 +31,6 @@ public class MemberResponseDto {
     private LocalDateTime createdAt;
 
     private LocalDateTime modifiedAt;
-
-    // private MultiResponseDto<SimplePlaylistResponseDto> playlist;
 
     private String content;
 

@@ -27,12 +27,9 @@ public class Like {
     @JoinColumn(name = "BOARD_ID")
     private Board board;
 
-    private Integer likeQ;
-
-    public Like(Integer likeQ, Member member, Board board) {
+    public Like(Member member, Board board) {
         this.member = member;
         this.board = board;
-        this.likeQ = likeQ;
-    }
 
+    }
 }

@@ -29,10 +29,11 @@ public class Board extends Auditable {
         private Member member;
         // MEMBER_ID
 
-        @ManyToOne
-        @JoinColumn(name = "Playlist_ID")
-        private Playlist playlist;
-        // PLAYLIST_ID
+        /*
+       @ManyToOne //@ OneToMany
+       @JoinColumn(name = "Playlist_ID")
+       private Playlist playlist;
+       PLAYLIST_ID */
 
         @Column(length = 100, nullable = false)
         private String boardTitle;
@@ -42,26 +43,20 @@ public class Board extends Auditable {
         private String boardContent;
         //내용
 
-        @OneToMany(fetch = FetchType.LAZY, mappedBy = "board", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
-        private List<Like> likes = new ArrayList<>();
-
         private LocalDateTime createdAt;
-        //작성시각
+
 
         private LocalDateTime modifiedAt;
-        //수정시각
+
 
         private Long viewCount = 0L;
-        //조회수
+
 
         private Long likeCount = 0L;
 
         private Long groupId;
 
-        public Like addLike(Like like) {
-                List<Like> newLike = new ArrayList<>(likes);
-                newLike.add(like);
-                this.likes = newLike;
-                return like;
-        }
+        private Long playlistId; // 수정필요
+
+        private String boardThumb;
 }

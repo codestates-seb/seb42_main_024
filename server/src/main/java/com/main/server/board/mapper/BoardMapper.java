@@ -24,6 +24,9 @@ public class BoardMapper {
         Board board = new Board();
         board.setBoardContent(boardPostDto.getBoardContent());
         board.setBoardTitle(boardPostDto.getBoardTitle());
+        board.setPlaylistId(boardPostDto.getPlaylistId());
+        board.setBoardThumb(boardPostDto.getBoardThumb());
+
 
         Member member = memberRepository.findById(boardPostDto.getMemberId()).get();
         board.setMember(member);
@@ -39,7 +42,10 @@ public class BoardMapper {
         if(boardPatchDto.getBoardContent() != null) {
             board.setBoardContent(boardPatchDto.getBoardContent());
         }
-        //태그
+        if(boardPatchDto.getBoardThumb() != null) {
+            board.setBoardThumb(boardPatchDto.getBoardThumb());
+        }
+        //태그 추가 예정
         return board;
     }
 
@@ -55,7 +61,9 @@ public class BoardMapper {
         boardDto.setLikeCount(board.getLikeCount());
         boardDto.setViewCount(board.getViewCount());
         boardDto.setMemberId(board.getMember().getMemberId());
-        //    boardDto.setIsVote();
+        boardDto.setBoardThumb(board.getBoardThumb());
+        boardDto.setPlaylistId(board.getPlaylistId());
+        //boardDto.setIsVote();
         return boardDto;
     }
 
