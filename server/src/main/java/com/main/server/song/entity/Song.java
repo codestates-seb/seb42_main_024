@@ -2,6 +2,8 @@ package com.main.server.song.entity;
 
 import com.main.server.audit.Auditable;
 import com.main.server.playlist.entity.Playlist;
+import com.main.server.song.dto.SongCreateDto;
+import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -10,33 +12,38 @@ import javax.persistence.*;
 
 @Entity
 @Getter
-@Setter
-@NoArgsConstructor
-public class Song extends Auditable {
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+public class Song {
 
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Long songId;
-    // PLAYLIST_ID
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "PLAYLIST_ID")
     private Playlist playlist;
-    //length
 
-    @Column(length = 100, nullable = false)
+    private String videoId;
+
     private String title;
-    //length
 
-    @Column(length = 1000, nullable = false)
-    private String url;
-    //length
+    private String thumbnail;
 
+    public static Song createByDto(SongCreateDto dto) {
+        return new Song(
+                dto.getVideoId(),
+                dto.getTitle(),
+                dto.getThumbnail());
+    }
 
-    public Song(Playlist playlist, Long songId, String title, String url) {
+    public Song setPlaylist(Playlist playlist) {
         this.playlist = playlist;
-        this.songId = songId;
+        return this;
+    }
+
+    private Song(String videoId, String title, String thumbnail) {
+        this.videoId = videoId;
         this.title = title;
-        this.url = url;
+        this.thumbnail = thumbnail;
     }
 }

@@ -1,22 +1,17 @@
 package com.main.server.member.entity;
-
-
 import com.main.server.audit.Auditable;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
+import com.main.server.follow.entity.Follow;
+import com.main.server.like.entity.Like;
+import lombok.*;
 import javax.persistence.*;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+
 @Entity
 @Getter
 @Setter
-@NoArgsConstructor
- // 주석 = 바꿔야 할 부분
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Member extends Auditable {
-
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,26 +19,33 @@ public class Member extends Auditable {
 
     @Column(length = 100, nullable = false, unique = true)
     private String nickname;
-    // length
 
     @Column(length = 100, nullable = false, unique = true)
     private String email;
-    // length
 
-    @Column(length = 1000, nullable = false)
-    private String password;
-    // length
+    @Column(length = 500)
+    private String picture;
 
-    private String memberImage;
-    // 타입 확인 요망
+    @ElementCollection(fetch = FetchType.LAZY)
+    private List<String> roles = new ArrayList<>();
+
+    private Integer numberOfFollower = 0;
 
 
-    public Member( String nickname, String email, String password, String memberImage) {
+    @Builder
+    public Member( String nickname,
+                   String email,
+                   String picture,
+                   List<String> roles) {
         this.nickname = nickname;
         this.email = email;
-        this.password = password;
-        this.memberImage = memberImage;
+        this.picture = picture;
+        this.roles = roles;
     }
 
-
 }
+
+
+
+
+

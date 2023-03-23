@@ -1,5 +1,6 @@
 package com.main.server.comment.entity;
 
+import com.main.server.board.entity.Board;
 import com.main.server.audit.Auditable;
 import com.main.server.member.entity.Member;
 import com.main.server.playlist.entity.Playlist;
@@ -8,6 +9,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
 @Getter
@@ -24,24 +26,33 @@ public class Comment extends Auditable {
     private Member member;
     // MEMBER_ID
 
-    @ManyToOne(fetch = FetchType.LAZY)
+
+    @ManyToOne
+    @JoinColumn(name = "BOARD_ID")
+    private Board board;
+    // BOARD_ID
+
+    @ManyToOne
     @JoinColumn(name = "PLAYLIST_ID")
     private Playlist playlist;
     // PLAYLIST_ID
 
 
+
     @Column(length = 1000,nullable = false)
-    private String content;
+    private String commentContent;
     //length
 
-    private Boolean isSong;
-    // 구상 - 댓글 단 시점 가져와서 선착순으로 정렬, 공간 조금 할애해서 신청곡 리스트 편성.
+    private Long likeCount = 0L;
 
+    private LocalDateTime createdAt;
+    private LocalDateTime modifiedAt;
 
-    public Comment(Member member, Playlist playlist, String content, Boolean isSong) {
+    private Long groupId;
+
+    public Comment(Member member, Board board, String commentContent) {
         this.member = member;
-        this.playlist = playlist;
-        this.content = content;
-        this.isSong = isSong;
+        this.board = board;
+        this.commentContent = commentContent;
     }
 }

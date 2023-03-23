@@ -1,19 +1,18 @@
 package com.main.server.like.entity;
 
-import com.main.server.audit.Auditable;
 import com.main.server.member.entity.Member;
-import com.main.server.playlist.entity.Playlist;
+import com.main.server.board.entity.Board;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
 import javax.persistence.*;
+
 
 @Entity(name = "likes")
 @Getter
 @Setter
 @NoArgsConstructor
-public class Like extends Auditable {
+public class Like {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,14 +23,13 @@ public class Like extends Auditable {
     private Member member;
     // MEMBER_ID
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "PLAYLIST_ID")
-    private Playlist playlist;
-    // PLAYLIST_ID
+    @ManyToOne
+    @JoinColumn(name = "BOARD_ID")
+    private Board board;
 
-
-    public Like(Member member, Playlist playlist) {
+    public Like(Member member, Board board) {
         this.member = member;
-        this.playlist = playlist;
+        this.board = board;
+
     }
 }
