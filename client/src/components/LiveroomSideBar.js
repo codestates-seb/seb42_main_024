@@ -1,7 +1,9 @@
-import styled from 'styled-components';
-import { BsFillGearFill } from 'react-icons/bs';
-import LSBPlayList from './LSBPlayList';
 import { useEffect, useState } from 'react';
+import { BsFillGearFill } from 'react-icons/bs';
+
+import styled from 'styled-components';
+
+import LSBPlayList from './LSBPlayList';
 
 const LiveroomSideBarContainer = styled.div`
   width: 1000px;
@@ -49,7 +51,7 @@ const LSBPlayListWrap = styled.div`
   padding: 50px;
   display: flex;
   flex-direction: column;
-  overflow:auto;
+  overflow: auto;
 `;
 
 function LiveroomSideBar() {
@@ -58,7 +60,7 @@ function LiveroomSideBar() {
     const dummyData = [
       {
         key: 1,
-        singer:'누진스',
+        singer: '누진스',
         musicTitle: '하입보잉',
         thumnailURL:
           'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQGgD01x0AuTfakEpAznMC27k-2jSuoGMiu8mGo1aVuYkeGU_E0C1-_cH6WHNOyMcXGaW4&usqp=CAU',
@@ -66,7 +68,7 @@ function LiveroomSideBar() {
       },
       {
         key: 2,
-        singer:'누진스',
+        singer: '누진스',
         musicTitle: '하입보잉',
         thumnailURL:
           'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQGgD01x0AuTfakEpAznMC27k-2jSuoGMiu8mGo1aVuYkeGU_E0C1-_cH6WHNOyMcXGaW4&usqp=CAU',
@@ -74,7 +76,7 @@ function LiveroomSideBar() {
       },
       {
         key: 3,
-        singer:'누진스',
+        singer: '누진스',
         musicTitle: '하입보잉',
         thumnailURL:
           'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQGgD01x0AuTfakEpAznMC27k-2jSuoGMiu8mGo1aVuYkeGU_E0C1-_cH6WHNOyMcXGaW4&usqp=CAU',
@@ -82,7 +84,7 @@ function LiveroomSideBar() {
       },
       {
         key: 4,
-        singer:'누진스',
+        singer: '누진스',
         musicTitle: '하입보잉',
         thumnailURL:
           'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQGgD01x0AuTfakEpAznMC27k-2jSuoGMiu8mGo1aVuYkeGU_E0C1-_cH6WHNOyMcXGaW4&usqp=CAU',
