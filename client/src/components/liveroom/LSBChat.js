@@ -1,7 +1,4 @@
-import { useEffect, useState } from 'react';
-
-import { Stomp } from '@stomp/stompjs';
-import * as SockJS from 'sockjs-client';
+import axios from 'axios';
 
 import Chatting from './Chatting';
 
@@ -11,34 +8,7 @@ import {
   LSBChatDetail,
 } from '../../styles/lsbchat';
 
-function LSBChat() {
-  const [message, setMessage] = useState('');
-  const [sockClient, setsockClient] = useState(() => {});
-  const [chatDatas, setChatDatas] = useState([]);
-
-  useEffect(() => {
-    const socket = new SockJS(
-      'http://ec2-13-124-65-151.ap-northeast-2.compute.amazonaws.com:8080/ws'
-    );
-    const client = Stomp.over(socket);
-    client.connect({}, () => {
-      client.subscribe('/sub/chat/room/1', function (join) {
-        console.log(JSON.parse(join.body));
-        setChatDatas((prev) => [...prev, JSON.parse(join.body)]);
-      });
-      client.send(
-        '/pub/chat/join',
-        {},
-        JSON.stringify({
-          message: message,
-          memberName: '아무',
-          chatroomId: '1',
-        })
-      );
-    });
-    setsockClient(client);
-  }, []);
-
+function LSBChat({ message, setMessage, sockClient, chatDatas }) {
   const changeMessageHandler = (e) => {
     setMessage(e.target.value);
   };
@@ -61,6 +31,14 @@ function LSBChat() {
           chatroomId: '1',
         })
       );
+      axios
+        .post(
+          'http://ec2-13-124-65-151.ap-northeast-2.compute.amazonaws.com:8080/rooms/1/songs/next',
+          { videoId: 'video2' }
+        )
+        .then((e) => {
+          console.log(e);
+        });
       setMessage('');
     }
   };

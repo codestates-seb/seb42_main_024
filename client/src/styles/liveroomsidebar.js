@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const LiveroomSideBarContainer = styled.div`
-  width: 600px;
+  width: 1000px;
   height: 100vh;
   background-color: var(--color1);
   border: 1px solid var(--color3);

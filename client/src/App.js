@@ -1,20 +1,13 @@
-import { Routes, Route } from 'react-router-dom';
-
 import './styles/GlobalStyle.css';
 import './styles/variables.css';
-import Nav from './components/nav/Nav';
-import NowPlaying from './components/player/NowPlaying';
-import Main from './pages/Main';
+// import Nav from './components/Nav';
+import LiveRoom from './pages/Liveroom';
 
 function App() {
   return (
-    <>
-      <Nav />
-      <Routes>
-        <Route path='/' element={<Main />} />
-      </Routes>
-      <NowPlaying />
-    </>
+    <div>
+      <LiveRoom></LiveRoom>
+    </div>
   );
 }
 
