@@ -1,95 +1,111 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { GoPlay } from 'react-icons/go';
 import { MdSkipNext, MdPauseCircleFilled } from 'react-icons/md';
 import ReactPlayer from 'react-player';
 import { useSelector, useDispatch } from 'react-redux';
 
-import styled from 'styled-components';
+import {
+  togglePlay,
+  togglePause,
+  fetchPrevSong,
+  toNextSong,
+  toPrevSong,
+  storeCurrentSong,
+} from '../../actions/actions';
+import {
+  PlayWarp,
+  PlayerBtnContainer,
+  PlayBox,
+  PlayBoxonProgress,
+} from '../../styles/player/player';
 
-import { setCurrentSongURL } from '../../actions/actions';
-const PlayWarp = styled.div`
-  width: 654px;
-  justify-content: center;
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-  margin-left: 4.2vw;
-`;
-const PlayerBtnContainer = styled.div`
-  justify-content: center;
-  display: flex;
-  align-items: center;
-  color: var(--color7);
-  margin-bottom: 10px;
-  .PreBtn {
-    height: 30px;
-    width: 30px;
-    cursor: pointer;
-    transform: scaleX(-1);
-  }
-  .NextBtn {
-    height: 30px;
-    width: 30px;
-    cursor: pointer;
-  }
-  .StartBtn {
-    width: 50px;
-    height: 35px;
-    cursor: pointer;
-  }
-  .PausetBtn {
-    width: 50px;
-    height: 35px;
-    cursor: pointer;
-  }
-`;
-const PlayBox = styled.div`
-  width: 600px;
-  height: 5px;
-  background-color: var(--color7);
-  border-radius: 3px;
-`;
-const PlayBoxonProgress = styled.div`
-  width: ${(props) => props.width || 0}%;
-  height: 100%;
-  background-color: var(--color10);
-  border-radius: 3px;
-`;
-function Player() {
-  const [isPlaying, setIsPlaying] = useState(false);
-  const data = useSelector((state) => state.currentSongURL);
+function Player({ volume }) {
+  //플레이버튼
+  const isPlaying = useSelector((state) => state?.isPlaying);
+  //인덱스 불러오기
+  const playIdx = useSelector((state) => state?.currentSongIdx);
+  const dataUrl = useSelector(
+    (state) => state?.currentSongList?.[playIdx]?.musicUrl
+  );
+  //리스트 불러오기
+  const listLength = useSelector((state) => state?.currentSongList?.length);
+  //진행도 표시
   const [progress, setProgress] = useState(0);
+  const playerRef = useRef(null);
   const dispatch = useDispatch();
-  console.log('data', data);
+  //플레이 버튼
+  const handlePause = (e) => {
+    e.stopPropagation();
+    if (isPlaying) {
+      dispatch(togglePause());
+    }
+  };
+  //Pause
   const handlePlay = (e) => {
     e.stopPropagation();
-    setIsPlaying(!isPlaying);
+    dispatch(togglePause());
+    if (listLength !== 0) {
+      if (playIdx === null) {
+        dispatch(fetchPrevSong());
+      }
+      dispatch(togglePlay());
+    }
+  };
+  //Next
+  const handleNext = (e) => {
+    e.stopPropagation();
+    if (playIdx === listLength - 1) {
+      dispatch(togglePause());
+      dispatch(storeCurrentSong());
+    } else {
+      dispatch(toNextSong());
+    }
+  };
+  //Pre
+  const handlePre = (e) => {
+    e.stopPropagation();
+    if (playIdx === 0) {
+      dispatch(togglePause());
+      dispatch(storeCurrentSong());
+    } else {
+      dispatch(toPrevSong());
+    }
+  };
+  //진행도 전달
+  const handlePlayBoxClick = (e) => {
+    const boxWidth = e.target.offsetWidth;
+    const clickX = e.clientX - e.target.offsetLeft;
+    const progressPercentage = (clickX / boxWidth) * 100;
+    const newProgress = progressPercentage / 100;
+    setProgress(newProgress);
+    seekTo(newProgress);
   };
   const handleProgress = (state) => {
     setProgress(state.played);
   };
-  const test = (e) => {
-    e.stopPropagation();
-    dispatch(setCurrentSongURL(`https://www.youtube.com/watch?v=Y8JFxS1HlDo`));
+  const seekTo = (newProgress) => {
+    playerRef.current.seekTo(newProgress);
   };
   return (
     <PlayWarp>
       <ReactPlayer
-        url={data}
+        url={dataUrl}
         playing={isPlaying}
         style={{ display: 'none' }}
         onProgress={handleProgress}
+        volume={volume}
+        ref={playerRef}
       />
       <PlayerBtnContainer>
-        <MdSkipNext className='PreBtn' />
+        <MdSkipNext className='PreBtn' onClick={handlePre} />
         {isPlaying ? (
-          <MdPauseCircleFilled className='PausetBtn' onClick={handlePlay} />
+          <MdPauseCircleFilled className='PausetBtn' onClick={handlePause} />
         ) : (
           <GoPlay className='StartBtn' onClick={handlePlay} />
         )}
-        <MdSkipNext className='NextBtn' onClick={test} />
+        <MdSkipNext className='NextBtn' onClick={handleNext} />
       </PlayerBtnContainer>
-      <PlayBox>
+      <PlayBox onClick={handlePlayBoxClick}>
         <PlayBoxonProgress width={progress * 100} />
       </PlayBox>
     </PlayWarp>

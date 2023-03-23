@@ -2,12 +2,11 @@ import styled from 'styled-components';
 
 export const ModalBox = styled.div`
   width: 250px;
-  height: 120px;
+  height: 150px;
   z-index: 99;
   background-color: var(--color1);
   position: absolute;
-  top: -5px;
-  left: -15px;
+  top: 60px;
   right: 0;
   bottom: 0;
   display: flex;

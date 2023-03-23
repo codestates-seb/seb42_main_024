@@ -26,6 +26,11 @@ export const NavContainer = styled.div`
 export const NavList = styled.ul`
   width: 100%;
   padding: 0;
+
+  svg {
+    width: 16px;
+    height: 16px;
+  }
 `;
 
 export const NavItems = styled.li`
@@ -44,7 +49,13 @@ export const NavItems = styled.li`
     color: var(--color10);
   }
 
+  .user-circle {
+    width: 30px;
+    height: 30px;
+  }
+
   .nav-home,
+  .nav-liveroom,
   .nav-add-playlist {
     padding-bottom: 14px;
   }
@@ -52,11 +63,18 @@ export const NavItems = styled.li`
   .nav-userinfo,
   .nav-home,
   .nav-liveroom,
+  .nav-create-liveroom,
   .nav-add-playlist,
   .nav-storage,
   .nav-logout {
     display: flex;
     align-items: center;
+  }
+
+  .profile-pic {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
   }
 `;
 
@@ -67,6 +85,7 @@ export const UserInfo = styled.button`
   border: none;
   background-color: var(--color1);
   color: var(--color9);
+  font-size: 15px;
 
   &:hover {
     cursor: pointer;
@@ -89,6 +108,20 @@ export const Home = styled.button`
 `;
 
 export const LiveRoom = styled.button`
+  margin-left: 10px;
+  height: 16px;
+  cursor: pointer;
+  border: none;
+  background-color: var(--color1);
+  color: var(--color9);
+
+  &:hover {
+    cursor: pointer;
+    background-color: var(--color5);
+  }
+`;
+
+export const CreateLiveRoom = styled.button`
   margin-left: 10px;
   height: 16px;
   cursor: pointer;
@@ -137,6 +170,7 @@ export const Login = styled.button`
   border: none;
   background-color: var(--color1);
   color: var(--color9);
+  font-size: 15px;
 
   &:hover {
     cursor: pointer;
