@@ -15,7 +15,7 @@ import javax.validation.constraints.Positive;
 
 @Validated
 @RestController
-@RequestMapping("/follows")
+@RequestMapping("/api/follows")
 @RequiredArgsConstructor
 public class FollowController {
     private final FollowService followService;
