@@ -37,6 +37,11 @@ public class Chatroom {
         this.title = title;
     }
 
+    /**
+     * memberName에 해당하는 멤버를 리스트에 추가
+     * @param memberName
+     * @return
+     */
     public Chatroom enterMember(String memberName) {
         if (!members.contains(memberName)) {
             List<String> membersEdit = new ArrayList<>(members);
@@ -46,6 +51,11 @@ public class Chatroom {
         return this;
     }
 
+    /**
+     * memberName에 해당하는 멤버를 리스트에서 제외.
+     * @param memberName
+     * @return
+     */
     public Chatroom leaveMember(String memberName) {
         if (members.contains(memberName)) {
             List<String> membersEdit = new ArrayList<>(members);
@@ -55,6 +65,12 @@ public class Chatroom {
         return this;
     }
 
+    /**
+     * memberName의 순번(방에 몇번째로 입장했는지)을 리턴.
+     * 해당 값은 프론트에서 사용.
+     * @param memberName
+     * @return
+     */
     public Integer getMemberNumber(String memberName) {
         if (members.contains(memberName)) {
             return members.indexOf(memberName);

@@ -32,6 +32,9 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'org.springframework.security:spring-security-test'
 
+	// swagger
+	implementation 'org.springdoc:springdoc-openapi-ui:1.6.6'
+
 	// JUnit5
 	testImplementation("org.junit.platform:junit-platform-launcher:1.5.2")
 	testImplementation("org.junit.jupiter:junit-jupiter:5.5.2")

@@ -1,11 +1,18 @@
 package com.main.server.follow.service;
+import com.main.server.follow.dto.FollowResponseDto;
 import com.main.server.follow.entity.Follow;
 import com.main.server.follow.repository.FollowRepository;
 import com.main.server.member.entity.Member;
 import com.main.server.member.service.FindMemberService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @Transactional
@@ -26,5 +33,24 @@ public class FollowService {
                 followRepository.deleteByFollowerAndTarget(follower,target);
         }
     }
+
+    //가장 최근 코드
+
+
+//    public List<FollowResponseDto> getTargets(Long followerId) {
+//        Member follower = findMemberService.id(followerId);
+//        return followRepository.findTargetsByFollower(follower);
+//    }
+
+    public Page<FollowResponseDto> getTargets(Long followerId, Pageable pageable) {
+        Member follower = findMemberService.id(followerId);
+        return followRepository.findTargetsByFollower(follower, pageable);
+    }
+
+    public Page<FollowResponseDto> getFollowers(Long targetId, Pageable pageable) {
+        Member target = findMemberService.id(targetId);
+        return followRepository.findFollowersByTarget(target,pageable);
+    }
 }
+
 

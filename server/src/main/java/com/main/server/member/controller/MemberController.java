@@ -20,7 +20,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/members")
+@RequestMapping("/api/members")
 public class MemberController {
 
     private final MemberService memberService;
@@ -33,6 +33,8 @@ public class MemberController {
         return ResponseEntity.status(HttpStatus.OK)
                 .body(new MemberSimpleDto(findMember.getMemberId(), findMember.getEmail(), findMember.getNickname(), findMember.getPicture()));
     }
+
+
 
 
 

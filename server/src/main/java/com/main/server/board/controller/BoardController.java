@@ -26,7 +26,7 @@ import java.util.List;
 
 @CrossOrigin("*")
 @RestController
-@RequestMapping("/boards")
+@RequestMapping("/api/boards")
 public class BoardController {
     private BoardService boardService;
     private BoardRepository boardRepository;
