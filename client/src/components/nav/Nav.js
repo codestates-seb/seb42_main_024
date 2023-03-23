@@ -13,7 +13,8 @@ const Nav = () => {
   const [isLogin, setIsLogin] = useState(false);
   const [user, setUser] = useState(null);
   const [modalOpen, setModalOpen] = useState(false);
-  const [data, setData] = useState(null); //eslint-disable-line no-unused-vars
+  //eslint-disable-next-line no-unused-vars
+  const [data, setData] = useState(null);
 
   const REDIRECT_URL = process.env.REACT_APP_REDIRECT_URL;
   const AUTH_URL = process.env.REACT_APP_AUTH_URL;
