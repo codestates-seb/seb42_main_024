@@ -24,9 +24,11 @@ function Player({ volume }) {
   const isPlaying = useSelector((state) => state?.isPlaying);
   //인덱스 불러오기
   const playIdx = useSelector((state) => state?.currentSongIdx);
-  const dataUrl = useSelector((state) => state?.songList?.[playIdx]?.videoId);
+  const dataUrl = useSelector(
+    (state) => state?.currentSongList?.[playIdx]?.videoId
+  );
   //리스트 불러오기
-  const listLength = useSelector((state) => state?.songList?.length);
+  const listLength = useSelector((state) => state?.currentSongList?.length);
   //진행도 표시
   const [progress, setProgress] = useState(0);
   const playerRef = useRef(null);

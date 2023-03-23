@@ -2,7 +2,7 @@ export const initialState = {
   isPlaying: false,
   prevSongIdx: null,
   currentSongIdx: null,
-  songList: [],
+  currentSongList: [],
   liveroomSongIdx: null,
   liveroomSongList: [],
 };

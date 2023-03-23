@@ -8,7 +8,7 @@ import {
   PlayListUlHeader,
 } from '../../styles/player/playlist';
 function PlayList() {
-  const playData = useSelector((state) => state?.songList);
+  const playData = useSelector((state) => state?.currentSongList);
   return (
     <PlayListContainer>
       <PlayListUlHeader>플레이리스트 음악목록</PlayListUlHeader>

@@ -10,7 +10,7 @@ import {
 } from '../../styles/player/playbox';
 function PlayBox() {
   const playIdx = useSelector((state) => state?.currentSongIdx);
-  const playData = useSelector((state) => state?.songList?.[playIdx]);
+  const playData = useSelector((state) => state?.currentSongList?.[playIdx]);
   return (
     <PlayBoxWarp>
       {playData?.thumbnail ? (
