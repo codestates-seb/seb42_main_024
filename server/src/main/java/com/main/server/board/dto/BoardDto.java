@@ -19,7 +19,7 @@ public class BoardDto {
     private LocalDateTime createdAt;
     private LocalDateTime modifiedAt;
     private Long playlistId;
-    private String boardThumb; // (수정필요) 보드가 리스트로 노출되면 이미지 담당
+    private String boardThumb; // (수정필요) 보드가 리스트로 노출되면 이미지 담당1
     private Long likeCount;
     private Long viewCount;
     private Long MemberId; // 작성자
