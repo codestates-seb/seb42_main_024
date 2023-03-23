@@ -11,7 +11,6 @@ import java.util.List;
 public class BoardPatchDto {
     private Long memberID;
     private String boardContent;
-
     private String boardTitle;
-
+    private String boardThumb;
 }
