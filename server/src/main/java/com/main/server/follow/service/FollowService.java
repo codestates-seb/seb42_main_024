@@ -33,55 +33,18 @@ public class FollowService {
         }
     }
 
-//    public List<Member> getTargets(Long followerId) {
-//        Member follower = findMemberService.id(followerId);
-//        return followRepository.findTargetsByFollower(follower);
-//    }
-
     //가장 최근 코드
-    //이건 내가 팔로우 하고 있는 유저들을 보여준다.
-//public List<Long> getTargets(Long followerId) {
-//    Member follower = findMemberService.id(followerId);
-//    return followRepository.findTargetIdsByFollower(follower);
-//}
+
 
     public List<FollowResponseDto> getTargets(Long followerId) {
         Member follower = findMemberService.id(followerId);
-        List<Long> targetIds = followRepository.findTargetIdsByFollower(follower);
-        return targetIds.stream().map(FollowResponseDto::new).collect(Collectors.toList());
+        return followRepository.findTargetsByFollower(follower);
     }
-
-    // 이건 나를 팔로우 하고 있는 유저들을 보여준다.
-//    public List<Long> getFollowers(Long targetId) {
-//        Member target = findMemberService.id(targetId);
-//        return followRepository.findFollowerIdsByTarget(target);
-//    }
 
     public List<FollowResponseDto> getFollowers(Long targetId) {
         Member target = findMemberService.id(targetId);
-        List<Long> followerIds = followRepository.findFollowerIdsByTarget(target);
-        return followerIds.stream().map(FollowResponseDto::new).collect(Collectors.toList());
+        return followRepository.findFollowersByTarget(target);
     }
-
-
-
-
-
-//    //팔로우 전체 조회
-//    @Transactional
-//    public Page<Follow> findFollowers(int page, int size) {
-//        return followRepository.findAll(PageRequest.of(page,size,
-//                Sort.by("followId").descending()));
-//    }
-
-
-//    // 특정 target을 기준으로 팔로우 목록 조회
-//    @Transactional
-//    public Page<Follow> findFollowers(Long follower, int page, int size) {
-//
-//        return followRepository.findByFollower(follower, PageRequest.of(page, size,
-//                Sort.by("followId").descending()));
-//    }
 }
 
 

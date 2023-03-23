@@ -35,18 +35,9 @@ public class FollowController {
                 .body(new ResponseDto(id, 200));
     }
 
-//    @GetMapping("/target/{follower-id}")
-//    public ResponseEntity<List<Member>> getTargets(@PathVariable("follower-id") @Positive Long id) {
-//        List<Member> targets = followService.getTargets(id);
-//        return ResponseEntity.ok(targets);
-
             //가장 최근코드
     //이건 내가 팔로우 하고 있는 유저들을 보여준다.
-//        @GetMapping("/target/{follower-id}")
-//        public ResponseEntity<List<Long>> getTargets(@PathVariable("follower-id") @Positive Long id) {
-//            List<Long> targets = followService.getTargets(id);
-//            return ResponseEntity.ok(targets);
-//        }
+
 
     @GetMapping("/target/{follower-id}")
     public ResponseEntity<List<FollowResponseDto>> getTargets(@PathVariable("follower-id") @Positive Long id) {
@@ -54,33 +45,18 @@ public class FollowController {
         return ResponseEntity.ok(targets);
     }
 
-
-    // 이건 나를 팔로우 하고 있는 유저들을 보여준다.
-//    @GetMapping("/follower/{target-id}")
-//    public ResponseEntity<List<Long>> getFollowers(@PathVariable("target-id") @Positive Long id) {
-//        List<Long> followers = followService.getFollowers(id);
-//        return ResponseEntity.ok(followers);
-//    }
-
     // 이건 나를 팔로우 하고 있는 유저들을 보여준다. dto 적용
-    @GetMapping("/follower/{target-id}")
+
+
+    @GetMapping("/followers/{target-id}")
     public ResponseEntity<List<FollowResponseDto>> getFollowers(@PathVariable("target-id") @Positive Long id) {
-        List<FollowResponseDto> followers = followService.getFollowers(id);
-        return ResponseEntity.ok(followers);
-    }
+    List<FollowResponseDto> followers = followService.getFollowers(id);
+    return ResponseEntity.ok(followers);
 }
 
-//    @GetMapping("/latest")
-//    public ResponseEntity getFollower(@Positive @RequestParam int page,
-//                                       @Positive @RequestParam int size){
-//        Page<Follow> followPage = followService.findFollowers(page-1,size);
-//        List<Follow> follows = followPage.getContent();
-//
-//        return ResponseEntity.status(HttpStatus.OK).body(follows);
-////        return ResponseEntity.status(HttpStatus.CREATED).body();
-//    }
 
 
+}
 /* 예를들어 맴버 A와 B가 있다.
 * 맴버A가 로그인을 한다.
 * 로그인 중인 맴버A가 다른 맴버B를 팔로우 하면 맴버B에게 A가 저장된다.
