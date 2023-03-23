@@ -41,7 +41,7 @@ public class Playlist extends Auditable {
         return new Playlist(
                 dto.getTitle(),
                 member,
-                dto.getThumbnail());
+                dto.getSongList().get(0).getThumbnail());
     }
 
     public Playlist addSongs(List<Song> adds) {

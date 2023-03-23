@@ -14,7 +14,5 @@ public class PlaylistCreateDto {
 
     private String title;
 
-    private String thumbnail;
-
     private List<SongCreateDto> songList;
 }

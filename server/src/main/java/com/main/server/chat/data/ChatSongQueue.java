@@ -96,8 +96,10 @@ public class ChatSongQueue {
     }
 
     private void updateNowSong() {
-        if (songList.size() > 0) { // songList에 곡이 남아있을경우 (안남아있으면 마지막곡 반복재생)
+        if (songList.size() > 0) { // songList에 곡이 남아있을경우
             this.nowSong = songList.remove(0);
+        } else {
+            this.nowSong = null;
         }
     }
 }
