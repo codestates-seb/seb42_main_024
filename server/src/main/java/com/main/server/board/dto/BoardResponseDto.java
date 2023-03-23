@@ -11,9 +11,8 @@ import lombok.Setter;
 @AllArgsConstructor
 public class BoardResponseDto<T> {
     private BoardDto board;
-    private T comments; // 코멘트
+    private T comments;
     private Boolean isVote;
-
 
 }
 

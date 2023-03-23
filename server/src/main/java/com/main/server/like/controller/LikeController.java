@@ -17,7 +17,7 @@ import javax.validation.constraints.Positive;
 
 @Validated
 @RestController
-@RequestMapping("/like")
+@RequestMapping("/api/like")
 @RequiredArgsConstructor
 public class LikeController {
     private final LikeService likeService;
