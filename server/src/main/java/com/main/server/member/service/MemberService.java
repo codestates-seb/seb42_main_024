@@ -43,6 +43,13 @@ public class MemberService {
                 .roles(List.of("USER2"))
                 .build();
         memberRepository.save(member2);
+
+        Member member3 = Member.builder()
+                .nickname("admin3")
+                .email("admin3@google.com")
+                .roles(List.of("USER3"))
+                .build();
+        memberRepository.save(member3);
     }
 
     public Member saveOrUpdate(OAuthAttributes attributes) {
