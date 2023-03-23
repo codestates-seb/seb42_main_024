@@ -8,6 +8,8 @@ import com.main.server.member.entity.Member;
 import com.main.server.member.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -19,7 +21,7 @@ import java.util.List;
 
 @Validated
 @RestController
-@RequestMapping("/api/follows")
+@RequestMapping("/follows")
 @RequiredArgsConstructor
 public class FollowController {
     private final FollowService followService;
@@ -37,20 +39,32 @@ public class FollowController {
 
             //가장 최근코드
     //이건 내가 팔로우 하고 있는 유저들을 보여준다.
-
+//    @GetMapping("/target/{follower-id}")
+//    public ResponseEntity<List<FollowResponseDto>> getTargets(@PathVariable("follower-id") @Positive Long id) {
+//        List<FollowResponseDto> targets = followService.getTargets(id);
+//        return ResponseEntity.ok(targets);
+//    }
 
     @GetMapping("/target/{follower-id}")
-    public ResponseEntity<List<FollowResponseDto>> getTargets(@PathVariable("follower-id") @Positive Long id) {
-        List<FollowResponseDto> targets = followService.getTargets(id);
+    public ResponseEntity<Page<FollowResponseDto>> getTargets(
+            @PathVariable("follower-id") @Positive Long id,
+            @RequestParam(value = "page", defaultValue = "1") int page,
+            @RequestParam(value = "size", defaultValue = "5") int size) {
+
+        Pageable pageable = PageRequest.of(page-1, size);
+        Page<FollowResponseDto> targets = followService.getTargets(id, pageable);
         return ResponseEntity.ok(targets);
     }
 
     // 이건 나를 팔로우 하고 있는 유저들을 보여준다. dto 적용
-
-
     @GetMapping("/followers/{target-id}")
-    public ResponseEntity<List<FollowResponseDto>> getFollowers(@PathVariable("target-id") @Positive Long id) {
-    List<FollowResponseDto> followers = followService.getFollowers(id);
+    public ResponseEntity<Page<FollowResponseDto>> getFollowers(
+            @PathVariable("target-id") @Positive Long id,
+            @RequestParam(value = "page", defaultValue = "1") int page,
+            @RequestParam(value = "size", defaultValue = "5") int size) {
+
+        Pageable pageable = PageRequest.of(page-1, size);
+        Page<FollowResponseDto> followers = followService.getFollowers(id, pageable);
     return ResponseEntity.ok(followers);
 }
 
