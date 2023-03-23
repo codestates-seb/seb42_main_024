@@ -39,6 +39,8 @@ export const PlayListCover = styled.div`
 export const PlayListImg = styled.img`
   width: 55vh;
   height: 55vh;
+  border-radius: 100%;
+  border: 5px solid white;
   background-color: white;
   vertical-align: middle;
 `;
