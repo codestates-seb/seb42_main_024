@@ -8,6 +8,7 @@ import com.main.server.chat.repository.ChatRepository;
 import com.main.server.chat.repository.ChatroomRepository;
 import com.main.server.exception.BusinessLogicException;
 import com.main.server.exception.ExceptionCode;
+import com.main.server.global.config.PropertyVariable;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -36,7 +37,7 @@ public class ChatService {
     public void enterMember(ChatRequestDto dto) {
         Chatroom chatroom = findChatroomById(dto.getChatroomId());
 
-        if (chatroom.getMembers().size() < 10) { // 인원이 10명 미만일경우 입장처리
+        if (chatroom.getMembers().size() < PropertyVariable.CHATROOM_MAX_SIZE) { // 인원이 max size 미만일경우 입장처리
             Integer memberNumber = chatroom // 해당 멤버가 몇번째 맴버인지 확인(프론트에서 컬러로 나누는데 쓰임)
                     .enterMember(dto.getMemberName())
                     .getMemberNumber(dto.getMemberName());

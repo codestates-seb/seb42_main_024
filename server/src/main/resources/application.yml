@@ -37,5 +37,6 @@ config:
   domain: "*"
   chatroom:
     max-size: 10
+    create-limit: 100
   playlist:
     max-size: 20

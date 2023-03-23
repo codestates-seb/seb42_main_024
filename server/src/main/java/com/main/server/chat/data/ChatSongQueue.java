@@ -2,6 +2,7 @@ package com.main.server.chat.data;
 
 import com.main.server.exception.BusinessLogicException;
 import com.main.server.exception.ExceptionCode;
+import com.main.server.global.config.PropertyVariable;
 import com.main.server.playlist.entity.Playlist;
 import com.main.server.playlist.service.PlaylistService;
 import lombok.*;
@@ -31,7 +32,7 @@ public class ChatSongQueue {
      * @param song
      */
     public void addSong(ChatSong song) {
-        if (songList.size() >= 20) { // MAX_SIZE 보다 넘게 추가하려 하면 FULL_SONG 익셉션을 터트립니다.
+        if (songList.size() >= PropertyVariable.PLAYLIST_MAX_SIZE) { // MAX_SIZE 보다 넘게 추가하려 하면 FULL_SONG 익셉션을 터트립니다.
             throw new BusinessLogicException(ExceptionCode.FULL_SONG);
         }
         songList.add(song);
