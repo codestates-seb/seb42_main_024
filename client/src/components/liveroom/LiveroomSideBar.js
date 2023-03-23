@@ -14,7 +14,14 @@ import {
   LiveroomSideBarContainer,
 } from '../../styles/liveroomsidebar';
 
-function LiveroomSideBar() {
+function LiveroomSideBar({
+  message,
+  setMessage,
+  sockClient,
+  chatDatas,
+  sidebarBtnState,
+  openSideBarSettingHandler,
+}) {
   const [data, setdata] = useState([]);
   useEffect(() => {
     const dummyData = [
@@ -78,9 +85,14 @@ function LiveroomSideBar() {
     setdata(dummyData);
   }, []);
   return (
-    <LiveroomSideBarContainer>
+    <LiveroomSideBarContainer
+      className={
+        sidebarBtnState
+          ? 'animate__animated animate__fadeInRightBig'
+          : 'animate__animated animate__fadeOutRightBig'
+      }>
       <LSBHeaderContainer>
-        <BsFillGearFill></BsFillGearFill>
+        <BsFillGearFill onClick={openSideBarSettingHandler}></BsFillGearFill>
         <LSBOutBtn>나가기</LSBOutBtn>
       </LSBHeaderContainer>
       <LSBPlayListContainer>
@@ -92,7 +104,11 @@ function LiveroomSideBar() {
         </LSBPlayListWrap>
       </LSBPlayListContainer>
       <LSBChatContianer>
-        <LSBChat></LSBChat>
+        <LSBChat
+          message={message}
+          setMessage={setMessage}
+          sockClient={sockClient}
+          chatDatas={chatDatas}></LSBChat>
       </LSBChatContianer>
     </LiveroomSideBarContainer>
   );

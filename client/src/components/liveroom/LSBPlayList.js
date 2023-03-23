@@ -10,7 +10,6 @@ import {
 } from '../../styles/lsbplaylist';
 
 function LSBPlayList({ playListData }) {
-  console.log(playListData);
   return (
     <PlayMusicContainer>
       <MusicInfo>

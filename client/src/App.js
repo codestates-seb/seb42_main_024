@@ -1,11 +1,12 @@
 import './styles/GlobalStyle.css';
 import './styles/variables.css';
-import Nav from './components/Nav';
+// import Nav from './components/Nav';
+import LiveRoom from './pages/Liveroom';
 
 function App() {
   return (
     <div>
-      <Nav />
+      <LiveRoom></LiveRoom>
     </div>
   );
 }
