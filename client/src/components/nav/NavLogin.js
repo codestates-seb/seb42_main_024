@@ -1,8 +1,11 @@
+import { useState } from 'react';
 import { BiHome, BiLogOut } from 'react-icons/bi';
 import { BsPlusCircle, BsFillSuitHeartFill } from 'react-icons/bs';
 import { IoRadio } from 'react-icons/io5';
 import { MdOutlineLibraryMusic } from 'react-icons/md';
 import { useSelector } from 'react-redux';
+
+import PlaylistCreator from './playlistCreator/PlaylistCreator';
 
 import {
   NavList,
@@ -18,6 +21,7 @@ import {
 
 const NavLogin = ({ logoutHandler }) => {
   const user = useSelector((state) => state.user);
+  const [isOpenPlaylistCreator, setIsOpenPlaylistCreator] = useState('default');
   return (
     <>
       <NavList>
@@ -44,7 +48,13 @@ const NavLogin = ({ logoutHandler }) => {
         <NavItems>
           <div className='nav-add-playlist'>
             <BsPlusCircle />
-            <AddPlayList>플레이리스트 만들기</AddPlayList>
+            <AddPlayList onClick={() => setIsOpenPlaylistCreator('open')}>
+              플레이리스트 만들기
+            </AddPlayList>
+            <PlaylistCreator
+              isOpenPlaylistCreator={isOpenPlaylistCreator}
+              setIsOpenPlaylistCreator={setIsOpenPlaylistCreator}
+            />
           </div>
           <div className='nav-storage'>
             <BsFillSuitHeartFill className='heart' />
