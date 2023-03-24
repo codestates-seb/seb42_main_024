@@ -1,5 +1,6 @@
 package com.main.server.chat.entity;
 
+import com.main.server.audit.Auditable;
 import com.main.server.member.entity.Member;
 import lombok.*;
 import lombok.extern.slf4j.Slf4j;
@@ -12,13 +13,13 @@ import java.util.List;
 @Slf4j
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Chatroom {
+public class Chatroom extends Auditable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long chatroomId;
 
-    @ManyToOne
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id")
     private Member member;
 

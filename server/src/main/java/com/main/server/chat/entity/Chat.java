@@ -1,5 +1,6 @@
 package com.main.server.chat.entity;
 
+import com.main.server.audit.Auditable;
 import com.main.server.chat.dto.ChatRequestDto;
 import com.main.server.member.entity.Member;
 import lombok.AccessLevel;
@@ -10,7 +11,7 @@ import javax.persistence.*;
 
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Chat {
+public class Chat extends Auditable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

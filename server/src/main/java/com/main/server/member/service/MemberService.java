@@ -31,8 +31,8 @@ public class MemberService {
     @PostConstruct
     public void init() {
         Member member = Member.builder()
-                .nickname("admin")
-                .email("admin@google.com")
+                .nickname("anonymousUser")
+                .email("anonymousUser")
                 .roles(List.of("USER"))
                 .build();
         memberRepository.save(member);

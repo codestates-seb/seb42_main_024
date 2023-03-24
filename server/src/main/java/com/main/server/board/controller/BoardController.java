@@ -48,7 +48,7 @@ public class BoardController {
 
     @PostMapping
     public ResponseEntity postBoard(@Valid @RequestBody BoardPostDto boardDto, @AuthenticationPrincipal String email) {
-        Playlist playlist = playlistService.createPlaylist(boardDto.getPlaylist(), "admin@google.com");
+        Playlist playlist = playlistService.createPlaylist(boardDto.getPlaylist(), email);
         boardDto.setPlaylistId(playlist.getPlaylistId());
         boardService.saveBoard(boardMapper.boardPostDtoToBoard(boardDto));
         return new ResponseEntity<>(HttpStatus.CREATED);
