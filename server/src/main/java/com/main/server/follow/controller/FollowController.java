@@ -21,7 +21,7 @@ import java.util.List;
 
 @Validated
 @RestController
-@RequestMapping("/follows")
+@RequestMapping("/api/follows")
 @RequiredArgsConstructor
 public class FollowController {
     private final FollowService followService;
@@ -67,8 +67,6 @@ public class FollowController {
         Page<FollowResponseDto> followers = followService.getFollowers(id, pageable);
     return ResponseEntity.ok(followers);
 }
-
-
 
 }
 /* 예를들어 맴버 A와 B가 있다.
