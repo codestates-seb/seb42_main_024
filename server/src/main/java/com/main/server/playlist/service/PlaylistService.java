@@ -45,4 +45,8 @@ public class PlaylistService {
         return playlistRepository.findById(playlistId)
                 .orElseThrow(() -> new BusinessLogicException(ExceptionCode.PLAYLIST_NOT_FOUND));
     }
+
+    public void deletePlaylistById(Long playlistId) {
+        playlistRepository.deleteById(playlistId);
+    }
 }

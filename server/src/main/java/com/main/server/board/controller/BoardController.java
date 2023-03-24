@@ -55,7 +55,7 @@ public class BoardController {
     }
 
     @GetMapping("/{board-id}/{member-id}")
-    public ResponseEntity getBoard(@PathVariable(name="board-id") Long boardId, @PathVariable(name="member-id") Long memberId) {
+    public ResponseEntity getBoard(@PathVariable(name="board-id") Long boardId, @PathVariable(name="member-id") Long memberId) { // * member-id를 PathVariable로 가져오는거는 보안적으로 추약
         BoardResponseDto board = boardService.findBoard(boardId, memberId);
         board.setPlaylist(PlaylistResponseDto.createByEntity(
                 playlistService.findPlaylistById(board.getBoard().getPlaylistId())));

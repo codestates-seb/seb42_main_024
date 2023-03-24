@@ -13,6 +13,7 @@ import com.main.server.exception.BusinessLogicException;
 import com.main.server.exception.ExceptionCode;
 import com.main.server.like.service.FindLikeService;
 import com.main.server.member.entity.Member;
+import com.main.server.playlist.service.PlaylistService;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -35,6 +36,7 @@ public class BoardService {
     private CommentRepository commentRepository;
     private CommentMapper commentMapper;
     private BoardMapper boardMapper;
+    private PlaylistService playlistService;
 
     private FindLikeService findLikeService;
     private FindBoardService findBoardService;
@@ -91,8 +93,8 @@ public class BoardService {
         Long groupId = board.getGroupId();
 
         if (board.getMember().getMemberId().equals(memberId)) {
+            playlistService.deletePlaylistById(board.getPlaylistId());
             boardRepository.deleteById(boardId);
-
         } else {
             throw new BusinessLogicException(ExceptionCode.NOT_ALLOWED);
         }
