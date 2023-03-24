@@ -35,11 +35,11 @@ public class Board extends Auditable {
        private Playlist playlist;
        PLAYLIST_ID */
 
-        @Column(length = 100, nullable = false)
+        @Column(length = 999, nullable = false)
         private String boardTitle;
         //제목
 
-        @Column(length = 100, nullable = false)
+        @Column(length = 999, nullable = false)
         private String boardContent;
         //내용
 
