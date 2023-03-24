@@ -1,6 +1,5 @@
 package com.main.server.chat.service;
 
-import com.main.server.auth.jwt.JwtTokenizer;
 import com.main.server.chat.data.ChatSongQueue;
 import com.main.server.chat.data.ChatSong;
 import com.main.server.chat.dto.ChatSongResponseDto;
@@ -17,6 +16,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Slf4j
@@ -38,6 +38,10 @@ public class ChatroomService {
      * @return
      */
     public Chatroom createRoom(ChatroomCreateDto dto, Member member) {
+        if (chatroomRepository.findByMember(member).isPresent()) {
+            throw new BusinessLogicException(ExceptionCode.CHATROOM_ALREADY_EXISTS);
+        }
+
         Chatroom chatroom = chatroomRepository.save(Chatroom.builder() // 챗룸을 생성 후 즉시 저장(id값을 얻어서 queueMap에 키값으로 써야함)
                 .member(member)
                 .title(dto.getTitle())
@@ -58,9 +62,13 @@ public class ChatroomService {
      */
     public Chatroom findChatroomById(Long chatroomId) {
         Chatroom chatroom = chatroomRepository.findById(chatroomId)
-                .orElseThrow(() -> new BusinessLogicException(ExceptionCode.ROOM_NOT_FOUND));
+                .orElseThrow(() -> new BusinessLogicException(ExceptionCode.CHATROOM_NOT_FOUND));
 
         return chatroom;
+    }
+
+    public List<Chatroom> findChatrooms(Long chatroomId) {
+        return chatroomRepository.getChatroomsAfterId(chatroomId);
     }
 
     /**

@@ -13,6 +13,7 @@ import com.main.server.exception.BusinessLogicException;
 import com.main.server.exception.ExceptionCode;
 import com.main.server.like.service.FindLikeService;
 import com.main.server.member.entity.Member;
+import com.main.server.playlist.service.PlaylistService;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -35,6 +36,7 @@ public class BoardService {
     private CommentRepository commentRepository;
     private CommentMapper commentMapper;
     private BoardMapper boardMapper;
+    private PlaylistService playlistService;
 
     private FindLikeService findLikeService;
     private FindBoardService findBoardService;
@@ -71,7 +73,7 @@ public class BoardService {
     }
 
     public BoardResponseDto findBoard(Long boardId, Long memberId) {
-        Board board = boardRepository.findById(boardId).get();
+        Board board = boardRepository.findById(boardId).get(); // * orElseThrow로 익셉션
         Long viewCount = board.getViewCount() + 1; //조회수
         board.setViewCount(viewCount);
         boardRepository.save(board);
@@ -82,7 +84,7 @@ public class BoardService {
         for (Comment comment : comments) {
             commentDtos.add(commentMapper.commentToCommentResponseDto(comment));
         }
-        return new BoardResponseDto<>(boardMapper.boardToBoardResponseDto(board), commentDtos, null);
+        return new BoardResponseDto<>(boardMapper.boardToBoardResponseDto(board), commentDtos, null, null);
     }
 
 
@@ -91,8 +93,8 @@ public class BoardService {
         Long groupId = board.getGroupId();
 
         if (board.getMember().getMemberId().equals(memberId)) {
+            playlistService.deletePlaylistById(board.getPlaylistId());
             boardRepository.deleteById(boardId);
-
         } else {
             throw new BusinessLogicException(ExceptionCode.NOT_ALLOWED);
         }

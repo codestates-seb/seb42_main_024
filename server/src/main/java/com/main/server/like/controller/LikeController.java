@@ -17,7 +17,7 @@ import javax.validation.constraints.Positive;
 
 @Validated
 @RestController
-@RequestMapping("/like")
+@RequestMapping("/api/like")
 @RequiredArgsConstructor
 public class LikeController {
     private final LikeService likeService;
@@ -28,7 +28,7 @@ public class LikeController {
     public ResponseEntity addLike(@PathVariable("board-id")@Positive Long id,
                                   @AuthenticationPrincipal String email ) {
         //이메일을 불러옴 지금 정상작동안해서 임의로 값 넣음
-        Member member = memberService.findByEmail("admin@google.com");
+        Member member = memberService.findByEmail(email);
         //id 랑 멤버 추가해 버림
         likeService.addLike(id,member);
         return ResponseEntity

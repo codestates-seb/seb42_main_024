@@ -12,7 +12,9 @@ public enum ExceptionCode {
     INVALID_TOKEN(400, "invalid token"),
     NO_PERMISSION(400, "no permission"),
     PLAYLIST_NOT_FOUND(400, "playlist not found"),
-    ROOM_NOT_FOUND(400, "room not found"),
+    PLAYLIST_FULL(400, "playlist full"),
+    CHATROOM_ALREADY_EXISTS(400, "room already exists"),
+    CHATROOM_NOT_FOUND(400, "room not found"),
     NO_SONG(400, "no song left"),
     FULL_SONG(400, "song is full"),
     NOT_ALLOWED(400, "Not Allowed");
