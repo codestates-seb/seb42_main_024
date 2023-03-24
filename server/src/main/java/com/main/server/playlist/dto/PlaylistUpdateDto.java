@@ -8,11 +8,8 @@ import lombok.NoArgsConstructor;
 import java.util.List;
 
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
-public class PlaylistCreateDto {
-
-    private String title;
-
+@AllArgsConstructor
+public class PlaylistUpdateDto {
     private List<SongCreateDto> songList;
 }

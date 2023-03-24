@@ -29,6 +29,8 @@ public class Member extends Auditable {
     @ElementCollection(fetch = FetchType.LAZY)
     private List<String> roles = new ArrayList<>();
 
+    private Integer playlistCount = 0;
+
     private Integer numberOfFollower = 0;
 
 
@@ -43,6 +45,9 @@ public class Member extends Auditable {
         this.roles = roles;
     }
 
+    public void playlistCountUp() {
+        this.playlistCount++;
+    }
 }
 
 

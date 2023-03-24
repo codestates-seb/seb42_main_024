@@ -15,10 +15,14 @@ import com.main.server.board.mapper.BoardMapper;
 import com.main.server.board.repository.BoardRepository;
 import com.main.server.board.service.BoardService;
 import com.main.server.dto.SingleResponseDto;
+import com.main.server.playlist.dto.PlaylistResponseDto;
+import com.main.server.playlist.entity.Playlist;
+import com.main.server.playlist.service.PlaylistService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -31,24 +35,30 @@ public class BoardController {
     private BoardService boardService;
     private BoardRepository boardRepository;
     private BoardMapper boardMapper;
+    private PlaylistService playlistService;
 
     @Autowired
     public BoardController(BoardService boardService, BoardRepository boardRepository,
-                           BoardMapper boardMapper) {
+                           BoardMapper boardMapper, PlaylistService playlistService) {
         this.boardService = boardService;
         this.boardRepository = boardRepository;
         this.boardMapper = boardMapper;
+        this.playlistService = playlistService;
     }
 
     @PostMapping
-    public ResponseEntity postBoard(@Valid @RequestBody BoardPostDto boardDto) {
+    public ResponseEntity postBoard(@Valid @RequestBody BoardPostDto boardDto, @AuthenticationPrincipal String email) {
+        Playlist playlist = playlistService.createPlaylist(boardDto.getPlaylist(), "admin@google.com");
+        boardDto.setPlaylistId(playlist.getPlaylistId());
         boardService.saveBoard(boardMapper.boardPostDtoToBoard(boardDto));
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
     @GetMapping("/{board-id}/{member-id}")
-    public ResponseEntity getBoard(@PathVariable(name="board-id") Long boardId, @PathVariable(name="member-id") Long memberId) {
+    public ResponseEntity getBoard(@PathVariable(name="board-id") Long boardId, @PathVariable(name="member-id") Long memberId) { // * member-id를 PathVariable로 가져오는거는 보안적으로 추약
         BoardResponseDto board = boardService.findBoard(boardId, memberId);
+        board.setPlaylist(PlaylistResponseDto.createByEntity(
+                playlistService.findPlaylistById(board.getBoard().getPlaylistId())));
         return new ResponseEntity<>(new SingleResponseDto<>(board), HttpStatus.OK);
     }
 
