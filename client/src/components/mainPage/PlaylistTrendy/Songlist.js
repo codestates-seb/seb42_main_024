@@ -3,8 +3,8 @@ import { SongListContainer, Song } from '../../../styles/playlist';
 const SongList = ({ songlist }) => {
   return (
     <SongListContainer>
-      {songlist.map((song) => (
-        <Song key={song.Id}>
+      {songlist.slice(0, 10).map((song) => (
+        <Song key={song.id}>
           <img src={song.imgSrc} alt='song thumbnail' />
           <div className='info'>
             <div className='title'>{song.title}</div>

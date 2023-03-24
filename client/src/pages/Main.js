@@ -204,7 +204,7 @@ const Main = () => {
       loader={<h6>Loading...</h6>}
       style={{ overflow: 'visible' }}>
       <MainContent>
-        {playlist.length > 0 && <PlaylistTrendy playlist={playlist[0]} />}
+        {playlist.length > 0 && <PlaylistTrendy playlist={playlist[1]} />}
         {visiblePlaylist.length > 0 &&
           visiblePlaylist.map((el) => (
             <React.Fragment key={`section-${el.sliderId}`}>
