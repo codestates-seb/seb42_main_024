@@ -2,6 +2,7 @@ package com.main.server.playlist.controller;
 
 import com.main.server.playlist.dto.PlaylistCreateDto;
 import com.main.server.playlist.dto.PlaylistResponseDto;
+import com.main.server.playlist.dto.PlaylistUpdateDto;
 import com.main.server.playlist.entity.Playlist;
 import com.main.server.playlist.service.PlaylistService;
 import lombok.Getter;
@@ -20,7 +21,8 @@ public class PlaylistController {
     private final PlaylistService playlistService;
 
     @PostMapping
-    public ResponseEntity createPlaylist(@RequestBody PlaylistCreateDto dto, @AuthenticationPrincipal String email) {
+    public ResponseEntity createPlaylist(@RequestBody PlaylistCreateDto dto,
+                                         @AuthenticationPrincipal String email) {
         Playlist playlist = playlistService.createPlaylist(dto, "admin@google.com");
 
         return ResponseEntity.status(HttpStatus.CREATED)
@@ -31,5 +33,14 @@ public class PlaylistController {
     public ResponseEntity getPlaylist(@PathVariable("playlist-id") Long playlistId) {
         return ResponseEntity.status(HttpStatus.OK)
                 .body(PlaylistResponseDto.createByEntity(playlistService.findPlaylistById(playlistId)));
+    }
+
+    @PatchMapping("/{playlist-id}")
+    public ResponseEntity updatePlaylist(@PathVariable("playlist-id") Long playlistId,
+                                         @RequestBody PlaylistUpdateDto dto) {
+        Playlist playlist = playlistService.findPlaylistById(playlistId);
+        playlistService.updatePlaylist(playlist, dto);
+        return ResponseEntity.status(HttpStatus.OK)
+                .build();
     }
 }

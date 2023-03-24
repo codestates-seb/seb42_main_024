@@ -2,13 +2,10 @@ package com.main.server.playlist.entity;
 
 
 import com.main.server.audit.Auditable;
-import com.main.server.comment.entity.Comment;
-import com.main.server.like.entity.Like;
 import com.main.server.member.entity.Member;
 import com.main.server.playlist.dto.PlaylistCreateDto;
 import com.main.server.song.entity.Song;
 import lombok.*;
-import org.springframework.beans.factory.annotation.Value;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -44,13 +41,12 @@ public class Playlist extends Auditable {
                 dto.getSongList().get(0).getThumbnail());
     }
 
-    public Playlist addSongs(List<Song> adds) {
-        adds.stream()
+    public Playlist updateSong(List<Song> songList) {
+        songList.stream()
                 .map(song -> song.setPlaylist(this))
                 .collect(Collectors.toList());
 
-        List<Song> editSongs = new ArrayList<>(this.songs);
-        editSongs.addAll(adds);
+        List<Song> editSongs = new ArrayList<>(songList);
         this.songs = editSongs;
         return this;
     }
