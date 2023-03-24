@@ -2,6 +2,7 @@ package com.main.server.playlist.service;
 
 import com.main.server.exception.BusinessLogicException;
 import com.main.server.exception.ExceptionCode;
+import com.main.server.member.entity.Member;
 import com.main.server.member.service.MemberService;
 import com.main.server.playlist.dto.PlaylistCreateDto;
 import com.main.server.playlist.dto.PlaylistUpdateDto;
@@ -27,12 +28,18 @@ public class PlaylistService {
     private final SongRepository songRepository;
 
     public Playlist createPlaylist(PlaylistCreateDto dto, String email) {
+        Member findMember = memberService.findByEmail(email);
+
+        if (findMember.getPlaylistCount() >= 20) {
+            throw new BusinessLogicException(ExceptionCode.PLAYLIST_FULL);
+        }
+
         List<Song> songList = dto.getSongList().stream()
                 .map(Song::createByDto)
                 .collect(Collectors.toList());
 
         Playlist playlist = Playlist
-                .createByDto(dto, memberService.findByEmail(email))
+                .createByDto(dto, findMember)
                 .updateSong(songList);
 
         return playlistRepository.save(playlist);
@@ -41,6 +48,10 @@ public class PlaylistService {
     public Playlist findPlaylistById(Long playlistId) {
         return playlistRepository.findById(playlistId)
                 .orElseThrow(() -> new BusinessLogicException(ExceptionCode.PLAYLIST_NOT_FOUND));
+    }
+
+    public List<Playlist> findPlaylistsByMember(Member member) {
+        return playlistRepository.findByMember(member);
     }
 
     public void updatePlaylist(Playlist playlist, PlaylistUpdateDto dto) {

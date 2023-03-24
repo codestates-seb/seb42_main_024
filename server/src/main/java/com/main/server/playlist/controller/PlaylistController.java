@@ -1,7 +1,11 @@
 package com.main.server.playlist.controller;
 
+import com.main.server.global.dto.ResponseDto;
+import com.main.server.member.entity.Member;
+import com.main.server.member.service.MemberService;
 import com.main.server.playlist.dto.PlaylistCreateDto;
 import com.main.server.playlist.dto.PlaylistResponseDto;
+import com.main.server.playlist.dto.PlaylistSimpleDto;
 import com.main.server.playlist.dto.PlaylistUpdateDto;
 import com.main.server.playlist.entity.Playlist;
 import com.main.server.playlist.service.PlaylistService;
@@ -13,11 +17,15 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/playlists")
 public class PlaylistController {
 
+    private final MemberService memberService;
     private final PlaylistService playlistService;
 
     @PostMapping
@@ -33,6 +41,17 @@ public class PlaylistController {
     public ResponseEntity getPlaylist(@PathVariable("playlist-id") Long playlistId) {
         return ResponseEntity.status(HttpStatus.OK)
                 .body(PlaylistResponseDto.createByEntity(playlistService.findPlaylistById(playlistId)));
+    }
+
+    @GetMapping
+    public ResponseEntity getPlaylists(@AuthenticationPrincipal String email) {
+        Member findMember = memberService.findByEmail("admin@google.com");
+        List<PlaylistSimpleDto> responseDto = playlistService.findPlaylistsByMember(findMember).stream()
+                .map(PlaylistSimpleDto::createByPlaylist)
+                .collect(Collectors.toList());
+
+        return ResponseEntity.status(HttpStatus.OK)
+                .body(new ResponseDto(responseDto, 200));
     }
 
     @PatchMapping("/{playlist-id}")

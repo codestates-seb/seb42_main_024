@@ -35,6 +35,7 @@ public class Playlist extends Auditable {
     
 
     public static Playlist createByDto(PlaylistCreateDto dto, Member member) {
+        member.playlistCountUp();
         return new Playlist(
                 dto.getTitle(),
                 member,
