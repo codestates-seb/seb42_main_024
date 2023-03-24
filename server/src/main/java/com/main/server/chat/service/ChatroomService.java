@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Slf4j
@@ -64,6 +65,10 @@ public class ChatroomService {
                 .orElseThrow(() -> new BusinessLogicException(ExceptionCode.CHATROOM_NOT_FOUND));
 
         return chatroom;
+    }
+
+    public List<Chatroom> findChatrooms(Long chatroomId) {
+        return chatroomRepository.getChatroomsAfterId(chatroomId);
     }
 
     /**

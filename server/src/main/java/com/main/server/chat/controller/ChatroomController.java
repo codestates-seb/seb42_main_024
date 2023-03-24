@@ -1,9 +1,7 @@
 package com.main.server.chat.controller;
 
 import com.main.server.chat.data.ChatSong;
-import com.main.server.chat.dto.ChatSongResponseDto;
-import com.main.server.chat.dto.ChatroomCreateDto;
-import com.main.server.chat.dto.ChatroomResponseDto;
+import com.main.server.chat.dto.*;
 import com.main.server.chat.entity.Chatroom;
 import com.main.server.chat.service.ChatroomService;
 import com.main.server.global.dto.ResponseDto;
@@ -19,6 +17,8 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import javax.validation.constraints.Positive;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Slf4j
 @Validated
@@ -51,6 +51,17 @@ public class ChatroomController {
 
         return ResponseEntity.status(HttpStatus.OK)
                 .body(new ResponseDto(responseDto, 200));
+    }
+
+    @GetMapping
+    public ResponseEntity getChatrooms(@RequestParam("id") Long id) {
+        Long chatroomId = id != null ? Math.max(0, id) : 0;
+        List<ChatroomSimpleDto> chatroomList = chatroomService.findChatrooms(chatroomId).stream()
+                .map(ChatroomSimpleDto::createByChatroom)
+                .collect(Collectors.toList());
+
+        return ResponseEntity.status(HttpStatus.OK)
+                .body(new ResponseDto(ChatroomListDto.of(chatroomList), 200));
     }
 
     @GetMapping("/{chatroom-id}/songs")
