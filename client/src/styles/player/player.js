@@ -36,11 +36,16 @@ export const PlayerBtnContainer = styled.div`
   }
 `;
 export const PlayBox = styled.div`
+  bottom: 10px;
+  position: absolute;
   width: 600px;
   height: 5px;
   background-color: var(--color7);
   border-radius: 3px;
   cursor: pointer;
+  :hover {
+    height: 7px;
+  }
 `;
 export const PlayBoxonProgress = styled.div`
   width: ${(props) => props.width || 0}%;
