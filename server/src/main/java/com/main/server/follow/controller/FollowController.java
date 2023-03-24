@@ -28,7 +28,7 @@ public class FollowController {
     @PostMapping("{member-id}")
     public ResponseEntity postFollow(@PathVariable("member-id")@Positive Long id,
                                   @AuthenticationPrincipal String email ) {
-        Member member = memberService.findByEmail("admin@google.com");
+        Member member = memberService.findByEmail(email);
         followService.addFollow(id,member);
         return ResponseEntity
                 .status(HttpStatus.CREATED)

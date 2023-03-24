@@ -11,7 +11,6 @@ import com.main.server.exception.ExceptionCode;
 import com.main.server.global.config.PropertyVariable;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.messaging.simp.stomp.StompHeaderAccessor;
 import org.springframework.stereotype.Service;
@@ -119,6 +118,6 @@ public class ChatService {
 
     private Chatroom findChatroomById(Long chatroomId) {
         return chatroomRepository.findById(chatroomId)
-                .orElseThrow(() -> new BusinessLogicException(ExceptionCode.ROOM_NOT_FOUND));
+                .orElseThrow(() -> new BusinessLogicException(ExceptionCode.CHATROOM_NOT_FOUND));
     }
 }

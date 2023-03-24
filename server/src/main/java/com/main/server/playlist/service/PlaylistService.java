@@ -2,6 +2,7 @@ package com.main.server.playlist.service;
 
 import com.main.server.exception.BusinessLogicException;
 import com.main.server.exception.ExceptionCode;
+import com.main.server.global.config.PropertyVariable;
 import com.main.server.member.entity.Member;
 import com.main.server.member.service.MemberService;
 import com.main.server.playlist.dto.PlaylistCreateDto;
@@ -30,7 +31,7 @@ public class PlaylistService {
     public Playlist createPlaylist(PlaylistCreateDto dto, String email) {
         Member findMember = memberService.findByEmail(email);
 
-        if (findMember.getPlaylistCount() >= 20) {
+        if (findMember.getPlaylistCount() >= PropertyVariable.PLAYLIST_CREATE_LIMIT) {
             throw new BusinessLogicException(ExceptionCode.PLAYLIST_FULL);
         }
 

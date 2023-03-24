@@ -31,7 +31,7 @@ public class PlaylistController {
     @PostMapping
     public ResponseEntity createPlaylist(@RequestBody PlaylistCreateDto dto,
                                          @AuthenticationPrincipal String email) {
-        Playlist playlist = playlistService.createPlaylist(dto, "admin@google.com");
+        Playlist playlist = playlistService.createPlaylist(dto, email);
 
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(PlaylistResponseDto.createByEntity(playlist));
@@ -45,7 +45,7 @@ public class PlaylistController {
 
     @GetMapping
     public ResponseEntity getPlaylists(@AuthenticationPrincipal String email) {
-        Member findMember = memberService.findByEmail("admin@google.com");
+        Member findMember = memberService.findByEmail(email);
         List<PlaylistSimpleDto> responseDto = playlistService.findPlaylistsByMember(findMember).stream()
                 .map(PlaylistSimpleDto::createByPlaylist)
                 .collect(Collectors.toList());

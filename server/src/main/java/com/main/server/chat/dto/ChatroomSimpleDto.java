@@ -1,13 +1,13 @@
 package com.main.server.chat.dto;
 
 import com.main.server.chat.entity.Chatroom;
-import lombok.*;
-
-import java.util.List;
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 
 @Data
 @AllArgsConstructor(access = AccessLevel.PROTECTED)
-public class ChatroomResponseDto {
+public class ChatroomSimpleDto {
 
     private Long chatroomId;
 
@@ -17,14 +17,11 @@ public class ChatroomResponseDto {
 
     private Integer memberCount;
 
-    private List<String> members;
-
-    public static ChatroomResponseDto createByChatroom(Chatroom chatroom) {
-        return new ChatroomResponseDto(
+    public static ChatroomSimpleDto createByChatroom(Chatroom chatroom) {
+        return new ChatroomSimpleDto(
                 chatroom.getChatroomId(),
                 chatroom.getTitle(),
                 chatroom.getMember().getNickname(),
-                chatroom.getMembers().size(),
-                chatroom.getMembers());
+                chatroom.getMembers().size());
     }
 }
