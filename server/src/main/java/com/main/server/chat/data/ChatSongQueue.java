@@ -40,8 +40,6 @@ public class ChatSongQueue {
 
     /**
      * Playlist 엔티티 객체를 통해 노래 리스트를 받아 ChatRommQueue를 생성하는 메서드입니다.
-     * 이후 노래추가는 Playlist 객채로는 추가하지 못하고 addSong 메서드를 통해
-     * 단건으로 하나씩만 추가가 가능합니다.
      * @param playlist
      */
     public static ChatSongQueue createByPlaylist(Playlist playlist) {
@@ -67,9 +65,9 @@ public class ChatSongQueue {
      * @return
      */
     public boolean nextSong(ChatSong dto) {
-        String videoId = this.nowSong != null ? this.nowSong.getVideoId() : ""; // nowSong이 있는지 검사
+        String videoId = this.nowSong != null ? this.nowSong.getVideoId() : "";
         
-        if (dto.getVideoId().equals(videoId) || this.nowSong == null) { // videoId가 같을경우(또는 비어있을때)에 한해 한번만 실행(프론트에서 중복요청에 대한 변경을 1회만 보장)
+        if (dto.getVideoId().equals(videoId) || this.nowSong == null) { // 프론트에서 중복요청에 대한 변경을 1회만 보장
             updatePastSong();
             updateNowSong();
             this.playedAt = LocalDateTime.now();

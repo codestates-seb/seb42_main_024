@@ -71,7 +71,7 @@ public class BoardService {
     }
 
     public BoardResponseDto findBoard(Long boardId, Long memberId) {
-        Board board = boardRepository.findById(boardId).get();
+        Board board = boardRepository.findById(boardId).get(); // * orElseThrow로 익셉션
         Long viewCount = board.getViewCount() + 1; //조회수
         board.setViewCount(viewCount);
         boardRepository.save(board);
@@ -82,7 +82,7 @@ public class BoardService {
         for (Comment comment : comments) {
             commentDtos.add(commentMapper.commentToCommentResponseDto(comment));
         }
-        return new BoardResponseDto<>(boardMapper.boardToBoardResponseDto(board), commentDtos, null);
+        return new BoardResponseDto<>(boardMapper.boardToBoardResponseDto(board), commentDtos, null, null);
     }
 
 
