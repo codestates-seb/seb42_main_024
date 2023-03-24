@@ -2,6 +2,7 @@ import { BiHome, BiLogOut } from 'react-icons/bi';
 import { BsPlusCircle, BsFillSuitHeartFill } from 'react-icons/bs';
 import { IoRadio } from 'react-icons/io5';
 import { MdOutlineLibraryMusic } from 'react-icons/md';
+import { useSelector } from 'react-redux';
 
 import {
   NavList,
@@ -15,7 +16,8 @@ import {
   Logout,
 } from '../../styles/nav';
 
-const NavLogin = ({ user, logoutHandler }) => {
+const NavLogin = ({ logoutHandler }) => {
+  const user = useSelector((state) => state.user);
   return (
     <>
       <NavList>

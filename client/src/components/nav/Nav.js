@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { FaQuestion } from 'react-icons/fa';
+import { useSelector, useDispatch } from 'react-redux';
 
 import axios from 'axios';
 
@@ -7,14 +8,17 @@ import Modal from './Modal';
 import NavLogin from './NavLogin';
 import NavLogout from './NavLogout';
 
+import { setUserData, deleteUserData } from '../../actions/actions';
 import { NavContainer, NavFooter } from '../../styles/nav';
 
 const Nav = () => {
-  const [isLogin, setIsLogin] = useState(false);
-  const [user, setUser] = useState(null);
   const [modalOpen, setModalOpen] = useState(false);
   //eslint-disable-next-line no-unused-vars
   const [data, setData] = useState(null);
+
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.user);
+  const isLogin = useSelector((state) => state.user !== null);
 
   const REDIRECT_URL = process.env.REACT_APP_REDIRECT_URL;
   const AUTH_URL = process.env.REACT_APP_AUTH_URL;
@@ -37,8 +41,8 @@ const Nav = () => {
           },
         });
         setData(response);
-        setUser(response.data);
-        setIsLogin(true);
+        dispatch(setUserData(user));
+        dispatch(setUserData(response.data));
       } catch (e) {
         console.log(`oAuth token expired`);
       }
@@ -75,8 +79,7 @@ const Nav = () => {
   };
 
   const logoutHandler = () => {
-    setUser(null);
-    setIsLogin(false);
+    dispatch(deleteUserData());
     localStorage.removeItem('accessToken');
     localStorage.removeItem('refreshToken');
   };
@@ -94,7 +97,7 @@ const Nav = () => {
           <NavLogout openModal={openModal} />
           {modalOpen && !isLogin && (
             <Modal
-              setIsLogin={setIsLogin}
+              isLogin={isLogin}
               setModalOpen={setModalOpen}
               oAuthHandler={oAuthHandler}
             />

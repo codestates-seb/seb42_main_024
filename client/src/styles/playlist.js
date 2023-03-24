@@ -11,7 +11,7 @@ export const PlaylistInfoMain = styled.div`
   }
   .desc {
     width: 584px;
-    height: 122px;
+    height: 90px;
     font-size: 15px;
     font-family: var(--ft-pretendardThin);
     overflow-y: hidden;
@@ -25,7 +25,7 @@ export const PlaylistInfoMain = styled.div`
     width: 40px;
     height: 20px;
   }
-  .btns {
+  .infoBtns {
     width: fit-content;
     display: flex;
     justify-content: center;
@@ -58,10 +58,6 @@ export const PlaylistInfoContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  img {
-    width: 412px;
-    height: 350px;
-  }
   color: var(--color9);
   .info {
     margin-left: 25px;
@@ -75,7 +71,13 @@ export const PlaylistInfoModal = styled(ReactModal)`
   padding: 30px;
   background-color: var(--color11);
   overflow-y: scroll;
+  position: absolute;
+  inset: 0;
   margin: auto;
+  .closeIcon {
+    color: var(--color4);
+    font-size: 40px;
+  }
   .title {
     color: var(--color9);
     font-family: var(--ft-pretendardExtraBold);
@@ -88,10 +90,18 @@ export const PlaylistInfoModal = styled(ReactModal)`
 `;
 
 // PlaylistPage - PlaylistList component
+export const PlaylistListContainerWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
 export const PlaylistListContainer = styled.div`
-  margin: 120px;
+  width: 900px;
+  margin: 100px 50px;
   background-color: var(--color2);
-  padding: 100px;
+  padding: 70px;
   .row {
     background-color: inherit;
     border: none;
@@ -135,6 +145,12 @@ export const PlaylistContainer = styled.div`
   height: 100vh;
   background-color: var(--color1);
   overflow-y: scroll;
+`;
+
+export const PlaylistPageContainer = styled.div`
+  background-color: var(--color1);
+  margin-left: 250px;
+  margin-bottom: 80px;
 `;
 
 // MainPage - PlaylistTrendy component
@@ -190,7 +206,6 @@ export const PlaylistTrendyInfoContainer = styled(PlaylistInfoMain)`
 `;
 
 export const SongListContainer = styled.div`
-  /* width: 684px; */
   width: 450px;
   margin: 15px 0;
   display: grid;

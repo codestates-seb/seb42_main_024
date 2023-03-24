@@ -10,6 +10,8 @@ import {
   SET_AS_LAST_SONG,
   FETCH_PREV_SONG,
   STORE_CURRENT_SONG,
+  SET_USER_DATA,
+  DELETE_USER_DATA,
 } from '../actions/actions';
 
 const reducer = (state = initialState, action) => {
@@ -65,6 +67,16 @@ const reducer = (state = initialState, action) => {
         ...state,
         prevSongIdx: state.currentSongIdx,
         currentSongIdx: null,
+      };
+    case SET_USER_DATA:
+      return {
+        ...state,
+        user: action.payload,
+      };
+    case DELETE_USER_DATA:
+      return {
+        ...state,
+        user: null,
       };
     default:
       return state;
