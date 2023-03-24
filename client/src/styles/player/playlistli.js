@@ -15,9 +15,8 @@ export const PlayListLiContainer = styled.li`
 export const PlayListLiCover = styled.img`
   width: 45px;
   height: 45px;
-  border-radius: 10px;
+  border-radius: 5px;
   margin-right: 10px;
-  background-color: white;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -25,8 +24,10 @@ export const PlayListLiCover = styled.img`
 `;
 export const PlayListLiContentBox = styled.div`
   display: flex;
+  justify-content: center;
   flex-direction: column;
   width: 310px;
+  height: 45px;
 `;
 export const PlayListLiTitle = styled.span`
   font-size: 15px;
