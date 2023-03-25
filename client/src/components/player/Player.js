@@ -46,12 +46,14 @@ function Player({ volume }) {
   //Pause
   const handlePlay = (e) => {
     e.stopPropagation();
-    dispatch(togglePause());
-    if (listLength !== 0) {
-      if (playIdx === null) {
-        dispatch(fetchPrevSong());
+    if (playIdx !== null) {
+      dispatch(togglePause());
+      if (listLength !== 0) {
+        if (playIdx === null) {
+          dispatch(fetchPrevSong());
+        }
+        dispatch(togglePlay());
       }
-      dispatch(togglePlay());
     }
   };
   //Next
