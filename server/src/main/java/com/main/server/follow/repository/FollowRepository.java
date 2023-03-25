@@ -3,6 +3,8 @@ package com.main.server.follow.repository;
 import com.main.server.follow.dto.FollowResponseDto;
 import com.main.server.follow.entity.Follow;
 import com.main.server.member.entity.Member;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -25,12 +27,12 @@ public interface FollowRepository extends JpaRepository<Follow, Long> {
 
     //이건 내가 팔로우 하고 있는 유저들을 보여준다.
     @Query("SELECT new com.main.server.follow.dto.FollowResponseDto(f.target.id, f.target.email, f.target.nickname, f.target.picture) FROM Follow f WHERE f.follower = :follower")
-    List<FollowResponseDto> findTargetsByFollower(@Param("follower") Member follower);
+    Page<FollowResponseDto> findTargetsByFollower(@Param("follower") Member follower, Pageable pageable);
 
 
     // 이건 나를 팔로우 하고 있는 유저들을 보여준다.
     @Query("SELECT new com.main.server.follow.dto.FollowResponseDto(f.follower.id, f.follower.email, f.follower.nickname, f.follower.picture) FROM Follow f WHERE f.target = :target")
-    List<FollowResponseDto> findFollowersByTarget(@Param("target") Member target);
+    Page<FollowResponseDto> findFollowersByTarget(@Param("target") Member target, Pageable pageable);
 }
 
 

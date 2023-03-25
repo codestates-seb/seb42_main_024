@@ -41,6 +41,7 @@ public class BoardService {
     private FindLikeService findLikeService;
     private FindBoardService findBoardService;
 
+
 //    @PostConstruct
 //    public void init() {
 //
@@ -55,8 +56,6 @@ public class BoardService {
 //
 //        boardRepository.save(board);
 //    }
-
-
 
     public void saveBoard(Board board) {
         String time = "";
