@@ -52,7 +52,7 @@ public class OAuth2MemberSuccessHandler extends SimpleUrlAuthenticationSuccessHa
 
     private URI createURI(String accessToken, String refreshToken) {
         MultiValueMap<String, String> queryParams = new LinkedMultiValueMap<>();
-        queryParams.add("Authorization", "Bearer" + accessToken);
+        queryParams.add("Authorization", accessToken);
         queryParams.add("Refresh", refreshToken);
         
         return UriComponentsBuilder

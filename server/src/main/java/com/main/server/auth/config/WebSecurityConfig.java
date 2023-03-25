@@ -57,7 +57,8 @@ public class WebSecurityConfig {
                 .apply(new CustomFilterConfigurer())
                 .and()
                 .authorizeHttpRequests(authorize -> authorize
-//                        .antMatchers("/rooms").hasRole("USER")
+                        .antMatchers("/api/rooms").hasRole("USER")
+//                        .antMatchers("/api/members/auth").hasRole("USER")
                         .anyRequest().permitAll()
                 )
                 .oauth2Login(oauth2 ->

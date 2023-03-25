@@ -49,16 +49,16 @@ public class JwtVerificationFilter extends OncePerRequestFilter {
         String authorization = request.getHeader("Authorization");
         String refresh = request.getHeader("Refresh");
 
-        boolean bool =  (authorization == null || !authorization.startsWith("Bearer"))
-                && refresh == null;
+        boolean bool =  authorization == null && refresh == null;
 
         return bool;
     }
 
     private Map<String, Object> verifyJws(HttpServletRequest request,
                                           HttpServletResponse response) {
+
         if (request.getHeader("Authorization") != null) {
-            String jws = request.getHeader("Authorization").replace("Bearer", "");
+            String jws = request.getHeader("Authorization");
             Claims claims = jwtTokenizer.getClaims(jws).getBody();
             return claims;
         }
@@ -81,7 +81,7 @@ public class JwtVerificationFilter extends OncePerRequestFilter {
         String refreshToken =
                 jwtTokenizer.delegateRefreshToken(member.getEmail());
 
-        response.setHeader("Authorization", "Bearer " + accessToken);
+        response.setHeader("Authorization", accessToken);
         response.setHeader("Refresh", refreshToken);
 
         Claims claims = jwtTokenizer.getClaims(accessToken).getBody();
