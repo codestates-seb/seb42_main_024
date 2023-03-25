@@ -6,6 +6,7 @@ export const NavContainer = styled.div`
   background-color: var(--color1);
   position: fixed;
   font-family: var(--ft-pretendardMedium);
+  z-index: 10;
 
   .nav-logo {
     color: var(--color6);
