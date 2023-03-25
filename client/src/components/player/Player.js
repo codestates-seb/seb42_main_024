@@ -11,6 +11,8 @@ import {
   toNextSong,
   toPrevSong,
   storeCurrentSong,
+  toTheTop,
+  toTheFront,
 } from '../../actions/actions';
 import {
   PlayWarp,
@@ -56,20 +58,26 @@ function Player({ volume }) {
   const handleNext = (e) => {
     e.stopPropagation();
     if (playIdx === listLength - 1) {
-      dispatch(togglePause());
       dispatch(storeCurrentSong());
+      dispatch(toTheFront());
     } else {
       dispatch(toNextSong());
+    }
+    if (listLength === 1) {
+      seekTo(0);
     }
   };
   //Pre
   const handlePre = (e) => {
     e.stopPropagation();
     if (playIdx === 0) {
-      dispatch(togglePause());
       dispatch(storeCurrentSong());
+      dispatch(toTheTop());
     } else {
       dispatch(toPrevSong());
+    }
+    if (listLength === 1) {
+      seekTo(0);
     }
   };
   //진행도 전달
