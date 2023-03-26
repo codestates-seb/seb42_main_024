@@ -10,6 +10,12 @@ import {
   SET_AS_LAST_SONG,
   FETCH_PREV_SONG,
   STORE_CURRENT_SONG,
+  SET_CURRENT_SONG_INDEX,
+  DELETE_SONG,
+  TO_THE_TOP,
+  TO_THE_FRONT,
+  SET_USER_DATA,
+  DELETE_USER_DATA,
 } from '../actions/actions';
 
 const reducer = (state = initialState, action) => {
@@ -65,6 +71,38 @@ const reducer = (state = initialState, action) => {
         ...state,
         prevSongIdx: state.currentSongIdx,
         currentSongIdx: null,
+      };
+    case SET_CURRENT_SONG_INDEX:
+      return {
+        ...state,
+        currentSongIdx: action.payload,
+      };
+    case DELETE_SONG:
+      return {
+        ...state,
+        currentSongList: state.currentSongList.filter(
+          (song) => song.songId !== action.payload
+        ),
+      };
+    case TO_THE_TOP:
+      return {
+        ...state,
+        currentSongIdx: state.currentSongList.length - 1,
+      };
+    case TO_THE_FRONT:
+      return {
+        ...state,
+        currentSongIdx: 0,
+      };
+    case SET_USER_DATA:
+      return {
+        ...state,
+        user: action.payload,
+      };
+    case DELETE_USER_DATA:
+      return {
+        ...state,
+        user: null,
       };
     default:
       return state;

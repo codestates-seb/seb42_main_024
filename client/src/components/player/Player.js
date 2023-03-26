@@ -11,6 +11,8 @@ import {
   toNextSong,
   toPrevSong,
   storeCurrentSong,
+  toTheTop,
+  toTheFront,
 } from '../../actions/actions';
 import {
   PlayWarp,
@@ -33,6 +35,7 @@ function Player({ volume }) {
   const [progress, setProgress] = useState(0);
   const playerRef = useRef(null);
   const dispatch = useDispatch();
+  const [isSeeking, setIsSeeking] = useState(false);
   //플레이 버튼
   const handlePause = (e) => {
     e.stopPropagation();
@@ -43,43 +46,81 @@ function Player({ volume }) {
   //Pause
   const handlePlay = (e) => {
     e.stopPropagation();
-    dispatch(togglePause());
-    if (listLength !== 0) {
-      if (playIdx === null) {
-        dispatch(fetchPrevSong());
+    if (playIdx !== null) {
+      dispatch(togglePause());
+      if (listLength !== 0) {
+        if (playIdx === null) {
+          dispatch(fetchPrevSong());
+        }
+        dispatch(togglePlay());
       }
-      dispatch(togglePlay());
     }
   };
   //Next
   const handleNext = (e) => {
     e.stopPropagation();
     if (playIdx === listLength - 1) {
-      dispatch(togglePause());
       dispatch(storeCurrentSong());
+      dispatch(toTheFront());
     } else {
       dispatch(toNextSong());
+    }
+    if (listLength === 1) {
+      seekTo(0);
     }
   };
   //Pre
   const handlePre = (e) => {
     e.stopPropagation();
     if (playIdx === 0) {
-      dispatch(togglePause());
       dispatch(storeCurrentSong());
+      dispatch(toTheTop());
     } else {
       dispatch(toPrevSong());
+    }
+    if (listLength === 1) {
+      seekTo(0);
     }
   };
   //진행도 전달
   const handlePlayBoxClick = (e) => {
     e.stopPropagation();
-    const boxWidth = e.target.offsetWidth;
-    const clickX = e.clientX - e.target.offsetLeft;
-    const progressPercentage = (clickX / boxWidth) * 100;
-    const newProgress = progressPercentage / 100;
-    setProgress(newProgress);
-    seekTo(newProgress);
+
+    // PlayBox 영역 내에서만 클릭한 경우에만 처리
+    const boxWidth = e.currentTarget.offsetWidth;
+    const clickX = e.clientX - e.currentTarget.offsetLeft;
+
+    // PlayBox 영역 내에서 클릭한 경우에만 progress 값을 변경합니다.
+    if (clickX >= 0 && clickX <= boxWidth) {
+      const progressPercentage = (clickX / boxWidth) * 100;
+      const newProgress = progressPercentage / 100;
+      setProgress(newProgress);
+      seekTo(newProgress);
+    }
+  };
+  const handlePlayBoxMouseDown = (e) => {
+    e.stopPropagation();
+    setIsSeeking(true);
+  };
+
+  const handlePlayBoxMouseUp = (e) => {
+    e.stopPropagation();
+    setIsSeeking(false);
+  };
+
+  const handlePlayBoxMouseMove = (e) => {
+    e.stopPropagation();
+    if (!isSeeking) {
+      return;
+    }
+    const boxWidth = e.currentTarget.offsetWidth;
+    const clickX = e.clientX - e.currentTarget.offsetLeft;
+    if (clickX >= 0 && clickX <= boxWidth) {
+      const progressPercentage = (clickX / boxWidth) * 100;
+      const newProgress = progressPercentage / 100;
+      setProgress(newProgress);
+      seekTo(newProgress);
+    }
   };
   const handleProgress = (state) => {
     setProgress(state.played);
@@ -87,6 +128,7 @@ function Player({ volume }) {
   const seekTo = (newProgress) => {
     playerRef.current.seekTo(newProgress);
   };
+
   return (
     <PlayWarp>
       <ReactPlayer
@@ -106,7 +148,11 @@ function Player({ volume }) {
         )}
         <MdSkipNext className='NextBtn' onClick={handleNext} />
       </PlayerBtnContainer>
-      <PlayBox onClick={handlePlayBoxClick}>
+      <PlayBox
+        onClick={handlePlayBoxClick}
+        onMouseDown={handlePlayBoxMouseDown}
+        onMouseUp={handlePlayBoxMouseUp}
+        onMouseMove={handlePlayBoxMouseMove}>
         <PlayBoxonProgress width={progress * 100} />
       </PlayBox>
     </PlayWarp>
