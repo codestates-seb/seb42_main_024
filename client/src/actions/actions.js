@@ -12,6 +12,9 @@ export const SET_CURRENT_SONG_INDEX = 'SET_CURRENT_SONG_INDEX';
 export const DELETE_SONG = 'DELETE_SONG';
 export const TO_THE_TOP = 'TO_THE_TOP';
 export const TO_THE_FRONT = 'TO_THE_FRONT';
+export const SET_USER_DATA = 'SET_USER_DATA';
+export const DELETE_USER_DATA = 'DELETE_USER_DATA';
+
 // action controllers
 export const togglePlay = () => {
   return {
@@ -89,5 +92,16 @@ export const toTheTop = () => {
 export const toTheFront = () => {
   return {
     type: TO_THE_FRONT,
+  };
+};
+export const setUserData = (userData) => {
+  return {
+    type: SET_USER_DATA,
+    payload: userData,
+  };
+};
+export const deleteUserData = () => {
+  return {
+    type: DELETE_USER_DATA,
   };
 };

@@ -14,6 +14,8 @@ import {
   DELETE_SONG,
   TO_THE_TOP,
   TO_THE_FRONT,
+  SET_USER_DATA,
+  DELETE_USER_DATA,
 } from '../actions/actions';
 
 const reducer = (state = initialState, action) => {
@@ -91,6 +93,16 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         currentSongIdx: 0,
+      };
+    case SET_USER_DATA:
+      return {
+        ...state,
+        user: action.payload,
+      };
+    case DELETE_USER_DATA:
+      return {
+        ...state,
+        user: null,
       };
     default:
       return state;
