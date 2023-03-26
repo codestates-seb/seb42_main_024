@@ -6,6 +6,8 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
 export const MainContent = styled.div`
+  padding-bottom: 520px;
+
   .playlist-name {
     width: 500px;
     color: var(--color9);
@@ -20,12 +22,11 @@ export const MainContent = styled.div`
 export const StyledSlider = styled(Slider)`
   max-width: 1300px;
   min-width: 1120px;
-  padding-bottom: 70px;
-  top: 460px;
+  padding-bottom: 50px;
+  top: 450px;
   left: 310px;
   display: flex;
   position: relative;
-  background-color: var(--color1);
 
   .slick-list {
     width: 100%;
