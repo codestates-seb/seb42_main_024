@@ -1,13 +1,5 @@
 package com.main.server.board.controller;
 
-
-//import com.clone.stackoverflow.dto.SingleResponseDto;
-//import com.clone.stackoverflow.board.PageInfo;
-//import com.clone.stackoverflow.board.dto.*;
-//import com.clone.stackoverflow.board.entity.Board;
-//import com.clone.stackoverflow.board.mapper.BoardMapper;
-//import com.clone.stackoverflow.board.repository.BoardRepository;
-//import com.clone.stackoverflow.board.service.BoardService;
 import com.main.server.board.PageInfo;
 import com.main.server.board.dto.*;
 import com.main.server.board.entity.Board;
