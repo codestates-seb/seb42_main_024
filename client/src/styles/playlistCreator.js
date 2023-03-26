@@ -11,7 +11,7 @@ export const PlaylistCreatorContainer = styled.div`
 
   position: relative;
   left: 5px;
-  top: -60px;
+  top: -360px;
 
   /* if isOpenPlaylistCreator === "default"  */
   &.dpNone {

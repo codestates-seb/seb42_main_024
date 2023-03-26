@@ -36,7 +36,7 @@ const Nav = () => {
       try {
         const response = await axios.get(`${AUTH_URL}`, {
           headers: {
-            authorization: `Bearer ${storedAccessToken}`,
+            Authorization: `${storedAccessToken}`,
             accept: 'application/json',
           },
         });

@@ -22,6 +22,10 @@ export const NavContainer = styled.div`
     text-align: center;
     height: 25px;
   }
+
+  button {
+    white-space: nowrap;
+  }
 `;
 
 export const NavList = styled.ul`
@@ -55,10 +59,23 @@ export const NavItems = styled.li`
     height: 30px;
   }
 
+  .profile-pic {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+  }
+
+  .nav-userinfo {
+    height: 40px;
+  }
+
   .nav-home,
   .nav-liveroom,
-  .nav-add-playlist {
-    padding-bottom: 14px;
+  .nav-create-liveroom,
+  .nav-add-playlist,
+  .nav-storage,
+  .nav-logout {
+    height: 30px;
   }
 
   .nav-userinfo,
@@ -70,128 +87,47 @@ export const NavItems = styled.li`
   .nav-logout {
     display: flex;
     align-items: center;
-  }
+    width: 100%;
 
-  .profile-pic {
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-  }
-`;
+    &:hover {
+      cursor: pointer;
+      background-color: var(--color5);
+    }
 
-export const UserInfo = styled.button`
-  margin-left: 10px;
-  height: 16px;
-  cursor: pointer;
-  border: none;
-  background-color: var(--color1);
-  color: var(--color9);
-  font-size: 15px;
-
-  &:hover {
-    cursor: pointer;
-    background-color: var(--color5);
+    &:hover button {
+      background-color: var(--color5);
+    }
   }
 `;
 
 export const Home = styled.button`
   margin-left: 10px;
+  width: 100%;
   height: 16px;
+  text-align: left;
   cursor: pointer;
   border: none;
   background-color: var(--color1);
   color: var(--color9);
-
-  &:hover {
-    cursor: pointer;
-    background-color: var(--color5);
-  }
 `;
 
-export const LiveRoom = styled.button`
-  margin-left: 10px;
-  height: 16px;
-  cursor: pointer;
-  border: none;
-  background-color: var(--color1);
-  color: var(--color9);
-
-  &:hover {
-    cursor: pointer;
-    background-color: var(--color5);
-  }
-`;
-
-export const CreateLiveRoom = styled.button`
-  margin-left: 10px;
-  height: 16px;
-  cursor: pointer;
-  border: none;
-  background-color: var(--color1);
-  color: var(--color9);
-
-  &:hover {
-    cursor: pointer;
-    background-color: var(--color5);
-  }
-`;
-
-export const AddPlayList = styled.button`
-  margin-left: 10px;
-  height: 16px;
-  cursor: pointer;
-  border: none;
-  background-color: var(--color1);
-  color: var(--color9);
-
-  &:hover {
-    cursor: pointer;
-    background-color: var(--color5);
-  }
-`;
-
-export const Storage = styled.button`
-  margin-left: 10px;
-  height: 16px;
-  cursor: pointer;
-  border: none;
-  background-color: var(--color1);
-  color: var(--color9);
-
-  &:hover {
-    cursor: pointer;
-    background-color: var(--color5);
-  }
-`;
-
-export const Login = styled.button`
-  margin-left: 10px;
-  height: 16px;
-  cursor: pointer;
-  border: none;
-  background-color: var(--color1);
-  color: var(--color9);
+export const UserInfo = styled(Home)`
   font-size: 15px;
-
-  &:hover {
-    cursor: pointer;
-    background-color: var(--color5);
-  }
 `;
 
-export const Logout = styled.button`
-  margin-left: 10px;
-  height: 16px;
-  cursor: pointer;
-  border: none;
-  background-color: var(--color1);
-  color: var(--color9);
+export const LiveRoom = styled(Home)``;
 
-  &:hover {
-    cursor: pointer;
-    background-color: var(--color5);
-  }
+export const CreateLiveRoom = styled(Home)``;
+
+export const AddPlayList = styled(Home)``;
+
+export const Storage = styled(Home)``;
+
+export const Login = styled(Home)`
+  font-size: 15px;
 `;
+
+export const Logout = styled(Home)``;
 
 export const NavFooter = styled.div`
   color: var(--color9);

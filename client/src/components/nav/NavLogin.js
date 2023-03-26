@@ -51,10 +51,6 @@ const NavLogin = ({ logoutHandler }) => {
             <AddPlayList onClick={() => setIsOpenPlaylistCreator('open')}>
               플레이리스트 만들기
             </AddPlayList>
-            <PlaylistCreator
-              isOpenPlaylistCreator={isOpenPlaylistCreator}
-              setIsOpenPlaylistCreator={setIsOpenPlaylistCreator}
-            />
           </div>
           <div className='nav-storage'>
             <BsFillSuitHeartFill className='heart' />
@@ -67,6 +63,10 @@ const NavLogin = ({ logoutHandler }) => {
             <Logout onClick={logoutHandler}>로그아웃</Logout>
           </div>
         </NavItems>
+        <PlaylistCreator
+          isOpenPlaylistCreator={isOpenPlaylistCreator}
+          setIsOpenPlaylistCreator={setIsOpenPlaylistCreator}
+        />
       </NavList>
     </>
   );
