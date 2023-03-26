@@ -56,6 +56,18 @@ function Player({ volume }) {
       }
     }
   };
+  //End
+  const handleEnd = () => {
+    if (playIdx === listLength - 1) {
+      dispatch(storeCurrentSong());
+      dispatch(toTheFront());
+    } else {
+      dispatch(toNextSong());
+    }
+    if (listLength === 1) {
+      seekTo(0);
+    }
+  };
   //Next
   const handleNext = (e) => {
     e.stopPropagation();
@@ -138,6 +150,7 @@ function Player({ volume }) {
         onProgress={handleProgress}
         volume={volume}
         ref={playerRef}
+        onEnded={handleEnd}
       />
       <PlayerBtnContainer>
         <MdSkipNext className='PreBtn' onClick={handlePre} />
@@ -153,7 +166,15 @@ function Player({ volume }) {
         onMouseDown={handlePlayBoxMouseDown}
         onMouseUp={handlePlayBoxMouseUp}
         onMouseMove={handlePlayBoxMouseMove}>
-        <PlayBoxonProgress width={progress * 100} />
+        <PlayBoxonProgress
+          type='range'
+          min='0'
+          max='1'
+          step='0.01'
+          progress={progress}
+          value={progress * 100}
+          width={progress * 100}
+        />
       </PlayBox>
     </PlayWarp>
   );

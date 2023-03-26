@@ -43,13 +43,31 @@ export const PlayBox = styled.div`
   background-color: var(--color7);
   border-radius: 3px;
   cursor: pointer;
-  :hover {
-    height: 7px;
-  }
 `;
-export const PlayBoxonProgress = styled.div`
+export const PlayBoxonProgress = styled.input`
+  position: absolute;
   width: ${(props) => props.width || 0}%;
   height: 100%;
-  background-color: var(--color10);
   border-radius: 3px;
+  appearance: none;
+  outline: none;
+  background: linear-gradient(
+    to right,
+    var(--color10) 0%,
+    var(--color10) ${(props) => props.progress * 100}%,
+    var(--color10) ${(props) => props.progress * 100}%,
+    var(--color10) 100%
+  );
+  &::-webkit-slider-thumb {
+    appearance: none;
+    width: 15px;
+    height: 15px;
+    border-radius: 15px;
+    background-color: var(--color10);
+    :active {
+      width: 20px;
+      height: 20px;
+      transition: 0.5s;
+    }
+  }
 `;
