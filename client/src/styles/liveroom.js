@@ -6,17 +6,10 @@ export const LiveroomContainer = styled.div`
   display: flex;
   background-color: var(--color1);
   z-index: 0;
-
-  @keyframes hide {
-    from {
-      width: 100%;
-    }
-    to {
-      width: 0;
-    }
-  }
+  justify-content: center;
+  align-items: center;
   .hidden {
-    animation: hide, 1s, 1s, ease-in;
+    display: none;
   }
 `;
 export const LiveroomMainBackground = styled.div`

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-// import ReactPlayer from 'react-player/youtube';
+import ReactPlayer from 'react-player';
 
 import { Stomp } from '@stomp/stompjs';
 import axios from 'axios';
@@ -11,13 +11,10 @@ import {
   LiveroomContainer,
   LiveAlbumCover,
   LiveroomMainBackground,
-  LiveRoomBtnContianer,
-  LiveRoomBtn,
 } from '../styles/liveroom';
 import 'animate.css';
 
 function Liveroom() {
-  const [sidebarBtnState, setSidebarBtnState] = useState(false);
   const [openSideBarSetting, setOpenSideBarSetting] = useState(false);
   const [message, setMessage] = useState('');
   const [sockClient, setsockClient] = useState(() => {});
@@ -80,14 +77,13 @@ function Liveroom() {
       playtime: '3:30',
     },
   ]);
+
   const [changeSong, setChangeSong] = useState(false);
-  const sidebarBtnStateHandler = () => {
-    console.log(sidebarBtnState);
-    setSidebarBtnState((prev) => !prev);
-  };
   const openSideBarSettingHandler = () => {
     setOpenSideBarSetting((prev) => !prev);
   };
+  const [playMusic, setPlayMusic] = useState(true);
+
   useEffect(() => {
     const socket = new SockJS(
       'http://ec2-13-124-65-151.ap-northeast-2.compute.amazonaws.com:8080/ws'
@@ -116,6 +112,7 @@ function Liveroom() {
     });
     setsockClient(client);
   }, []);
+
   useEffect(() => {
     axios
       .get(
@@ -125,9 +122,16 @@ function Liveroom() {
         // setSongs(e.data);
       });
   }, [changeSong]);
+
   return (
     <LiveroomContainer>
-      <LiveroomMainBackground>
+      <ReactPlayer
+        url='https://www.youtube.com/watch?v=11cta61wi0g?t=66'
+        playing={true}
+        muted={playMusic}
+        width={0}
+      />
+      <LiveroomMainBackground onClick={() => setPlayMusic(false)}>
         {openSideBarSetting ? (
           <LiveroomSetting
             openSideBarSettingHandler={
@@ -135,16 +139,12 @@ function Liveroom() {
             }></LiveroomSetting>
         ) : null}
         <LiveAlbumCover src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTi-fA-Qx9lHnaUD54TND9pM2DfGvIOS-d5KgvTsdU&s'></LiveAlbumCover>
-        <LiveRoomBtnContianer>
-          <LiveRoomBtn onClick={sidebarBtnStateHandler}></LiveRoomBtn>
-        </LiveRoomBtnContianer>
       </LiveroomMainBackground>
       <LiveroomSidebar
         message={message}
         setMessage={setMessage}
         sockClient={sockClient}
         chatDatas={chatDatas}
-        sidebarBtnState={sidebarBtnState}
         openSideBarSettingHandler={openSideBarSettingHandler}
         songs={songs}></LiveroomSidebar>
     </LiveroomContainer>

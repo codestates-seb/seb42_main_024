@@ -18,19 +18,12 @@ function LiveroomSideBar({
   setMessage,
   sockClient,
   chatDatas,
-  sidebarBtnState,
-  openSideBarSettingHandler,
   songs,
 }) {
   return (
-    <LiveroomSideBarContainer
-      className={
-        sidebarBtnState
-          ? 'animate__animated animate__fadeInRightBig'
-          : 'animate__animated animate__fadeOutRightBig'
-      }>
+    <LiveroomSideBarContainer>
       <LSBHeaderContainer>
-        <BsFillGearFill onClick={openSideBarSettingHandler}></BsFillGearFill>
+        <BsFillGearFill></BsFillGearFill>
         <LSBOutBtn>나가기</LSBOutBtn>
       </LSBHeaderContainer>
       <LSBPlayListContainer>
