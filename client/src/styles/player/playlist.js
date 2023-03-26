@@ -5,7 +5,7 @@ export const PlayListContainer = styled.div`
   right: 0;
   bottom: 0;
   width: 470px;
-  background-color: var(--color11);
+  background-color: var(--color1);
   display: flex;
   flex-direction: column;
 `;

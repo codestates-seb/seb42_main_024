@@ -14,7 +14,9 @@ function PlayList() {
       <PlayListUlHeader>플레이리스트 음악목록</PlayListUlHeader>
       <PlayListUl>
         {playData &&
-          playData.map((data) => <PlayListLi key={data.songId} data={data} />)}
+          playData.map((data, index) => (
+            <PlayListLi key={data.songId} data={data} index={index} />
+          ))}
       </PlayListUl>
     </PlayListContainer>
   );

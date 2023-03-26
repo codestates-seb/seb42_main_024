@@ -37,7 +37,7 @@ function NowPlaying() {
         <Volume volume={volume} onVolumeChange={handleVolumeChange} />
       </NowPlayingWrap>
       {/* PlayList */}
-      <PlayListBox isOpen={isOpen} onClick={handlePlayList}>
+      <PlayListBox isOpen={isOpen}>
         <PlayListCover>
           <PlayListImg src={dataUrl} />
         </PlayListCover>
