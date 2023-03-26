@@ -23,7 +23,6 @@ export const VolumeBarControl = styled.input`
   transition: opacity 0.5s;
   appearance: none;
   outline: none;
-  background-color: red;
   background: linear-gradient(
     to right,
     var(--color9) 0%,
