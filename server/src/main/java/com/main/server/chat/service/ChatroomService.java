@@ -8,6 +8,7 @@ import com.main.server.chat.entity.Chatroom;
 import com.main.server.chat.repository.ChatroomRepository;
 import com.main.server.exception.BusinessLogicException;
 import com.main.server.exception.ExceptionCode;
+import com.main.server.global.config.PropertyVariable;
 import com.main.server.member.entity.Member;
 import com.main.server.playlist.service.PlaylistService;
 import lombok.RequiredArgsConstructor;
@@ -29,7 +30,7 @@ public class ChatroomService {
     private final PlaylistService playlistService;
     private final ChatService chatService;
 
-    private Map<Long, ChatSongQueue> queueMap = new HashMap<>(); // 메모리로 채팅룸 노래 관리
+    private Map<Long, ChatSongQueue> queueMap = new HashMap<>(); // 메모리에서 채팅룸 노래 관리
 
     /**
      * dto 와 인증을통해 조회한 Member 값을 가져와 방 생성
@@ -38,9 +39,8 @@ public class ChatroomService {
      * @return
      */
     public Chatroom createRoom(ChatroomCreateDto dto, Member member) {
-        if (chatroomRepository.findByMember(member).isPresent()) {
-            throw new BusinessLogicException(ExceptionCode.CHATROOM_ALREADY_EXISTS);
-        }
+        checkChatroomFull();
+        checkExistsChatroom(member);
 
         Chatroom chatroom = chatroomRepository.save(Chatroom.builder() // 챗룸을 생성 후 즉시 저장(id값을 얻어서 queueMap에 키값으로 써야함)
                 .member(member)
@@ -109,9 +109,32 @@ public class ChatroomService {
         return ChatSongResponseDto.createByChatSongQueue(queueMap.get(chatroomId));
     }
 
+    public void deleteChatroom(Chatroom chatroom) {
+        chatroomRepository.delete(chatroom);
+        queueMap.remove(chatroom.getChatroomId());
+    }
+
+    public void isChatroomOwnerEmail(Chatroom chatroom, String email) {
+        if (!chatroom.getMember().getEmail().equals(email)) {
+            throw new BusinessLogicException(ExceptionCode.NO_PERMISSION);
+        }
+    }
+
     private ChatSongQueue createQueue(Long playlistId) {
-        return playlistId != null 
+        return playlistId != null
                 ? ChatSongQueue.createByPlaylist(playlistService.findPlaylistById(playlistId)) // 플레이리스트 찾아 큐 생성
                 : new ChatSongQueue(); // 노래 없는 빈 큐
+    }
+
+    private void checkChatroomFull() {
+        if (queueMap.size() >= PropertyVariable.CHATROOM_CREATE_LIMIT) {
+            throw new BusinessLogicException(ExceptionCode.CHATROOM_FULL);
+        }
+    }
+
+    private void checkExistsChatroom(Member member) {
+        if (chatroomRepository.findByMember(member).isPresent()) {
+            throw new BusinessLogicException(ExceptionCode.CHATROOM_ALREADY_EXISTS);
+        }
     }
 }
