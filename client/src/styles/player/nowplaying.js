@@ -26,7 +26,7 @@ export const PlayListBox = styled.div`
   transition: transform 0.2s ease-in-out;
 `;
 export const PlayListCover = styled.div`
-  background-color: var(--color11);
+  background-color: var(--color1);
   position: absolute;
   top: 0;
   right: 470px;
@@ -35,6 +35,10 @@ export const PlayListCover = styled.div`
   align-items: center;
   justify-content: center;
   display: flex;
+  .logo {
+    position: absolute;
+    width: 55vh;
+  }
 `;
 export const PlayListImg = styled.img`
   width: 55vh;

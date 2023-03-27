@@ -6,6 +6,7 @@ import Player from './Player';
 import PlayList from './PlayList';
 import Volume from './Volume ';
 
+import LOGO from '../../assets/LOGO.png';
 import {
   PlayWarp,
   NowPlayingWrap,
@@ -37,9 +38,13 @@ function NowPlaying() {
         <Volume volume={volume} onVolumeChange={handleVolumeChange} />
       </NowPlayingWrap>
       {/* PlayList */}
-      <PlayListBox isOpen={isOpen} onClick={handlePlayList}>
+      <PlayListBox isOpen={isOpen}>
         <PlayListCover>
-          <PlayListImg src={dataUrl} />
+          {dataUrl ? (
+            <PlayListImg src={dataUrl} />
+          ) : (
+            <img src={LOGO} alt='logo' className='logo' />
+          )}
         </PlayListCover>
         <PlayList />
       </PlayListBox>
