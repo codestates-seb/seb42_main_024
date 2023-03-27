@@ -22,8 +22,11 @@ import {
 
 const NavLogin = ({ logoutHandler }) => {
   const user = useSelector((state) => state.user);
-  const [isCreateLiveRoom, setIsCreateLiveRoom] = useState('default');
   const [isOpenPlaylistCreator, setIsOpenPlaylistCreator] = useState('default');
+  const [isCreateOpen, setIsCreateOpen] = useState(false);
+  const handleCreateOpen = () => {
+    setIsCreateOpen((pre) => !pre);
+  };
   return (
     <>
       <NavList>
@@ -44,7 +47,7 @@ const NavLogin = ({ logoutHandler }) => {
           </div>
           <div className='nav-create-liveroom'>
             <MdOutlineLibraryMusic />
-            <CreateLiveRoom onClick={() => setIsCreateLiveRoom('open')}>
+            <CreateLiveRoom onClick={handleCreateOpen}>
               라이브룸 만들기
             </CreateLiveRoom>
           </div>
@@ -71,10 +74,7 @@ const NavLogin = ({ logoutHandler }) => {
           isOpenPlaylistCreator={isOpenPlaylistCreator}
           setIsOpenPlaylistCreator={setIsOpenPlaylistCreator}
         />
-        <CreateRoom
-          isCreateLiveRoom={isCreateLiveRoom}
-          setIsCreateLiveRoom={setIsCreateLiveRoom}
-        />
+        <CreateRoom isCreateOpen={isCreateOpen} />
       </NavList>
     </>
   );
