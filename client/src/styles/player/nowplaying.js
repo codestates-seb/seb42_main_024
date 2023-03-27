@@ -35,6 +35,10 @@ export const PlayListCover = styled.div`
   align-items: center;
   justify-content: center;
   display: flex;
+  .logo {
+    position: absolute;
+    width: 55vh;
+  }
 `;
 export const PlayListImg = styled.img`
   width: 55vh;
