@@ -35,7 +35,15 @@ export const LiveroomMainBackground = styled.div`
   }
   overflow: hidden;
 `;
+export const LiveroomCover = styled.div`
+  width: 600px;
+  height: 600px;
+  position: relative;
+`;
+
 export const LiveAlbumCover = styled.img`
+  user-select: none;
+  -webkit-user-drag: none;
   width: 600px;
   height: 600px;
   border-radius: 50%;
@@ -58,4 +66,28 @@ export const LiveRoomBtn = styled.button`
   background-color: var(--color1);
   border-radius: 30%;
   border-right: 10px solid var(--color1);
+`;
+
+export const LiveroomSoundBackground = styled.div`
+  position: absolute;
+  top: 0;
+  border-radius: 50%;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(1, 1, 1, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  text-shadow: 4px 4px 4px gray;
+  color: var(--color9);
+  font-size: 150px;
+  font-weight: 600;
+  -webkit-user-drag: none;
+  user-select: none;
+  > svg {
+    font-size: 200px;
+    stroke-width: 0.5px;
+    filter: drop-shadow(4px 4px 4px gray);
+  }
 `;

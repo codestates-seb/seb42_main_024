@@ -1,16 +1,19 @@
 import { useEffect, useState } from 'react';
+import { BsVolumeMute } from 'react-icons/bs';
 import ReactPlayer from 'react-player';
 
 import { Stomp } from '@stomp/stompjs';
 import axios from 'axios';
 import * as SockJS from 'sockjs-client';
 
-import LiveroomSetting from '../components/liveroom/LiveroomSetting';
+import LiveroomPopup from '../components/liveroom/LiveroomPopup';
 import LiveroomSidebar from '../components/liveroom/LiveroomSideBar';
 import {
   LiveroomContainer,
+  LiveroomCover,
   LiveAlbumCover,
   LiveroomMainBackground,
+  LiveroomSoundBackground,
 } from '../styles/liveroom';
 import 'animate.css';
 
@@ -79,10 +82,30 @@ function Liveroom() {
   ]);
 
   const [changeSong, setChangeSong] = useState(false);
-  const openSideBarSettingHandler = () => {
-    setOpenSideBarSetting((prev) => !prev);
-  };
+  const [isAlbumCoverHover, setIsAlbumCoverHover] = useState(false);
+  const [isDrag, setIsDrag] = useState(false);
+  const [volume, setVolume] = useState(0);
+  const [a, setA] = useState(0);
   const [playMusic, setPlayMusic] = useState(true);
+
+  const volumeHandler = (e) => {
+    if (isDrag) {
+      setVolume(() => {
+        const value = a + (isDrag - e.clientY) / 350;
+        if (value >= 1) {
+          return 1;
+        } else if (value <= 0) {
+          return 0;
+        }
+        return value;
+      });
+    }
+  };
+  const openSideBarSettingHandler = (e) => {
+    if (e.target.className.includes('allow')) {
+      setOpenSideBarSetting((prev) => !prev);
+    }
+  };
 
   useEffect(() => {
     const socket = new SockJS(
@@ -125,20 +148,55 @@ function Liveroom() {
 
   return (
     <LiveroomContainer>
+      {openSideBarSetting ? (
+        <LiveroomPopup
+          openSideBarSettingHandler={openSideBarSettingHandler}></LiveroomPopup>
+      ) : null}
       <ReactPlayer
         url='https://www.youtube.com/watch?v=11cta61wi0g?t=66'
         playing={true}
         muted={playMusic}
         width={0}
+        volume={volume}
       />
-      <LiveroomMainBackground onClick={() => setPlayMusic(false)}>
-        {openSideBarSetting ? (
-          <LiveroomSetting
-            openSideBarSettingHandler={
-              openSideBarSettingHandler
-            }></LiveroomSetting>
-        ) : null}
-        <LiveAlbumCover src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTi-fA-Qx9lHnaUD54TND9pM2DfGvIOS-d5KgvTsdU&s'></LiveAlbumCover>
+      <LiveroomMainBackground
+        onMouseMove={(e) => {
+          volumeHandler(e);
+        }}
+        onMouseUp={() => {
+          setIsDrag(false);
+          setA(volume);
+        }}
+        onClick={() => setPlayMusic(false)}>
+        <LiveroomCover>
+          <LiveAlbumCover
+            onMouseEnter={() => setIsAlbumCoverHover(true)}
+            src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTi-fA-Qx9lHnaUD54TND9pM2DfGvIOS-d5KgvTsdU&s'></LiveAlbumCover>
+          {isAlbumCoverHover ? (
+            <LiveroomSoundBackground
+              onMouseLeave={() => {
+                if (!isDrag) {
+                  setIsAlbumCoverHover(false);
+                }
+              }}
+              onMouseMove={(e) => {
+                volumeHandler(e);
+              }}
+              onMouseDown={(e) => {
+                setIsDrag(e.clientY);
+              }}
+              onMouseUp={() => {
+                setIsDrag(false);
+                setA(volume);
+              }}>
+              {volume === 0 ? (
+                <BsVolumeMute></BsVolumeMute>
+              ) : (
+                Math.round(volume * 100)
+              )}
+            </LiveroomSoundBackground>
+          ) : null}
+        </LiveroomCover>
       </LiveroomMainBackground>
       <LiveroomSidebar
         message={message}

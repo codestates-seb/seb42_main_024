@@ -19,12 +19,19 @@ function LiveroomSideBar({
   sockClient,
   chatDatas,
   songs,
+  openSideBarSettingHandler,
 }) {
   return (
     <LiveroomSideBarContainer>
       <LSBHeaderContainer>
         <BsFillGearFill></BsFillGearFill>
-        <LSBOutBtn>나가기</LSBOutBtn>
+        <LSBOutBtn
+          className='allow'
+          onClick={(e) => {
+            openSideBarSettingHandler(e);
+          }}>
+          나가기
+        </LSBOutBtn>
       </LSBHeaderContainer>
       <LSBPlayListContainer>
         <LSBMemberContainer></LSBMemberContainer>
