@@ -3,13 +3,13 @@ export const CreateLiveRoomBox = styled.div`
   padding: 20px;
   background-color: #1c1c1c;
   color: white;
-  width: 500px;
-  height: 600px;
+  width: 800px;
+  height: 700px;
   position: absolute;
   top: 80px;
   left: 250px;
   z-index: -10;
-  transform: translateX(${(props) => (props.isCreateOpen ? '-150%' : '0%')});
+  transform: translateX(${(props) => (props.isCreateOpen ? '0%' : '-150%')});
   transition: transform 0.2s ease-in-out;
 `;
 export const HeaderContainer = styled.div`
@@ -88,18 +88,64 @@ export const TotalSongs = styled.div`
 `;
 export const AddPlayList = styled.div`
   width: 100%;
-  height: 80px;
+  height: 60px;
+  align-items: center;
   border-radius: 5px;
   background-color: #313540;
+  padding: 5px;
+  .DeleteBtn {
+    margin-right: 25px;
+  }
+  .ListMap {
+    :hover {
+      background-color: #676e82;
+    }
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .ListTitle {
+      margin-left: 10px;
+    }
+    .info {
+      display: flex;
+      align-items: center;
+      .ListThumbnail {
+        width: 50px;
+        height: 50px;
+        border-radius: 5px;
+      }
+    }
+  }
+  .null {
+    color: #676e82;
+  }
 `;
 export const MyPlaylist = styled.div`
   margin: 10px 0;
 `;
 export const MyPlaylistBox = styled.div`
+  :hover {
+    overflow-y: scroll;
+  }
   border-radius: 5px;
   background-color: #313540;
   width: 100%;
-  height: 100px;
+  height: 200px;
+  padding: 5px;
+  .DeleteBtn {
+    margin-right: 25px;
+  }
+  .ListMap {
+    :hover {
+      background-color: #676e82;
+    }
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .ListTitle {
+      margin-left: 10px;
+    }
+  }
 `;
 export const CreateBtn = styled.div`
   border-radius: 8px;
@@ -120,4 +166,17 @@ export const CreateBtn = styled.div`
     background-color: var(--color9);
     color: #313540;
   }
+`;
+export const Info = styled.div`
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  .ListThumbnail {
+    width: 50px;
+    height: 50px;
+    border-radius: 5px;
+  }
+`;
+export const DeleteBtnBox = styled.div`
+  cursor: pointer;
 `;

@@ -74,7 +74,10 @@ const NavLogin = ({ logoutHandler }) => {
           isOpenPlaylistCreator={isOpenPlaylistCreator}
           setIsOpenPlaylistCreator={setIsOpenPlaylistCreator}
         />
-        <CreateRoom isCreateOpen={isCreateOpen} />
+        <CreateRoom
+          isCreateOpen={isCreateOpen}
+          setIsCreateOpen={setIsCreateOpen}
+        />
       </NavList>
     </>
   );
