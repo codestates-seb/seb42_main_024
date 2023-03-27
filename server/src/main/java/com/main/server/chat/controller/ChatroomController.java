@@ -80,10 +80,19 @@ public class ChatroomController {
     }
 
     @PostMapping("/{chatroom-id}/songs/next")
-    public ResponseEntity switchNextSong(@PathVariable("chatroom-id") Long chatroomId,
+    public ResponseEntity switchNextSong(@PathVariable("chatroom-id") @Positive Long chatroomId,
                                          @RequestBody ChatSong chatSong,
                                          @AuthenticationPrincipal String email) {
         chatroomService.switchNextSong(chatroomId, chatSong);
         return ResponseEntity.status(HttpStatus.OK).build();
+    }
+
+    @DeleteMapping("/{chatroom-id}")
+    public ResponseEntity deleteChatroom(@PathVariable("chatroom-id") @Positive Long chatroomId,
+                                     @AuthenticationPrincipal String email) {
+        Chatroom findChatroom = chatroomService.findChatroomById(chatroomId);
+        chatroomService.isChatroomOwnerEmail(findChatroom, email);
+        chatroomService.deleteChatroom(findChatroom);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 }

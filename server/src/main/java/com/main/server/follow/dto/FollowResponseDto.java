@@ -1,7 +1,5 @@
 package com.main.server.follow.dto;
 
-import com.main.server.member.dto.MemberSimpleDto;
-import com.main.server.member.entity.Member;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

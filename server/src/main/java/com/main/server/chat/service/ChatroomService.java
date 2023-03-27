@@ -8,16 +8,22 @@ import com.main.server.chat.entity.Chatroom;
 import com.main.server.chat.repository.ChatroomRepository;
 import com.main.server.exception.BusinessLogicException;
 import com.main.server.exception.ExceptionCode;
+import com.main.server.global.config.PropertyVariable;
 import com.main.server.member.entity.Member;
+import com.main.server.member.repository.MemberRepository;
+import com.main.server.playlist.entity.Playlist;
 import com.main.server.playlist.service.PlaylistService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.annotation.PostConstruct;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 @Slf4j
 @Service
@@ -28,8 +34,31 @@ public class ChatroomService {
     private final ChatroomRepository chatroomRepository;
     private final PlaylistService playlistService;
     private final ChatService chatService;
+    
+    private final MemberRepository memberRepository; // 지울거
 
-    private Map<Long, ChatSongQueue> queueMap = new HashMap<>(); // 메모리로 채팅룸 노래 관리
+    private Map<Long, ChatSongQueue> queueMap = new HashMap<>(); // 메모리에서 채팅룸 노래 관리
+
+    @PostConstruct
+    public void init() {
+        
+        Member member = Member.builder()
+                .nickname("anonymousUser")
+                .email("anonymousUser")
+                .roles(List.of("USER"))
+                .build();
+        Member save = memberRepository.save(member);
+
+        List<Chatroom> chatroomList = IntStream.range(1, 21)
+                .mapToObj(i -> Chatroom.builder()
+                        .title("test" + i)
+                        .member(save)
+                        .thumbnail("https://i.ytimg.com/vi/_ZAgIHmHLdc/hqdefault.jpg")
+                        .build())
+                .collect(Collectors.toList());
+        
+        chatroomRepository.saveAll(chatroomList);
+    }
 
     /**
      * dto 와 인증을통해 조회한 Member 값을 가져와 방 생성
@@ -38,16 +67,21 @@ public class ChatroomService {
      * @return
      */
     public Chatroom createRoom(ChatroomCreateDto dto, Member member) {
-        if (chatroomRepository.findByMember(member).isPresent()) {
-            throw new BusinessLogicException(ExceptionCode.CHATROOM_ALREADY_EXISTS);
-        }
+        checkChatroomFull();
+        checkExistsChatroom(member);
 
-        Chatroom chatroom = chatroomRepository.save(Chatroom.builder() // 챗룸을 생성 후 즉시 저장(id값을 얻어서 queueMap에 키값으로 써야함)
+        // playlist 필수
+        Playlist findPlaylist = playlistService.findPlaylistById(dto.getPlaylistId());
+        ChatSongQueue queue = ChatSongQueue.createByPlaylist(findPlaylist);
+
+        // 챗룸을 생성 후 즉시 저장(id값을 얻어서 queueMap에 키값으로 써야함)
+        Chatroom chatroom = chatroomRepository.save(Chatroom.builder()
                 .member(member)
                 .title(dto.getTitle())
+                .thumbnail(findPlaylist.getThumbnail())
                 .build());
 
-        ChatSongQueue queue = createQueue(dto.getPlaylistId()); // 플레이리스트 유무에따라 다르게 초기화
+//        ChatSongQueue queue = createQueue(dto.getPlaylistId()); // 플레이리스트 유무에따라 다르게 초기화
 
         queueMap.put(chatroom.getChatroomId(), queue); // ChatSongQueue를 메모리에 저장
 
@@ -96,6 +130,7 @@ public class ChatroomService {
     public void switchNextSong(Long chatroomId, ChatSong chatSong) {
         if (queueMap.get(chatroomId).nextSong(chatSong)) { // 노래가 바뀌었을 경우
             chatService.sendSystemMessage(chatroomId, "NextSong"); // 다음 노래를 재생하라는 메세지를 구독자들에게 뿌림
+            findChatroomById(chatroomId).addHeat(PropertyVariable.ADD_HEAT_AT_NEXTSONG);
         }
     }
 
@@ -109,9 +144,33 @@ public class ChatroomService {
         return ChatSongResponseDto.createByChatSongQueue(queueMap.get(chatroomId));
     }
 
-    private ChatSongQueue createQueue(Long playlistId) {
-        return playlistId != null 
-                ? ChatSongQueue.createByPlaylist(playlistService.findPlaylistById(playlistId)) // 플레이리스트 찾아 큐 생성
-                : new ChatSongQueue(); // 노래 없는 빈 큐
+    public void deleteChatroom(Chatroom chatroom) {
+        chatroomRepository.delete(chatroom);
+        queueMap.remove(chatroom.getChatroomId());
+    }
+
+    public void isChatroomOwnerEmail(Chatroom chatroom, String email) {
+        if (!chatroom.getMember().getEmail().equals(email)) {
+            throw new BusinessLogicException(ExceptionCode.NO_PERMISSION);
+        }
+    }
+
+    // 플레이리스트를 안받는 상황을 체크하는 방식
+//    private ChatSongQueue createQueue(Long playlistId) {
+//        return playlistId != null
+//                ? ChatSongQueue.createByPlaylist(playlistService.findPlaylistById(playlistId)) // 플레이리스트 찾아 큐 생성
+//                : new ChatSongQueue(); // 노래 없는 빈 큐
+//    }
+
+    private void checkChatroomFull() {
+        if (queueMap.size() >= PropertyVariable.CHATROOM_CREATE_LIMIT) {
+            throw new BusinessLogicException(ExceptionCode.CHATROOM_FULL);
+        }
+    }
+
+    private void checkExistsChatroom(Member member) {
+        if (chatroomRepository.findByMember(member).isPresent()) {
+            throw new BusinessLogicException(ExceptionCode.CHATROOM_ALREADY_EXISTS);
+        }
     }
 }

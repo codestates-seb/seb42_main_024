@@ -45,6 +45,8 @@ public class ChatService {
 
             template.convertAndSend("/sub/chat/room/" + dto.getChatroomId(),
                     dto.toResponseDto(memberNumber).isEnterType());
+
+            chatroom.addHeat(PropertyVariable.ADD_HEAT_AT_ENTER);
         } else {
             template.convertAndSend("/sub/chat/room/" + dto.getChatroomId(),
                     dto.toResponseDto(null).isErrorType("방의 정원이 초과했습니다."));

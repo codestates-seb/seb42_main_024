@@ -15,6 +15,8 @@ public class ChatroomResponseDto {
 
     private String Owner;
 
+    private String thumbnail;
+
     private Integer memberCount;
 
     private List<String> members;
@@ -24,6 +26,7 @@ public class ChatroomResponseDto {
                 chatroom.getChatroomId(),
                 chatroom.getTitle(),
                 chatroom.getMember().getNickname(),
+                chatroom.getThumbnail(),
                 chatroom.getMembers().size(),
                 chatroom.getMembers());
     }
