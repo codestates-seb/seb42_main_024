@@ -1,8 +1,3 @@
-import { useEffect, useState } from 'react';
-
-import { Stomp } from '@stomp/stompjs';
-import * as SockJS from 'sockjs-client';
-
 import Chatting from './Chatting';
 
 import {
@@ -11,34 +6,7 @@ import {
   LSBChatDetail,
 } from '../../styles/lsbchat';
 
-function LSBChat() {
-  const [message, setMessage] = useState('');
-  const [sockClient, setsockClient] = useState(() => {});
-  const [chatDatas, setChatDatas] = useState([]);
-
-  useEffect(() => {
-    const socket = new SockJS(
-      'http://ec2-13-124-65-151.ap-northeast-2.compute.amazonaws.com:8080/ws'
-    );
-    const client = Stomp.over(socket);
-    client.connect({}, () => {
-      client.subscribe('/sub/chat/room/1', function (join) {
-        console.log(JSON.parse(join.body));
-        setChatDatas((prev) => [...prev, JSON.parse(join.body)]);
-      });
-      client.send(
-        '/pub/chat/join',
-        {},
-        JSON.stringify({
-          message: message,
-          memberName: '아무',
-          chatroomId: '1',
-        })
-      );
-    });
-    setsockClient(client);
-  }, []);
-
+function LSBChat({ message, setMessage, sockClient, chatDatas }) {
   const changeMessageHandler = (e) => {
     setMessage(e.target.value);
   };
@@ -53,7 +21,7 @@ function LSBChat() {
   const sendMessageHandler = (e) => {
     if (message !== '' && e.key === 'Enter' && !e.shiftKey) {
       sockClient.send(
-        '/pub/chat/message',
+        '/pub/api/chat/message',
         {},
         JSON.stringify({
           message: message,
