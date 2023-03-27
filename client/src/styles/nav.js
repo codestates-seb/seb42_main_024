@@ -8,10 +8,10 @@ export const NavContainer = styled.div`
   font-family: var(--ft-pretendardMedium);
   z-index: 10;
 
-  .nav-logo {
-    color: var(--color6);
-    margin: 30px 0px 20px 15px;
-    font-size: 25px;
+  .logo {
+    width: 170px;
+    height: 41px;
+    margin: 30px 0px 15px 15px;
     display: flex;
     text-align: center;
     cursor: pointer;
@@ -21,10 +21,6 @@ export const NavContainer = styled.div`
     display: flex;
     text-align: center;
     height: 25px;
-  }
-
-  button {
-    white-space: nowrap;
   }
 `;
 

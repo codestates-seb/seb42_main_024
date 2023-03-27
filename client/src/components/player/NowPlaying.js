@@ -6,7 +6,7 @@ import Player from './Player';
 import PlayList from './PlayList';
 import Volume from './Volume ';
 
-import LOGO from '../../assets/LOGO.png';
+import LOGO from '../../assets/Logo.png';
 import {
   PlayWarp,
   NowPlayingWrap,

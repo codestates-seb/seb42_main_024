@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import { FaQuestion } from 'react-icons/fa';
 import { useSelector, useDispatch } from 'react-redux';
 
 import axios from 'axios';
@@ -9,6 +8,7 @@ import NavLogin from './NavLogin';
 import NavLogout from './NavLogout';
 
 import { setUserData, deleteUserData } from '../../actions/actions';
+import Logo from '../../assets/Logo.png';
 import { NavContainer, NavFooter } from '../../styles/nav';
 
 const Nav = () => {
@@ -87,8 +87,7 @@ const Nav = () => {
   return (
     <NavContainer>
       <div className='nav-logo'>
-        <FaQuestion className='icons-logo' />
-        <span>LOGO</span>
+        <img className='logo' src={Logo} alt='logo' />
       </div>
       {isLogin ? (
         <NavLogin user={user} logoutHandler={logoutHandler} />
