@@ -71,7 +71,7 @@ public class BoardService {
         boardRepository.save(board);
     }
 
-    public BoardResponseDto findBoard(Long boardId, Long memberId) {
+    public BoardResponseDto findBoard(Long boardId) {
         Board board = boardRepository.findById(boardId).get(); // * orElseThrow로 익셉션
         Long viewCount = board.getViewCount() + 1; //조회수
         board.setViewCount(viewCount);
