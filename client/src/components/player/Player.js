@@ -36,24 +36,24 @@ function Player({ volume }) {
   const playerRef = useRef(null);
   const dispatch = useDispatch();
   const [isSeeking, setIsSeeking] = useState(false);
-  //플레이 버튼
+  //퍼즈
   const handlePause = (e) => {
     e.stopPropagation();
     if (isPlaying) {
       dispatch(togglePause());
     }
   };
-  //Pause
+  //플레이
   const handlePlay = (e) => {
     e.stopPropagation();
-    if (playIdx !== null) {
-      dispatch(togglePause());
-      if (listLength !== 0) {
-        if (playIdx === null) {
-          dispatch(fetchPrevSong());
-        }
+    console.log(isPlaying);
+    if (listLength !== 0) {
+      if (playIdx === null) {
+        dispatch(fetchPrevSong());
+        dispatch(toTheFront());
         dispatch(togglePlay());
       }
+      dispatch(togglePlay());
     }
   };
   //End
@@ -96,28 +96,34 @@ function Player({ volume }) {
   };
   //진행도 전달
   const handlePlayBoxClick = (e) => {
-    e.stopPropagation();
+    if (playIdx !== null) {
+      e.stopPropagation();
 
-    // PlayBox 영역 내에서만 클릭한 경우에만 처리
-    const boxWidth = e.currentTarget.offsetWidth;
-    const clickX = e.clientX - e.currentTarget.offsetLeft;
+      // PlayBox 영역 내에서만 클릭한 경우에만 처리
+      const boxWidth = e.currentTarget.offsetWidth;
+      const clickX = e.clientX - e.currentTarget.offsetLeft;
 
-    // PlayBox 영역 내에서 클릭한 경우에만 progress 값을 변경합니다.
-    if (clickX >= 0 && clickX <= boxWidth) {
-      const progressPercentage = (clickX / boxWidth) * 100;
-      const newProgress = progressPercentage / 100;
-      setProgress(newProgress);
-      seekTo(newProgress);
+      // PlayBox 영역 내에서 클릭한 경우에만 progress 값을 변경합니다.
+      if (clickX >= 0 && clickX <= boxWidth) {
+        const progressPercentage = (clickX / boxWidth) * 100;
+        const newProgress = progressPercentage / 100;
+        setProgress(newProgress);
+        seekTo(newProgress);
+      }
     }
   };
   const handlePlayBoxMouseDown = (e) => {
     e.stopPropagation();
-    setIsSeeking(true);
+    if (playIdx !== null) {
+      setIsSeeking(true);
+    }
   };
 
   const handlePlayBoxMouseUp = (e) => {
     e.stopPropagation();
-    setIsSeeking(false);
+    if (playIdx !== null) {
+      setIsSeeking(false);
+    }
   };
 
   const handlePlayBoxMouseMove = (e) => {
