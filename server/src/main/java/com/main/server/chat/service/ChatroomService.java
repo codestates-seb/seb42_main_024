@@ -103,6 +103,7 @@ public class ChatroomService {
     public void switchNextSong(Long chatroomId, ChatSong chatSong) {
         if (queueMap.get(chatroomId).nextSong(chatSong)) { // 노래가 바뀌었을 경우
             chatService.sendSystemMessage(chatroomId, "NextSong"); // 다음 노래를 재생하라는 메세지를 구독자들에게 뿌림
+            findChatroomById(chatroomId).addHeat(PropertyVariable.ADD_HEAT_AT_NEXTSONG);
         }
     }
 

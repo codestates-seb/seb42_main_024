@@ -28,6 +28,8 @@ public class Chatroom extends Auditable {
 
     private String thumbnail;
 
+    private Integer heat = 0;
+
     @CollectionTable(name = "chatroom_member",
             joinColumns = @JoinColumn(name = "chatroom_id"))
     @ElementCollection(fetch = FetchType.LAZY)
@@ -82,5 +84,9 @@ public class Chatroom extends Auditable {
         } else {
             return 0;
         }
+    }
+
+    public void addHeat(Integer heat) {
+        this.heat += heat;
     }
 }
