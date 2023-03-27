@@ -7,19 +7,13 @@ export const NavContainer = styled.div`
   position: fixed;
   font-family: var(--ft-pretendardMedium);
 
-  .nav-logo {
-    color: var(--color6);
-    margin: 30px 0px 20px 15px;
-    font-size: 25px;
+  .logo {
+    width: 170px;
+    height: 41px;
+    margin: 30px 0px 15px 15px;
     display: flex;
     text-align: center;
     cursor: pointer;
-  }
-
-  span {
-    display: flex;
-    text-align: center;
-    height: 25px;
   }
 `;
 
