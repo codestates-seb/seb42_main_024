@@ -46,21 +46,22 @@ public class BoardController {
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
-    @GetMapping("/{board-id}/{member-id}")
-    public ResponseEntity getBoard(@PathVariable(name="board-id") Long boardId, @PathVariable(name="member-id") Long memberId) { // * member-id를 PathVariable로 가져오는거는 보안적으로 추약
-        BoardResponseDto board = boardService.findBoard(boardId, memberId);
+    @GetMapping("/{board-id}")
+    public ResponseEntity getBoard(@PathVariable(name="board-id") Long boardId) {
+        BoardResponseDto board = boardService.findBoard(boardId);
         board.setPlaylist(PlaylistResponseDto.createByEntity(
                 playlistService.findPlaylistById(board.getBoard().getPlaylistId())));
         return new ResponseEntity<>(new SingleResponseDto<>(board), HttpStatus.OK);
     }
 
-    @DeleteMapping("/{board-id}/{member-id}")
-    public ResponseEntity deleteBoard(@PathVariable(name="board-id") Long boardId, @PathVariable(name="member-id") Long memberId) {
+    @DeleteMapping("/{board-id}/{member-id}") // * member-id를 PathVariable로 가져오는거는 보안적으로 취약
+    public ResponseEntity deleteBoard(@PathVariable(name="board-id") Long boardId,
+                                      @PathVariable(name="member-id") Long memberId) {
         boardService.deleteBoard(boardId, memberId);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-    @PatchMapping("/{board-id}/{member-id}")
+    @PatchMapping("/{board-id}/{member-id}") // * member-id를 PathVariable로 가져오는거는 보안적으로 취약
     public ResponseEntity patchBoard(@RequestBody BoardPatchDto boardPatchDto, @PathVariable(name="board-id") Long boardId, @PathVariable(name="member-id") Long memberId) {
         System.out.println("BoardController.patchBoard");
         boardService.patchBoard(boardMapper.boardPatchDtoToBoard(boardPatchDto, boardId), memberId);

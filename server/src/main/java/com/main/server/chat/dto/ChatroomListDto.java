@@ -16,6 +16,7 @@ public class ChatroomListDto {
     private Long next;
 
     public static ChatroomListDto of(List<ChatroomSimpleDto> list) {
-        return new ChatroomListDto(list, list.get(list.size() - 1).getChatroomId());
+        Long chatroomId = list.size() > 0 ? list.get(list.size() - 1).getChatroomId() : null;
+        return new ChatroomListDto(list, chatroomId);
     }
 }

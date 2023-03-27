@@ -15,6 +15,8 @@ public class ChatroomSimpleDto {
 
     private String Owner;
 
+    private String thumbnail;
+
     private Integer memberCount;
 
     public static ChatroomSimpleDto createByChatroom(Chatroom chatroom) {
@@ -22,6 +24,7 @@ public class ChatroomSimpleDto {
                 chatroom.getChatroomId(),
                 chatroom.getTitle(),
                 chatroom.getMember().getNickname(),
+                chatroom.getThumbnail(),
                 chatroom.getMembers().size());
     }
 }
