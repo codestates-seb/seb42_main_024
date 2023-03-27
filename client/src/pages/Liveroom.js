@@ -8,6 +8,7 @@ import * as SockJS from 'sockjs-client';
 
 import LiveroomPopup from '../components/liveroom/LiveroomPopup';
 import LiveroomSidebar from '../components/liveroom/LiveroomSideBar';
+// import Nav from '../components/nav/Nav';
 import {
   LiveroomContainer,
   LiveroomCover,
@@ -81,6 +82,7 @@ function Liveroom() {
     },
   ]);
 
+  const accessToken = localStorage.getItem('accessToken');
   const [changeSong, setChangeSong] = useState(false);
   const [isAlbumCoverHover, setIsAlbumCoverHover] = useState(false);
   const [isDrag, setIsDrag] = useState(false);
@@ -108,46 +110,75 @@ function Liveroom() {
   };
 
   useEffect(() => {
-    const socket = new SockJS(
-      'http://ec2-13-124-65-151.ap-northeast-2.compute.amazonaws.com:8080/ws'
-    );
-    const client = Stomp.over(socket);
-    client.connect({}, () => {
-      client.subscribe('/sub/chat/room/1', function (join) {
-        const receiveData = JSON.parse(join.body);
-        if (receiveData.type === 'SYSTEM') {
-          if (receiveData.message === 'NEXTSONG') {
-            setChangeSong((prev) => !prev);
-          }
-        } else {
-          setChatDatas((prev) => [...prev, receiveData]);
-        }
+    axios
+      .get('http://15.165.199.44:8080/api/rooms/22', {
+        headers: {
+          Authorization: `${accessToken}`,
+          accept: 'application/json',
+        },
+      })
+      .then((e) => {
+        axios
+          .get('http://15.165.199.44:8080/api/members/auth', {
+            headers: {
+              Authorization: `${accessToken}`,
+              accept: 'application/json',
+            },
+          })
+          .then((user) => {
+            const userData = user.data;
+            console.log(userData);
+            const roomData = e.data.data;
+            console.log(roomData);
+            if (!roomData.members.includes(userData.nickname)) {
+              const socket = new SockJS('http://15.165.199.44:8080/ws');
+              const client = Stomp.over(socket);
+              client.connect({}, () => {
+                client.subscribe('/sub/chat/room/22', function (join) {
+                  const receiveData = JSON.parse(join.body);
+                  if (receiveData.type === 'SYSTEM') {
+                    if (receiveData.message === 'NEXTSONG') {
+                      setChangeSong((prev) => !prev);
+                    }
+                  } else {
+                    setChatDatas((prev) => [...prev, receiveData]);
+                  }
+                });
+                client.send(
+                  '/pub/join',
+                  {},
+                  JSON.stringify({
+                    message: message,
+                    memberName: userData.nickname,
+                    chatroomId: roomData.chatroomId,
+                  })
+                );
+              });
+              setsockClient(client);
+            } else {
+              alert('나가세요');
+            }
+          });
       });
-      client.send(
-        '/pub/chat/join',
-        {},
-        JSON.stringify({
-          message: message,
-          memberName: '아무',
-          chatroomId: '1',
-        })
-      );
-    });
-    setsockClient(client);
   }, []);
 
   useEffect(() => {
     axios
-      .get(
-        'http://ec2-13-124-65-151.ap-northeast-2.compute.amazonaws.com:8080/rooms/1/songs'
-      )
-      .then(() => {
+      .get('http://15.165.199.44:8080/api/rooms/22/songs', {
+        headers: {
+          Authorization: `${accessToken}`,
+          accept: 'application/json',
+        },
+      })
+      .then((e) => {
+        console.log(e);
         // setSongs(e.data);
       });
   }, [changeSong]);
 
   return (
     <LiveroomContainer>
+      {/* <Nav></Nav> */}
       {openSideBarSetting ? (
         <LiveroomPopup
           openSideBarSettingHandler={openSideBarSettingHandler}></LiveroomPopup>

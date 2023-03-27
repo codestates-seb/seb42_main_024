@@ -1,5 +1,3 @@
-import axios from 'axios';
-
 import Chatting from './Chatting';
 
 import {
@@ -23,7 +21,7 @@ function LSBChat({ message, setMessage, sockClient, chatDatas }) {
   const sendMessageHandler = (e) => {
     if (message !== '' && e.key === 'Enter' && !e.shiftKey) {
       sockClient.send(
-        '/pub/chat/message',
+        '/pub/api/chat/message',
         {},
         JSON.stringify({
           message: message,
@@ -31,14 +29,6 @@ function LSBChat({ message, setMessage, sockClient, chatDatas }) {
           chatroomId: '1',
         })
       );
-      axios
-        .post(
-          'http://ec2-13-124-65-151.ap-northeast-2.compute.amazonaws.com:8080/rooms/1/songs/next',
-          { videoId: 'video2' }
-        )
-        .then((e) => {
-          console.log(e);
-        });
       setMessage('');
     }
   };
