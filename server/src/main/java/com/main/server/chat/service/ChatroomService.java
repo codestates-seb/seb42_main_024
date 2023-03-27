@@ -10,6 +10,7 @@ import com.main.server.exception.BusinessLogicException;
 import com.main.server.exception.ExceptionCode;
 import com.main.server.global.config.PropertyVariable;
 import com.main.server.member.entity.Member;
+import com.main.server.member.repository.MemberRepository;
 import com.main.server.playlist.entity.Playlist;
 import com.main.server.playlist.service.PlaylistService;
 import lombok.RequiredArgsConstructor;
@@ -17,9 +18,12 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.annotation.PostConstruct;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 @Slf4j
 @Service
@@ -30,8 +34,31 @@ public class ChatroomService {
     private final ChatroomRepository chatroomRepository;
     private final PlaylistService playlistService;
     private final ChatService chatService;
+    
+    private final MemberRepository memberRepository; // 지울거
 
     private Map<Long, ChatSongQueue> queueMap = new HashMap<>(); // 메모리에서 채팅룸 노래 관리
+
+    @PostConstruct
+    public void init() {
+        
+        Member member = Member.builder()
+                .nickname("anonymousUser")
+                .email("anonymousUser")
+                .roles(List.of("USER"))
+                .build();
+        Member save = memberRepository.save(member);
+
+        List<Chatroom> chatroomList = IntStream.range(1, 21)
+                .mapToObj(i -> Chatroom.builder()
+                        .title("test" + i)
+                        .member(save)
+                        .thumbnail("https://i.ytimg.com/vi/_ZAgIHmHLdc/hqdefault.jpg")
+                        .build())
+                .collect(Collectors.toList());
+        
+        chatroomRepository.saveAll(chatroomList);
+    }
 
     /**
      * dto 와 인증을통해 조회한 Member 값을 가져와 방 생성
