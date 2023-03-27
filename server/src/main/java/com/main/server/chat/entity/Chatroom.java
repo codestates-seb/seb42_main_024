@@ -1,6 +1,7 @@
 package com.main.server.chat.entity;
 
 import com.main.server.audit.Auditable;
+import com.main.server.chat.dto.ChatroomCreateDto;
 import com.main.server.member.entity.Member;
 import lombok.*;
 import lombok.extern.slf4j.Slf4j;
@@ -25,18 +26,21 @@ public class Chatroom extends Auditable {
 
     private String title;
 
-    private Integer maxCount = 4;
+    private String thumbnail;
 
     @CollectionTable(name = "chatroom_member",
             joinColumns = @JoinColumn(name = "chatroom_id"))
     @ElementCollection(fetch = FetchType.LAZY)
     List<String> members = new ArrayList<>();
 
+
     @Builder
-    public Chatroom(Member member, String title) {
+    public Chatroom(Member member, String title, String thumbnail) {
         this.member = member;
         this.title = title;
+        this.thumbnail = thumbnail;
     }
+
 
     /**
      * memberName에 해당하는 멤버를 리스트에 추가

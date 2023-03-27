@@ -10,6 +10,7 @@ import com.main.server.exception.BusinessLogicException;
 import com.main.server.exception.ExceptionCode;
 import com.main.server.global.config.PropertyVariable;
 import com.main.server.member.entity.Member;
+import com.main.server.playlist.entity.Playlist;
 import com.main.server.playlist.service.PlaylistService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -42,12 +43,18 @@ public class ChatroomService {
         checkChatroomFull();
         checkExistsChatroom(member);
 
-        Chatroom chatroom = chatroomRepository.save(Chatroom.builder() // 챗룸을 생성 후 즉시 저장(id값을 얻어서 queueMap에 키값으로 써야함)
+        // playlist 필수
+        Playlist findPlaylist = playlistService.findPlaylistById(dto.getPlaylistId());
+        ChatSongQueue queue = ChatSongQueue.createByPlaylist(findPlaylist);
+
+        // 챗룸을 생성 후 즉시 저장(id값을 얻어서 queueMap에 키값으로 써야함)
+        Chatroom chatroom = chatroomRepository.save(Chatroom.builder()
                 .member(member)
                 .title(dto.getTitle())
+                .thumbnail(findPlaylist.getThumbnail())
                 .build());
 
-        ChatSongQueue queue = createQueue(dto.getPlaylistId()); // 플레이리스트 유무에따라 다르게 초기화
+//        ChatSongQueue queue = createQueue(dto.getPlaylistId()); // 플레이리스트 유무에따라 다르게 초기화
 
         queueMap.put(chatroom.getChatroomId(), queue); // ChatSongQueue를 메모리에 저장
 
@@ -120,11 +127,12 @@ public class ChatroomService {
         }
     }
 
-    private ChatSongQueue createQueue(Long playlistId) {
-        return playlistId != null
-                ? ChatSongQueue.createByPlaylist(playlistService.findPlaylistById(playlistId)) // 플레이리스트 찾아 큐 생성
-                : new ChatSongQueue(); // 노래 없는 빈 큐
-    }
+    // 플레이리스트를 안받는 상황을 체크하는 방식
+//    private ChatSongQueue createQueue(Long playlistId) {
+//        return playlistId != null
+//                ? ChatSongQueue.createByPlaylist(playlistService.findPlaylistById(playlistId)) // 플레이리스트 찾아 큐 생성
+//                : new ChatSongQueue(); // 노래 없는 빈 큐
+//    }
 
     private void checkChatroomFull() {
         if (queueMap.size() >= PropertyVariable.CHATROOM_CREATE_LIMIT) {
