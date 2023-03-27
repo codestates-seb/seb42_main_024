@@ -64,6 +64,16 @@ public class ChatroomController {
                 .body(new ResponseDto(ChatroomListDto.of(chatroomList), 200));
     }
 
+    @GetMapping("/rank")
+    public ResponseEntity getHighRankChatroom() {
+        List<ChatroomSimpleDto> chatroomList = chatroomService.getHighRankChatroomList().stream()
+                .map(ChatroomSimpleDto::createByChatroom)
+                .collect(Collectors.toList());
+
+        return ResponseEntity.status(HttpStatus.OK)
+                .body(new ResponseDto(chatroomList, 200));
+    }
+
     @GetMapping("/{chatroom-id}/songs")
     public ResponseEntity getSong(@PathVariable("chatroom-id") Long chatroomId) {
         ChatSongResponseDto responseDto = chatroomService.getSongAtRoom(chatroomId);

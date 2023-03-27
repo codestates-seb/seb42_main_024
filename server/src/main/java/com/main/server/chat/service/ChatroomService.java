@@ -19,6 +19,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.PostConstruct;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -38,6 +39,7 @@ public class ChatroomService {
     private final MemberRepository memberRepository; // 지울거
 
     private Map<Long, ChatSongQueue> queueMap = new HashMap<>(); // 메모리에서 채팅룸 노래 관리
+    private List<Chatroom> highRankChatroomList = new ArrayList<>();
 
     @PostConstruct
     public void init() {
@@ -50,13 +52,17 @@ public class ChatroomService {
         Member save = memberRepository.save(member);
 
         List<Chatroom> chatroomList = IntStream.range(1, 21)
-                .mapToObj(i -> Chatroom.builder()
-                        .title("test" + i)
-                        .member(save)
-                        .thumbnail("https://i.ytimg.com/vi/_ZAgIHmHLdc/hqdefault.jpg")
-                        .build())
+                .mapToObj(i -> {
+                    Chatroom chatroom = Chatroom.builder()
+                            .title("test" + i)
+                            .member(save)
+                            .thumbnail("https://i.ytimg.com/vi/_ZAgIHmHLdc/hqdefault.jpg")
+                            .build();
+                    chatroom.addHeat(i);
+                    return chatroom;
+                })
                 .collect(Collectors.toList());
-        
+
         chatroomRepository.saveAll(chatroomList);
     }
 
@@ -144,6 +150,10 @@ public class ChatroomService {
         return ChatSongResponseDto.createByChatSongQueue(queueMap.get(chatroomId));
     }
 
+    public List<Chatroom> getHighRankChatroomList() {
+        return this.highRankChatroomList;
+    }
+
     public void deleteChatroom(Chatroom chatroom) {
         chatroomRepository.delete(chatroom);
         queueMap.remove(chatroom.getChatroomId());
@@ -153,6 +163,14 @@ public class ChatroomService {
         if (!chatroom.getMember().getEmail().equals(email)) {
             throw new BusinessLogicException(ExceptionCode.NO_PERMISSION);
         }
+    }
+
+    public void newRanking(List<Chatroom> chatroomList) {
+        this.highRankChatroomList = chatroomList;
+    }
+
+    public Integer getChatroomSize() {
+        return this.queueMap.size();
     }
 
     // 플레이리스트를 안받는 상황을 체크하는 방식
