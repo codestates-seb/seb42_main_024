@@ -9,7 +9,7 @@ import java.util.List;
 @Getter
 @Setter
 public class BoardPatchDto {
-    private Long memberID;
+    private Long memberId;
     private String boardContent;
     private String boardTitle;
     private String boardThumb;

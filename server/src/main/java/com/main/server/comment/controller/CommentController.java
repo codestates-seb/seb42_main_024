@@ -29,7 +29,7 @@ public class CommentController {
     }
 
 
-    @PatchMapping("/{comment-id}")
+    @PatchMapping("/{comment-id}/{member-id}")
     public ResponseEntity patchComment(@RequestBody CommentPatchDto commentPatchDto, @PathVariable(name="comment-id") Long commentId, @PathVariable(name="member-id") Long memberId) {
         commentService.patchComment(commentMapper.commentPatchDtoToComment(commentPatchDto, commentId), memberId);
         return new ResponseEntity<>(HttpStatus.OK);

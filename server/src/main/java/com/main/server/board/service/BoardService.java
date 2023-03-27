@@ -12,7 +12,6 @@ import com.main.server.board.repository.BoardRepository;
 import com.main.server.exception.BusinessLogicException;
 import com.main.server.exception.ExceptionCode;
 import com.main.server.like.service.FindLikeService;
-import com.main.server.member.entity.Member;
 import com.main.server.playlist.service.PlaylistService;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -20,13 +19,11 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.PostConstruct;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -57,7 +54,7 @@ public class BoardService {
 //        boardRepository.save(board);
 //    }
 
-    public void saveBoard(Board board) {
+    public Board saveBoard(Board board) {
         String time = "";
         SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHssSSS");
         Calendar dateTime = Calendar.getInstance();
@@ -69,6 +66,7 @@ public class BoardService {
         board.setCreatedAt(LocalDateTime.now());
 
         boardRepository.save(board);
+        return board;
     }
 
     public BoardResponseDto findBoard(Long boardId) {
@@ -103,6 +101,7 @@ public class BoardService {
         if (board.getMember().getMemberId().equals(memberId)) {
             board.setModifiedAt(LocalDateTime.now());
             boardRepository.save(board);
+
         } else {
             throw new BusinessLogicException(ExceptionCode.NOT_ALLOWED);
         }
