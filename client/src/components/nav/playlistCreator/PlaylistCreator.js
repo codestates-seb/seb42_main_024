@@ -45,11 +45,6 @@ const PlaylistCreator = ({
           songList,
         },
       };
-      // console.log('create playlist: ', requestBody);
-      console.log(
-        'playlist creator - requestBody: ',
-        JSON.stringify(requestBody)
-      );
       axios
         .post(
           'http://15.165.199.44:8080/api/boards',

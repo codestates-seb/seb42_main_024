@@ -11,7 +11,7 @@ export const PlaylistCreatorContainer = styled.div`
 
   position: relative;
   left: 5px;
-  top: -60px;
+  top: -360px;
 
   /* if isOpenPlaylistCreator === "default"  */
   &.dpNone {
@@ -201,6 +201,9 @@ export const SearchedSongsContainer = styled.div`
     align-items: center;
 
     position: relative;
+
+    border: none;
+    background-color: transparent;
 
     img.thumbnail {
       width: 100%;
