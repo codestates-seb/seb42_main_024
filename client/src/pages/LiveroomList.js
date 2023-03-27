@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 
-// import axios from 'axios';
+import axios from 'axios';
 import { Navigation } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
@@ -25,200 +25,80 @@ import {
 } from '../styles/liveroomlist';
 
 function LiveroomList() {
-  const dummyData = [
-    {
-      key: 1,
-      singer: '누진세',
-      musicTitle: '하입보잉',
-      thumnailURL:
-        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQGgD01x0AuTfakEpAznMC27k-2jSuoGMiu8mGo1aVuYkeGU_E0C1-_cH6WHNOyMcXGaW4&usqp=CAU',
-      userCount: 10,
-    },
-    {
-      key: 2,
-      singer: '누진세',
-      musicTitle: '하입보잉',
-      thumnailURL:
-        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQGgD01x0AuTfakEpAznMC27k-2jSuoGMiu8mGo1aVuYkeGU_E0C1-_cH6WHNOyMcXGaW4&usqp=CAU',
-      userCount: 10,
-    },
-    {
-      key: 3,
-      singer: '누진세',
-      musicTitle: '하입보잉',
-      thumnailURL:
-        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQGgD01x0AuTfakEpAznMC27k-2jSuoGMiu8mGo1aVuYkeGU_E0C1-_cH6WHNOyMcXGaW4&usqp=CAU',
-      userCount: 10,
-    },
-    {
-      key: 4,
-      singer: '누진세',
-      musicTitle: '하입보잉',
-      thumnailURL:
-        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQGgD01x0AuTfakEpAznMC27k-2jSuoGMiu8mGo1aVuYkeGU_E0C1-_cH6WHNOyMcXGaW4&usqp=CAU',
-      userCount: 10,
-    },
-    {
-      key: 5,
-      singer: '누진세',
-      musicTitle: '하입보잉',
-      thumnailURL:
-        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQGgD01x0AuTfakEpAznMC27k-2jSuoGMiu8mGo1aVuYkeGU_E0C1-_cH6WHNOyMcXGaW4&usqp=CAU',
-      userCount: 10,
-    },
-    {
-      key: 6,
-      singer: '누진세',
-      musicTitle: '하입보잉',
-      thumnailURL:
-        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQGgD01x0AuTfakEpAznMC27k-2jSuoGMiu8mGo1aVuYkeGU_E0C1-_cH6WHNOyMcXGaW4&usqp=CAU',
-      userCount: 10,
-    },
-    {
-      key: 7,
-      singer: '누진세',
-      musicTitle: '하입보잉',
-      thumnailURL:
-        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQGgD01x0AuTfakEpAznMC27k-2jSuoGMiu8mGo1aVuYkeGU_E0C1-_cH6WHNOyMcXGaW4&usqp=CAU',
-      userCount: 10,
-    },
-    {
-      key: 8,
-      singer: '누진세',
-      musicTitle: '하입보잉',
-      thumnailURL:
-        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQGgD01x0AuTfakEpAznMC27k-2jSuoGMiu8mGo1aVuYkeGU_E0C1-_cH6WHNOyMcXGaW4&usqp=CAU',
-      userCount: 10,
-    },
-    {
-      key: 9,
-      singer: '누진세',
-      musicTitle: '하입보잉',
-      thumnailURL:
-        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQGgD01x0AuTfakEpAznMC27k-2jSuoGMiu8mGo1aVuYkeGU_E0C1-_cH6WHNOyMcXGaW4&usqp=CAU',
-      userCount: 10,
-    },
-    {
-      key: 10,
-      singer: '누진세',
-      musicTitle: '하입보잉',
-      thumnailURL:
-        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQGgD01x0AuTfakEpAznMC27k-2jSuoGMiu8mGo1aVuYkeGU_E0C1-_cH6WHNOyMcXGaW4&usqp=CAU',
-      userCount: 10,
-    },
-    {
-      key: 11,
-      singer: '누진세',
-      musicTitle: '하입보잉',
-      thumnailURL:
-        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQGgD01x0AuTfakEpAznMC27k-2jSuoGMiu8mGo1aVuYkeGU_E0C1-_cH6WHNOyMcXGaW4&usqp=CAU',
-      userCount: 10,
-    },
-    {
-      key: 12,
-      singer: '누진세',
-      musicTitle: '하입보잉',
-      thumnailURL:
-        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQGgD01x0AuTfakEpAznMC27k-2jSuoGMiu8mGo1aVuYkeGU_E0C1-_cH6WHNOyMcXGaW4&usqp=CAU',
-      userCount: 10,
-    },
-    {
-      key: 13,
-      singer: '누진세',
-      musicTitle: '하입보잉',
-      thumnailURL:
-        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQGgD01x0AuTfakEpAznMC27k-2jSuoGMiu8mGo1aVuYkeGU_E0C1-_cH6WHNOyMcXGaW4&usqp=CAU',
-      userCount: 10,
-    },
-    {
-      key: 14,
-      singer: '누진세',
-      musicTitle: '하입보잉',
-      thumnailURL:
-        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQGgD01x0AuTfakEpAznMC27k-2jSuoGMiu8mGo1aVuYkeGU_E0C1-_cH6WHNOyMcXGaW4&usqp=CAU',
-      userCount: 10,
-    },
-    {
-      key: 15,
-      singer: '누진세',
-      musicTitle: '하입보잉',
-      thumnailURL:
-        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQGgD01x0AuTfakEpAznMC27k-2jSuoGMiu8mGo1aVuYkeGU_E0C1-_cH6WHNOyMcXGaW4&usqp=CAU',
-      userCount: 10,
-    },
-    {
-      key: 16,
-      singer: '누진세',
-      musicTitle: '하입보잉',
-      thumnailURL:
-        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQGgD01x0AuTfakEpAznMC27k-2jSuoGMiu8mGo1aVuYkeGU_E0C1-_cH6WHNOyMcXGaW4&usqp=CAU',
-      userCount: 10,
-    },
-    {
-      key: 17,
-      singer: '누진세',
-      musicTitle: '하입보잉',
-      thumnailURL:
-        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQGgD01x0AuTfakEpAznMC27k-2jSuoGMiu8mGo1aVuYkeGU_E0C1-_cH6WHNOyMcXGaW4&usqp=CAU',
-      userCount: 10,
-    },
-    {
-      key: 18,
-      singer: '누진세',
-      musicTitle: '하입보잉',
-      thumnailURL:
-        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQGgD01x0AuTfakEpAznMC27k-2jSuoGMiu8mGo1aVuYkeGU_E0C1-_cH6WHNOyMcXGaW4&usqp=CAU',
-      userCount: 10,
-    },
-    {
-      key: 19,
-      singer: '누진세',
-      musicTitle: '하입보잉',
-      thumnailURL:
-        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQGgD01x0AuTfakEpAznMC27k-2jSuoGMiu8mGo1aVuYkeGU_E0C1-_cH6WHNOyMcXGaW4&usqp=CAU',
-      userCount: 10,
-    },
-  ];
-  const [popularSongs, setPopularSongs] = useState();
+  const [popularSongs] = useState([]);
   const [allSongs, setAllSongs] = useState([]);
-  const [aarr, setAarr] = useState(dummyData);
+  const accessToken = localStorage.getItem('accessToken');
+  const [infiniteId, setInfiniteId] = useState(0);
+  // const [infiniteId, setInfiniteId] = useState(0);
+  const [loading, setLoading] = useState(false);
 
-  const target = useRef(null);
+  const pageEnd = useRef();
 
-  const options = {
-    threshold: 0.9,
-  };
-
-  const callback = () => {
-    setAllSongs((prev) => {
-      const newArr = aarr.slice(0, 3);
-      return [...prev, newArr];
+  const morePages = async (page) => {
+    const res = await axios.get('http://15.165.199.44:8080/api/rooms', {
+      headers: {
+        Authorization: `${accessToken}`,
+        accept: 'application/json',
+      },
+      params: {
+        id: page,
+      },
     });
+    const arr = [];
+    for (let i = 0; i < 3; i++) {
+      arr.push(res.data.data.chatroomList.splice(0, 3));
+    }
+    if (page === 0) {
+      setInfiniteId(res.data.data.next);
+    }
+    console.log(page);
+    if (page >= 0) {
+      setAllSongs((prev) => [...prev, ...arr]);
+      setLoading(true);
+    }
   };
 
-  const observer = new IntersectionObserver(callback, options);
   useEffect(() => {
-    observer.observe(target.current);
-  }, []);
+    morePages(infiniteId);
+  }, [infiniteId]);
+
+  const loadMore = () => {
+    setInfiniteId((prev) => prev - 9);
+  };
 
   useEffect(() => {
-    // axios.get('').then((e) => {
-    //     받아온 데이터 처리
-    // });
-    const Parr = [...dummyData].slice(0, 6);
-    setPopularSongs(Parr);
-  }, []);
-
-  useEffect(() => {
-    if (aarr.length !== 0) {
-      setAllSongs((prev) => {
-        const newArr = aarr.slice(0, 3);
-        setAarr((prev) => prev.slice(3, -1));
-        return [...prev, newArr, newArr, newArr];
-      });
+    if (loading) {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          if (entries[0].isIntersecting) {
+            loadMore();
+          }
+        },
+        { threshold: 1 }
+      );
+      observer.observe(pageEnd.current);
     }
-  }, []);
+  }, [loading]);
 
+  // axios
+  //   .get('http://15.165.199.44:8080/api/rooms', {
+  //     headers: {
+  //       Authorization: `${accessToken}`,
+  //       accept: 'application/json',
+  //     },
+  //     params: {
+  //       id: infiniteId,
+  //     },
+  //   })
+  //   .then((e) => {
+  //     const arr = [];
+  //     for (let i = 0; i < 3; i++) {
+  //       arr.push(e.data.data.chatroomList.splice(0, 3));
+  //     }
+  //     console.log(e.data.data);
+  //     setAllSongs((prev) => [...prev, ...arr]);
+  //     setInfiniteId(e.data.data.next);
+  //   });
   return (
     <>
       <Nav></Nav>
@@ -237,7 +117,7 @@ function LiveroomList() {
                 autoplay={{ delay: 1000 }}>
                 {popularSongs?.map((e) => {
                   return (
-                    <SwiperSlide key={e.key}>
+                    <SwiperSlide key={e.chatroomId}>
                       <Liverooms song={e} type='PO'></Liverooms>
                     </SwiperSlide>
                   );
@@ -261,7 +141,7 @@ function LiveroomList() {
                     scrollbar={{ draggable: true }}>
                     {fourSongdata?.map((e) => {
                       return (
-                        <SwiperSlide key={e.key}>
+                        <SwiperSlide key={e.chatroomId}>
                           {' '}
                           <Liverooms song={e} type='ALL'></Liverooms>
                         </SwiperSlide>
@@ -273,7 +153,7 @@ function LiveroomList() {
             })}
           </AllLiveroomListContainer>
         </AllLiveroomList>
-        <div ref={target} style={{ width: '100%', height: 30 }}>
+        <div ref={pageEnd} style={{ width: '100%', height: 30 }}>
           안녕
         </div>
       </LiveroomListContainer>
