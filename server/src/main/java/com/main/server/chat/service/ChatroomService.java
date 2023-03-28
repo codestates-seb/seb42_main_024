@@ -4,6 +4,7 @@ import com.main.server.chat.data.ChatSongQueue;
 import com.main.server.chat.data.ChatSong;
 import com.main.server.chat.dto.ChatSongResponseDto;
 import com.main.server.chat.dto.ChatroomCreateDto;
+import com.main.server.chat.dto.ChatroomUpdateDto;
 import com.main.server.chat.entity.Chatroom;
 import com.main.server.chat.repository.ChatroomRepository;
 import com.main.server.exception.BusinessLogicException;
@@ -19,6 +20,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.PostConstruct;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -34,31 +36,9 @@ public class ChatroomService {
     private final ChatroomRepository chatroomRepository;
     private final PlaylistService playlistService;
     private final ChatService chatService;
-    
-    private final MemberRepository memberRepository; // 지울거
 
     private Map<Long, ChatSongQueue> queueMap = new HashMap<>(); // 메모리에서 채팅룸 노래 관리
-
-    @PostConstruct
-    public void init() {
-        
-        Member member = Member.builder()
-                .nickname("anonymousUser")
-                .email("anonymousUser")
-                .roles(List.of("USER"))
-                .build();
-        Member save = memberRepository.save(member);
-
-        List<Chatroom> chatroomList = IntStream.range(1, 21)
-                .mapToObj(i -> Chatroom.builder()
-                        .title("test" + i)
-                        .member(save)
-                        .thumbnail("https://i.ytimg.com/vi/_ZAgIHmHLdc/hqdefault.jpg")
-                        .build())
-                .collect(Collectors.toList());
-        
-        chatroomRepository.saveAll(chatroomList);
-    }
+    private List<Chatroom> highRankChatroomList = new ArrayList<>();
 
     /**
      * dto 와 인증을통해 조회한 Member 값을 가져와 방 생성
@@ -105,6 +85,11 @@ public class ChatroomService {
         return chatroomRepository.getChatroomsAfterId(chatroomId);
     }
 
+    public void updateChatroom(Chatroom chatroom, ChatroomUpdateDto dto) {
+        chatroom.editByDto(dto);
+        chatroomRepository.save(chatroom);
+    }
+
     /**
      * 해당하는 방에 노래 추가.
      * 이후 노래가 비어있다면 바로 노래를 변경하도록 switchNextSong 호출.
@@ -144,7 +129,15 @@ public class ChatroomService {
         return ChatSongResponseDto.createByChatSongQueue(queueMap.get(chatroomId));
     }
 
+    public List<Chatroom> getHighRankChatroomList() {
+        return this.highRankChatroomList;
+    }
+
     public void deleteChatroom(Chatroom chatroom) {
+        chatService.sendSystemMessage(chatroom.getChatroomId(), "ChatroomOver");
+        if (highRankChatroomList.contains(chatroom)) {
+            highRankChatroomList.remove(chatroom);
+        }
         chatroomRepository.delete(chatroom);
         queueMap.remove(chatroom.getChatroomId());
     }
@@ -153,6 +146,14 @@ public class ChatroomService {
         if (!chatroom.getMember().getEmail().equals(email)) {
             throw new BusinessLogicException(ExceptionCode.NO_PERMISSION);
         }
+    }
+
+    public void newRanking(List<Chatroom> chatroomList) {
+        this.highRankChatroomList = chatroomList;
+    }
+
+    public Integer getChatroomSize() {
+        return this.queueMap.size();
     }
 
     // 플레이리스트를 안받는 상황을 체크하는 방식

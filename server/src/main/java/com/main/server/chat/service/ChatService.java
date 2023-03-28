@@ -47,6 +47,7 @@ public class ChatService {
                     dto.toResponseDto(memberNumber).isEnterType());
 
             chatroom.addHeat(PropertyVariable.ADD_HEAT_AT_ENTER);
+            chatroomRepository.save(chatroom);
         } else {
             template.convertAndSend("/sub/chat/room/" + dto.getChatroomId(),
                     dto.toResponseDto(null).isErrorType("방의 정원이 초과했습니다."));
@@ -90,6 +91,7 @@ public class ChatService {
         Chatroom chatroom = findChatroomById(chatroomId); // 채팅룸을 가져와
         Integer memberNumber = chatroom.getMemberNumber(memberName);
         chatroom.leaveMember(memberName); // 해당멤버 제외
+        chatroomRepository.save(chatroom);
 
         log.info("headAccessor: {}", headerAccessor);
 

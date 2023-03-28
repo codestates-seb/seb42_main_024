@@ -17,7 +17,6 @@ import org.springframework.web.socket.messaging.SessionDisconnectEvent;
 @Slf4j
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/chat")
 public class ChatController {
 
     private final ChatService chatService;

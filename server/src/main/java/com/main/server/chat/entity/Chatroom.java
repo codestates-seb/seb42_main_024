@@ -2,6 +2,7 @@ package com.main.server.chat.entity;
 
 import com.main.server.audit.Auditable;
 import com.main.server.chat.dto.ChatroomCreateDto;
+import com.main.server.chat.dto.ChatroomUpdateDto;
 import com.main.server.member.entity.Member;
 import lombok.*;
 import lombok.extern.slf4j.Slf4j;
@@ -84,6 +85,11 @@ public class Chatroom extends Auditable {
         } else {
             return 0;
         }
+    }
+
+    public Chatroom editByDto(ChatroomUpdateDto dto) {
+        this.title = dto.getTitle();
+        return this;
     }
 
     public void addHeat(Integer heat) {

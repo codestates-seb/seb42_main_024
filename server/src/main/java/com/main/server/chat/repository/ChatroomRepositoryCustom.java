@@ -7,4 +7,6 @@ import java.util.List;
 public interface ChatroomRepositoryCustom {
 
     List<Chatroom> getChatroomsAfterId(Long chatroomId);
+    List<Chatroom> getHighRankingChatrooms();
+    List<Chatroom> getLowRankingChatrooms(Integer size);
 }

@@ -1,11 +1,14 @@
 package com.main.server.chat.controller;
 
+import com.main.server.board.dto.BoardDto;
 import com.main.server.chat.data.ChatSong;
 import com.main.server.chat.dto.*;
 import com.main.server.chat.entity.Chatroom;
 import com.main.server.chat.service.ChatroomService;
+import com.main.server.dto.SingleResponseDto;
 import com.main.server.global.dto.ResponseDto;
 import com.main.server.member.entity.Member;
+import com.main.server.member.repository.MemberRepository;
 import com.main.server.member.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -64,6 +67,16 @@ public class ChatroomController {
                 .body(new ResponseDto(ChatroomListDto.of(chatroomList), 200));
     }
 
+    @GetMapping("/rank")
+    public ResponseEntity getHighRankChatroom() {
+        List<ChatroomSimpleDto> chatroomList = chatroomService.getHighRankChatroomList().stream()
+                .map(ChatroomSimpleDto::createByChatroom)
+                .collect(Collectors.toList());
+
+        return ResponseEntity.status(HttpStatus.OK)
+                .body(new ResponseDto(chatroomList, 200));
+    }
+
     @GetMapping("/{chatroom-id}/songs")
     public ResponseEntity getSong(@PathVariable("chatroom-id") Long chatroomId) {
         ChatSongResponseDto responseDto = chatroomService.getSongAtRoom(chatroomId);
@@ -71,10 +84,30 @@ public class ChatroomController {
                 .body(new ResponseDto(responseDto, 200));
     }
 
+    @PatchMapping("/{chatroom-id}")
+    public ResponseEntity updateChatroom(@PathVariable @Valid Long chatroomId,
+                                         @RequestBody ChatroomUpdateDto dto,
+                                         @AuthenticationPrincipal String email) {
+        
+        Chatroom findChatroom = chatroomService.findChatroomById(chatroomId);
+        chatroomService.isChatroomOwnerEmail(findChatroom, email);
+        chatroomService.updateChatroom(findChatroom, dto);
+        ChatroomResponseDto responseDto = ChatroomResponseDto
+                .createByChatroom(
+                        chatroomService.findChatroomById(chatroomId));
+
+        return ResponseEntity.status(HttpStatus.OK)
+                .body(new ResponseDto(responseDto, 200));
+    }
+
     @PostMapping("/{chatroom-id}/songs")
-    public ResponseEntity addSong(@PathVariable("chatroom-id") Long chatroomId,
+    public ResponseEntity addSong(@PathVariable("chatroom-id") @Valid Long chatroomId,
                                   @RequestBody ChatSong chatSong,
                                   @AuthenticationPrincipal String email) {
+        // 방장만 노래 추가 가능
+        Chatroom findChatroom = chatroomService.findChatroomById(chatroomId);
+        chatroomService.isChatroomOwnerEmail(findChatroom, email);
+
         chatroomService.addSongToRoom(chatroomId, chatSong);
         return ResponseEntity.status(HttpStatus.OK).build();
     }
