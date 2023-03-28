@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { MdOutlineLibraryMusic } from 'react-icons/md';
+import { useNavigate } from 'react-router-dom';
 
 import axios from 'axios';
 
@@ -27,7 +28,7 @@ const CreateRoom = ({ isCreateOpen, setIsCreateOpen }) => {
   const [contentValue, setContentValue] = useState('');
   const [data, setData] = useState([]);
   const [postData, setPostData] = useState([]);
-
+  const navigate = useNavigate();
   const handleTitleValue = (e) => {
     setTitleValue(e.target.value);
   };
@@ -74,11 +75,12 @@ const CreateRoom = ({ isCreateOpen, setIsCreateOpen }) => {
       };
       axios
         .post(`${API.LIVEROOM}`, requestBody, requestHeader)
-        .then(() => {
+        .then((res) => {
           setTitleValue('');
           setContentValue('');
           setPostData([]);
           setIsCreateOpen((pre) => !pre);
+          navigate(`/liverooms/${res.data.data.chatroomId}`);
         })
         .catch((e) => {
           console.log(e);
