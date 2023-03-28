@@ -46,10 +46,6 @@ export const NavItems = styled.li`
   margin-left: 15px;
   border-top: 1px solid var(--color3);
 
-  .heart {
-    color: var(--color10);
-  }
-
   .user-circle {
     width: 30px;
     height: 30px;
@@ -69,7 +65,6 @@ export const NavItems = styled.li`
   .nav-liveroom,
   .nav-create-liveroom,
   .nav-add-playlist,
-  .nav-storage,
   .nav-logout {
     height: 30px;
   }
@@ -79,7 +74,6 @@ export const NavItems = styled.li`
   .nav-liveroom,
   .nav-create-liveroom,
   .nav-add-playlist,
-  .nav-storage,
   .nav-logout {
     display: flex;
     align-items: center;
@@ -116,8 +110,6 @@ export const LiveRoom = styled(Home)``;
 export const CreateLiveRoom = styled(Home)``;
 
 export const AddPlayList = styled(Home)``;
-
-export const Storage = styled(Home)``;
 
 export const Login = styled(Home)`
   font-size: 15px;

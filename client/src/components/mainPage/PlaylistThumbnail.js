@@ -9,7 +9,7 @@ const PlaylistThumbnail = ({ playlist }) => {
   return (
     <>
       <PlaylistThumbnailContainer key={playlist.playlistId}>
-        <Link to={`/playlists/${playlist.playlistId}`}>
+        <Link to={`/playlist/${playlist.playlistId - 1}`}>
           <img
             src={playlist.boardThumb}
             alt='playlist thumbnail'

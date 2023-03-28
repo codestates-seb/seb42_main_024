@@ -21,7 +21,7 @@ export const PlayListBox = styled.div`
   right: 0;
   bottom: 80px;
   left: 0;
-  z-index: 2;
+  z-index: 20;
   transform: translateY(${(props) => (props.isOpen ? '0' : '120%')});
   transition: transform 0.2s ease-in-out;
 `;

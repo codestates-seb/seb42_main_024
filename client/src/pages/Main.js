@@ -6,6 +6,7 @@ import axios from 'axios';
 import PlaylistThumbnail from '../components/mainPage/PlaylistThumbnail';
 import PlaylistTrendy from '../components/mainPage/PlaylistTrendy/PlaylistTrendy';
 import { MainContent, StyledSlider } from '../styles/main';
+
 const getSliderData = (idx, data, item) => {
   const startIdx = (idx * item) % data.length;
   const endIdx = startIdx + item;
@@ -16,6 +17,7 @@ const getSliderData = (idx, data, item) => {
   }
   return result;
 };
+
 const Main = () => {
   const [playlist, setPlaylist] = useState({});
   //eslint-disable-next-line no-unused-vars
@@ -38,6 +40,7 @@ const Main = () => {
     '이 노래 모르면 바보',
     '집중할 때 듣기 좋은 노래',
   ];
+
   const settings = {
     className: 'center',
     infinite: true,
@@ -48,6 +51,7 @@ const Main = () => {
       setCurrentIndex(idx);
     },
   };
+
   const fetchMoreData = useCallback(() => {
     if (displayCount >= sliderTitle.length) {
       setHasMore(false);
@@ -92,7 +96,7 @@ const Main = () => {
     };
     getPlaylist();
   }, [pageNum]);
-  
+
   const visiblePlaylist = sliderTitle.slice(0, displayCount);
   const sortedPlaylist = Object.values(playlist).sort(
     (a, b) => b.viewCount - a.viewCount
@@ -102,7 +106,8 @@ const Main = () => {
     (item) =>
       !firstSlider.find((fsItem) => fsItem.playlistId === item.playlistId)
   );
- return (
+
+  return (
     <InfiniteScroll
       dataLength={visiblePlaylist.length}
       next={fetchMoreData}
@@ -117,10 +122,10 @@ const Main = () => {
           const sliderData =
             idx === 0 ? firstSlider : getSliderData(idx - 1, otherSlider, 6);
           return (
-            <React.Fragment key={section-${idx}}>
+            <React.Fragment key={`section-${idx}`}>
               <div className='playlist-name'>{title}</div>
               <StyledSlider
-                key={slider-${idx}}
+                key={`slider-${idx}`}
                 {...settings}
                 afterChange={(idx) => setCurrentIndex(idx)}>
                 {sliderData.map((pl) => (
@@ -135,5 +140,6 @@ const Main = () => {
       </MainContent>
     </InfiniteScroll>
   );
-export default Main;
+};
 
+export default Main;

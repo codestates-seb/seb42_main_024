@@ -1,5 +1,7 @@
 import { useEffect, useRef } from 'react';
 
+import Chatting from './Chatting';
+
 import {
   LSBChatContianer,
   LSBSendMessage,

@@ -1,9 +1,10 @@
 import { useState } from 'react';
 import { BiHome, BiLogOut } from 'react-icons/bi';
-import { BsPlusCircle, BsFillSuitHeartFill } from 'react-icons/bs';
+import { BsPlusCircle } from 'react-icons/bs';
 import { IoRadio } from 'react-icons/io5';
 import { MdOutlineLibraryMusic } from 'react-icons/md';
 import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 import CreateRoom from './CreateLiveRoom/CreateRoom';
 import PlaylistCreator from './playlistCreator/PlaylistCreator';
@@ -16,7 +17,6 @@ import {
   LiveRoom,
   AddPlayList,
   CreateLiveRoom,
-  Storage,
   Logout,
 } from '../../styles/nav';
 
@@ -42,26 +42,24 @@ const NavLogin = ({ logoutHandler }) => {
             <Home>홈</Home>
           </div>
           <div className='nav-liveroom'>
-            <IoRadio />
-            <LiveRoom>라이브룸</LiveRoom>
+            <Link to={'/liveroomlist'}>
+              <IoRadio />
+              <LiveRoom>라이브룸</LiveRoom>
+            </Link>
           </div>
+        </NavItems>
+        <NavItems>
           <div className='nav-create-liveroom'>
             <MdOutlineLibraryMusic />
             <CreateLiveRoom onClick={handleCreateOpen}>
               라이브룸 만들기
             </CreateLiveRoom>
           </div>
-        </NavItems>
-        <NavItems>
           <div className='nav-add-playlist'>
             <BsPlusCircle />
             <AddPlayList onClick={() => setIsOpenPlaylistCreator('open')}>
               플레이리스트 만들기
             </AddPlayList>
-          </div>
-          <div className='nav-storage'>
-            <BsFillSuitHeartFill className='heart' />
-            <Storage>보관함</Storage>
           </div>
         </NavItems>
         <NavItems>
