@@ -85,8 +85,8 @@ public class ChatroomService {
         return chatroomRepository.getChatroomsAfterId(chatroomId);
     }
 
-    public void updateChatroom(Long chatroomId, ChatroomUpdateDto dto) {
-        Chatroom chatroom = findChatroomById(chatroomId).editByDto(dto);
+    public void updateChatroom(Chatroom chatroom, ChatroomUpdateDto dto) {
+        chatroom.editByDto(dto);
         chatroomRepository.save(chatroom);
     }
 
