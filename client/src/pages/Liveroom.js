@@ -87,6 +87,7 @@ function Liveroom() {
   useEffect(() => {
     axios
       .get(`http://15.165.199.44:8080/api/rooms/${roomid}`, {
+
         headers: {
           Authorization: `${accessToken}`,
           accept: 'application/json',
@@ -117,6 +118,7 @@ function Liveroom() {
                   if (receiveData.type === 'SYSTEM') {
                     if (receiveData.message === 'NextSong') {
                       console.log(receiveData.message);
+
                       setChangeSong((prev) => !prev);
                     }
                   } else {
@@ -144,6 +146,7 @@ function Liveroom() {
   useEffect(() => {
     axios
       .get(`http://15.165.199.44:8080/api/rooms/${roomid}/songs`, {
+
         headers: {
           Authorization: `${accessToken}`,
           accept: 'application/json',
