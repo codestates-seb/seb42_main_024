@@ -86,9 +86,12 @@ public class ChatroomController {
 
     @PatchMapping("/{chatroom-id}")
     public ResponseEntity updateChatroom(@PathVariable @Valid Long chatroomId,
-                                         @RequestBody ChatroomUpdateDto dto) {
-        chatroomService.updateChatroom(chatroomId, dto);
-
+                                         @RequestBody ChatroomUpdateDto dto,
+                                         @AuthenticationPrincipal String email) {
+        
+        Chatroom findChatroom = chatroomService.findChatroomById(chatroomId);
+        chatroomService.isChatroomOwnerEmail(findChatroom, email);
+        chatroomService.updateChatroom(findChatroom, dto);
         ChatroomResponseDto responseDto = ChatroomResponseDto
                 .createByChatroom(
                         chatroomService.findChatroomById(chatroomId));
@@ -101,6 +104,10 @@ public class ChatroomController {
     public ResponseEntity addSong(@PathVariable("chatroom-id") @Valid Long chatroomId,
                                   @RequestBody ChatSong chatSong,
                                   @AuthenticationPrincipal String email) {
+        // 방장만 노래 추가 가능
+        Chatroom findChatroom = chatroomService.findChatroomById(chatroomId);
+        chatroomService.isChatroomOwnerEmail(findChatroom, email);
+
         chatroomService.addSongToRoom(chatroomId, chatSong);
         return ResponseEntity.status(HttpStatus.OK).build();
     }
