@@ -202,6 +202,9 @@ export const SearchedSongsContainer = styled.div`
 
     position: relative;
 
+    border: none;
+    background-color: transparent;
+    
     img.thumbnail {
       width: 100%;
     }
