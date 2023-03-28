@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
+import InfiniteScroll from 'react-infinite-scroll-component';
 
 import axios from 'axios';
 
@@ -6,27 +7,39 @@ import PlaylistThumbnail from '../components/mainPage/PlaylistThumbnail';
 import PlaylistTrendy from '../components/mainPage/PlaylistTrendy/PlaylistTrendy';
 import { MainContent, StyledSlider } from '../styles/main';
 
-const sliderNames = [
-  '지금 가장 인기 있는 리스트',
-  '오늘의 추천 플레이리스트',
-  '오늘 날씨에 딱 어울려요',
-  '드라이브 필수 준비물',
-  '노동에는 노동요',
-  'test',
-  'testtest',
-  'testtesttest',
-  'testtesttesttest',
-  'testtesttest1',
-  'testtest2',
-  'test3',
-  'testtest',
-  'testtesttesttest',
-];
+const getSliderData = (idx, data, item) => {
+  const startIdx = (idx * item) % data.length;
+  const endIdx = startIdx + item;
+  const result = [...data.slice(startIdx, endIdx)];
+
+  if (endIdx > data.length) {
+    result.push(...data.slice(0, endIdx - data.length));
+  }
+  return result;
+};
 
 const Main = () => {
-  const [playlist, setPlaylist] = useState([]);
-  const [currentIndex, setCurrentIndex] = useState(0); //eslint-disable-line no-unused-vars
-  const [randomPlaylist, setRandomPlaylist] = useState([]);
+  const [playlist, setPlaylist] = useState({});
+  //eslint-disable-next-line no-unused-vars
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [hasMore, setHasMore] = useState(true);
+  const [displayCount, setDisplayCount] = useState(3);
+  const [trendyBoard, setTrendyBoard] = useState(null);
+  const [trendyList, setTrendyList] = useState(null);
+  const [pageNum, setPageNum] = useState(1);
+
+  const sliderTitle = [
+    '지금 가장 인기 있는 리스트',
+    '오늘의 추천 플레이리스트',
+    '오늘 날씨에 딱 어울려요',
+    '드라이브 필수 준비물',
+    '노동에는 노동요',
+    '봄이 왔으면 이 노래를 들어야지',
+    '너 싸이월드 좀 했나봐?',
+    'K-IDOL의 위엄',
+    '이 노래 모르면 바보',
+    '집중할 때 듣기 좋은 노래',
+  ];
 
   const settings = {
     className: 'center',
@@ -39,48 +52,93 @@ const Main = () => {
     },
   };
 
-  const getRandomPlaylist = (pl, count) => {
-    if (pl.length < count) {
-      count = pl.length;
+  const fetchMoreData = useCallback(() => {
+    if (displayCount >= sliderTitle.length) {
+      setHasMore(false);
+      return;
     }
-    const shuffled = pl.sort(() => 0.5 - Math.random());
-    return shuffled.slice(0, count);
-  };
+    setDisplayCount((count) => count + 3);
+  }, [displayCount, sliderTitle.length]);
+
+  useEffect(() => {
+    const getTrendy = async () => {
+      try {
+        const response = await axios.get(
+          `http://15.165.199.44:8080/api/boards/4`
+        );
+        setTrendyBoard(response.data.data.board);
+        setTrendyList(response.data.data.playlist);
+      } catch (e) {
+        console.error(e);
+      }
+    };
+    getTrendy();
+  }, []);
 
   useEffect(() => {
     const getPlaylist = async () => {
-      const playlist = await axios.get('http://localhost:3001/playlist');
-      setPlaylist(playlist.data);
-
-      const randomPl = () => {
-        return Array.from({ length: 14 }, () =>
-          getRandomPlaylist(playlist.data, 6)
+      if (pageNum > 5) {
+        return;
+      }
+      try {
+        const response = await axios.get(
+          `http://15.165.199.44:8080/api/boards?page=${pageNum}`
         );
-      };
-      setRandomPlaylist(randomPl());
+        const newData = {};
+        response.data.data.forEach((item) => {
+          newData[item.playlistId] = item;
+        });
+        setPlaylist((prev) => ({ ...prev, ...newData }));
+        setPageNum((count) => count + 1);
+      } catch (e) {
+        console.error(e);
+      }
     };
     getPlaylist();
-  }, []);
+  }, [pageNum]);
+
+  const visiblePlaylist = sliderTitle.slice(0, displayCount);
+  const sortedPlaylist = Object.values(playlist).sort(
+    (a, b) => b.viewCount - a.viewCount
+  );
+  const firstSlider = sortedPlaylist.slice(0, 6);
+  const otherSlider = sortedPlaylist.filter(
+    (item) =>
+      !firstSlider.find((fsItem) => fsItem.playlistId === item.playlistId)
+  );
 
   return (
-    <MainContent>
-      {playlist.length > 0 && <PlaylistTrendy playlist={playlist[0]} />}
-      {Array.from({ length: 14 }, (_, index) => (
-        <React.Fragment key={index}>
-          <div className='playlist-name'>{sliderNames[index]}</div>
-          <StyledSlider
-            {...settings}
-            afterChange={(idx) => setCurrentIndex(idx)}>
-            {randomPlaylist[index] &&
-              randomPlaylist[index].map((pl) => (
-                <div key={pl.id}>
-                  <PlaylistThumbnail playlist={pl} />
-                </div>
-              ))}
-          </StyledSlider>
-        </React.Fragment>
-      ))}
-    </MainContent>
+    <InfiniteScroll
+      dataLength={visiblePlaylist.length}
+      next={fetchMoreData}
+      hasMore={hasMore}
+      loader={<h6>Loading...</h6>}
+      style={{ overflow: 'visible' }}>
+      <MainContent>
+        {trendyBoard && trendyList && (
+          <PlaylistTrendy trendyBoard={trendyBoard} trendyList={trendyList} />
+        )}
+        {visiblePlaylist.map((title, idx) => {
+          const sliderData =
+            idx === 0 ? firstSlider : getSliderData(idx - 1, otherSlider, 6);
+          return (
+            <React.Fragment key={`section-${idx}`}>
+              <div className='playlist-name'>{title}</div>
+              <StyledSlider
+                key={`slider-${idx}`}
+                {...settings}
+                afterChange={(idx) => setCurrentIndex(idx)}>
+                {sliderData.map((pl) => (
+                  <div key={pl.playlistId}>
+                    <PlaylistThumbnail playlist={pl} />
+                  </div>
+                ))}
+              </StyledSlider>
+            </React.Fragment>
+          );
+        })}
+      </MainContent>
+    </InfiniteScroll>
   );
 };
 
