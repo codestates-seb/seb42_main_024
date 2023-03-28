@@ -5,6 +5,7 @@ import axios from 'axios';
 
 import PlaylistThumbnail from '../components/mainPage/PlaylistThumbnail';
 import PlaylistTrendy from '../components/mainPage/PlaylistTrendy/PlaylistTrendy';
+import { API } from '../config';
 import { MainContent, StyledSlider } from '../styles/main';
 
 const getSliderData = (idx, data, item) => {
@@ -63,9 +64,7 @@ const Main = () => {
   useEffect(() => {
     const getTrendy = async () => {
       try {
-        const response = await axios.get(
-          `http://15.165.199.44:8080/api/boards/4`
-        );
+        const response = await axios.get(`${API.BOARD}/4`);
         setTrendyBoard(response.data.data.board);
         setTrendyList(response.data.data.playlist);
       } catch (e) {
@@ -81,9 +80,7 @@ const Main = () => {
         return;
       }
       try {
-        const response = await axios.get(
-          `http://15.165.199.44:8080/api/boards?page=${pageNum}`
-        );
+        const response = await axios.get(`${API.BOARD}?page=${pageNum}`);
         const newData = {};
         response.data.data.forEach((item) => {
           newData[item.playlistId] = item;

@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 
 import axios from 'axios';
 
+import { API } from '../../config';
 import {
   CommentContainer,
   PlaylistCommentContainerWrapper,
@@ -23,7 +24,7 @@ const PlaylistComment = ({ boardId }) => {
   console.log('global - ', memberInfo);
 
   useEffect(() => {
-    axios.get(`http://15.165.199.44:8080/api/boards/${boardId}`).then((res) => {
+    axios.get(`${API.BOARD}/${boardId}`).then((res) => {
       const comments = res.data.data.comments;
       setCommentsData(comments);
       // member info 가져오기
@@ -31,7 +32,7 @@ const PlaylistComment = ({ boardId }) => {
       comments.forEach(async (c) => {
         if (!memberInfoObj[c.memberId]) {
           memberInfoObj[c.memberId] = await axios.get(
-            `http://15.165.199.44:8080/api/members/${c.memberId}`
+            `${API.MEMBER}/${c.memberId}`
           );
         }
       });
@@ -49,7 +50,7 @@ const PlaylistComment = ({ boardId }) => {
         commentContent: commentRef.current.value,
       };
       axios
-        .post(`http://15.165.199.44:8080/api/comments`, requestBody, {
+        .post(`${API.COMMENT}`, requestBody, {
           headers: {
             Authorization: `${storedAccessToken}`,
             accept: 'application/json',
@@ -85,15 +86,12 @@ const PlaylistComment = ({ boardId }) => {
 
   const handleDelete = (commentId) => {
     const storedAccessToken = localStorage.getItem('accessToken');
-    axios.delete(
-      `http://15.165.199.44:8080/api/comments/${commentId}/${memberId}`,
-      {
-        headers: {
-          Authorization: `${storedAccessToken}`,
-          accept: 'application/json',
-        },
-      }
-    );
+    axios.delete(`${API.COMMENT}/${commentId}/${memberId}`, {
+      headers: {
+        Authorization: `${storedAccessToken}`,
+        accept: 'application/json',
+      },
+    });
     setCommentsData(
       commentsData.filter((comment) => comment.commentId !== commentId)
     );

@@ -12,6 +12,7 @@ import 'swiper/css/scrollbar';
 import Liverooms from '../components/liveroom/Liverooms';
 import Nav from '../components/nav/Nav';
 import NowPlaying from '../components/player/NowPlaying';
+import { API } from '../config';
 import {
   LiveroomListContainer,
   AllLiveroomList,
@@ -35,7 +36,7 @@ function LiveroomList() {
   const pageEnd = useRef();
 
   const morePages = async (page) => {
-    const res = await axios.get('http://15.165.199.44:8080/api/rooms', {
+    const res = await axios.get(`${API.LIVEROOM}`, {
       headers: {
         Authorization: `${accessToken}`,
         accept: 'application/json',

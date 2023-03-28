@@ -24,9 +24,11 @@ const NavLogin = ({ logoutHandler }) => {
   const user = useSelector((state) => state.user);
   const [isOpenPlaylistCreator, setIsOpenPlaylistCreator] = useState('default');
   const [isCreateOpen, setIsCreateOpen] = useState(false);
+
   const handleCreateOpen = () => {
     setIsCreateOpen((pre) => !pre);
   };
+
   return (
     <>
       <NavList>
@@ -37,16 +39,18 @@ const NavLogin = ({ logoutHandler }) => {
           </div>
         </NavItems>
         <NavItems>
-          <div className='nav-home'>
-            <BiHome />
-            <Home>홈</Home>
-          </div>
-          <div className='nav-liveroom'>
-            <Link to={'/liveroomlist'}>
+          <Link to={'/'} className='nav-home-link'>
+            <div className='nav-home'>
+              <BiHome />
+              <Home>홈</Home>
+            </div>
+          </Link>
+          <Link to={'/liveroomlist'} className='nav-liveroom-link'>
+            <div className='nav-liveroom'>
               <IoRadio />
               <LiveRoom>라이브룸</LiveRoom>
-            </Link>
-          </div>
+            </div>
+          </Link>
         </NavItems>
         <NavItems>
           <div className='nav-create-liveroom'>

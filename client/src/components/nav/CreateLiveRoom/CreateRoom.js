@@ -3,6 +3,7 @@ import { MdOutlineLibraryMusic } from 'react-icons/md';
 
 import axios from 'axios';
 
+import { API } from '../../../config';
 import {
   CreateLiveRoomBox,
   HeaderBox,
@@ -20,24 +21,30 @@ import {
   Info,
   DeleteBtnBox,
 } from '../../../styles/createroom';
+
 const CreateRoom = ({ isCreateOpen, setIsCreateOpen }) => {
   const [titleValue, setTitleValue] = useState('');
   const [contentValue, setContentValue] = useState('');
   const [data, setData] = useState([]);
   const [postData, setPostData] = useState([]);
+
   const handleTitleValue = (e) => {
     setTitleValue(e.target.value);
   };
+
   const handleContentValue = (e) => {
     setContentValue(e.target.value);
   };
+
   const handleAddData = (index) => {
     const clickedData = data[index];
     setPostData(clickedData);
   };
+
   const handleDeletePostData = () => {
     setPostData([]);
   };
+
   useEffect(() => {
     const storedAccessToken = localStorage.getItem('accessToken');
     const requestHeader = {
@@ -46,12 +53,11 @@ const CreateRoom = ({ isCreateOpen, setIsCreateOpen }) => {
         accept: 'application/json',
       },
     };
-    axios
-      .get('http://15.165.199.44:8080/api/playlists', requestHeader)
-      .then((res) => {
-        setData(res.data.data);
-      });
+    axios.get(`${API.PLAYLIST}`, requestHeader).then((res) => {
+      setData(res.data.data);
+    });
   }, []);
+
   const PostLiveRoomCre = () => {
     const playlistId = postData.playlistId;
     const storedAccessToken = localStorage.getItem('accessToken');
@@ -67,7 +73,7 @@ const CreateRoom = ({ isCreateOpen, setIsCreateOpen }) => {
         playlistId,
       };
       axios
-        .post('http://15.165.199.44:8080/api/rooms', requestBody, requestHeader)
+        .post(`${API.LIVEROOM}`, requestBody, requestHeader)
         .then(() => {
           setTitleValue('');
           setContentValue('');

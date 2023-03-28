@@ -74,7 +74,9 @@ export const NavItems = styled.li`
   .nav-liveroom,
   .nav-create-liveroom,
   .nav-add-playlist,
-  .nav-logout {
+  .nav-logout,
+  .nav-liveroom-link,
+  .nav-home-link {
     display: flex;
     align-items: center;
     width: 100%;

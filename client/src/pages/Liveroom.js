@@ -11,6 +11,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 
 import LiveroomPopup from '../components/liveroom/LiveroomPopup';
 import LiveroomSidebar from '../components/liveroom/LiveroomSideBar';
+import { API } from '../config';
 // import Nav from '../components/nav/Nav';
 import {
   LiveroomContainer,
@@ -67,7 +68,7 @@ function Liveroom() {
     if (!isEnd) {
       axios
         .post(
-          `http://15.165.199.44:8080/api/rooms/${roomid}/songs/next`,
+          `${API.LIVEROOM}/${roomid}/songs/next`,
           {
             videoId: nowPlaySong[0],
           },
@@ -86,7 +87,7 @@ function Liveroom() {
 
   useEffect(() => {
     axios
-      .get(`http://15.165.199.44:8080/api/rooms/${roomid}`, {
+      .get(`${API.LIVEROOM}/${roomid}`, {
         headers: {
           Authorization: `${accessToken}`,
           accept: 'application/json',
@@ -94,7 +95,7 @@ function Liveroom() {
       })
       .then((e) => {
         axios
-          .get('http://15.165.199.44:8080/api/members/auth', {
+          .get(`${API.MEMBER}/auth`, {
             headers: {
               Authorization: `${accessToken}`,
               accept: 'application/json',
@@ -144,7 +145,7 @@ function Liveroom() {
 
   useEffect(() => {
     axios
-      .get(`http://15.165.199.44:8080/api/rooms/${roomid}/songs`, {
+      .get(`${API.LIVEROOM}/${roomid}/songs`, {
         headers: {
           Authorization: `${accessToken}`,
           accept: 'application/json',
