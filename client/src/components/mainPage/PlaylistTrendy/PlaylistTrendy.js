@@ -13,13 +13,13 @@ import {
 
 ReactModal.setAppElement('#root');
 
-const PlaylistTrendyInfo = ({ playlist }) => {
+const PlaylistTrendyInfo = ({ trendyBoard, trendyList }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const toggleIsModalOpen = () => setIsModalOpen(!isModalOpen);
   return (
     <PlaylistTrendyInfoContainer>
-      <div className='title'>{playlist.title}</div>
-      <div className='desc'>{playlist.desc}</div>
+      <div className='title'>{trendyBoard && trendyBoard.boardTitle}</div>
+      <div className='desc'>{trendyBoard && trendyBoard.boardContent}</div>
       <button onClick={toggleIsModalOpen} className='moreInfo'>
         더보기
       </button>
@@ -48,10 +48,10 @@ const PlaylistTrendyInfo = ({ playlist }) => {
             fontFamily: 'var(--ft-pretendardExtraBold)',
             fontSize: '50px',
           }}>
-          {playlist.title}
+          {trendyList && trendyList.title}
         </p>
         <p style={{ marginTop: '20px', color: 'var(--color4)' }}>
-          {playlist.desc}
+          {trendyBoard && trendyBoard.boardContent}
         </p>
       </ReactModal>
       <div className='btns'>
@@ -61,16 +61,16 @@ const PlaylistTrendyInfo = ({ playlist }) => {
         </button>
       </div>
       {/* 노래 나열 컴포넌트 */}
-      {playlist.listInfo && <SongList songlist={playlist.listInfo} />}
+      {trendyList && <SongList songList={trendyList.songList} />}
     </PlaylistTrendyInfoContainer>
   );
 };
 
-const PlaylistTrendy = ({ playlist }) => {
+const PlaylistTrendy = ({ trendyBoard, trendyList }) => {
   return (
     <PlaylistTrendyContainer>
-      <PlaylistImage playlist={playlist} />
-      <PlaylistTrendyInfo playlist={playlist} />
+      <PlaylistImage trendyBoard={trendyBoard} />
+      <PlaylistTrendyInfo trendyBoard={trendyBoard} trendyList={trendyList} />
     </PlaylistTrendyContainer>
   );
 };

@@ -3,12 +3,12 @@ import { TbPlayerPlay, TbPlayerPause } from 'react-icons/tb';
 
 import { PlaylistImageContainer } from '../../../styles/playlist';
 
-const PlaylistImage = ({ playlist }) => {
+const PlaylistImage = ({ trendyBoard }) => {
   const [isPlaying, setIsPlaying] = useState(false);
   return (
     <PlaylistImageContainer>
       <img
-        src={playlist.thumbnail}
+        src={trendyBoard.boardThumb}
         alt='playlist thumbnail'
         className={isPlaying ? '' : 'blurred'}
       />
