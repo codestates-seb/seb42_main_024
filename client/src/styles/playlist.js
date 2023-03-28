@@ -4,17 +4,40 @@ import styled from 'styled-components';
 
 // PlaylistPage - PlaylistInfoContainer component
 export const PlaylistInfoMain = styled.div`
-  .title {
+  position: relative;
+  div.title {
     font-size: 50px;
     font-family: var(--ft-pretendardExtraBold);
     margin: 25px 0;
   }
-  .desc {
+  input.title {
+    font-size: 50px;
+    font-family: var(--ft-pretendardExtraBold);
+    margin: 25px 0;
+    background-color: transparent;
+    border: 0.1px solid white;
+    border-radius: 5px;
+    color: white;
+  }
+  div.desc {
     width: 584px;
-    height: 90px;
+    min-height: 36px;
+    max-height: 90px;
     font-size: 15px;
     font-family: var(--ft-pretendardThin);
     overflow-y: hidden;
+  }
+  textarea.desc {
+    width: 584px;
+    max-height: 90px;
+    resize: none;
+    font-size: 15px;
+    font-family: var(--ft-pretendardThin);
+    overflow-y: hidden;
+    background-color: transparent;
+    color: white;
+    border: 0.1px solid white;
+    border-radius: 5px;
   }
   .moreInfo {
     margin: 10px 0;
@@ -22,6 +45,11 @@ export const PlaylistInfoMain = styled.div`
     border: 1px solid var(--color9);
     border-radius: 5px;
     color: var(--color9);
+    width: 40px;
+    height: 20px;
+  }
+  .emptySpace {
+    margin: 10px 0;
     width: 40px;
     height: 20px;
   }
@@ -48,6 +76,43 @@ export const PlaylistInfoMain = styled.div`
         background-color: var(--color2);
         color: var(--color9);
       }
+      &.clicked {
+        background-color: var(--color10);
+        opacity: 0.7;
+      }
+    }
+  }
+  .deleteModal {
+    position: absolute;
+    left: -50px;
+    top: 390px;
+    background-color: var(--color3);
+    border: 1px solid var(--color4);
+    border-radius: 5px;
+    width: fit-content;
+    height: fit-content;
+    padding: 10px;
+    .msg {
+      font-size: 15px;
+    }
+    .deleteBtns {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      button {
+        width: 50px;
+        border: none;
+        border-radius: 5px;
+        &:hover {
+          cursor: pointer;
+        }
+        button.delete {
+          background-color: var(--color9);
+        }
+        button.cancel {
+        }
+      }
     }
   }
 `;
@@ -61,10 +126,11 @@ export const PlaylistInfoContainer = styled.div`
   color: var(--color9);
   .info {
     margin-left: 25px;
+    width: 584px;
   }
 `;
 
-// PlaylistPage - PlaylistInfo component - modal
+// PlaylistPage - PlaylistInfo component - PlaylistInfoModal
 export const PlaylistInfoModal = styled(ReactModal)`
   width: 584px;
   height: 584px;
@@ -89,6 +155,9 @@ export const PlaylistInfoModal = styled(ReactModal)`
   }
 `;
 
+// PlaylistPage - PlaylistInfo component - AddSongModal
+export const AddSongModal = styled(ReactModal)``;
+
 // PlaylistPage - PlaylistList component
 export const PlaylistListContainerWrapper = styled.div`
   width: 100%;
@@ -102,40 +171,85 @@ export const PlaylistListContainer = styled.div`
   margin: 100px 50px;
   background-color: var(--color2);
   padding: 70px;
+  border-radius: 5px;
+  .rowTitle {
+    /* background-color: inherit; */
+    color: white;
+    /* width: 100%; */
+    height: 40px;
+    display: grid;
+    grid-template-columns: 1fr 2fr 9fr 2fr;
+    gap: 5px;
+    border-bottom: 1px solid white;
+    margin: 5px 0;
+    padding: 5px 0;
+    /* padding: 0 30px; */
+    & > * {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .deleteBtnWrapper {
+      .deleteBtn {
+        width: 80px;
+        height: 30px;
+        border-radius: 5px;
+        border: 1px solid var(--color9);
+        font-size: 15px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    }
+  }
   .row {
-    background-color: inherit;
-    border: none;
-    width: 100%;
-    display: flex;
-    color: var(--color9);
+    display: grid;
+    grid-template-columns: 6fr 1fr;
+    gap: 5px;
     border-radius: 5px;
     margin: 5px 0;
-    padding: 14px 30px;
+    &.checked {
+      background-color: rgba(217, 217, 217, 0.6);
+    }
     &:first-child {
       border-bottom: 1px solid var(--color3);
     }
-    > * {
-      flex-basis: 0;
-      text-align: left;
-    }
-    .num {
-      flex-grow: 1;
-    }
-    .title {
-      flex-grow: 4;
-    }
-    .artist {
-      flex-grow: 3;
-    }
-    .album {
-      flex-grow: 3;
-    }
-    .playtime {
-      flex-grow: 1;
-      text-align: right;
-    }
     &:not(:first-child):hover {
       background-color: rgba(217, 217, 217, 0.5);
+    }
+    .songInfo {
+      color: white;
+      border: none;
+      background-color: transparent;
+      display: grid;
+      grid-template-columns: 1fr 2fr 9fr;
+      gap: 5px;
+      & > * {
+        height: 100%;
+        display: flex;
+        align-items: center;
+      }
+      .num {
+        justify-content: center;
+      }
+      img.thumbnail {
+        width: 100%;
+      }
+      .title {
+        justify-content: start;
+        padding-left: 10px;
+      }
+    }
+    .selectDeleteWrapper {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      input.selectDelete {
+        width: 15px;
+        height: 15px;
+      }
     }
   }
 `;
