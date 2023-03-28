@@ -31,16 +31,7 @@ public class ChatroomRankScheduler {
         Integer deleteCount = Math.min(10,
                 Math.max(0, (int)chatroomRepository.count() - PropertyVariable.FIND_CHATROOM_MAX));
 
-        if (deleteCount > 0) {
-            List<Chatroom> rowRankingChatrooms = chatroomRepository.getLowRankingChatrooms(deleteCount)
-                    .stream()
-                    .filter(chatroom -> chatroom.getMembers().size() == 0)
-                    .collect(Collectors.toList());
-
-            chatroomRepository.deleteAll(rowRankingChatrooms);
-        }
-
-        List<Chatroom> highRankingChatrooms = chatroomRepository.getHighRankingChatrooms();
-        chatroomService.newRanking(highRankingChatrooms);
+        chatroomService.deleteRowRankChatroom(deleteCount);
+        chatroomService.updateHighRankChatroom();
     }
 }

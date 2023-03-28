@@ -11,7 +11,6 @@ import com.main.server.exception.BusinessLogicException;
 import com.main.server.exception.ExceptionCode;
 import com.main.server.global.config.PropertyVariable;
 import com.main.server.member.entity.Member;
-import com.main.server.member.repository.MemberRepository;
 import com.main.server.playlist.entity.Playlist;
 import com.main.server.playlist.service.PlaylistService;
 import lombok.RequiredArgsConstructor;
@@ -19,13 +18,11 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.annotation.PostConstruct;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 @Slf4j
 @Service
@@ -39,6 +36,8 @@ public class ChatroomService {
 
     private Map<Long, ChatSongQueue> queueMap = new HashMap<>(); // 메모리에서 채팅룸 노래 관리
     private List<Chatroom> highRankChatroomList = new ArrayList<>();
+
+    
 
     /**
      * dto 와 인증을통해 조회한 Member 값을 가져와 방 생성
@@ -172,6 +171,22 @@ public class ChatroomService {
     private void checkExistsChatroom(Member member) {
         if (chatroomRepository.findByMember(member).isPresent()) {
             throw new BusinessLogicException(ExceptionCode.CHATROOM_ALREADY_EXISTS);
+        }
+    }
+
+    public void updateHighRankChatroom() {
+        List<Chatroom> highRankingChatrooms = chatroomRepository.getHighRankingChatrooms();
+        newRanking(highRankingChatrooms);
+    }
+
+    public void deleteRowRankChatroom(int deleteCount) {
+        if (deleteCount > 0) {
+            List<Chatroom> rowRankingChatrooms = chatroomRepository.getLowRankingChatrooms(deleteCount)
+                    .stream()
+                    .filter(chatroom -> chatroom.getMembers().size() == 0)
+                    .collect(Collectors.toList());
+
+            chatroomRepository.deleteAll(rowRankingChatrooms);
         }
     }
 }
