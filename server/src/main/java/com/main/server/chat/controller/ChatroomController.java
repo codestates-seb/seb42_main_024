@@ -1,11 +1,14 @@
 package com.main.server.chat.controller;
 
+import com.main.server.board.dto.BoardDto;
 import com.main.server.chat.data.ChatSong;
 import com.main.server.chat.dto.*;
 import com.main.server.chat.entity.Chatroom;
 import com.main.server.chat.service.ChatroomService;
+import com.main.server.dto.SingleResponseDto;
 import com.main.server.global.dto.ResponseDto;
 import com.main.server.member.entity.Member;
+import com.main.server.member.repository.MemberRepository;
 import com.main.server.member.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

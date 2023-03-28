@@ -128,6 +128,10 @@ public class ChatroomService {
     }
 
     public void deleteChatroom(Chatroom chatroom) {
+        chatService.sendSystemMessage(chatroom.getChatroomId(), "ChatroomOver");
+        if (highRankChatroomList.contains(chatroom)) {
+            highRankChatroomList.remove(chatroom);
+        }
         chatroomRepository.delete(chatroom);
         queueMap.remove(chatroom.getChatroomId());
     }
