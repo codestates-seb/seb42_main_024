@@ -13,6 +13,9 @@ export const NowPlayingWrap = styled.div`
   border-top: 0.5px solid rgb(85, 85, 85);
   align-items: center;
   justify-content: space-around;
+  &.hide {
+    display: none;
+  }
 `;
 // Modal
 export const PlayListBox = styled.div`

@@ -63,8 +63,26 @@ export const PlayListLiContentBox = styled.div`
   height: 45px;
 `;
 export const PlayListLiTitle = styled.span`
+  overflow: hidden;
+  text-overflow: clip;
+  white-space: nowrap;
+  width: 250px;
   font-size: 15px;
   font-family: var(--ft-pretendardBold);
+  ${({ isHover }) =>
+    isHover &&
+    `
+      text-indent: 0;
+      animation: marquee 20s linear infinite;
+      @keyframes marquee {
+        from {
+          text-indent: 0;
+        }
+        to {
+          text-indent: -100%;
+        }
+      }
+    `}
 `;
 export const PlayListLiContent = styled.span`
   font-family: var(--ft-pretendardRegular);

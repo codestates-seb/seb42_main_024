@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
+import { useLocation } from 'react-router-dom';
 
 import PlayBox from './PlayBox';
 import Player from './Player';
@@ -20,6 +21,7 @@ function NowPlaying() {
   const dataUrl = useSelector(
     (state) => state?.currentSongList?.[playIdx]?.thumbnail
   );
+  const location = useLocation();
   const [isOpen, setIsOpen] = useState(false);
   const [volume, setVolume] = useState(1);
   //볼륨 컴포넌트에 전달
@@ -32,7 +34,9 @@ function NowPlaying() {
   return (
     <PlayWarp>
       {/* NowPlaying */}
-      <NowPlayingWrap onClick={handlePlayList}>
+      <NowPlayingWrap
+        onClick={handlePlayList}
+        className={location.pathname.includes('liverooms') ? 'hide' : ''}>
         <PlayBox />
         <Player volume={volume} />
         <Volume volume={volume} onVolumeChange={handleVolumeChange} />
