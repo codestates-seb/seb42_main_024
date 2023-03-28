@@ -37,7 +37,7 @@ const Nav = () => {
   const isLoginExpired = () => {
     const loginTime = localStorage.getItem('loginTime');
     const currentTime = new Date().getTime();
-    const expired = 30 * 60 * 1000;
+    const expired = 60 * 1000 * 30;
 
     return currentTime - loginTime > expired;
   };
@@ -59,9 +59,8 @@ const Nav = () => {
           setData(response);
           dispatch(setUserData(user));
           dispatch(setUserData(response.data));
-          loginTime();
         } catch (e) {
-          console.log(`oAuth token expired`);
+          console.log(`OAuth token expired`);
         }
       }
     }
@@ -78,9 +77,9 @@ const Nav = () => {
 
       if (accessToken) {
         localStorage.setItem('accessToken', accessToken);
+        localStorage.setItem('refreshToken', refreshToken);
         loginTime();
       }
-      localStorage.setItem('refreshToken', refreshToken);
 
       searchParams.delete('Authorization');
       searchParams.delete('Refresh');
@@ -89,12 +88,13 @@ const Nav = () => {
           searchParams.toString() ? '?' + searchParams.toString() : ''
         }`
       );
+    } else {
+      checkLoginStatus();
     }
-    checkLoginStatus();
 
     const interval = setInterval(() => {
       checkLoginStatus();
-    }, 1000 * 60);
+    }, 1000 * 60 * 5);
 
     return () => clearInterval(interval);
   }, []);
@@ -107,7 +107,7 @@ const Nav = () => {
     dispatch(deleteUserData());
     localStorage.removeItem('accessToken');
     localStorage.removeItem('refreshToken');
-    localStorage.clear();
+    localStorage.removeItem('loginTime');
   };
 
   return (
