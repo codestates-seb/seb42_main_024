@@ -62,13 +62,15 @@ public class ChatService {
     public void sendMessage(ChatRequestDto dto) {
         Chatroom chatroom = findChatroomById(dto.getChatroomId());
 
-        Chat chat = Chat.builder() // DB에 채팅내역 저장
-                .memberId(dto.getMemberId())
-                .chatroom(chatroom)
-                .content(dto.getMessage())
-                .build();
+        if (PropertyVariable.SAVE_CHAT) {
+            Chat chat = Chat.builder() // DB에 채팅내역 저장
+                    .memberId(dto.getMemberId())
+                    .chatroom(chatroom)
+                    .content(dto.getMessage())
+                    .build();
 
-        chatRepository.save(chat);
+            chatRepository.save(chat);
+        }
 
         template.convertAndSend("/sub/chat/room/" + dto.getChatroomId(),
                 dto.toResponseDto(chatroom.getMemberNumber(dto.getMemberName()))); // 멤버 순번 세팅
