@@ -178,7 +178,6 @@ export const SearchUIContainer = styled.div`
     }
   }
 `;
-
 export const SearchedSongsContainer = styled.div`
   width: 100%;
   max-height: 340px;
@@ -201,7 +200,8 @@ export const SearchedSongsContainer = styled.div`
     align-items: center;
 
     position: relative;
-
+    border: none;
+    background-color: transparent;
     img.thumbnail {
       width: 100%;
     }

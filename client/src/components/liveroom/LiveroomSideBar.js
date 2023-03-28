@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react';
 import { BsFillGearFill } from 'react-icons/bs';
 
 import LSBChat from './LSBChat';
@@ -14,85 +13,40 @@ import {
   LiveroomSideBarContainer,
 } from '../../styles/liveroomsidebar';
 
-function LiveroomSideBar() {
-  const [data, setdata] = useState([]);
-  useEffect(() => {
-    const dummyData = [
-      {
-        key: 1,
-        singer: '누진세',
-        musicTitle: '하입보잉',
-        thumnailURL:
-          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQGgD01x0AuTfakEpAznMC27k-2jSuoGMiu8mGo1aVuYkeGU_E0C1-_cH6WHNOyMcXGaW4&usqp=CAU',
-        playtime: '3:30',
-      },
-      {
-        key: 2,
-        singer: '누진세',
-        musicTitle: '하입보잉',
-        thumnailURL:
-          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQGgD01x0AuTfakEpAznMC27k-2jSuoGMiu8mGo1aVuYkeGU_E0C1-_cH6WHNOyMcXGaW4&usqp=CAU',
-        playtime: '3:30',
-      },
-      {
-        key: 3,
-        singer: '누진세',
-        musicTitle: '하입보잉',
-        thumnailURL:
-          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQGgD01x0AuTfakEpAznMC27k-2jSuoGMiu8mGo1aVuYkeGU_E0C1-_cH6WHNOyMcXGaW4&usqp=CAU',
-        playtime: '3:30',
-      },
-      {
-        key: 4,
-        singer: '누진세',
-        musicTitle: '하입보잉',
-        thumnailURL:
-          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQGgD01x0AuTfakEpAznMC27k-2jSuoGMiu8mGo1aVuYkeGU_E0C1-_cH6WHNOyMcXGaW4&usqp=CAU',
-        playtime: '3:30',
-      },
-      {
-        key: 6,
-        singer: '누진세',
-        musicTitle: '하입보잉',
-        thumnailURL:
-          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQGgD01x0AuTfakEpAznMC27k-2jSuoGMiu8mGo1aVuYkeGU_E0C1-_cH6WHNOyMcXGaW4&usqp=CAU',
-        playtime: '3:30',
-      },
-      {
-        key: 7,
-        singer: '누진세',
-        musicTitle: '하입보잉',
-        thumnailURL:
-          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQGgD01x0AuTfakEpAznMC27k-2jSuoGMiu8mGo1aVuYkeGU_E0C1-_cH6WHNOyMcXGaW4&usqp=CAU',
-        playtime: '3:30',
-      },
-      {
-        key: 8,
-        singer: '누진세',
-        musicTitle: '하입보잉',
-        thumnailURL:
-          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQGgD01x0AuTfakEpAznMC27k-2jSuoGMiu8mGo1aVuYkeGU_E0C1-_cH6WHNOyMcXGaW4&usqp=CAU',
-        playtime: '3:30',
-      },
-    ];
-    setdata(dummyData);
-  }, []);
+function LiveroomSideBar({
+  message,
+  setMessage,
+  sockClient,
+  chatDatas,
+  songs,
+  openSideBarSettingHandler,
+}) {
   return (
     <LiveroomSideBarContainer>
       <LSBHeaderContainer>
         <BsFillGearFill></BsFillGearFill>
-        <LSBOutBtn>나가기</LSBOutBtn>
+        <LSBOutBtn
+          className='allow'
+          onClick={(e) => {
+            openSideBarSettingHandler(e);
+          }}>
+          나가기
+        </LSBOutBtn>
       </LSBHeaderContainer>
       <LSBPlayListContainer>
         <LSBMemberContainer></LSBMemberContainer>
         <LSBPlayListWrap>
-          {data.map((e) => {
+          {songs.map((e) => {
             return <LSBPlayList key={e.key} playListData={e}></LSBPlayList>;
           })}
         </LSBPlayListWrap>
       </LSBPlayListContainer>
       <LSBChatContianer>
-        <LSBChat></LSBChat>
+        <LSBChat
+          message={message}
+          setMessage={setMessage}
+          sockClient={sockClient}
+          chatDatas={chatDatas}></LSBChat>
       </LSBChatContianer>
     </LiveroomSideBarContainer>
   );

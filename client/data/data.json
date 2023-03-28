@@ -6,7 +6,7 @@
       "thumbnail": "https://image.bugsm.co.kr/album/images/1000/40780/4078016.jpg",
       "author": "main024",
       "isLive": true,
-      "desc": "[NewJeans 1st EP 'New Jeans' Album Review] 멤버 구성은 물론 그룹 이름조차 공개되지 않았던 시기부터 ‘민희진 걸그룹'이라 불리며 올 한해 가장 큰 기대를 불러 모았던 ADOR(All Doors One Room)의 첫 번째 신인, NewJeans가 데뷔했다. 1st EP 'New Jeans'는 NewJeans가 추구하는 '좋은 음악'에 대한 질문을 던진다. 정형화된 K-POP의 익숙한 공식을 따르지 않았고, POP에 기반을 두고 있지만 특정 스타일만을 고수하지 않았다. 어디서든 편하게 들을 수 있는 세련된 이지리스닝 팝을 추구하는 동시에 과장 없는 자연스러운 사운드 엔지니어링으로 NewJeans 멤버들 본연의 목소리를 살리는 프로듀싱을 진행했다. 앨범에 수록된 네 곡은 전원 10대로 구성된 NewJeans 멤버들의 순수하고 자연스러운 매력과 10대 고유의 에너지를 오롯이 담아내고 있다. 얼핏 들으면 NewJeans 또래의 사랑을 이야기하는 것만 같지만, 각각의 수록곡은 다양한 음악적 시도를 바탕으로 각기 다른 서사를 담고 있고 이러한 서사가 모여 자연스럽게 10대의 라이프 스타일을 포괄한다. 또한 개인의 스토리 너머 '우리'라는 서사를 그린다. 파격적으로 세 곡의 타이틀곡을 내세운 건 NewJeans가 전하고 싶은 메시지를 온전히 전달하기 위한 포석이다. NewJeans는 무엇보다 솔직함과 자연스러움을 추구한다. 항상 기존과 다른 방식으로 K-POP 시장의 트렌드를 이끌고, 혁신적인 아티스트 브랜드를 만들어 온 민희진 총괄 프로듀서는 ‘대중음악은 일상과 초근접해 있는 문화이기 때문에 마치 매일 입는 옷과도 같다'라고 말한다. 트렌드의 정중앙에서, 혹은 트렌드와 무관하게 시대 불문 남녀노소 모두에게 사랑받아온 ‘Jean'처럼. 이 시대의 새로운 아이콘으로, 매일 찾게 되는 언제입어도 질리지 않는 'New Jeans'가 되길! 이것이 NewJeans가 지향하는 가치이자, New Genes - NewJeans의 시작이다.",
+      "desc": "[NewJeans 1st EP 'New Jeans' Album Review] 멤버 구성은 물론 그룹 이름조차 공개되지 않았던 시기부터 ‘민희진 걸그룹'이라 불리며 올 한해 가장 큰 기대를 불러 모았던 ADOR(All Doors One Room)의 첫 번째 신인, NewJeans가 데뷔했다.",
       "listInfo": [
         {
           "id": 1,
@@ -538,6 +538,1448 @@
           "artist": "Red Velvet (레드벨벳)",
           "src": "",
           "imgSrc": "https://image.bugsm.co.kr/album/images/1000/204570/20457046.jpg"
+        }
+      ]
+    }
+  ],
+  "slider": [
+    {
+      "sliderId": 1,
+      "sliderTitle": "지금 가장 인기 있는 리스트",
+      "sliderList": [
+        {
+          "id": 1,
+          "title": "NewJeans 1st EP 'New Jeans'",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/1000/40780/4078016.jpg",
+          "author": "main024",
+          "isLive": true
+        },
+        {
+          "id": 2,
+          "title": "IU 5th Album 'LILAC'",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/original/40271/4027185.jpg?version=undefined",
+          "author": "IU",
+          "isLive": true
+        },
+        {
+          "id": 3,
+          "title": "NONSTOP",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/1000/141168/14116820.jpg",
+          "author": "오마이걸(OH MY GIRL)",
+          "isLive": true
+        },
+        {
+          "id": 4,
+          "title": "After Like",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/1000/40789/4078936.jpg",
+          "author": "IVE (아이브)",
+          "isLive": false
+        },
+        {
+          "id": 5,
+          "title": "BORN PINK",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/1000/40788/4078880.jpg",
+          "author": "BLACKPINK",
+          "isLive": false
+        },
+        {
+          "id": 6,
+          "title": "ANTIFRAGILE",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/1000/40807/4080706.jpg",
+          "author": "LE SSERAFIM (르세라핌)",
+          "isLive": false
+        }
+      ]
+    },
+    {
+      "sliderId": 2,
+      "sliderTitle": "오늘의 추천 플레이리스트",
+      "sliderList": [
+        {
+          "id": 2,
+          "title": "IU 5th Album 'LILAC'",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/original/40271/4027185.jpg?version=undefined",
+          "author": "IU",
+          "isLive": true
+        },
+        {
+          "id": 3,
+          "title": "NONSTOP",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/1000/141168/14116820.jpg",
+          "author": "오마이걸(OH MY GIRL)",
+          "isLive": true
+        },
+        {
+          "id": 4,
+          "title": "After Like",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/1000/40789/4078936.jpg",
+          "author": "IVE (아이브)",
+          "isLive": false
+        },
+        {
+          "id": 5,
+          "title": "BORN PINK",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/1000/40788/4078880.jpg",
+          "author": "BLACKPINK",
+          "isLive": false
+        },
+        {
+          "id": 6,
+          "title": "ANTIFRAGILE",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/1000/40807/4080706.jpg",
+          "author": "LE SSERAFIM (르세라핌)",
+          "isLive": false
+        },
+        {
+          "id": 7,
+          "title": "I love",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/1000/40807/4080705.jpg",
+          "author": "(여자)아이들",
+          "isLive": true
+        }
+      ]
+    },
+    {
+      "sliderId": 3,
+      "sliderTitle": "오늘 날씨에 딱 어울려요",
+      "sliderList": [
+        {
+          "id": 3,
+          "title": "NONSTOP",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/1000/141168/14116820.jpg",
+          "author": "오마이걸(OH MY GIRL)",
+          "isLive": true
+        },
+        {
+          "id": 4,
+          "title": "After Like",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/1000/40789/4078936.jpg",
+          "author": "IVE (아이브)",
+          "isLive": false
+        },
+        {
+          "id": 5,
+          "title": "BORN PINK",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/1000/40788/4078880.jpg",
+          "author": "BLACKPINK",
+          "isLive": false
+        },
+        {
+          "id": 6,
+          "title": "ANTIFRAGILE",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/1000/40807/4080706.jpg",
+          "author": "LE SSERAFIM (르세라핌)",
+          "isLive": false
+        },
+        {
+          "id": 7,
+          "title": "I love",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/1000/40807/4080705.jpg",
+          "author": "(여자)아이들",
+          "isLive": true
+        },
+        {
+          "id": 8,
+          "title": "낮 밤 (feat. 박재범)",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/1000/40666/4066688.jpg",
+          "author": "이영지",
+          "isLive": false
+        }
+      ]
+    },
+    {
+      "sliderId": 4,
+      "sliderTitle": "드라이브 필수 준비물",
+      "sliderList": [
+        {
+          "id": 4,
+          "title": "After Like",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/1000/40789/4078936.jpg",
+          "author": "IVE (아이브)",
+          "isLive": false
+        },
+        {
+          "id": 5,
+          "title": "BORN PINK",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/1000/40788/4078880.jpg",
+          "author": "BLACKPINK",
+          "isLive": false
+        },
+        {
+          "id": 6,
+          "title": "ANTIFRAGILE",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/1000/40807/4080706.jpg",
+          "author": "LE SSERAFIM (르세라핌)",
+          "isLive": false
+        },
+        {
+          "id": 7,
+          "title": "I love",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/1000/40807/4080705.jpg",
+          "author": "(여자)아이들",
+          "isLive": true
+        },
+        {
+          "id": 8,
+          "title": "낮 밤 (feat. 박재범)",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/1000/40666/4066688.jpg",
+          "author": "이영지",
+          "isLive": false
+        },
+        {
+          "id": 9,
+          "title": "Next Level",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/1000/203973/20397321.jpg",
+          "author": "aespa",
+          "isLive": false
+        }
+      ]
+    },
+    {
+      "sliderId": 5,
+      "sliderTitle": "노동에는 노동요",
+      "sliderList": [
+        {
+          "id": 5,
+          "title": "BORN PINK",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/1000/40788/4078880.jpg",
+          "author": "BLACKPINK",
+          "isLive": false
+        },
+        {
+          "id": 6,
+          "title": "ANTIFRAGILE",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/1000/40807/4080706.jpg",
+          "author": "LE SSERAFIM (르세라핌)",
+          "isLive": false
+        },
+        {
+          "id": 7,
+          "title": "I love",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/1000/40807/4080705.jpg",
+          "author": "(여자)아이들",
+          "isLive": true
+        },
+        {
+          "id": 8,
+          "title": "낮 밤 (feat. 박재범)",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/1000/40666/4066688.jpg",
+          "author": "이영지",
+          "isLive": false
+        },
+        {
+          "id": 9,
+          "title": "Next Level",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/1000/203973/20397321.jpg",
+          "author": "aespa",
+          "isLive": false
+        },
+        {
+          "id": 10,
+          "title": "‘The ReVe Festival 2022 - Feel My Rhythm’",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/1000/204570/20457046.jpg",
+          "author": "Red Velvet (레드벨벳)",
+          "isLive": true
+        }
+      ]
+    },
+    {
+      "sliderId": 6,
+      "sliderTitle": "지금 가장 인기 있는 리스트",
+      "sliderList": [
+        {
+          "id": 1,
+          "title": "NewJeans 1st EP 'New Jeans'",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/1000/40780/4078016.jpg",
+          "author": "main024",
+          "isLive": true
+        },
+        {
+          "id": 2,
+          "title": "IU 5th Album 'LILAC'",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/original/40271/4027185.jpg?version=undefined",
+          "author": "IU",
+          "isLive": true
+        },
+        {
+          "id": 3,
+          "title": "NONSTOP",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/1000/141168/14116820.jpg",
+          "author": "오마이걸(OH MY GIRL)",
+          "isLive": true
+        },
+        {
+          "id": 4,
+          "title": "After Like",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/1000/40789/4078936.jpg",
+          "author": "IVE (아이브)",
+          "isLive": false
+        },
+        {
+          "id": 5,
+          "title": "BORN PINK",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/1000/40788/4078880.jpg",
+          "author": "BLACKPINK",
+          "isLive": false
+        },
+        {
+          "id": 6,
+          "title": "ANTIFRAGILE",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/1000/40807/4080706.jpg",
+          "author": "LE SSERAFIM (르세라핌)",
+          "isLive": false
+        }
+      ]
+    },
+    {
+      "sliderId": 7,
+      "sliderTitle": "오늘의 추천 플레이리스트",
+      "sliderList": [
+        {
+          "id": 2,
+          "title": "IU 5th Album 'LILAC'",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/original/40271/4027185.jpg?version=undefined",
+          "author": "IU",
+          "isLive": true
+        },
+        {
+          "id": 3,
+          "title": "NONSTOP",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/1000/141168/14116820.jpg",
+          "author": "오마이걸(OH MY GIRL)",
+          "isLive": true
+        },
+        {
+          "id": 4,
+          "title": "After Like",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/1000/40789/4078936.jpg",
+          "author": "IVE (아이브)",
+          "isLive": false
+        },
+        {
+          "id": 5,
+          "title": "BORN PINK",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/1000/40788/4078880.jpg",
+          "author": "BLACKPINK",
+          "isLive": false
+        },
+        {
+          "id": 6,
+          "title": "ANTIFRAGILE",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/1000/40807/4080706.jpg",
+          "author": "LE SSERAFIM (르세라핌)",
+          "isLive": false
+        },
+        {
+          "id": 7,
+          "title": "I love",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/1000/40807/4080705.jpg",
+          "author": "(여자)아이들",
+          "isLive": true
+        }
+      ]
+    },
+    {
+      "sliderId": 8,
+      "sliderTitle": "오늘 날씨에 딱 어울려요",
+      "sliderList": [
+        {
+          "id": 3,
+          "title": "NONSTOP",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/1000/141168/14116820.jpg",
+          "author": "오마이걸(OH MY GIRL)",
+          "isLive": true
+        },
+        {
+          "id": 4,
+          "title": "After Like",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/1000/40789/4078936.jpg",
+          "author": "IVE (아이브)",
+          "isLive": false
+        },
+        {
+          "id": 5,
+          "title": "BORN PINK",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/1000/40788/4078880.jpg",
+          "author": "BLACKPINK",
+          "isLive": false
+        },
+        {
+          "id": 6,
+          "title": "ANTIFRAGILE",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/1000/40807/4080706.jpg",
+          "author": "LE SSERAFIM (르세라핌)",
+          "isLive": false
+        },
+        {
+          "id": 7,
+          "title": "I love",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/1000/40807/4080705.jpg",
+          "author": "(여자)아이들",
+          "isLive": true
+        },
+        {
+          "id": 8,
+          "title": "낮 밤 (feat. 박재범)",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/1000/40666/4066688.jpg",
+          "author": "이영지",
+          "isLive": false
+        }
+      ]
+    },
+    {
+      "sliderId": 9,
+      "sliderTitle": "드라이브 필수 준비물",
+      "sliderList": [
+        {
+          "id": 4,
+          "title": "After Like",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/1000/40789/4078936.jpg",
+          "author": "IVE (아이브)",
+          "isLive": false
+        },
+        {
+          "id": 5,
+          "title": "BORN PINK",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/1000/40788/4078880.jpg",
+          "author": "BLACKPINK",
+          "isLive": false
+        },
+        {
+          "id": 6,
+          "title": "ANTIFRAGILE",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/1000/40807/4080706.jpg",
+          "author": "LE SSERAFIM (르세라핌)",
+          "isLive": false
+        },
+        {
+          "id": 7,
+          "title": "I love",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/1000/40807/4080705.jpg",
+          "author": "(여자)아이들",
+          "isLive": true
+        },
+        {
+          "id": 8,
+          "title": "낮 밤 (feat. 박재범)",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/1000/40666/4066688.jpg",
+          "author": "이영지",
+          "isLive": false
+        },
+        {
+          "id": 9,
+          "title": "Next Level",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/1000/203973/20397321.jpg",
+          "author": "aespa",
+          "isLive": false
+        }
+      ]
+    },
+    {
+      "sliderId": 10,
+      "sliderTitle": "노동에는 노동요",
+      "sliderList": [
+        {
+          "id": 5,
+          "title": "BORN PINK",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/1000/40788/4078880.jpg",
+          "author": "BLACKPINK",
+          "isLive": false
+        },
+        {
+          "id": 6,
+          "title": "ANTIFRAGILE",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/1000/40807/4080706.jpg",
+          "author": "LE SSERAFIM (르세라핌)",
+          "isLive": false
+        },
+        {
+          "id": 7,
+          "title": "I love",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/1000/40807/4080705.jpg",
+          "author": "(여자)아이들",
+          "isLive": true
+        },
+        {
+          "id": 8,
+          "title": "낮 밤 (feat. 박재범)",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/1000/40666/4066688.jpg",
+          "author": "이영지",
+          "isLive": false
+        },
+        {
+          "id": 9,
+          "title": "Next Level",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/1000/203973/20397321.jpg",
+          "author": "aespa",
+          "isLive": false
+        },
+        {
+          "id": 10,
+          "title": "‘The ReVe Festival 2022 - Feel My Rhythm’",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/1000/204570/20457046.jpg",
+          "author": "Red Velvet (레드벨벳)",
+          "isLive": true
+        }
+      ]
+    },
+    {
+      "sliderId": 11,
+      "sliderTitle": "지금 가장 인기 있는 리스트",
+      "sliderList": [
+        {
+          "id": 1,
+          "title": "NewJeans 1st EP 'New Jeans'",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/1000/40780/4078016.jpg",
+          "author": "main024",
+          "isLive": true
+        },
+        {
+          "id": 2,
+          "title": "IU 5th Album 'LILAC'",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/original/40271/4027185.jpg?version=undefined",
+          "author": "IU",
+          "isLive": true
+        },
+        {
+          "id": 3,
+          "title": "NONSTOP",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/1000/141168/14116820.jpg",
+          "author": "오마이걸(OH MY GIRL)",
+          "isLive": true
+        },
+        {
+          "id": 4,
+          "title": "After Like",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/1000/40789/4078936.jpg",
+          "author": "IVE (아이브)",
+          "isLive": false
+        },
+        {
+          "id": 5,
+          "title": "BORN PINK",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/1000/40788/4078880.jpg",
+          "author": "BLACKPINK",
+          "isLive": false
+        },
+        {
+          "id": 6,
+          "title": "ANTIFRAGILE",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/1000/40807/4080706.jpg",
+          "author": "LE SSERAFIM (르세라핌)",
+          "isLive": false
+        }
+      ]
+    },
+    {
+      "sliderId": 12,
+      "sliderTitle": "오늘의 추천 플레이리스트",
+      "sliderList": [
+        {
+          "id": 2,
+          "title": "IU 5th Album 'LILAC'",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/original/40271/4027185.jpg?version=undefined",
+          "author": "IU",
+          "isLive": true
+        },
+        {
+          "id": 3,
+          "title": "NONSTOP",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/1000/141168/14116820.jpg",
+          "author": "오마이걸(OH MY GIRL)",
+          "isLive": true
+        },
+        {
+          "id": 4,
+          "title": "After Like",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/1000/40789/4078936.jpg",
+          "author": "IVE (아이브)",
+          "isLive": false
+        },
+        {
+          "id": 5,
+          "title": "BORN PINK",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/1000/40788/4078880.jpg",
+          "author": "BLACKPINK",
+          "isLive": false
+        },
+        {
+          "id": 6,
+          "title": "ANTIFRAGILE",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/1000/40807/4080706.jpg",
+          "author": "LE SSERAFIM (르세라핌)",
+          "isLive": false
+        },
+        {
+          "id": 7,
+          "title": "I love",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/1000/40807/4080705.jpg",
+          "author": "(여자)아이들",
+          "isLive": true
+        }
+      ]
+    },
+    {
+      "sliderId": 13,
+      "sliderTitle": "오늘 날씨에 딱 어울려요",
+      "sliderList": [
+        {
+          "id": 3,
+          "title": "NONSTOP",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/1000/141168/14116820.jpg",
+          "author": "오마이걸(OH MY GIRL)",
+          "isLive": true
+        },
+        {
+          "id": 4,
+          "title": "After Like",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/1000/40789/4078936.jpg",
+          "author": "IVE (아이브)",
+          "isLive": false
+        },
+        {
+          "id": 5,
+          "title": "BORN PINK",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/1000/40788/4078880.jpg",
+          "author": "BLACKPINK",
+          "isLive": false
+        },
+        {
+          "id": 6,
+          "title": "ANTIFRAGILE",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/1000/40807/4080706.jpg",
+          "author": "LE SSERAFIM (르세라핌)",
+          "isLive": false
+        },
+        {
+          "id": 7,
+          "title": "I love",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/1000/40807/4080705.jpg",
+          "author": "(여자)아이들",
+          "isLive": true
+        },
+        {
+          "id": 8,
+          "title": "낮 밤 (feat. 박재범)",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/1000/40666/4066688.jpg",
+          "author": "이영지",
+          "isLive": false
+        }
+      ]
+    },
+    {
+      "sliderId": 14,
+      "sliderTitle": "드라이브 필수 준비물",
+      "sliderList": [
+        {
+          "id": 4,
+          "title": "After Like",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/1000/40789/4078936.jpg",
+          "author": "IVE (아이브)",
+          "isLive": false
+        },
+        {
+          "id": 5,
+          "title": "BORN PINK",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/1000/40788/4078880.jpg",
+          "author": "BLACKPINK",
+          "isLive": false
+        },
+        {
+          "id": 6,
+          "title": "ANTIFRAGILE",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/1000/40807/4080706.jpg",
+          "author": "LE SSERAFIM (르세라핌)",
+          "isLive": false
+        },
+        {
+          "id": 7,
+          "title": "I love",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/1000/40807/4080705.jpg",
+          "author": "(여자)아이들",
+          "isLive": true
+        },
+        {
+          "id": 8,
+          "title": "낮 밤 (feat. 박재범)",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/1000/40666/4066688.jpg",
+          "author": "이영지",
+          "isLive": false
+        },
+        {
+          "id": 9,
+          "title": "Next Level",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/1000/203973/20397321.jpg",
+          "author": "aespa",
+          "isLive": false
+        }
+      ]
+    },
+    {
+      "sliderId": 15,
+      "sliderTitle": "노동에는 노동요",
+      "sliderList": [
+        {
+          "id": 5,
+          "title": "BORN PINK",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/1000/40788/4078880.jpg",
+          "author": "BLACKPINK",
+          "isLive": false
+        },
+        {
+          "id": 6,
+          "title": "ANTIFRAGILE",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/1000/40807/4080706.jpg",
+          "author": "LE SSERAFIM (르세라핌)",
+          "isLive": false
+        },
+        {
+          "id": 7,
+          "title": "I love",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/1000/40807/4080705.jpg",
+          "author": "(여자)아이들",
+          "isLive": true
+        },
+        {
+          "id": 8,
+          "title": "낮 밤 (feat. 박재범)",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/1000/40666/4066688.jpg",
+          "author": "이영지",
+          "isLive": false
+        },
+        {
+          "id": 9,
+          "title": "Next Level",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/1000/203973/20397321.jpg",
+          "author": "aespa",
+          "isLive": false
+        },
+        {
+          "id": 10,
+          "title": "‘The ReVe Festival 2022 - Feel My Rhythm’",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/1000/204570/20457046.jpg",
+          "author": "Red Velvet (레드벨벳)",
+          "isLive": true
+        }
+      ]
+    },
+    {
+      "sliderId": 16,
+      "sliderTitle": "지금 가장 인기 있는 리스트",
+      "sliderList": [
+        {
+          "id": 1,
+          "title": "NewJeans 1st EP 'New Jeans'",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/1000/40780/4078016.jpg",
+          "author": "main024",
+          "isLive": true
+        },
+        {
+          "id": 2,
+          "title": "IU 5th Album 'LILAC'",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/original/40271/4027185.jpg?version=undefined",
+          "author": "IU",
+          "isLive": true
+        },
+        {
+          "id": 3,
+          "title": "NONSTOP",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/1000/141168/14116820.jpg",
+          "author": "오마이걸(OH MY GIRL)",
+          "isLive": true
+        },
+        {
+          "id": 4,
+          "title": "After Like",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/1000/40789/4078936.jpg",
+          "author": "IVE (아이브)",
+          "isLive": false
+        },
+        {
+          "id": 5,
+          "title": "BORN PINK",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/1000/40788/4078880.jpg",
+          "author": "BLACKPINK",
+          "isLive": false
+        },
+        {
+          "id": 6,
+          "title": "ANTIFRAGILE",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/1000/40807/4080706.jpg",
+          "author": "LE SSERAFIM (르세라핌)",
+          "isLive": false
+        }
+      ]
+    },
+    {
+      "sliderId": 17,
+      "sliderTitle": "오늘의 추천 플레이리스트",
+      "sliderList": [
+        {
+          "id": 2,
+          "title": "IU 5th Album 'LILAC'",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/original/40271/4027185.jpg?version=undefined",
+          "author": "IU",
+          "isLive": true
+        },
+        {
+          "id": 3,
+          "title": "NONSTOP",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/1000/141168/14116820.jpg",
+          "author": "오마이걸(OH MY GIRL)",
+          "isLive": true
+        },
+        {
+          "id": 4,
+          "title": "After Like",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/1000/40789/4078936.jpg",
+          "author": "IVE (아이브)",
+          "isLive": false
+        },
+        {
+          "id": 5,
+          "title": "BORN PINK",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/1000/40788/4078880.jpg",
+          "author": "BLACKPINK",
+          "isLive": false
+        },
+        {
+          "id": 6,
+          "title": "ANTIFRAGILE",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/1000/40807/4080706.jpg",
+          "author": "LE SSERAFIM (르세라핌)",
+          "isLive": false
+        },
+        {
+          "id": 7,
+          "title": "I love",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/1000/40807/4080705.jpg",
+          "author": "(여자)아이들",
+          "isLive": true
+        }
+      ]
+    },
+    {
+      "sliderId": 18,
+      "sliderTitle": "오늘 날씨에 딱 어울려요",
+      "sliderList": [
+        {
+          "id": 3,
+          "title": "NONSTOP",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/1000/141168/14116820.jpg",
+          "author": "오마이걸(OH MY GIRL)",
+          "isLive": true
+        },
+        {
+          "id": 4,
+          "title": "After Like",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/1000/40789/4078936.jpg",
+          "author": "IVE (아이브)",
+          "isLive": false
+        },
+        {
+          "id": 5,
+          "title": "BORN PINK",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/1000/40788/4078880.jpg",
+          "author": "BLACKPINK",
+          "isLive": false
+        },
+        {
+          "id": 6,
+          "title": "ANTIFRAGILE",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/1000/40807/4080706.jpg",
+          "author": "LE SSERAFIM (르세라핌)",
+          "isLive": false
+        },
+        {
+          "id": 7,
+          "title": "I love",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/1000/40807/4080705.jpg",
+          "author": "(여자)아이들",
+          "isLive": true
+        },
+        {
+          "id": 8,
+          "title": "낮 밤 (feat. 박재범)",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/1000/40666/4066688.jpg",
+          "author": "이영지",
+          "isLive": false
+        }
+      ]
+    },
+    {
+      "sliderId": 19,
+      "sliderTitle": "드라이브 필수 준비물",
+      "sliderList": [
+        {
+          "id": 4,
+          "title": "After Like",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/1000/40789/4078936.jpg",
+          "author": "IVE (아이브)",
+          "isLive": false
+        },
+        {
+          "id": 5,
+          "title": "BORN PINK",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/1000/40788/4078880.jpg",
+          "author": "BLACKPINK",
+          "isLive": false
+        },
+        {
+          "id": 6,
+          "title": "ANTIFRAGILE",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/1000/40807/4080706.jpg",
+          "author": "LE SSERAFIM (르세라핌)",
+          "isLive": false
+        },
+        {
+          "id": 7,
+          "title": "I love",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/1000/40807/4080705.jpg",
+          "author": "(여자)아이들",
+          "isLive": true
+        },
+        {
+          "id": 8,
+          "title": "낮 밤 (feat. 박재범)",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/1000/40666/4066688.jpg",
+          "author": "이영지",
+          "isLive": false
+        },
+        {
+          "id": 9,
+          "title": "Next Level",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/1000/203973/20397321.jpg",
+          "author": "aespa",
+          "isLive": false
+        }
+      ]
+    },
+    {
+      "sliderId": 20,
+      "sliderTitle": "노동에는 노동요",
+      "sliderList": [
+        {
+          "id": 5,
+          "title": "BORN PINK",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/1000/40788/4078880.jpg",
+          "author": "BLACKPINK",
+          "isLive": false
+        },
+        {
+          "id": 6,
+          "title": "ANTIFRAGILE",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/1000/40807/4080706.jpg",
+          "author": "LE SSERAFIM (르세라핌)",
+          "isLive": false
+        },
+        {
+          "id": 7,
+          "title": "I love",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/1000/40807/4080705.jpg",
+          "author": "(여자)아이들",
+          "isLive": true
+        },
+        {
+          "id": 8,
+          "title": "낮 밤 (feat. 박재범)",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/1000/40666/4066688.jpg",
+          "author": "이영지",
+          "isLive": false
+        },
+        {
+          "id": 9,
+          "title": "Next Level",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/1000/203973/20397321.jpg",
+          "author": "aespa",
+          "isLive": false
+        },
+        {
+          "id": 10,
+          "title": "‘The ReVe Festival 2022 - Feel My Rhythm’",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/1000/204570/20457046.jpg",
+          "author": "Red Velvet (레드벨벳)",
+          "isLive": true
+        }
+      ]
+    },
+    {
+      "sliderId": 21,
+      "sliderTitle": "지금 가장 인기 있는 리스트",
+      "sliderList": [
+        {
+          "id": 1,
+          "title": "NewJeans 1st EP 'New Jeans'",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/1000/40780/4078016.jpg",
+          "author": "main024",
+          "isLive": true
+        },
+        {
+          "id": 2,
+          "title": "IU 5th Album 'LILAC'",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/original/40271/4027185.jpg?version=undefined",
+          "author": "IU",
+          "isLive": true
+        },
+        {
+          "id": 3,
+          "title": "NONSTOP",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/1000/141168/14116820.jpg",
+          "author": "오마이걸(OH MY GIRL)",
+          "isLive": true
+        },
+        {
+          "id": 4,
+          "title": "After Like",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/1000/40789/4078936.jpg",
+          "author": "IVE (아이브)",
+          "isLive": false
+        },
+        {
+          "id": 5,
+          "title": "BORN PINK",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/1000/40788/4078880.jpg",
+          "author": "BLACKPINK",
+          "isLive": false
+        },
+        {
+          "id": 6,
+          "title": "ANTIFRAGILE",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/1000/40807/4080706.jpg",
+          "author": "LE SSERAFIM (르세라핌)",
+          "isLive": false
+        }
+      ]
+    },
+    {
+      "sliderId": 22,
+      "sliderTitle": "오늘의 추천 플레이리스트",
+      "sliderList": [
+        {
+          "id": 2,
+          "title": "IU 5th Album 'LILAC'",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/original/40271/4027185.jpg?version=undefined",
+          "author": "IU",
+          "isLive": true
+        },
+        {
+          "id": 3,
+          "title": "NONSTOP",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/1000/141168/14116820.jpg",
+          "author": "오마이걸(OH MY GIRL)",
+          "isLive": true
+        },
+        {
+          "id": 4,
+          "title": "After Like",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/1000/40789/4078936.jpg",
+          "author": "IVE (아이브)",
+          "isLive": false
+        },
+        {
+          "id": 5,
+          "title": "BORN PINK",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/1000/40788/4078880.jpg",
+          "author": "BLACKPINK",
+          "isLive": false
+        },
+        {
+          "id": 6,
+          "title": "ANTIFRAGILE",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/1000/40807/4080706.jpg",
+          "author": "LE SSERAFIM (르세라핌)",
+          "isLive": false
+        },
+        {
+          "id": 7,
+          "title": "I love",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/1000/40807/4080705.jpg",
+          "author": "(여자)아이들",
+          "isLive": true
+        }
+      ]
+    },
+    {
+      "sliderId": 23,
+      "sliderTitle": "오늘 날씨에 딱 어울려요",
+      "sliderList": [
+        {
+          "id": 3,
+          "title": "NONSTOP",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/1000/141168/14116820.jpg",
+          "author": "오마이걸(OH MY GIRL)",
+          "isLive": true
+        },
+        {
+          "id": 4,
+          "title": "After Like",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/1000/40789/4078936.jpg",
+          "author": "IVE (아이브)",
+          "isLive": false
+        },
+        {
+          "id": 5,
+          "title": "BORN PINK",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/1000/40788/4078880.jpg",
+          "author": "BLACKPINK",
+          "isLive": false
+        },
+        {
+          "id": 6,
+          "title": "ANTIFRAGILE",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/1000/40807/4080706.jpg",
+          "author": "LE SSERAFIM (르세라핌)",
+          "isLive": false
+        },
+        {
+          "id": 7,
+          "title": "I love",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/1000/40807/4080705.jpg",
+          "author": "(여자)아이들",
+          "isLive": true
+        },
+        {
+          "id": 8,
+          "title": "낮 밤 (feat. 박재범)",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/1000/40666/4066688.jpg",
+          "author": "이영지",
+          "isLive": false
+        }
+      ]
+    },
+    {
+      "sliderId": 24,
+      "sliderTitle": "드라이브 필수 준비물",
+      "sliderList": [
+        {
+          "id": 4,
+          "title": "After Like",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/1000/40789/4078936.jpg",
+          "author": "IVE (아이브)",
+          "isLive": false
+        },
+        {
+          "id": 5,
+          "title": "BORN PINK",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/1000/40788/4078880.jpg",
+          "author": "BLACKPINK",
+          "isLive": false
+        },
+        {
+          "id": 6,
+          "title": "ANTIFRAGILE",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/1000/40807/4080706.jpg",
+          "author": "LE SSERAFIM (르세라핌)",
+          "isLive": false
+        },
+        {
+          "id": 7,
+          "title": "I love",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/1000/40807/4080705.jpg",
+          "author": "(여자)아이들",
+          "isLive": true
+        },
+        {
+          "id": 8,
+          "title": "낮 밤 (feat. 박재범)",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/1000/40666/4066688.jpg",
+          "author": "이영지",
+          "isLive": false
+        },
+        {
+          "id": 9,
+          "title": "Next Level",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/1000/203973/20397321.jpg",
+          "author": "aespa",
+          "isLive": false
+        }
+      ]
+    },
+    {
+      "sliderId": 25,
+      "sliderTitle": "노동에는 노동요",
+      "sliderList": [
+        {
+          "id": 5,
+          "title": "BORN PINK",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/1000/40788/4078880.jpg",
+          "author": "BLACKPINK",
+          "isLive": false
+        },
+        {
+          "id": 6,
+          "title": "ANTIFRAGILE",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/1000/40807/4080706.jpg",
+          "author": "LE SSERAFIM (르세라핌)",
+          "isLive": false
+        },
+        {
+          "id": 7,
+          "title": "I love",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/1000/40807/4080705.jpg",
+          "author": "(여자)아이들",
+          "isLive": true
+        },
+        {
+          "id": 8,
+          "title": "낮 밤 (feat. 박재범)",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/1000/40666/4066688.jpg",
+          "author": "이영지",
+          "isLive": false
+        },
+        {
+          "id": 9,
+          "title": "Next Level",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/1000/203973/20397321.jpg",
+          "author": "aespa",
+          "isLive": false
+        },
+        {
+          "id": 10,
+          "title": "‘The ReVe Festival 2022 - Feel My Rhythm’",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/1000/204570/20457046.jpg",
+          "author": "Red Velvet (레드벨벳)",
+          "isLive": true
+        }
+      ]
+    },
+    {
+      "sliderId": 26,
+      "sliderTitle": "지금 가장 인기 있는 리스트",
+      "sliderList": [
+        {
+          "id": 1,
+          "title": "NewJeans 1st EP 'New Jeans'",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/1000/40780/4078016.jpg",
+          "author": "main024",
+          "isLive": true
+        },
+        {
+          "id": 2,
+          "title": "IU 5th Album 'LILAC'",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/original/40271/4027185.jpg?version=undefined",
+          "author": "IU",
+          "isLive": true
+        },
+        {
+          "id": 3,
+          "title": "NONSTOP",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/1000/141168/14116820.jpg",
+          "author": "오마이걸(OH MY GIRL)",
+          "isLive": true
+        },
+        {
+          "id": 4,
+          "title": "After Like",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/1000/40789/4078936.jpg",
+          "author": "IVE (아이브)",
+          "isLive": false
+        },
+        {
+          "id": 5,
+          "title": "BORN PINK",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/1000/40788/4078880.jpg",
+          "author": "BLACKPINK",
+          "isLive": false
+        },
+        {
+          "id": 6,
+          "title": "ANTIFRAGILE",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/1000/40807/4080706.jpg",
+          "author": "LE SSERAFIM (르세라핌)",
+          "isLive": false
+        }
+      ]
+    },
+    {
+      "sliderId": 27,
+      "sliderTitle": "오늘의 추천 플레이리스트",
+      "sliderList": [
+        {
+          "id": 2,
+          "title": "IU 5th Album 'LILAC'",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/original/40271/4027185.jpg?version=undefined",
+          "author": "IU",
+          "isLive": true
+        },
+        {
+          "id": 3,
+          "title": "NONSTOP",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/1000/141168/14116820.jpg",
+          "author": "오마이걸(OH MY GIRL)",
+          "isLive": true
+        },
+        {
+          "id": 4,
+          "title": "After Like",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/1000/40789/4078936.jpg",
+          "author": "IVE (아이브)",
+          "isLive": false
+        },
+        {
+          "id": 5,
+          "title": "BORN PINK",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/1000/40788/4078880.jpg",
+          "author": "BLACKPINK",
+          "isLive": false
+        },
+        {
+          "id": 6,
+          "title": "ANTIFRAGILE",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/1000/40807/4080706.jpg",
+          "author": "LE SSERAFIM (르세라핌)",
+          "isLive": false
+        },
+        {
+          "id": 7,
+          "title": "I love",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/1000/40807/4080705.jpg",
+          "author": "(여자)아이들",
+          "isLive": true
+        }
+      ]
+    },
+    {
+      "sliderId": 28,
+      "sliderTitle": "오늘 날씨에 딱 어울려요",
+      "sliderList": [
+        {
+          "id": 3,
+          "title": "NONSTOP",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/1000/141168/14116820.jpg",
+          "author": "오마이걸(OH MY GIRL)",
+          "isLive": true
+        },
+        {
+          "id": 4,
+          "title": "After Like",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/1000/40789/4078936.jpg",
+          "author": "IVE (아이브)",
+          "isLive": false
+        },
+        {
+          "id": 5,
+          "title": "BORN PINK",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/1000/40788/4078880.jpg",
+          "author": "BLACKPINK",
+          "isLive": false
+        },
+        {
+          "id": 6,
+          "title": "ANTIFRAGILE",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/1000/40807/4080706.jpg",
+          "author": "LE SSERAFIM (르세라핌)",
+          "isLive": false
+        },
+        {
+          "id": 7,
+          "title": "I love",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/1000/40807/4080705.jpg",
+          "author": "(여자)아이들",
+          "isLive": true
+        },
+        {
+          "id": 8,
+          "title": "낮 밤 (feat. 박재범)",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/1000/40666/4066688.jpg",
+          "author": "이영지",
+          "isLive": false
+        }
+      ]
+    },
+    {
+      "sliderId": 29,
+      "sliderTitle": "드라이브 필수 준비물",
+      "sliderList": [
+        {
+          "id": 4,
+          "title": "After Like",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/1000/40789/4078936.jpg",
+          "author": "IVE (아이브)",
+          "isLive": false
+        },
+        {
+          "id": 5,
+          "title": "BORN PINK",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/1000/40788/4078880.jpg",
+          "author": "BLACKPINK",
+          "isLive": false
+        },
+        {
+          "id": 6,
+          "title": "ANTIFRAGILE",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/1000/40807/4080706.jpg",
+          "author": "LE SSERAFIM (르세라핌)",
+          "isLive": false
+        },
+        {
+          "id": 7,
+          "title": "I love",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/1000/40807/4080705.jpg",
+          "author": "(여자)아이들",
+          "isLive": true
+        },
+        {
+          "id": 8,
+          "title": "낮 밤 (feat. 박재범)",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/1000/40666/4066688.jpg",
+          "author": "이영지",
+          "isLive": false
+        },
+        {
+          "id": 9,
+          "title": "Next Level",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/1000/203973/20397321.jpg",
+          "author": "aespa",
+          "isLive": false
+        }
+      ]
+    },
+    {
+      "sliderId": 30,
+      "sliderTitle": "노동에는 노동요",
+      "sliderList": [
+        {
+          "id": 5,
+          "title": "BORN PINK",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/1000/40788/4078880.jpg",
+          "author": "BLACKPINK",
+          "isLive": false
+        },
+        {
+          "id": 6,
+          "title": "ANTIFRAGILE",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/1000/40807/4080706.jpg",
+          "author": "LE SSERAFIM (르세라핌)",
+          "isLive": false
+        },
+        {
+          "id": 7,
+          "title": "I love",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/1000/40807/4080705.jpg",
+          "author": "(여자)아이들",
+          "isLive": true
+        },
+        {
+          "id": 8,
+          "title": "낮 밤 (feat. 박재범)",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/1000/40666/4066688.jpg",
+          "author": "이영지",
+          "isLive": false
+        },
+        {
+          "id": 9,
+          "title": "Next Level",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/1000/203973/20397321.jpg",
+          "author": "aespa",
+          "isLive": false
+        },
+        {
+          "id": 10,
+          "title": "‘The ReVe Festival 2022 - Feel My Rhythm’",
+          "thumbnail": "https://image.bugsm.co.kr/album/images/1000/204570/20457046.jpg",
+          "author": "Red Velvet (레드벨벳)",
+          "isLive": true
         }
       ]
     }
