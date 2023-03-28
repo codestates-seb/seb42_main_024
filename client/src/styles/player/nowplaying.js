@@ -10,9 +10,9 @@ export const NowPlayingWrap = styled.div`
   height: 80px;
   background-color: var(--color11);
   display: flex;
-  padding-left: 18vw;
   border-top: 0.5px solid rgb(85, 85, 85);
   align-items: center;
+  justify-content: space-around;
 `;
 // Modal
 export const PlayListBox = styled.div`
