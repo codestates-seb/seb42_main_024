@@ -59,6 +59,7 @@ public class WebSecurityConfig {
                 .and()
                 .authorizeHttpRequests(authorize -> authorize
                         .antMatchers(HttpMethod.GET, "/api/rooms").permitAll()
+                        .antMatchers(HttpMethod.GET, "/api/rooms/rank").permitAll()
                         .antMatchers(HttpMethod.GET, "/api/boards/**").permitAll()
                         .antMatchers(HttpMethod.GET, "/api/playlists/**").permitAll()
                         .antMatchers(HttpMethod.GET, "/api/follows/**").permitAll()

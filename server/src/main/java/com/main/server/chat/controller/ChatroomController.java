@@ -1,11 +1,14 @@
 package com.main.server.chat.controller;
 
+import com.main.server.board.dto.BoardDto;
 import com.main.server.chat.data.ChatSong;
 import com.main.server.chat.dto.*;
 import com.main.server.chat.entity.Chatroom;
 import com.main.server.chat.service.ChatroomService;
+import com.main.server.dto.SingleResponseDto;
 import com.main.server.global.dto.ResponseDto;
 import com.main.server.member.entity.Member;
+import com.main.server.member.repository.MemberRepository;
 import com.main.server.member.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -62,6 +65,16 @@ public class ChatroomController {
 
         return ResponseEntity.status(HttpStatus.OK)
                 .body(new ResponseDto(ChatroomListDto.of(chatroomList), 200));
+    }
+
+    @GetMapping("/rank")
+    public ResponseEntity getHighRankChatroom() {
+        List<ChatroomSimpleDto> chatroomList = chatroomService.getHighRankChatroomList().stream()
+                .map(ChatroomSimpleDto::createByChatroom)
+                .collect(Collectors.toList());
+
+        return ResponseEntity.status(HttpStatus.OK)
+                .body(new ResponseDto(chatroomList, 200));
     }
 
     @GetMapping("/{chatroom-id}/songs")

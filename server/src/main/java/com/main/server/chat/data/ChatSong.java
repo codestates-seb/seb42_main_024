@@ -20,6 +20,6 @@ public class ChatSong {
         return new ChatSong(
                 song.getVideoId(),
                 song.getTitle(),
-                song.getTitle());
+                song.getThumbnail());
     }
 }
