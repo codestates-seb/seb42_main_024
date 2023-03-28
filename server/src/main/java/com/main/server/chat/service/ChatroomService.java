@@ -143,9 +143,11 @@ public class ChatroomService {
 
     public void deleteChatroom(Chatroom chatroom) {
         chatService.sendSystemMessage(chatroom.getChatroomId(), "ChatroomOver");
-        if (highRankChatroomList.contains(chatroom)) {
-            highRankChatroomList.remove(chatroom);
-        }
+
+        this.highRankChatroomList = highRankChatroomList.stream()
+                .filter(rankroom -> rankroom.getChatroomId() != chatroom.getChatroomId())
+                .collect(Collectors.toList());
+
         chatroomRepository.delete(chatroom);
         queueMap.remove(chatroom.getChatroomId());
     }
