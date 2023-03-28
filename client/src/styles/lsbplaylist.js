@@ -2,33 +2,27 @@ import styled from 'styled-components';
 
 export const PlayMusicContainer = styled.div`
   width: 100%;
-  height: 100px;
-  margin-bottom: 30px;
+  height: 15%;
 `;
 export const MusicInfo = styled.div`
   display: flex;
+  justify-content: space-around;
   position: relative;
-  color: var(--color5);
-  font-size: 25px;
+  color: var(--color9);
+  font-size: 15px;
 `;
 
-export const UnderLine = styled.hr`
-  margin-top: 10px;
-  border: 1px solid var(--color5);
-`;
 export const MisicThumnail = styled.img`
   width: 70px;
   height: 70px;
 `;
-export const MusicTitle = styled.div``;
-export const MusicSinger = styled.div``;
-export const MusicInfoText = styled.div`
-  display: flex;
-  flex-direction: column;
-  margin-left: 10px;
+export const MusicTitle = styled.div`
+  font-size: 16px;
+  word-break: keep-all;
 `;
-export const MusicPlayTime = styled.div`
-  position: absolute;
-  right: 0;
-  bottom: 5px;
+export const MusicInfoText = styled.div`
+  width: 80%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;

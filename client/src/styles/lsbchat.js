@@ -5,7 +5,7 @@ export const LSBChatContianer = styled.div`
 `;
 export const LSBChatDetail = styled.div`
   border-radius: 20px;
-  height: 88%;
+  height: ${(props) => props.sendChatHeight || 88}%;
   background-color: var(--color2);
   padding: 20px;
   display: flex;
@@ -16,7 +16,7 @@ export const LSBSendMessage = styled.textarea`
   width: 100%;
   margin-top: 2%;
   border-radius: 20px;
-  height: 10%;
+  height: ${(props) => props.sendChatHeight || '10'}%;
   background-color: var(--color2);
   resize: none;
   border: none;

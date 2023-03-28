@@ -3,6 +3,7 @@ import {
   CommonChatMessage,
   EnterMessage,
   UserName,
+  UserMessage,
 } from '../../styles/chatting';
 
 function Chatting({ chatData }) {
@@ -13,8 +14,8 @@ function Chatting({ chatData }) {
         <EnterMessage>{chatData?.message}</EnterMessage>
       ) : (
         <CommonChatMessage>
-          <UserName>{chatData?.memberName}</UserName>
-          {` : ${chatData?.message}`}
+          <UserName>{chatData?.memberName}: </UserName>
+          <UserMessage>{`${chatData?.message}`}</UserMessage>
         </CommonChatMessage>
       )}
     </ChattingContianer>

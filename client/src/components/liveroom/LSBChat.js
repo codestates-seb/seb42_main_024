@@ -1,4 +1,4 @@
-import Chatting from './Chatting';
+import { useEffect, useRef } from 'react';
 
 import {
   LSBChatContianer,
@@ -6,7 +6,21 @@ import {
   LSBChatDetail,
 } from '../../styles/lsbchat';
 
-function LSBChat({ message, setMessage, sockClient, chatDatas }) {
+function LSBChat({
+  message,
+  setMessage,
+  sockClient,
+  chatDatas,
+  roomid,
+  userNickName,
+}) {
+  // const [sendChatHeight, setSendChatHeight] = useState('');
+  const scrollRef = useRef();
+
+  useEffect(() => {
+    scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
+    console.log(scrollRef.current.scrollTop);
+  }, [chatDatas]);
   const changeMessageHandler = (e) => {
     setMessage(e.target.value);
   };
@@ -19,14 +33,17 @@ function LSBChat({ message, setMessage, sockClient, chatDatas }) {
     }
   };
   const sendMessageHandler = (e) => {
-    if (message !== '' && e.key === 'Enter' && !e.shiftKey) {
+    const isOnlyEnter = message.split('\n').join('') === '';
+    if (isOnlyEnter && e.key === 'Enter' && !e.shiftKey) {
+      setMessage('');
+    } else if (message !== '' && e.key === 'Enter' && !e.shiftKey) {
       sockClient.send(
-        '/pub/api/chat/message',
+        '/pub/message',
         {},
         JSON.stringify({
           message: message,
-          memberName: '아무',
-          chatroomId: '1',
+          memberName: userNickName,
+          chatroomId: roomid,
         })
       );
       setMessage('');
@@ -35,7 +52,7 @@ function LSBChat({ message, setMessage, sockClient, chatDatas }) {
 
   return (
     <LSBChatContianer>
-      <LSBChatDetail>
+      <LSBChatDetail ref={scrollRef}>
         {chatDatas.map((e, i) => {
           return <Chatting key={i} chatData={e}></Chatting>;
         })}

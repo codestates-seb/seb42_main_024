@@ -1,3 +1,5 @@
+import { useNavigate } from 'react-router-dom';
+
 import {
   LiveroomPopupContainer,
   LiveroomPopupView,
@@ -5,7 +7,8 @@ import {
   TextContainer,
 } from '../../styles/liveroompopup';
 
-function LiveroomPopup({ openSideBarSettingHandler }) {
+function LiveroomPopup({ openSideBarSettingHandler, sockClient }) {
+  const navigate = useNavigate();
   return (
     <LiveroomPopupContainer
       className='allow'
@@ -16,7 +19,8 @@ function LiveroomPopup({ openSideBarSettingHandler }) {
         <TextContainer>방을 나가시겠습니까?</TextContainer>
         <CheckBtn
           onClick={() => {
-            '페이지이동';
+            navigate(`/`);
+            sockClient.disconnect();
           }}>
           확인
         </CheckBtn>
