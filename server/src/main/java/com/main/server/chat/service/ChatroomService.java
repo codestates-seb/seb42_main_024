@@ -18,6 +18,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.annotation.PostConstruct;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -37,7 +38,15 @@ public class ChatroomService {
     private Map<Long, ChatSongQueue> queueMap = new HashMap<>(); // 메모리에서 채팅룸 노래 관리
     private List<Chatroom> highRankChatroomList = new ArrayList<>();
 
-    
+    @PostConstruct
+    public void init() {
+        List<Chatroom> chatroomList = chatroomRepository.findAll();
+        chatroomList.stream()
+                .map(Chatroom::getChatroomId)
+                .forEach(i -> queueMap.put(i, new ChatSongQueue()));
+
+        updateHighRankChatroom();
+    }
 
     /**
      * dto 와 인증을통해 조회한 Member 값을 가져와 방 생성
