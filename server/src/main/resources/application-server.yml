@@ -9,7 +9,7 @@ spring:
     generate-ddl: true
     hibernate:
       #format_sql: true #sql 쿼리 로그 보기
-      ddl-auto: create
+      ddl-auto: none
       #create: 기존테이블 삭제 후 다시 생성 (DROP + CREATE) <- test 환경에서 사용하면 좋음
       #create-drop: create와 같으나 종료시점에 테이블 DROP <- test 환경에서 사용하면 좋음
       #update: 변경분만 반영(운영DB에서는 사용하면 안됨) <- test 환경에서 사용하면 좋음
