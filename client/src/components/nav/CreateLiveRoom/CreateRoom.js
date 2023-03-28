@@ -30,7 +30,6 @@ const CreateRoom = ({ isCreateOpen, setIsCreateOpen }) => {
   };
   const handleContentValue = (e) => {
     setContentValue(e.target.value);
-    console.log(postData);
   };
   const handleAddData = (index) => {
     const clickedData = data[index];
@@ -51,7 +50,6 @@ const CreateRoom = ({ isCreateOpen, setIsCreateOpen }) => {
       .get('http://15.165.199.44:8080/api/playlists', requestHeader)
       .then((res) => {
         setData(res.data.data);
-        console.log(res.data.data);
       });
   }, []);
   const PostLiveRoomCre = () => {
@@ -69,7 +67,7 @@ const CreateRoom = ({ isCreateOpen, setIsCreateOpen }) => {
         playlistId,
       };
       axios
-        .post('http://15.165.199.44:8080/api/rooms', requestHeader, requestBody)
+        .post('http://15.165.199.44:8080/api/rooms', requestBody, requestHeader)
         .then(() => {
           setTitleValue('');
           setContentValue('');
