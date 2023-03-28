@@ -109,6 +109,7 @@ const SearchUI = ({ songList, setSongList, isOpenPlaylistCreator }) => {
     setSongList(songList.filter((song) => song.videoId !== videoId));
   };
 
+
   return (
     <SearchUIContainer>
       {/* search bar */}

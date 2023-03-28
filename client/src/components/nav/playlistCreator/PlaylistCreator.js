@@ -1,5 +1,4 @@
 import 'animate.css';
-
 import { useRef, useState } from 'react';
 import { MdClose } from 'react-icons/md';
 import { useSelector } from 'react-redux';
@@ -22,21 +21,15 @@ const PlaylistCreator = ({
   // 빈 songList로 플리 만들기를 시도할 때의 알림 모달 창
   const [isAlertModalOpen, setIsAlertModalOpen] = useState(false);
 
-  const memberId = useSelector((state) => state.user.memberId);
+
+  const user = useSelector((state) => state.user);
 
   // 플리 만들기 버튼 클릭
   const handleCreatePlaylist = () => {
+    const storedAccessToken = localStorage.getItem('accessToken');
     if (songList.length !== 0) {
-      // 플레이리스트 생성 POST 코드
-      const storedAccessToken = localStorage.getItem('accessToken');
-      const requestHeader = {
-        headers: {
-          Authorization: storedAccessToken,
-          accept: 'application/json',
-        },
-      };
       const requestBody = {
-        memberId,
+        memberId: user.memberId,
         boardTitle: titleRef.current.value,
         boardContent: descRef.current.value,
         boardThumb: songList[0].thumbnail,
@@ -45,15 +38,21 @@ const PlaylistCreator = ({
           songList,
         },
       };
+
+      const requestHeader = {
+        headers: {
+          Authorization: `${storedAccessToken}`,
+          accept: 'application/json',
+        },
+      };
+
       axios
         .post(
           'http://15.165.199.44:8080/api/boards',
           requestBody,
           requestHeader
         )
-        .then(console.log)
         .catch(console.log);
-      // 만들고 나서 상태 초기화
       closePlaylistCreator();
     } else {
       setIsAlertModalOpen(true);

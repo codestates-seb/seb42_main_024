@@ -6,7 +6,7 @@ import Player from './Player';
 import PlayList from './PlayList';
 import Volume from './Volume ';
 
-import LOGO from '../../assets/LOGO.png';
+import Logo from '../../assets/Logo.png';
 import {
   PlayWarp,
   NowPlayingWrap,
@@ -43,7 +43,7 @@ function NowPlaying() {
           {dataUrl ? (
             <PlayListImg src={dataUrl} />
           ) : (
-            <img src={LOGO} alt='logo' className='logo' />
+            <img src={Logo} alt='logo' className='logo' />
           )}
         </PlayListCover>
         <PlayList />
