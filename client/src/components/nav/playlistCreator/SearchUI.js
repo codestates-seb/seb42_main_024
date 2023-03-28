@@ -101,6 +101,12 @@ const SearchUI = ({ songList, setSongList, isOpenPlaylistCreator }) => {
     setSongList(songList.filter((song) => song.videoId !== videoId));
   };
 
+  const handleKeyPressSearch = (e) => {
+    if (e.key === 'Enter') {
+      handleSearching();
+    }
+  };
+
   return (
     <SearchUIContainer>
       {/* search bar */}
@@ -110,6 +116,7 @@ const SearchUI = ({ songList, setSongList, isOpenPlaylistCreator }) => {
           className='search-youtube'
           ref={searchRef}
           placeholder='유튜브 검색'
+          onKeyDown={handleKeyPressSearch}
         />
         <button className='searchBtn' onClick={handleSearching}>
           <FaSearch />

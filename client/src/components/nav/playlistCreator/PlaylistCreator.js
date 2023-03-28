@@ -43,7 +43,6 @@ const PlaylistCreator = ({
           accept: 'application/json',
         },
       };
-
       axios
         .post(
           'http://15.165.199.44:8080/api/boards',
