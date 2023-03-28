@@ -14,6 +14,8 @@ const LiveroomSetter = ({
   chatroomId,
   setIsSettingModalOpen,
   setChangeSong,
+  nextSongHandler,
+  isEnd,
 }) => {
   const [newSong, setNewSong] = useState(null);
   const searchRef = useRef(null);
@@ -42,6 +44,9 @@ const LiveroomSetter = ({
         )
         .then(() => {
           setChangeSong((prev) => !prev);
+          if (isEnd) {
+            nextSongHandler(false);
+          }
         });
       // 초기화
       searchRef.current.value = '';

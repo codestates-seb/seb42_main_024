@@ -6,12 +6,10 @@ import { useParams } from 'react-router-dom';
 import { Stomp } from '@stomp/stompjs';
 import axios from 'axios';
 import * as SockJS from 'sockjs-client';
-import { Navigation } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 import LiveroomPopup from '../components/liveroom/LiveroomPopup';
 import LiveroomSidebar from '../components/liveroom/LiveroomSideBar';
-// import Nav from '../components/nav/Nav';
 import {
   LiveroomContainer,
   LiveroomCover,
@@ -19,6 +17,8 @@ import {
   LiveroomMainBackground,
   LiveroomSoundBackground,
   PlayList,
+  PlayThumbnail,
+  PlaySongTitle,
 } from '../styles/liveroom';
 import 'animate.css';
 
@@ -63,8 +63,9 @@ function Liveroom() {
       setOpenSideBarSetting((prev) => !prev);
     }
   };
-  const nextSongHandler = () => {
-    if (!isEnd) {
+  const nextSongHandler = (elsevalue) => {
+    const realIsEnd = elsevalue && isEnd;
+    if (!realIsEnd) {
       axios
         .post(
           `http://15.165.199.44:8080/api/rooms/${roomid}/songs/next`,
@@ -165,13 +166,13 @@ function Liveroom() {
           songData.nowSong.videoId,
           songData.time,
           songData.nowSong.thumbnail,
+          songData.nowSong,
         ]);
       });
   }, [changeSong]);
 
   return (
     <LiveroomContainer>
-      {/* <Nav></Nav> */}
       {openSideBarSetting ? (
         <LiveroomPopup
           sockClient={sockClient}
@@ -186,6 +187,7 @@ function Liveroom() {
         onEnded={nextSongHandler}
       />
       <LiveroomMainBackground
+        className='allow'
         backgroundurl={nowPlaySong[2]}
         onMouseMove={(e) => {
           volumeHandler(e);
@@ -196,23 +198,26 @@ function Liveroom() {
         }}
         onClick={(e) => {
           setPlayMusic(false);
-          if (!e.target.className.includes('disallow')) {
+          if (e.target.className.includes('allow')) {
             setOpenMusicPlayList(false);
           }
         }}>
         {openMusicPlayList ? (
-          <PlayList className='disallow'>
+          <PlayList>
             <Swiper
               initialSlide={nowPlayIndex}
               className='swiper'
-              modules={[Navigation]}
               spaceBetween={50}
               slidesPerView={1}
-              navigation
-              pagination={{ clickable: true }}
+              scrollbar={{ draggable: true }}
               autoplay={{ delay: 1000 }}>
               {songs.map((e) => {
-                return <SwiperSlide key={e.videoId}>{e.title}</SwiperSlide>;
+                return (
+                  <SwiperSlide key={e.videoId}>
+                    <PlayThumbnail src={e.thumbnail}></PlayThumbnail>
+                    <PlaySongTitle>{e.title}</PlaySongTitle>
+                  </SwiperSlide>
+                );
               })}
             </Swiper>
           </PlayList>
@@ -250,6 +255,8 @@ function Liveroom() {
         )}
       </LiveroomMainBackground>
       <LiveroomSidebar
+        nowPlaySong={nowPlaySong}
+        nextSongHandler={nextSongHandler}
         setChangeSong={setChangeSong}
         roomid={roomid}
         members={members}

@@ -26,7 +26,7 @@ export const LSBPlayListContainer = styled.div`
 `;
 export const LSBChatContianer = styled.div`
   margin-top: 20px;
-  height: 70%;
+  height: 90%;
 `;
 export const LSBOutBtn = styled.button`
   font-size: 25px;

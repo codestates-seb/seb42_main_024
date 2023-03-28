@@ -80,25 +80,6 @@ function LiveroomList() {
     }
   }, [loading]);
 
-  // axios
-  //   .get('http://15.165.199.44:8080/api/rooms', {
-  //     headers: {
-  //       Authorization: `${accessToken}`,
-  //       accept: 'application/json',
-  //     },
-  //     params: {
-  //       id: infiniteId,
-  //     },
-  //   })
-  //   .then((e) => {
-  //     const arr = [];
-  //     for (let i = 0; i < 3; i++) {
-  //       arr.push(e.data.data.chatroomList.splice(0, 3));
-  //     }
-  //     console.log(e.data.data);
-  //     setAllSongs((prev) => [...prev, ...arr]);
-  //     setInfiniteId(e.data.data.next);
-  //   });
   return (
     <>
       <Nav></Nav>

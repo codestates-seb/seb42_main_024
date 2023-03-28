@@ -16,9 +16,7 @@ function LSBChat({
   roomid,
   userNickName,
 }) {
-  // const [sendChatHeight, setSendChatHeight] = useState('');
   const scrollRef = useRef();
-
   useEffect(() => {
     scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
     console.log(scrollRef.current.scrollTop);
