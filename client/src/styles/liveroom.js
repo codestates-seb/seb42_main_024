@@ -19,6 +19,9 @@ export const LiveroomMainBackground = styled.div`
   justify-content: center;
   align-items: center;
   z-index: 1;
+  user-select: none;
+  -webkit-user-drag: none;
+  object-fit: fill;
   ::after {
     width: 100%;
     height: 100%;
@@ -95,5 +98,23 @@ export const PlayList = styled.div`
   background-color: rgba(255, 255, 255, 0.1);
   top: 50%;
   transform: translate(0, -50%);
+  height: 700px;
+  display: flex;
+`;
+
+export const PlaySongTitle = styled.div`
+  font-size: 20px;
+  margin-top: 10px;
+  color: var(--color9);
+`;
+
+export const PlayThumbnail = styled.img`
+  margin-top: 20px;
+  user-select: none;
+  -webkit-user-drag: none;
+  width: 600px;
   height: 600px;
+  border-radius: 50%;
+  border: 10px solid var(--color8);
+  transform: scale(1.4);
 `;

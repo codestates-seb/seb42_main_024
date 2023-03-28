@@ -24,5 +24,4 @@ export const MusicInfoText = styled.div`
   width: 80%;
   display: flex;
   align-items: center;
-  justify-content: center;
 `;
