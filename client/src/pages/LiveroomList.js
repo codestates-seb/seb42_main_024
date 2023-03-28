@@ -10,8 +10,6 @@ import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 
 import Liverooms from '../components/liveroom/Liverooms';
-import Nav from '../components/nav/Nav';
-import NowPlaying from '../components/player/NowPlaying';
 import {
   LiveroomListContainer,
   AllLiveroomList,
@@ -25,11 +23,10 @@ import {
 } from '../styles/liveroomlist';
 
 function LiveroomList() {
-  const [popularSongs] = useState([]);
+  const [popularSongs, setPopularSongs] = useState([]);
   const [allSongs, setAllSongs] = useState([]);
   const accessToken = localStorage.getItem('accessToken');
   const [infiniteId, setInfiniteId] = useState(0);
-  // const [infiniteId, setInfiniteId] = useState(0);
   const [loading, setLoading] = useState(false);
 
   const pageEnd = useRef();
@@ -51,7 +48,6 @@ function LiveroomList() {
     if (page === 0) {
       setInfiniteId(res.data.data.next);
     }
-    console.log(page);
     if (page >= 0) {
       setAllSongs((prev) => [...prev, ...arr]);
       setLoading(true);
@@ -59,7 +55,9 @@ function LiveroomList() {
   };
 
   useEffect(() => {
-    morePages(infiniteId);
+    if (infiniteId >= 0) {
+      morePages(infiniteId);
+    }
   }, [infiniteId]);
 
   const loadMore = () => {
@@ -80,9 +78,21 @@ function LiveroomList() {
     }
   }, [loading]);
 
+  useEffect(() => {
+    axios
+      .get('http://15.165.199.44:8080/api/rooms/rank', {
+        headers: {
+          Authorization: `${accessToken}`,
+          accept: 'application/json',
+        },
+      })
+      .then((e) => {
+        setPopularSongs(e.data.data);
+      });
+  }, []);
+
   return (
     <>
-      <Nav></Nav>
       <LiveroomListContainer>
         <PopularLiveroomList>
           <PopularLiveroomListContainer>
@@ -134,11 +144,8 @@ function LiveroomList() {
             })}
           </AllLiveroomListContainer>
         </AllLiveroomList>
-        <div ref={pageEnd} style={{ width: '100%', height: 30 }}>
-          안녕
-        </div>
+        <div ref={pageEnd} style={{ width: '100%', height: 50 }}></div>
       </LiveroomListContainer>
-      <NowPlaying></NowPlaying>
     </>
   );
 }

@@ -10,12 +10,12 @@ export const LiveroomListContainer = styled.div`
   }
   .swiper-button-prev,
   .swiper-button-next {
-    color: var(--color1) !important;
+    color: var(--color9) !important;
   }
 
   .swiper-button-prev:after,
   .swiper-button-next:after {
-    color: var(--color1) !important;
+    color: var(--color9) !important;
   }
 `;
 export const PopularLiveroomList = styled.div`
@@ -38,7 +38,6 @@ export const PopularLiveroomListTitle = styled.h2`
 export const PopularLiveroomListMain = styled.div`
   width: 100%;
   height: 100%;
-  background-color: white;
 `;
 
 export const AllLiveroomList = styled.div`
@@ -50,16 +49,14 @@ export const AllLiveroomList = styled.div`
   align-items: center;
 `;
 export const AllLiveroomListTitle = styled.div`
-  font-size: 30px;
+  font-size: 40px;
+  font-weight: 600;
   color: var(--color9);
-  margin-bottom: 20px;
 `;
 export const AllLiveroomListContainer = styled.div`
-  width: 1700px;
+  width: 2000px;
 `;
 export const AllLiveroomListMain = styled.div`
-  margin-top: 100px;
+  margin-top: 20px;
   width: 100%;
-  background-color: white;
-  background-color: var(--color9);
 `;
