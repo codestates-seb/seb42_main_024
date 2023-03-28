@@ -55,7 +55,6 @@ const SearchUI = ({ songList, setSongList, isOpenPlaylistCreator }) => {
       })
       .then((res) => setSearchData(res.data.items));
   };
-
   // enter키로 유튜브 검색
   const handleEnterKeyDown = (e) => {
     if (e.key === 'Enter') {
@@ -63,7 +62,6 @@ const SearchUI = ({ songList, setSongList, isOpenPlaylistCreator }) => {
       handleSearching();
     }
   };
-
   // HTML 특수문자 변환
   // ex) &#39; -> '
   const convertHTMLEscapeChar = (str) => {
@@ -108,8 +106,6 @@ const SearchUI = ({ songList, setSongList, isOpenPlaylistCreator }) => {
   const handleDeleteAddedSong = (videoId) => {
     setSongList(songList.filter((song) => song.videoId !== videoId));
   };
-
-
   return (
     <SearchUIContainer>
       {/* search bar */}

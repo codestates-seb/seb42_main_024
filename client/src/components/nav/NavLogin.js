@@ -5,6 +5,7 @@ import { IoRadio } from 'react-icons/io5';
 import { MdOutlineLibraryMusic } from 'react-icons/md';
 import { useSelector } from 'react-redux';
 
+import CreateRoom from './CreateLiveRoom/CreateRoom';
 import PlaylistCreator from './playlistCreator/PlaylistCreator';
 
 import {
@@ -13,8 +14,8 @@ import {
   UserInfo,
   Home,
   LiveRoom,
-  CreateLiveRoom,
   AddPlayList,
+  CreateLiveRoom,
   Storage,
   Logout,
 } from '../../styles/nav';
@@ -22,6 +23,10 @@ import {
 const NavLogin = ({ logoutHandler }) => {
   const user = useSelector((state) => state.user);
   const [isOpenPlaylistCreator, setIsOpenPlaylistCreator] = useState('default');
+  const [isCreateOpen, setIsCreateOpen] = useState(false);
+  const handleCreateOpen = () => {
+    setIsCreateOpen((pre) => !pre);
+  };
   return (
     <>
       <NavList>
@@ -42,7 +47,9 @@ const NavLogin = ({ logoutHandler }) => {
           </div>
           <div className='nav-create-liveroom'>
             <MdOutlineLibraryMusic />
-            <CreateLiveRoom>라이브룸 만들기</CreateLiveRoom>
+            <CreateLiveRoom onClick={handleCreateOpen}>
+              라이브룸 만들기
+            </CreateLiveRoom>
           </div>
         </NavItems>
         <NavItems>
@@ -66,6 +73,10 @@ const NavLogin = ({ logoutHandler }) => {
         <PlaylistCreator
           isOpenPlaylistCreator={isOpenPlaylistCreator}
           setIsOpenPlaylistCreator={setIsOpenPlaylistCreator}
+        />
+        <CreateRoom
+          isCreateOpen={isCreateOpen}
+          setIsCreateOpen={setIsCreateOpen}
         />
       </NavList>
     </>

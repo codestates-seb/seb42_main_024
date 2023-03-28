@@ -20,8 +20,6 @@ const PlaylistCreator = ({
   const [songList, setSongList] = useState([]);
   // 빈 songList로 플리 만들기를 시도할 때의 알림 모달 창
   const [isAlertModalOpen, setIsAlertModalOpen] = useState(false);
-
-
   const user = useSelector((state) => state.user);
 
   // 플리 만들기 버튼 클릭
@@ -38,7 +36,6 @@ const PlaylistCreator = ({
           songList,
         },
       };
-
       const requestHeader = {
         headers: {
           Authorization: `${storedAccessToken}`,

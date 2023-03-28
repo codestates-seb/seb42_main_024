@@ -16,6 +16,12 @@ export const NavContainer = styled.div`
     text-align: center;
     cursor: pointer;
   }
+
+  span {
+    display: flex;
+    text-align: center;
+    height: 25px;
+  }
 `;
 
 export const NavList = styled.ul`

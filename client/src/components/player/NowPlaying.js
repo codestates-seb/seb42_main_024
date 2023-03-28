@@ -5,7 +5,6 @@ import PlayBox from './PlayBox';
 import Player from './Player';
 import PlayList from './PlayList';
 import Volume from './Volume ';
-
 import Logo from '../../assets/Logo.png';
 import {
   PlayWarp,
