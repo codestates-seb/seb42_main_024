@@ -6,14 +6,12 @@ export const LiveroomContainer = styled.div`
   display: flex;
   background-color: var(--color1);
   z-index: 0;
-  justify-content: center;
-  align-items: center;
   .hidden {
     display: none;
   }
 `;
 export const LiveroomMainBackground = styled.div`
-  width: 100%;
+  width: calc(100% - 600px);
   height: 100%;
   text-align: center;
   position: relative;
@@ -25,7 +23,7 @@ export const LiveroomMainBackground = styled.div`
     width: 100%;
     height: 100%;
     content: '';
-    background: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTi-fA-Qx9lHnaUD54TND9pM2DfGvIOS-d5KgvTsdU&s');
+    background: ${(props) => `url(${props.backgroundurl})`};
     background-size: cover;
     position: absolute;
     top: 0;
@@ -90,4 +88,12 @@ export const LiveroomSoundBackground = styled.div`
     stroke-width: 0.5px;
     filter: drop-shadow(4px 4px 4px gray);
   }
+`;
+export const PlayList = styled.div`
+  position: absolute;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.1);
+  top: 50%;
+  transform: translate(0, -50%);
+  height: 600px;
 `;

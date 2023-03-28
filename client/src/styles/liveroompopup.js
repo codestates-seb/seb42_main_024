@@ -20,11 +20,16 @@ export const LiveroomPopupView = styled.div`
   background-color: var(--color1);
   border-radius: 20px;
   z-index: 3;
+  border: 2px solid gray;
 `;
 export const TextContainer = styled.div`
   width: 100%;
   height: 80%;
   font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
 `;
 
 export const CheckBtn = styled.button`
@@ -32,4 +37,10 @@ export const CheckBtn = styled.button`
   height: 40px;
   border-radius: 20%;
   padding: 10px;
+  font-size: 15px;
+  font-weight: 600;
+  border: 1px solid gray;
+  :hover {
+    opacity: 0.5;
+  }
 `;
