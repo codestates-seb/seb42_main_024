@@ -84,8 +84,21 @@ public class ChatroomController {
                 .body(new ResponseDto(responseDto, 200));
     }
 
+    @PatchMapping("/{chatroom-id}")
+    public ResponseEntity updateChatroom(@PathVariable @Valid Long chatroomId,
+                                         @RequestBody ChatroomUpdateDto dto) {
+        chatroomService.updateChatroom(chatroomId, dto);
+
+        ChatroomResponseDto responseDto = ChatroomResponseDto
+                .createByChatroom(
+                        chatroomService.findChatroomById(chatroomId));
+
+        return ResponseEntity.status(HttpStatus.OK)
+                .body(new ResponseDto(responseDto, 200));
+    }
+
     @PostMapping("/{chatroom-id}/songs")
-    public ResponseEntity addSong(@PathVariable("chatroom-id") Long chatroomId,
+    public ResponseEntity addSong(@PathVariable("chatroom-id") @Valid Long chatroomId,
                                   @RequestBody ChatSong chatSong,
                                   @AuthenticationPrincipal String email) {
         chatroomService.addSongToRoom(chatroomId, chatSong);

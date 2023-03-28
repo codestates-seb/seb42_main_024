@@ -4,6 +4,7 @@ import com.main.server.chat.data.ChatSongQueue;
 import com.main.server.chat.data.ChatSong;
 import com.main.server.chat.dto.ChatSongResponseDto;
 import com.main.server.chat.dto.ChatroomCreateDto;
+import com.main.server.chat.dto.ChatroomUpdateDto;
 import com.main.server.chat.entity.Chatroom;
 import com.main.server.chat.repository.ChatroomRepository;
 import com.main.server.exception.BusinessLogicException;
@@ -82,6 +83,11 @@ public class ChatroomService {
 
     public List<Chatroom> findChatrooms(Long chatroomId) {
         return chatroomRepository.getChatroomsAfterId(chatroomId);
+    }
+
+    public void updateChatroom(Long chatroomId, ChatroomUpdateDto dto) {
+        Chatroom chatroom = findChatroomById(chatroomId).editByDto(dto);
+        chatroomRepository.save(chatroom);
     }
 
     /**
