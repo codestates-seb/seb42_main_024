@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 export const VolumeWarp = styled.div`
-  margin-left: 9vw;
+  margin-right: 2vw;
   display: flex;
   flex-direction: row;
   align-items: center;

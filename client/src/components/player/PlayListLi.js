@@ -78,7 +78,7 @@ function PlayListLi({ data, index }) {
           <FaPlay className='PlayBtn' onClick={handlePlayControl} />
         )}
         <PlayListLiContentBox>
-          <PlayListLiTitle>{data.title}</PlayListLiTitle>
+          <PlayListLiTitle isHover={isHover}>{data.title}</PlayListLiTitle>
         </PlayListLiContentBox>
         <PlayListTimeBox>
           {isHover ? (
