@@ -388,13 +388,51 @@ export const PlaylistTrendyInfoContainer = styled(PlaylistInfoMain)`
   background-color: var(--color11);
   color: var(--color9);
   padding-left: 25px;
+
   .title {
     margin: 15px 0;
     font-size: 45px;
   }
+
   .desc {
     width: 90%;
     height: 35px;
+  }
+
+  .moreInfo {
+    margin: 10px 0;
+    background-color: var(--color11);
+    border: 1px solid var(--color9);
+    border-radius: 5px;
+    color: var(--color9);
+    width: 40px;
+    height: 20px;
+  }
+
+  .btns {
+    height: 30px;
+    width: fit-content;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 18px;
+    .btn1 {
+      width: 80px;
+      height: 30px;
+      border-radius: 5px;
+      border: none;
+      font-size: 15px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 5px;
+      &.btn1 {
+        background-color: var(--color9);
+        &:hover {
+          opacity: 0.7;
+        }
+      }
+    }
   }
 `;
 

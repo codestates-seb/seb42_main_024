@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 import axios from 'axios';
 
@@ -21,6 +21,8 @@ const Nav = () => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
   const isLogin = useSelector((state) => state.user !== null);
+
+  const location = useLocation();
 
   const REDIRECT_URL = process.env.REACT_APP_REDIRECT_URL;
   const oAuthURL = `${REDIRECT_URL}`;
@@ -111,7 +113,8 @@ const Nav = () => {
   };
 
   return (
-    <NavContainer>
+    <NavContainer
+      className={location.pathname.includes('liverooms') ? 'hide' : ''}>
       <Link to={'/'} className='nav-home-link'>
         <div className='nav-logo'>
           <img className='logo' src={Logo} alt='logo' />

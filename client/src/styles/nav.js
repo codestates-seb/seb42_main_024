@@ -22,6 +22,10 @@ export const NavContainer = styled.div`
     text-align: center;
     height: 25px;
   }
+
+  &.hide {
+    display: none;
+  }
 `;
 
 export const NavList = styled.ul`
@@ -125,7 +129,7 @@ export const NavFooter = styled.div`
   left: 0;
   bottom: 0;
   margin-left: 15px;
-  margin-bottom: 50px;
+  margin-bottom: 83px;
   width: 250px;
 
   p {
