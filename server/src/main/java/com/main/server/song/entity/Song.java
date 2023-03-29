@@ -13,7 +13,7 @@ import javax.persistence.*;
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Song {
+public class Song extends Auditable {
 
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
