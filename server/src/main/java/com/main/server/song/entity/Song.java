@@ -23,8 +23,10 @@ public class Song {
     @JoinColumn(name = "PLAYLIST_ID")
     private Playlist playlist;
 
+    @Column(nullable = false)
     private String videoId;
 
+    @Column(nullable = false)
     private String title;
 
     private String thumbnail;

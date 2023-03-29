@@ -21,7 +21,7 @@ public class Playlist extends Auditable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long playlistId;
 
-    @Column(length = 100,nullable = false)
+    @Column(length = 999, nullable = false)
     private String title;
 
     @ManyToOne(fetch = FetchType.LAZY)

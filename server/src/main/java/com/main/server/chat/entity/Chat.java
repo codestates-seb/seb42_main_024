@@ -17,10 +17,13 @@ public class Chat extends Auditable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long chatId;
 
+    @Column(nullable = false)
     private Long memberId;
 
+    @Column(nullable = false)
     private Long chatroomId;
 
+    @Column(nullable = false, length = 100)
     private String content;
 
     @Builder
