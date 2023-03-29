@@ -156,7 +156,7 @@ function Liveroom() {
               });
               setsockClient(client);
             } else {
-              alert('나가세요');
+              alert(`이미 참여중인 방입니다`);
               navigate('/');
             }
           });
