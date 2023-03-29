@@ -1,4 +1,5 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef } from 'react';
+import { BsHeart, BsHeartFill } from 'react-icons/bs';
 import { FaPlay } from 'react-icons/fa';
 import { IoMdAddCircleOutline, IoMdClose } from 'react-icons/io';
 import { useDispatch, useSelector } from 'react-redux';
@@ -17,7 +18,16 @@ import SearchUI from '../nav/playlistCreator/SearchUI';
 
 PlaylistInfoModal.setAppElement('#root');
 
-const PlaylistInfo = ({ boardId, isEditing, setIsEditing }) => {
+const PlaylistInfo = ({
+  boardId,
+  isEditing,
+  setIsEditing,
+  boardData,
+  setBoardData,
+  playlistData,
+  setPlaylistData,
+}) => {
+  console.log(boardData);
   const memberId = useSelector((state) => state.user.memberId);
 
   const dispatch = useDispatch();
@@ -30,8 +40,8 @@ const PlaylistInfo = ({ boardId, isEditing, setIsEditing }) => {
   const boardTitleRef = useRef(null);
   const boardDescRef = useRef(null);
   // 플리 설명 더보기 모달
-  const [isInfoModalOpen, setIsInfoModalOpen] = useState(false);
-  const toggleIsInfoModalOpen = () => setIsInfoModalOpen((prev) => !prev);
+  // const [isInfoModalOpen, setIsInfoModalOpen] = useState(false);
+  // const toggleIsInfoModalOpen = () => setIsInfoModalOpen((prev) => !prev);
   // 곡 추가 모달
   const [isAddSongModalOpen, setIsAddSongModalOpen] = useState(false);
   // 곡 추가 리스트
@@ -39,21 +49,7 @@ const PlaylistInfo = ({ boardId, isEditing, setIsEditing }) => {
   // 삭제 버튼
   const [deleteBtnClicked, setDeleteBtnClicked] = useState(false);
 
-  const [boardData, setBoardData] = useState(null);
-  const [playlistData, setPlaylistData] = useState(null);
-
   const navigate = useNavigate();
-
-  useEffect(() => {
-    axios.get(`${API.BOARD}/${boardId}`).then((res) => {
-      setBoardData(res.data.data.board);
-      setPlaylistData(res.data.data.playlist);
-      console.log(
-        'playlistinfo - useeffect - playlistData: ',
-        res.data.data.playlist
-      );
-    });
-  }, []);
 
   // 삭제 버튼
   const handleDelete = () => {
@@ -111,7 +107,9 @@ const PlaylistInfo = ({ boardId, isEditing, setIsEditing }) => {
       );
     // 수정 버튼 !isClicked
     setIsEditing(false);
-    navigate(`/playlists/${boardId}`);
+    setDeleteBtnClicked(false);
+    setBoardData({ ...boardData, ...requestBody });
+    navigate(`/playlist/${boardId}`);
   };
 
   // 곡 추가 창 닫기
@@ -119,6 +117,7 @@ const PlaylistInfo = ({ boardId, isEditing, setIsEditing }) => {
     setNewSongList([]);
     setIsAddSongModalOpen(false);
   };
+
   // 곡 추가
   // 기존 리스트에 중복되는 곡은 추가하지 않음
   const handleAddBtn = () => {
@@ -135,39 +134,79 @@ const PlaylistInfo = ({ boardId, isEditing, setIsEditing }) => {
     handleCloseAddSongModal();
   };
 
+  const handleEditBtnClick = () => {
+    setIsEditing(true);
+  };
+
+  const handleCancelBtnClick = () => {
+    setDeleteBtnClicked(false);
+    setIsEditing(false);
+  };
+
+  const [isVote, setIsVote] = useState(false);
+
+  const handleVote = () => {
+    if (!isVote) {
+      setIsVote(true);
+      const storedAccessToken = localStorage.getItem('accessToken');
+      axios
+        .post(
+          `${API.LIKE}/${boardId}`,
+          { vote: 'string' },
+          {
+            headers: {
+              Authorization: `${storedAccessToken}`,
+              accept: 'application/json',
+            },
+          }
+        )
+        .then(console.log)
+        .catch(console.log);
+    }
+  };
+
   return (
     <PlaylistInfoContainer>
-      <img src={boardData?.boardThumb} alt='playlist thumbnail' />
+      <img
+        src={boardData?.boardThumb}
+        alt='playlist thumbnail'
+        className='boardThumbnail'
+      />
       <div className='info'>
         <PlaylistInfoMain>
           {/* 플리 제목 */}
-          {!isEditing && <div className='title'>{boardData?.boardTitle}</div>}
-          {isEditing && (
-            <input
-              type='text'
-              ref={boardTitleRef}
-              className='title'
-              defaultValue={boardData?.boardTitle}
-            />
-          )}
-          {/* 플리 설명 */}
-          {!isEditing && <div className='desc'>{boardData?.boardContent}</div>}
-          {isEditing && (
-            <textarea
-              className='desc'
-              ref={boardDescRef}
-              defaultValue={boardData?.boardContent}
-            />
-          )}
-          {/* 플리 설명 더보기 버튼 */}
-          {!isEditing && (
-            <button onClick={toggleIsInfoModalOpen} className='moreInfo'>
-              더보기
-            </button>
-          )}
-          {isEditing && <div className='emptySpace'></div>}
-          {/* 플리 설명 더보기 모달 */}
-          <PlaylistInfoModal
+          <div className='header'>
+            {!isEditing && <div className='title'>{boardData?.boardTitle}</div>}
+            {isEditing && (
+              <input
+                type='text'
+                ref={boardTitleRef}
+                className='title'
+                defaultValue={boardData?.boardTitle}
+                onChange={(e) => console.log(e.target.offsetHeight)}
+              />
+            )}
+            {/* 플리 설명 */}
+            {!isEditing && (
+              <div className='desc'>{boardData?.boardContent}</div>
+            )}
+            {isEditing && (
+              <textarea
+                className='desc'
+                ref={boardDescRef}
+                defaultValue={boardData?.boardContent}
+              />
+            )}
+            {/* 플리 설명 더보기 버튼 */}
+            {/* {!isEditing && (
+              <button onClick={toggleIsInfoModalOpen} className='moreInfo'>
+                더보기
+              </button>
+            )} */}
+            {/* {isEditing && <div className='emptySpace'></div>} */}
+
+            {/* 플리 설명 더보기 모달 */}
+            {/* <PlaylistInfoModal
             isOpen={isInfoModalOpen}
             shouldCloseOnEsc={true}
             shouldCloseOnOverlayClick={true}
@@ -175,73 +214,88 @@ const PlaylistInfo = ({ boardId, isEditing, setIsEditing }) => {
             <IoMdClose onClick={toggleIsInfoModalOpen} className='closeIcon' />
             <div className='title'>{boardData?.boardTitle}</div>
             <div className='desc'>{boardData?.boardContent}</div>
-          </PlaylistInfoModal>
+          </PlaylistInfoModal> */}
+          </div>
           {/* 버튼 */}
-          <div className='infoBtns'>
-            <button className='btn1' onClick={handlePlayBtnClick}>
-              <FaPlay />
-              <div>재생</div>
+          <div className='footer'>
+            <button
+              className={isVote ? 'heart voted' : 'heart'}
+              onClick={handleVote}>
+              {isVote ? <BsHeartFill /> : <BsHeart />}
             </button>
-            {boardData?.memberId === memberId && (
-              <button
-                className={isEditing ? 'clicked' : 'btn1'}
-                onClick={() => setIsEditing((prev) => !prev)}>
-                {isEditing ? <div>취소</div> : <div>수정</div>}
+            <div className='infoBtns'>
+              <button className='btn1' onClick={handlePlayBtnClick}>
+                <FaPlay />
+                <div>재생</div>
               </button>
-            )}
-            {boardData?.memberId === memberId && isEditing && (
-              <button onClick={() => setDeleteBtnClicked(true)}>
-                <div>삭제</div>
-              </button>
-            )}
-            {isEditing && (
-              <button
-                className='btn2'
-                onClick={() => setIsAddSongModalOpen(true)}>
-                <IoMdAddCircleOutline />
-                <div>추가</div>
-              </button>
-            )}
-            {/* 곡 추가 모달 */}
-            <PlaylistInfoModal isOpen={isAddSongModalOpen}>
-              <IoMdClose
-                onClick={handleCloseAddSongModal}
-                className='closeIcon'
-              />
-              {/* // TODO: CSS */}
-              <button className='addBtn' onClick={handleAddBtn}>
-                추가하기
-              </button>
-              <div className='title'></div>
-              <div className='desc'></div>
-              <div>searchUI</div>
-              <SearchUI
-                songList={newSongList}
-                setSongList={setNewSongList}
-                isOpenPlaylistCreator={isAddSongModalOpen}
-              />
-            </PlaylistInfoModal>
-            {isEditing && (
-              <button className='' onClick={handleCompleteEditting}>
-                <div>완료</div>
-              </button>
+              {boardData?.memberId === memberId && isEditing && (
+                <button className='clicked' onClick={handleCancelBtnClick}>
+                  <div>취소</div>
+                </button>
+              )}
+              {boardData?.memberId === memberId && !isEditing && (
+                <button className='btn1' onClick={handleEditBtnClick}>
+                  <div>수정</div>
+                </button>
+              )}
+              {boardData?.memberId === memberId && isEditing && (
+                <button
+                  onClick={() => setDeleteBtnClicked(true)}
+                  className='deleteBtn'>
+                  <div>삭제</div>
+                </button>
+              )}
+              {isEditing && (
+                <button
+                  className='btn2'
+                  onClick={() => setIsAddSongModalOpen(true)}>
+                  <IoMdAddCircleOutline />
+                  <div>추가</div>
+                </button>
+              )}
+              {/* 곡 추가 모달 */}
+              <PlaylistInfoModal isOpen={isAddSongModalOpen}>
+                {/* // TODO: CSS */}
+                <div className='header'>
+                  <div className='title'>노래 추가</div>
+                  <div className='btns'>
+                    <button className='addBtn' onClick={handleAddBtn}>
+                      추가하기
+                    </button>
+                    <IoMdClose
+                      onClick={handleCloseAddSongModal}
+                      className='closeIcon'
+                    />
+                  </div>
+                </div>
+                <SearchUI
+                  songList={newSongList}
+                  setSongList={setNewSongList}
+                  isOpenPlaylistCreator={isAddSongModalOpen}
+                />
+              </PlaylistInfoModal>
+              {isEditing && (
+                <button onClick={handleCompleteEditting} className='btn1'>
+                  <div>완료</div>
+                </button>
+              )}
+            </div>
+            {deleteBtnClicked && (
+              <div className='deleteModal'>
+                <div className='msg'>{`<${boardData?.boardTitle}> 플레이리스트를 삭제하시겠습니까?`}</div>
+                <div className='deleteBtns'>
+                  <button className='delete' onClick={handleDelete}>
+                    삭제
+                  </button>
+                  <button
+                    className='cancel'
+                    onClick={() => setDeleteBtnClicked(false)}>
+                    취소
+                  </button>
+                </div>
+              </div>
             )}
           </div>
-          {deleteBtnClicked && (
-            <div className='deleteModal'>
-              <div className='msg'>{`<${boardData?.boardTitle}> 플레이리스트를 삭제하시겠습니까?`}</div>
-              <div className='deleteBtns'>
-                <button className='delete' onClick={handleDelete}>
-                  삭제
-                </button>
-                <button
-                  className='cancel'
-                  onClick={() => setDeleteBtnClicked(false)}>
-                  취소
-                </button>
-              </div>
-            </div>
-          )}
         </PlaylistInfoMain>
       </div>
     </PlaylistInfoContainer>

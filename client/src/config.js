@@ -6,4 +6,5 @@ export const API = {
   COMMENT: `${BASE_URL}/comments`,
   BOARD: `${BASE_URL}/boards`,
   MEMBER: `${BASE_URL}/members`,
+  LIKE: `${BASE_URL}/like/up`,
 };

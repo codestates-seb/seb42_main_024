@@ -64,7 +64,9 @@ export const PlaylistCreatorContainer = styled.div`
 
     width: 150px;
     height: 40px;
-    background-color: red;
+    background-color: black;
+    border: 1px solid var(--color9);
+    opacity: 0.8;
     color: white;
     border-radius: 5px;
 
@@ -108,7 +110,7 @@ export const SearchUIContainer = styled.div`
     button.searchBtn {
       width: 50px;
       font-size: 20px;
-      background-color: inherit;
+      background-color: #313540;
       border: none;
 
       display: flex;

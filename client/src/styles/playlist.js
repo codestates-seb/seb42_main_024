@@ -5,112 +5,163 @@ import styled from 'styled-components';
 // PlaylistPage - PlaylistInfoContainer component
 export const PlaylistInfoMain = styled.div`
   position: relative;
-  div.title {
-    font-size: 50px;
-    font-family: var(--ft-pretendardExtraBold);
-    margin: 25px 0;
-  }
-  input.title {
-    font-size: 50px;
-    font-family: var(--ft-pretendardExtraBold);
-    margin: 25px 0;
-    background-color: transparent;
-    border: 0.1px solid white;
-    border-radius: 5px;
-    color: white;
-  }
-  div.desc {
-    width: 584px;
-    min-height: 36px;
-    max-height: 90px;
-    font-size: 15px;
-    font-family: var(--ft-pretendardThin);
-    overflow-y: hidden;
-  }
-  textarea.desc {
-    width: 584px;
-    max-height: 90px;
-    resize: none;
-    font-size: 15px;
-    font-family: var(--ft-pretendardThin);
-    overflow-y: hidden;
-    background-color: transparent;
-    color: white;
-    border: 0.1px solid white;
-    border-radius: 5px;
-  }
-  .moreInfo {
-    margin: 10px 0;
-    background-color: var(--color11);
-    border: 1px solid var(--color9);
-    border-radius: 5px;
-    color: var(--color9);
-    width: 40px;
-    height: 20px;
-  }
-  .emptySpace {
-    margin: 10px 0;
-    width: 40px;
-    height: 20px;
-  }
-  .infoBtns {
-    width: fit-content;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  div.header {
+    height: 240px;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 18px;
-    button {
-      width: 80px;
-      height: 30px;
+    flex-direction: column;
+    div.title {
+      font-size: 50px;
+      font-family: var(--ft-pretendardExtraBold);
+      margin-bottom: 25px;
+      min-height: 60px;
+      max-height: 120px;
+      overflow-y: hidden;
+    }
+    input.title {
+      font-size: 50px;
+      font-family: var(--ft-pretendardExtraBold);
+      margin-bottom: 25px;
+      background-color: transparent;
+      border: none;
+      color: white;
+      outline: none;
+      padding: 0;
+      height: 60px;
       border-radius: 5px;
-      border: 1px solid var(--color9);
+      &:focus {
+        border: 0.5px solid white;
+      }
+    }
+    div.desc {
       font-size: 15px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 5px;
-      &.btn1 {
-        background-color: var(--color9);
+      font-family: var(--ft-pretendardThin);
+      flex-grow: 1;
+      overflow-y: hidden;
+      margin-bottom: 25px;
+    }
+    textarea.desc {
+      width: 584px;
+      height: 90px;
+      resize: none;
+      font-size: 15px;
+      font-family: var(--ft-pretendardThin);
+      overflow-y: hidden;
+      background-color: transparent;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      outline: none;
+      &:focus {
+        border: 0.5px solid white;
       }
-      &.btn2 {
-        background-color: var(--color2);
-        color: var(--color9);
-      }
-      &.clicked {
-        background-color: var(--color10);
-        opacity: 0.7;
-      }
+    }
+    .moreInfo {
+      margin: 10px 0;
+      background-color: var(--color11);
+      border: 1px solid var(--color9);
+      border-radius: 5px;
+      color: var(--color9);
+      width: 40px;
+      height: 20px;
+    }
+    .emptySpace {
+      margin: 10px 0;
+      width: 40px;
+      height: 20px;
     }
   }
-  .deleteModal {
-    position: absolute;
-    left: -50px;
-    top: 390px;
-    background-color: var(--color3);
-    border: 1px solid var(--color4);
-    border-radius: 5px;
-    width: fit-content;
-    height: fit-content;
-    padding: 10px;
-    .msg {
-      font-size: 15px;
+  .footer {
+    height: 120px;
+    .heart {
+      width: 15px;
+      background-color: transparent;
+      color: white;
+      border: none;
+      &.voted {
+        color: var(--color10);
+      }
     }
-    .deleteBtns {
+    .infoBtns {
+      height: 30px;
+      width: fit-content;
       display: flex;
       justify-content: center;
       align-items: center;
-      gap: 10px;
+      gap: 18px;
       button {
-        width: 50px;
-        border: none;
+        width: 80px;
+        height: 30px;
         border-radius: 5px;
-        &:hover {
-          cursor: pointer;
-        }
-        button.delete {
+        border: none;
+        font-size: 15px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 5px;
+        &.btn1 {
           background-color: var(--color9);
+          &:hover {
+            opacity: 0.7;
+          }
         }
-        button.cancel {
+        &.btn2 {
+          background-color: var(--color2);
+          color: var(--color9);
+          &:hover {
+            opacity: 0.7;
+          }
+        }
+        &.clicked {
+          background-color: var(--color3);
+          color: var(--color9);
+          opacity: 0.7;
+          &:hover {
+            opacity: 0.5;
+          }
+        }
+        &.deleteBtn {
+          background-color: var(--color10);
+          opacity: 0.7;
+          color: white;
+          border: none;
+          &:hover {
+            opacity: 0.5;
+          }
+        }
+      }
+    }
+    .deleteModal {
+      position: absolute;
+      top: 293px;
+      background-color: var(--color3);
+      border: 1px solid var(--color4);
+      border-radius: 5px;
+      width: fit-content;
+      height: fit-content;
+      padding: 10px;
+      .msg {
+        font-size: 15px;
+      }
+      .deleteBtns {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        button {
+          width: 50px;
+          border: none;
+          border-radius: 5px;
+          &:hover {
+            cursor: pointer;
+          }
+          button.delete {
+            background-color: var(--color9);
+          }
+          button.cancel {
+          }
         }
       }
     }
@@ -123,10 +174,16 @@ export const PlaylistInfoContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  gap: 25px;
   color: var(--color9);
+  img.boardThumbnail {
+    width: 480px;
+    height: 360px;
+  }
   .info {
-    margin-left: 25px;
     width: 584px;
+    height: 360px;
+    /* background-color: pink; */
   }
 `;
 
@@ -136,22 +193,44 @@ export const PlaylistInfoModal = styled(ReactModal)`
   height: 584px;
   padding: 30px;
   background-color: var(--color11);
+  border-radius: 5px;
   overflow-y: scroll;
   position: absolute;
   inset: 0;
   margin: auto;
-  .closeIcon {
-    color: var(--color4);
-    font-size: 40px;
-  }
-  .title {
-    color: var(--color9);
-    font-family: var(--ft-pretendardExtraBold);
-    font-size: 50px;
-  }
-  .desc {
-    margin-top: 20px;
-    color: var(--color4);
+  .header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .title {
+      color: var(--color9);
+      font-family: var(--ft-pretendardExtraBold);
+      font-size: 40px;
+    }
+    .btns {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 15px;
+      .addBtn {
+        background-color: var(--color3);
+        color: var(--color7);
+        border: none;
+        border-radius: 5px;
+        padding: 5px;
+        &:hover {
+          opacity: 0.7;
+        }
+      }
+      .closeIcon {
+        color: var(--color4);
+        font-size: 40px;
+        &:hover {
+          color: white;
+        }
+      }
+    }
   }
 `;
 
