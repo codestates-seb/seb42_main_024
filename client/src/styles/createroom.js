@@ -2,9 +2,11 @@ import styled from 'styled-components';
 export const CreateLiveRoomBox = styled.div`
   padding: 20px;
   background-color: #1c1c1c;
+  border-top-right-radius: 25px;
+  border-bottom-right-radius: 25px;
   color: white;
-  width: 800px;
-  height: 700px;
+  width: 600px;
+  height: 580px;
   position: absolute;
   top: 80px;
   left: 250px;
@@ -124,8 +126,24 @@ export const MyPlaylist = styled.div`
   margin: 10px 0;
 `;
 export const MyPlaylistBox = styled.div`
+  overflow-y: hidden;
   :hover {
     overflow-y: scroll;
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: var(--color11);
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #999;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: #555;
+    }
   }
   border-radius: 5px;
   background-color: #313540;
