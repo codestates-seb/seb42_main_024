@@ -27,15 +27,18 @@ const Nav = () => {
   const REDIRECT_URL = process.env.REACT_APP_REDIRECT_URL;
   const oAuthURL = `${REDIRECT_URL}`;
 
+  // backend로 redirect
   const oAuthHandler = () => {
     window.location.assign(oAuthURL);
   };
 
+  // 로그인 한 시간을 localStorage에 저장
   const loginTime = () => {
     const currentTime = new Date().getTime();
     localStorage.setItem('loginTime', currentTime);
   };
 
+  // 로그인 유지 시간 30분으로 설정
   const isLoginExpired = () => {
     const loginTime = localStorage.getItem('loginTime');
     const currentTime = new Date().getTime();
@@ -44,9 +47,12 @@ const Nav = () => {
     return currentTime - loginTime > expired;
   };
 
+  // 로그인 상태 확인
   const checkLoginStatus = async () => {
+    // localStorage에서 토큰 가져옴
     const storedAccessToken = localStorage.getItem('accessToken');
-
+    // 토큰이 localStorage에 있으나 로그인 유지 시간이 만료되었다면 logoutHandler 작동
+    // 그렇지 않을 경우 axios.get으로 서버에 저장되어있는 구글 유저 정보를 가져옴
     if (storedAccessToken) {
       if (isLoginExpired()) {
         logoutHandler();
@@ -68,6 +74,8 @@ const Nav = () => {
     }
   };
 
+  // backend에서 URL로 전달받은 Authorization, Refresh를 분류하여 localStorage에 저장
+  // localStorage에 저장 후 ROOT URL로 이동
   useEffect(() => {
     const url = new URL(window.location.href);
     const searchParams = new URLSearchParams(url.search);
@@ -93,7 +101,7 @@ const Nav = () => {
     } else {
       checkLoginStatus();
     }
-
+    // 자동 로그아웃 기능을 위해 5분마다 로그인 상태 확인
     const interval = setInterval(() => {
       checkLoginStatus();
     }, 1000 * 60 * 5);

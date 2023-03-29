@@ -7,6 +7,7 @@ export const NavContainer = styled.div`
   position: fixed;
   font-family: var(--ft-pretendardMedium);
   z-index: 10;
+  border-right: 1px solid var(--color3);
 
   .logo {
     width: 170px;

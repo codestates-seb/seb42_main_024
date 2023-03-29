@@ -14,17 +14,17 @@ export const MainContent = styled.div`
     font-size: 30px;
     display: block;
     position: relative;
-    left: 310px;
+    left: 330px;
     top: 440px;
   }
 `;
 
 export const StyledSlider = styled(Slider)`
-  max-width: 1300px;
+  max-width: 1200px;
   min-width: 1120px;
   padding-bottom: 50px;
   top: 450px;
-  left: 310px;
+  left: 330px;
   display: flex;
   position: relative;
 
@@ -34,7 +34,7 @@ export const StyledSlider = styled(Slider)`
 
   .slick-prev {
     left: -45px;
-    top: 130px;
+    top: 90px;
 
     &::before {
       content: '<';
@@ -42,8 +42,8 @@ export const StyledSlider = styled(Slider)`
   }
 
   .slick-next {
-    right: 20px;
-    top: 130px;
+    right: 0px;
+    top: 90px;
 
     &::before {
       content: '>';
