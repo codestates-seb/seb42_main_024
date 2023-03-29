@@ -7,6 +7,7 @@ import axios from 'axios';
 
 import SearchUI from './SearchUI';
 
+import { API } from '../../../config';
 import { PlaylistCreatorContainer } from '../../../styles/playlistCreator';
 
 const PlaylistCreator = ({
@@ -20,6 +21,7 @@ const PlaylistCreator = ({
   const [songList, setSongList] = useState([]);
   // 빈 songList로 플리 만들기를 시도할 때의 알림 모달 창
   const [isAlertModalOpen, setIsAlertModalOpen] = useState(false);
+
   const user = useSelector((state) => state.user);
 
   // 플리 만들기 버튼 클릭
@@ -43,13 +45,7 @@ const PlaylistCreator = ({
         },
       };
 
-      axios
-        .post(
-          'http://15.165.199.44:8080/api/boards',
-          requestBody,
-          requestHeader
-        )
-        .catch(console.log);
+      axios.post(`${API.BOARD}`, requestBody, requestHeader).catch(console.log);
       closePlaylistCreator();
     } else {
       setIsAlertModalOpen(true);

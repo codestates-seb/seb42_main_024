@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 import { setPlaylist, togglePlay } from '../../actions/actions';
+import { API } from '../../config';
 import {
   PlaylistInfoContainer,
   PlaylistInfoMain,
@@ -44,7 +45,7 @@ const PlaylistInfo = ({ boardId, isEditing, setIsEditing }) => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    axios.get(`http://15.165.199.44:8080/api/boards/${boardId}`).then((res) => {
+    axios.get(`${API.BOARD}/${boardId}`).then((res) => {
       setBoardData(res.data.data.board);
       setPlaylistData(res.data.data.playlist);
       console.log(
@@ -58,7 +59,7 @@ const PlaylistInfo = ({ boardId, isEditing, setIsEditing }) => {
   const handleDelete = () => {
     const storedAccessToken = localStorage.getItem('accessToken');
     axios
-      .delete(`http://15.165.199.44:8080/api/boards/${boardId}`, {
+      .delete(`${API.BOARD}/${boardId}`, {
         headers: {
           Authorization: `${storedAccessToken}`,
           accept: 'application/json',
@@ -81,20 +82,17 @@ const PlaylistInfo = ({ boardId, isEditing, setIsEditing }) => {
     };
     const storedAccessToken = localStorage.getItem('accessToken');
 
+    // eslint-disable-next-line
     axios
       .all([
+        axios.patch(`${API.BOARD}/${boardId}/${memberId}`, requestBody, {
+          headers: {
+            Authorization: `${storedAccessToken}`,
+            accept: 'application/json',
+          },
+        }),
         axios.patch(
-          `http://15.165.199.44:8080/api/boards/${boardId}/${memberId}`,
-          requestBody,
-          {
-            headers: {
-              Authorization: `${storedAccessToken}`,
-              accept: 'application/json',
-            },
-          }
-        ),
-        axios.patch(
-          `http://15.165.199.44:8080/api/playlists/${playlistData.playlistId}`,
+          `${API.PLAYLIST}/${playlistData.playlistId}`,
           playlistData,
           {
             headers: {
@@ -105,6 +103,7 @@ const PlaylistInfo = ({ boardId, isEditing, setIsEditing }) => {
         ),
       ])
       .then(
+        // eslint-disable-next-line
         axios.spread((res1, res2) => {
           console.log('PATCH /boards: ', res1);
           console.log('PATCH /playlists: ', res2);

@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 import axios from 'axios';
 
@@ -9,6 +10,7 @@ import NavLogout from './NavLogout';
 
 import { setUserData, deleteUserData } from '../../actions/actions';
 import Logo from '../../assets/Logo.png';
+import { API } from '../../config';
 import { NavContainer, NavFooter } from '../../styles/nav';
 
 const Nav = () => {
@@ -21,30 +23,45 @@ const Nav = () => {
   const isLogin = useSelector((state) => state.user !== null);
 
   const REDIRECT_URL = process.env.REACT_APP_REDIRECT_URL;
-  const AUTH_URL = process.env.REACT_APP_AUTH_URL;
-
   const oAuthURL = `${REDIRECT_URL}`;
 
   const oAuthHandler = () => {
     window.location.assign(oAuthURL);
   };
 
+  const loginTime = () => {
+    const currentTime = new Date().getTime();
+    localStorage.setItem('loginTime', currentTime);
+  };
+
+  const isLoginExpired = () => {
+    const loginTime = localStorage.getItem('loginTime');
+    const currentTime = new Date().getTime();
+    const expired = 60 * 1000 * 30;
+
+    return currentTime - loginTime > expired;
+  };
+
   const checkLoginStatus = async () => {
     const storedAccessToken = localStorage.getItem('accessToken');
 
     if (storedAccessToken) {
-      try {
-        const response = await axios.get(`${AUTH_URL}`, {
-          headers: {
-            Authorization: `${storedAccessToken}`,
-            accept: 'application/json',
-          },
-        });
-        setData(response);
-        dispatch(setUserData(user));
-        dispatch(setUserData(response.data));
-      } catch (e) {
-        console.log(`oAuth token expired`);
+      if (isLoginExpired()) {
+        logoutHandler();
+      } else {
+        try {
+          const response = await axios.get(`${API.MEMBER}/auth`, {
+            headers: {
+              Authorization: `${storedAccessToken}`,
+              accept: 'application/json',
+            },
+          });
+          setData(response);
+          dispatch(setUserData(user));
+          dispatch(setUserData(response.data));
+        } catch (e) {
+          console.log(`OAuth token expired`);
+        }
       }
     }
   };
@@ -60,8 +77,9 @@ const Nav = () => {
 
       if (accessToken) {
         localStorage.setItem('accessToken', accessToken);
+        localStorage.setItem('refreshToken', refreshToken);
+        loginTime();
       }
-      localStorage.setItem('refreshToken', refreshToken);
 
       searchParams.delete('Authorization');
       searchParams.delete('Refresh');
@@ -70,8 +88,15 @@ const Nav = () => {
           searchParams.toString() ? '?' + searchParams.toString() : ''
         }`
       );
+    } else {
+      checkLoginStatus();
     }
-    checkLoginStatus();
+
+    const interval = setInterval(() => {
+      checkLoginStatus();
+    }, 1000 * 60 * 5);
+
+    return () => clearInterval(interval);
   }, []);
 
   const openModal = () => {
@@ -82,13 +107,16 @@ const Nav = () => {
     dispatch(deleteUserData());
     localStorage.removeItem('accessToken');
     localStorage.removeItem('refreshToken');
+    localStorage.removeItem('loginTime');
   };
 
   return (
     <NavContainer>
-      <div className='nav-logo'>
-        <img className='logo' src={Logo} alt='logo' />
-      </div>
+      <Link to={'/'} className='nav-home-link'>
+        <div className='nav-logo'>
+          <img className='logo' src={Logo} alt='logo' />
+        </div>
+      </Link>
       {isLogin ? (
         <NavLogin user={user} logoutHandler={logoutHandler} />
       ) : (

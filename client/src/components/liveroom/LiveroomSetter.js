@@ -5,6 +5,7 @@ import { MdClose, MdOutlineAddCircleOutline } from 'react-icons/md';
 
 import axios from 'axios';
 
+import { API } from '../../config';
 import {
   LiveroomSetterContianer,
   SearchedSongsContainer,
@@ -32,16 +33,12 @@ const LiveroomSetter = ({
       // axios send newSong
       const storedAccessToken = localStorage.getItem('accessToken');
       axios
-        .post(
-          `http://15.165.199.44:8080/api/rooms/${chatroomId}/songs`,
-          newSong,
-          {
-            headers: {
-              Authorization: `${storedAccessToken}`,
-              accept: 'application/json',
-            },
-          }
-        )
+        .post(`${API.LIVEROOM}/${chatroomId}/songs`, newSong, {
+          headers: {
+            Authorization: `${storedAccessToken}`,
+            accept: 'application/json',
+          },
+        })
         .then(() => {
           setChangeSong((prev) => !prev);
           if (isEnd) {
@@ -59,7 +56,7 @@ const LiveroomSetter = ({
   };
 
   // 유튜브 API key
-  const API = 'AIzaSyD8LIz3Ev2F9egKAE7cmnJGesYkLwgjhGg';
+  const YOUTUBE_API = process.env.REACT_APP_YOUTUBE_API_KEY;
 
   // 유튜브 검색
   const handleSearching = () => {
@@ -68,7 +65,7 @@ const LiveroomSetter = ({
     axios
       .get('https://www.googleapis.com/youtube/v3/search', {
         params: {
-          key: API,
+          key: YOUTUBE_API,
           part: 'snippet',
           q: searchRef.current.value,
           maxResults: 12,

@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import axios from 'axios';
 
 import { setPlaylist, togglePlay } from '../../actions/actions';
+import { API } from '../../config';
 import {
   PlaylistListContainerWrapper,
   PlaylistListContainer,
@@ -21,7 +22,7 @@ const PlaylistList = ({ boardId, isEditing }) => {
   // boardId로 playlist 데이터 가져오기
   useEffect(() => {
     axios
-      .get(`http://15.165.199.44:8080/api/boards/${boardId}`)
+      .get(`${API.BOARD}/${boardId}`)
       .then((res) => {
         // console.log('playlistlist :', res.data.data.playlist);
         setPlaylistData(res.data.data.playlist);
@@ -51,16 +52,12 @@ const PlaylistList = ({ boardId, isEditing }) => {
       setPlaylistData(requestBody);
       // PATCH /playlist
       const storedAccessToken = localStorage.getItem('accessToken');
-      axios.patch(
-        `http://15.165.199.44:8080/api/playlists/${playlistData.playlistId}`,
-        requestBody,
-        {
-          headers: {
-            Authorization: `${storedAccessToken}`,
-            accept: 'application/json',
-          },
-        }
-      );
+      axios.patch(`${API.PLAYLIST}/${playlistData.playlistId}`, requestBody, {
+        headers: {
+          Authorization: `${storedAccessToken}`,
+          accept: 'application/json',
+        },
+      });
       // 삭제한 곡에 대한 정보 삭제
       playlistData?.songList.forEach((song) => {
         if (willBeDeleted[song.songId]) delete willBeDeleted[song.songId];

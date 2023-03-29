@@ -2,10 +2,12 @@ import { useState } from 'react';
 import { FaPlay } from 'react-icons/fa';
 import { IoMdClose } from 'react-icons/io';
 import ReactModal from 'react-modal';
+import { useDispatch } from 'react-redux';
 
 import PlaylistImage from './PlaylistImage';
 import SongList from './Songlist';
 
+import { setPlaylist, togglePlay } from '../../../actions/actions';
 import {
   PlaylistTrendyContainer,
   PlaylistTrendyInfoContainer,
@@ -15,7 +17,16 @@ ReactModal.setAppElement('#root');
 
 const PlaylistTrendyInfo = ({ trendyBoard, trendyList }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const dispatch = useDispatch();
+
   const toggleIsModalOpen = () => setIsModalOpen(!isModalOpen);
+
+  const handlePlayBtnClick = () => {
+    dispatch(setPlaylist(trendyList.songList));
+    dispatch(togglePlay());
+  };
+
   return (
     <PlaylistTrendyInfoContainer>
       <div className='title'>{trendyBoard && trendyBoard.boardTitle}</div>
@@ -55,7 +66,7 @@ const PlaylistTrendyInfo = ({ trendyBoard, trendyList }) => {
         </p>
       </ReactModal>
       <div className='btns'>
-        <button className='btn1'>
+        <button className='btn1' onClick={handlePlayBtnClick}>
           <FaPlay />
           <div>재생</div>
         </button>

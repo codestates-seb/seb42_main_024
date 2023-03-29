@@ -5,6 +5,7 @@ import axios from 'axios';
 
 import PlaylistThumbnail from '../components/mainPage/PlaylistThumbnail';
 import PlaylistTrendy from '../components/mainPage/PlaylistTrendy/PlaylistTrendy';
+import { API } from '../config';
 import { MainContent, StyledSlider } from '../styles/main';
 
 const getSliderData = (idx, data, item) => {
@@ -35,7 +36,7 @@ const Main = () => {
     '드라이브 필수 준비물',
     '노동에는 노동요',
     '봄이 왔으면 이 노래를 들어야지',
-    '너 싸이월드 좀 했나봐?',
+    '요즘 애들은 뭘 듣고 사나요',
     'K-IDOL의 위엄',
     '이 노래 모르면 바보',
     '집중할 때 듣기 좋은 노래',
@@ -63,9 +64,7 @@ const Main = () => {
   useEffect(() => {
     const getTrendy = async () => {
       try {
-        const response = await axios.get(
-          `http://15.165.199.44:8080/api/boards/4`
-        );
+        const response = await axios.get(`${API.BOARD}/4`);
         setTrendyBoard(response.data.data.board);
         setTrendyList(response.data.data.playlist);
       } catch (e) {
@@ -81,9 +80,7 @@ const Main = () => {
         return;
       }
       try {
-        const response = await axios.get(
-          `http://15.165.199.44:8080/api/boards?page=${pageNum}`
-        );
+        const response = await axios.get(`${API.BOARD}?page=${pageNum}`);
         const newData = {};
         response.data.data.forEach((item) => {
           newData[item.playlistId] = item;

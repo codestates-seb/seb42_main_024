@@ -10,6 +10,7 @@ import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 
 import Liverooms from '../components/liveroom/Liverooms';
+import { API } from '../config';
 import {
   LiveroomListContainer,
   AllLiveroomList,
@@ -32,7 +33,7 @@ function LiveroomList() {
   const pageEnd = useRef();
 
   const morePages = async (page) => {
-    const res = await axios.get('http://15.165.199.44:8080/api/rooms', {
+    const res = await axios.get(`${API.LIVEROOM}`, {
       headers: {
         Authorization: `${accessToken}`,
         accept: 'application/json',
@@ -80,7 +81,7 @@ function LiveroomList() {
 
   useEffect(() => {
     axios
-      .get('http://15.165.199.44:8080/api/rooms/rank', {
+      .get(`${API.LIVEROOM}/rank`, {
         headers: {
           Authorization: `${accessToken}`,
           accept: 'application/json',
