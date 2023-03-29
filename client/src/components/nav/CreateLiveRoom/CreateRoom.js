@@ -73,7 +73,7 @@ const CreateRoom = ({ isCreateOpen, setIsCreateOpen }) => {
           setTitleValue('');
           setPostData([]);
           setIsCreateOpen((pre) => !pre);
-          navigate(`/liverooms/${res.data.data.chatroomId}`);
+          navigate(`/liverooms/:${res.data.data.chatroomId}`);
         })
         .catch((e) => {
           console.log(e);
