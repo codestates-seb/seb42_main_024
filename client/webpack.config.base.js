@@ -67,7 +67,7 @@ module.exports = {
       template: getAbsolutePath('public/index.html'),
       inject: true,
       hash: true,
-      favicon: './src/assets/favicon.ico',
+      favicon: 'public/assets/favicon.ico',
     }),
     new CleanWebpackPlugin({
       verbose: true,
