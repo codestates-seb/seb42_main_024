@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 
 import axios from 'axios';
@@ -10,25 +10,12 @@ import {
   PlaylistListContainer,
 } from '../../styles/playlist';
 
-const PlaylistList = ({ boardId, isEditing }) => {
+const PlaylistList = ({ isEditing, playlistData, setPlaylistData }) => {
   const dispatch = useDispatch();
-  const [playlistData, setPlaylistData] = useState(null);
   // 삭제 기능을 위한 bool값을 저장하는 객체
   const defaultState = {};
   playlistData?.songList.forEach((song) => (defaultState[song.songId] = false));
   const [willBeDeleted, setWillBeDeleted] = useState(defaultState);
-
-  // let playlistId = null;
-  // boardId로 playlist 데이터 가져오기
-  useEffect(() => {
-    axios
-      .get(`${API.BOARD}/${boardId}`)
-      .then((res) => {
-        // console.log('playlistlist :', res.data.data.playlist);
-        setPlaylistData(res.data.data.playlist);
-      })
-      .catch((err) => console.log('playlistList - useEffect', err));
-  }, []);
 
   // 곡 클릭하면 해당 곡부터 마지막 곡까지 플리에 저장
   const handleSongClick = (idx) => {
@@ -71,7 +58,7 @@ const PlaylistList = ({ boardId, isEditing }) => {
     tmpObj[songId] = !tmpObj[songId];
     setWillBeDeleted({ ...tmpObj });
   };
-  console.log('playlistlist: ', playlistData);
+
   return (
     <PlaylistListContainerWrapper>
       <PlaylistListContainer>

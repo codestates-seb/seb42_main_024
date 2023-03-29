@@ -1,23 +1,45 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
-import PlaylistComment from '../components/playlistPage/PlaylistComment';
+import axios from 'axios';
+
+import PlaylistComment from '../components/playlistPage/playlistComment/PlaylistComment';
 import PlaylistInfo from '../components/playlistPage/PlaylistInfo';
 import PlaylistList from '../components/playlistPage/PlaylistList';
+import { API } from '../config';
 import { PlaylistPageContainer } from '../styles/playlist';
 
 const Playlist = () => {
   const { boardId } = useParams();
   // 수정 버튼 상태
   const [isEditing, setIsEditing] = useState(false);
+  // props - axios data
+  const [boardData, setBoardData] = useState(null);
+  const [playlistData, setPlaylistData] = useState(null);
+
+  useEffect(() => {
+    axios.get(`${API.BOARD}/${boardId}`).then((res) => {
+      setBoardData(res.data.data.board);
+      setPlaylistData(res.data.data.playlist);
+    });
+  }, []);
+
   return (
     <PlaylistPageContainer>
       <PlaylistInfo
         boardId={boardId}
         isEditing={isEditing}
         setIsEditing={setIsEditing}
+        boardData={boardData}
+        setBoardData={setBoardData}
+        playlistData={playlistData}
+        setPlaylistData={setPlaylistData}
       />
-      <PlaylistList boardId={boardId} isEditing={isEditing} />
+      <PlaylistList
+        isEditing={isEditing}
+        playlistData={playlistData}
+        setPlaylistData={setPlaylistData}
+      />
       <PlaylistComment boardId={boardId} />
     </PlaylistPageContainer>
   );
