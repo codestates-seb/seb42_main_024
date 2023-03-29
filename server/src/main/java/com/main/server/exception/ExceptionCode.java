@@ -13,11 +13,14 @@ public enum ExceptionCode {
     NO_PERMISSION(400, "no permission"),
     PLAYLIST_NOT_FOUND(400, "playlist not found"),
     PLAYLIST_FULL(400, "playlist full"),
-    CHATROOM_ALREADY_EXISTS(400, "room already exists"),
-    CHATROOM_NOT_FOUND(400, "room not found"),
+    CHATROOM_ALREADY_EXISTS(400, "chatroom already exists"),
+    CHATROOM_NOT_FOUND(400, "chatroom not found"),
+    CHATROOM_FULL(400, "chatroom full"),
     NO_SONG(400, "no song left"),
     FULL_SONG(400, "song is full"),
     NOT_ALLOWED(400, "Not Allowed");
+
+
 
     @Getter
     private int status;

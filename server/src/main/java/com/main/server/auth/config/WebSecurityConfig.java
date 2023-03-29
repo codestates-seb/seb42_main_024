@@ -11,6 +11,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
@@ -57,8 +58,17 @@ public class WebSecurityConfig {
                 .apply(new CustomFilterConfigurer())
                 .and()
                 .authorizeHttpRequests(authorize -> authorize
-                        .antMatchers("/api/rooms").hasRole("USER")
-//                        .antMatchers("/api/members/auth").hasRole("USER")
+                        .antMatchers(HttpMethod.GET, "/api/rooms").permitAll()
+                        .antMatchers(HttpMethod.GET, "/api/rooms/rank").permitAll()
+                        .antMatchers(HttpMethod.GET, "/api/boards/**").permitAll()
+                        .antMatchers(HttpMethod.GET, "/api/playlists/**").permitAll()
+                        .antMatchers(HttpMethod.GET, "/api/follows/**").permitAll()
+                        .antMatchers("/api/rooms/**").hasRole("USER")
+                        .antMatchers("/api/boards/**").hasRole("USER")
+                        .antMatchers("/api/comments/**").hasRole("USER")
+                        .antMatchers("/api/playlists/**").hasRole("USER")
+                        .antMatchers("/api/like/**").hasRole("USER")
+                        .antMatchers("/api/follows/**").hasRole("USER")
                         .anyRequest().permitAll()
                 )
                 .oauth2Login(oauth2 ->
