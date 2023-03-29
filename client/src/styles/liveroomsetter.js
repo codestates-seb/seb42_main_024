@@ -6,7 +6,7 @@ export const LiveroomSetterContianer = styled.div`
   border-radius: 5px 0 0 5px;
   padding: 10px;
   position: absolute;
-  right: 600px;
+  right: 650px;
   top: 20%;
   z-index: 5;
   .header {
@@ -29,11 +29,17 @@ export const LiveroomSetterContianer = styled.div`
       align-items: center;
       gap: 5px;
       .add {
+        padding: 5px;
+        text-align: center;
         background-color: grey;
         border-radius: 5px;
         border: none;
+        color: var(--color1);
+        font-weight: 600;
       }
       .close {
+        display: flex;
+        justify-content: center;
         background-color: transparent;
         color: white;
         border: none;
@@ -42,24 +48,40 @@ export const LiveroomSetterContianer = styled.div`
     }
   }
   .newSong {
+    font-size: 70px;
+    font-weight: 600;
     margin: 10px 0;
     padding: 5px 10px;
     width: 100%;
-    height: 50px;
+    height: 120px;
     border-radius: 5px;
     background-color: #313540;
     color: white;
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
     .newSongThumbnail {
-      width: 53px;
-      height: 30px;
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
     }
     .newSongTitle {
-      flex-grow: 1;
+      width: 60%;
+      height: 50%;
+      line-height: 18px;
+      font-size: 17px;
       color: white;
-      margin-left: 5px;
+      display: flex;
+      overflow: hidden;
+      word-break: keep-all;
+      @keyframes marquee {
+        from {
+          transform: translateY(0);
+        }
+        to {
+          transform: translateY(-50%);
+        }
+      }
     }
     .deletBtnWrapper {
       display: flex;
@@ -67,7 +89,7 @@ export const LiveroomSetterContianer = styled.div`
       align-items: center;
       .deleteNewSong {
         background-color: transparent;
-        color: black;
+        color: var(--color9);
         border: none;
         font-size: 20px;
         &:hover {
@@ -109,7 +131,7 @@ export const LiveroomSetterContianer = styled.div`
 
 export const SearchedSongsContainer = styled.div`
   width: 100%;
-  max-height: 340px;
+  max-height: 480px;
   margin-top: 10px;
   padding: 10px;
   border-radius: 5px;

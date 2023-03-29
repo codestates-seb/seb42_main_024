@@ -7,6 +7,7 @@ export const LiveroomSideBarContainer = styled.div`
   border: 1px solid var(--color3);
   display: flex;
   flex-direction: column;
+  justify-content: space-around;
   padding: 40px;
 `;
 
@@ -19,14 +20,16 @@ export const LSBHeaderContainer = styled.div`
   font-size: 55px;
   > svg {
     margin-left: 10px;
+    &.hide {
+      visibility: hidden;
+    }
   }
 `;
 export const LSBPlayListContainer = styled.div`
-  /* height: 47.5%; */
+  height: 15%;
 `;
 export const LSBChatContianer = styled.div`
-  margin-top: 20px;
-  height: 90%;
+  height: 75%;
 `;
 export const LSBOutBtn = styled.button`
   font-size: 25px;
@@ -37,7 +40,7 @@ export const LSBOutBtn = styled.button`
 `;
 
 export const LSBMemberContainer = styled.div`
-  height: 10%;
+  height: 20%;
   color: var(--color9);
   display: flex;
   align-items: center;
@@ -51,7 +54,7 @@ export const LSBMemberContainer = styled.div`
 
 export const LSBPlayListWrap = styled.div`
   border-radius: 20px;
-  height: 90%;
+  height: 80%;
   background-color: var(--color2);
   padding: 20px;
   overflow: hidden;

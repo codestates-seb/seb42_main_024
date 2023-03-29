@@ -133,7 +133,7 @@ const LiveroomSetter = ({
         </div>
       </div>
       {/* 줄2: 추가한 노래 */}
-      {newSong === null && <div className='newSong'>텅</div>}
+      {newSong === null && <div className='newSong'>텅...</div>}
       {newSong !== null && (
         <div className='newSong'>
           <img

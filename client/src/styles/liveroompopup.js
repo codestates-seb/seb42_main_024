@@ -29,11 +29,20 @@ export const TextContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  word-break: keep-all;
+  line-height: 30px;
   font-weight: 600;
 `;
 
+export const CheckBtnContainer = styled.div`
+  width: 100%;
+  height: 20%;
+  display: flex;
+  justify-content: space-evenly;
+`;
+
 export const CheckBtn = styled.button`
-  width: 60px;
+  min-width: 60px;
   height: 40px;
   border-radius: 20%;
   padding: 10px;

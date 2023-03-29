@@ -15,6 +15,7 @@ function LSBChat({
   chatDatas,
   roomid,
   userNickName,
+  setMembers,
 }) {
   const scrollRef = useRef();
   useEffect(() => {
@@ -54,7 +55,9 @@ function LSBChat({
     <LSBChatContianer>
       <LSBChatDetail ref={scrollRef}>
         {chatDatas.map((e, i) => {
-          return <Chatting key={i} chatData={e}></Chatting>;
+          return (
+            <Chatting key={i} chatData={e} setMembers={setMembers}></Chatting>
+          );
         })}
       </LSBChatDetail>
       <LSBSendMessage
