@@ -13,7 +13,6 @@ import {
   HeaderContainer,
   TitleHeader,
   Title,
-  ContentBox,
   TotalSongs,
   AddPlayList,
   MyPlaylist,
@@ -25,16 +24,11 @@ import {
 
 const CreateRoom = ({ isCreateOpen, setIsCreateOpen }) => {
   const [titleValue, setTitleValue] = useState('');
-  const [contentValue, setContentValue] = useState('');
   const [data, setData] = useState([]);
   const [postData, setPostData] = useState([]);
   const navigate = useNavigate();
   const handleTitleValue = (e) => {
     setTitleValue(e.target.value);
-  };
-
-  const handleContentValue = (e) => {
-    setContentValue(e.target.value);
   };
 
   const handleAddData = (index) => {
@@ -77,7 +71,6 @@ const CreateRoom = ({ isCreateOpen, setIsCreateOpen }) => {
         .post(`${API.LIVEROOM}`, requestBody, requestHeader)
         .then((res) => {
           setTitleValue('');
-          setContentValue('');
           setPostData([]);
           setIsCreateOpen((pre) => !pre);
           navigate(`/liverooms/${res.data.data.chatroomId}`);
@@ -85,6 +78,8 @@ const CreateRoom = ({ isCreateOpen, setIsCreateOpen }) => {
         .catch((e) => {
           console.log(e);
         });
+    } else {
+      alert(123);
     }
   };
 
@@ -105,12 +100,6 @@ const CreateRoom = ({ isCreateOpen, setIsCreateOpen }) => {
         type='text'
         onChange={handleTitleValue}
         value={titleValue}
-      />
-      <ContentBox
-        placeholder='라이브 룸에 대한 간단한 설명을 적어주세요...'
-        type='text'
-        onChange={handleContentValue}
-        value={contentValue}
       />
       <TotalSongs>라이브 룸 리스트</TotalSongs>
       <AddPlayList>
