@@ -28,30 +28,6 @@ public class MemberService {
     private final FindMemberService findMemberService;
     private final FollowRepository followRepository;
 
-//    @PostConstruct
-//    public void init() {
-//        Member member = Member.builder()
-//                .nickname("anonymousUser")
-//                .email("anonymousUser")
-//                .roles(List.of("USER"))
-//                .build();
-//        memberRepository.save(member);
-//
-//        Member member2 = Member.builder()
-//                .nickname("admin2")
-//                .email("admin2@google.com")
-//                .roles(List.of("USER2"))
-//                .build();
-//        memberRepository.save(member2);
-//
-//        Member member3 = Member.builder()
-//                .nickname("admin3")
-//                .email("admin3@google.com")
-//                .roles(List.of("USER3"))
-//                .build();
-//        memberRepository.save(member3);
-//    }
-
     public Member saveOrUpdate(OAuthAttributes attributes) {
         Member member = memberRepository.findByEmail(attributes.getEmail())
                 .orElse(new Member(

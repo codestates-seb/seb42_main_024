@@ -26,7 +26,6 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -40,24 +39,9 @@ public class BoardService {
 
     private FindLikeService findLikeService;
     private FindBoardService findBoardService;
+    
 
-
-//    @PostConstruct
-//    public void init() {
-//
-//        Member member = Member.builder().build();
-//        member.setMemberId(1L);
-//
-//        Board board = Board.builder()
-//                .member(member)
-//                .boardContent("content")
-//                .boardTitle("title")
-//                .build();
-//
-//        boardRepository.save(board);
-//    }
-
-    public void saveBoard(Board board) {
+    public Board saveBoard(Board board) {
         String time = "";
         SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHssSSS");
         Calendar dateTime = Calendar.getInstance();
@@ -69,6 +53,7 @@ public class BoardService {
         board.setCreatedAt(LocalDateTime.now());
 
         boardRepository.save(board);
+        return board;
     }
 
     public BoardResponseDto findBoard(Long boardId) {
@@ -103,6 +88,7 @@ public class BoardService {
         if (board.getMember().getMemberId().equals(memberId)) {
             board.setModifiedAt(LocalDateTime.now());
             boardRepository.save(board);
+
         } else {
             throw new BusinessLogicException(ExceptionCode.NOT_ALLOWED);
         }

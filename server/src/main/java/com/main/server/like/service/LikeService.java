@@ -37,4 +37,9 @@ public class LikeService {
 
     }
   }
+    //existsByMemberAndBoard 사용해서 값을 가져옴
+    public boolean hasMemberLikedBoard(Member member, Board board) {
+        return likeRepository.existsByMemberAndBoard(member, board);
+    }
+
 }

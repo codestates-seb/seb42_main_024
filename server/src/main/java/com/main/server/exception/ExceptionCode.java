@@ -20,6 +20,8 @@ public enum ExceptionCode {
     FULL_SONG(400, "song is full"),
     NOT_ALLOWED(400, "Not Allowed");
 
+
+
     @Getter
     private int status;
 
