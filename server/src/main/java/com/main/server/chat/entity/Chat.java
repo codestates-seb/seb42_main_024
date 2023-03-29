@@ -17,12 +17,13 @@ public class Chat extends Auditable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long chatId;
 
+    @Column(nullable = false)
     private Long memberId;
 
-    @ManyToOne
-    @JoinColumn(name = "chatroom_id")
-    private Chatroom chatroom;
+    @Column(nullable = false)
+    private Long chatroomId;
 
+    @Column(nullable = false, length = 100)
     private String content;
 
     @Builder
@@ -30,7 +31,7 @@ public class Chat extends Auditable {
                  Chatroom chatroom,
                  String content) {
         this.memberId = memberId;
-        this.chatroom = chatroom;
+        this.chatroomId = chatroom.getChatroomId();
         this.content = content;
     }
 }

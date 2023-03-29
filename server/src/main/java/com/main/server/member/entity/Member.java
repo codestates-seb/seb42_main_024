@@ -18,20 +18,25 @@ public class Member extends Auditable {
     private Long memberId;
 
     @Column(length = 100, nullable = false, unique = true)
-    private String nickname;
-
-    @Column(length = 100, nullable = false, unique = true)
     private String email;
 
-    @Column(length = 500)
+    @Column(length = 100, nullable = false)
+    private String nickname;
+
     private String picture;
 
+    @CollectionTable(name = "member_role",
+            joinColumns = @JoinColumn(name = "member_id"))
     @ElementCollection(fetch = FetchType.LAZY)
     private List<String> roles = new ArrayList<>();
 
+    @Column(nullable = false)
     private Integer playlistCount = 0;
 
+    @Column(nullable = false)
     private Integer followersCount = 0;
+
+    @Column(nullable = false)
     private Integer followingsCount = 0;
 
 

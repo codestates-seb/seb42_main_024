@@ -25,10 +25,12 @@ public class Chatroom extends Auditable {
     @JoinColumn(name = "member_id")
     private Member member;
 
+    @Column(nullable = false)
     private String title;
 
     private String thumbnail;
 
+    @Column(nullable = false)
     private Integer heat = 0;
 
     @CollectionTable(name = "chatroom_member",
