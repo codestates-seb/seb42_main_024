@@ -134,7 +134,6 @@ function LiveroomList() {
                     {fourSongdata?.map((e) => {
                       return (
                         <SwiperSlide key={e.chatroomId}>
-                          {' '}
                           <Liverooms song={e} type='ALL'></Liverooms>
                         </SwiperSlide>
                       );

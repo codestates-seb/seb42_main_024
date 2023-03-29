@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
 import { BsVolumeMute } from 'react-icons/bs';
 import ReactPlayer from 'react-player';
-import { useParams } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { useNavigate, useParams } from 'react-router-dom';
 
 import { Stomp } from '@stomp/stompjs';
 import axios from 'axios';
@@ -9,10 +10,12 @@ import { createBrowserHistory } from 'history';
 import * as SockJS from 'sockjs-client';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
+import { togglePause } from '../actions/actions';
 import LiveroomPopup from '../components/liveroom/LiveroomPopup';
 import LiveroomSidebar from '../components/liveroom/LiveroomSideBar';
 import { API } from '../config';
 import {
+  LiveroomGuide,
   LiveroomContainer,
   LiveroomCover,
   LiveAlbumCover,
@@ -24,12 +27,17 @@ import {
   PlayThumbnailContainer,
   ProgessContinaer,
   CDShape,
+  LiveroomEndContainer,
+  LiveroomEndText,
 } from '../styles/liveroom';
 import 'animate.css';
 
 function Liveroom() {
+  const dispatch = useDispatch();
+  dispatch(togglePause());
   const { liveroomid } = useParams();
   const history = createBrowserHistory();
+  const navigate = useNavigate();
   const roomid = liveroomid.slice(1, liveroomid.length);
   const [openSideBarSetting, setOpenSideBarSetting] = useState(false);
   const [message, setMessage] = useState('');
@@ -53,6 +61,8 @@ function Liveroom() {
   const [nowPlayIndex, setnowPlayIndex] = useState(0);
   const [readyToPlayMusic, setReadyToPlayMusic] = useState(false);
   const [songProgress, setSongProgress] = useState(0);
+  const [openLiveroomGuide, setOpenLiveroomGuide] = useState(true);
+  const [isDone, setIsDone] = useState(false);
 
   const volumeHandler = (e) => {
     if (isDrag) {
@@ -73,8 +83,9 @@ function Liveroom() {
     }
   };
   const nextSongHandler = (elsevalue) => {
-    const realIsEnd = elsevalue && isEnd;
+    const realIsEnd = elsevalue || isEnd;
     if (!realIsEnd) {
+      setIsEnd(false);
       axios
         .post(
           `${API.LIVEROOM}/${roomid}/songs/next`,
@@ -88,10 +99,11 @@ function Liveroom() {
             },
           }
         )
-        .then((e) => {
-          songProgress;
-          console.log(e);
+        .then(() => {
+          setIsDone(false);
         });
+    } else {
+      setIsDone(true);
     }
   };
 
@@ -113,9 +125,7 @@ function Liveroom() {
           })
           .then((user) => {
             const userData = user.data;
-            console.log(userData);
             const roomData = e.data.data;
-            console.log(roomData);
             setMembers(roomData.members);
             setRoomOwner(roomData.owner);
             setUserNickName(userData.nickname);
@@ -126,10 +136,8 @@ function Liveroom() {
               client.connect({}, () => {
                 client.subscribe(`/sub/chat/room/${roomid}`, function (join) {
                   const receiveData = JSON.parse(join.body);
-                  console.log(receiveData);
                   if (receiveData.type === 'SYSTEM') {
                     if (receiveData.message === 'NextSong') {
-                      console.log(receiveData.message);
                       setChangeSong((prev) => !prev);
                     }
                   } else {
@@ -149,6 +157,7 @@ function Liveroom() {
               setsockClient(client);
             } else {
               alert('나가세요');
+              navigate('/');
             }
           });
       });
@@ -164,9 +173,10 @@ function Liveroom() {
       })
       .then((e) => {
         const songData = e.data.data;
-        console.log(songData);
         if (songData.nextSong.length === 0) {
           setIsEnd(true);
+        } else {
+          setIsEnd(false);
         }
         setnowPlayIndex(songData.pastSong.length);
         setSongs([
@@ -193,6 +203,15 @@ function Liveroom() {
 
   return (
     <LiveroomContainer>
+      {openLiveroomGuide ? (
+        <LiveroomGuide
+          onClick={() => {
+            if (readyToPlayMusic) {
+              setPlayMusic(false);
+              setOpenLiveroomGuide(false);
+            }
+          }}></LiveroomGuide>
+      ) : null}
       {openSideBarSetting ? (
         <LiveroomPopup
           accessToken={accessToken}
@@ -227,9 +246,6 @@ function Liveroom() {
           setA(volume);
         }}
         onClick={(e) => {
-          if (readyToPlayMusic) {
-            setPlayMusic(false);
-          }
           if (e.target.className.includes('allow')) {
             setOpenMusicPlayList(false);
           }
@@ -257,6 +273,7 @@ function Liveroom() {
           <LiveroomCover>
             <PlayThumbnailContainer>
               <LiveAlbumCover
+                className={isDone ? 'done' : null}
                 onMouseEnter={() => setIsAlbumCoverHover(true)}
                 src={nowPlaySong[2]}></LiveAlbumCover>
               <ProgessContinaer
@@ -296,6 +313,11 @@ function Liveroom() {
             ) : null}
           </LiveroomCover>
         )}
+        {isDone ? (
+          <LiveroomEndContainer>
+            <LiveroomEndText>노래가 종료되었습니다</LiveroomEndText>
+          </LiveroomEndContainer>
+        ) : null}
       </LiveroomMainBackground>
       <LiveroomSidebar
         roomOwner={roomOwner}

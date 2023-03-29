@@ -8,11 +8,14 @@ export const PlayMusicContainer = styled.div`
   align-items: center;
 `;
 export const MusicInfo = styled.div`
+  height: 100%;
+  width: 100%;
   display: flex;
   justify-content: space-evenly;
   position: relative;
   color: var(--color9);
   font-size: 15px;
+  align-items: center;
 `;
 
 export const MisicThumnail = styled.img`
@@ -29,6 +32,12 @@ export const MusicTitle = styled.div`
 `;
 export const MusicInfoText = styled.div`
   width: 60%;
+  height: 80px;
   display: flex;
   align-items: center;
+`;
+
+export const MusicThumnailContianer = styled.div`
+  width: 100px;
+  height: 100px;
 `;

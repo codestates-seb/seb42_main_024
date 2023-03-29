@@ -51,7 +51,7 @@ const LiveroomSetter = ({
       setIsSettingModalOpen(false);
     } else {
       // 추가한 곡이 없을 때
-      console.log('추가할 곡이 없습니다 - settimeout 1000');
+      alert('추가할 곡이 없습니다');
     }
   };
 

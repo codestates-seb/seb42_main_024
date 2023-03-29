@@ -13,6 +13,7 @@ export const LSBChatDetail = styled.div`
   overflow: auto;
 `;
 export const LSBSendMessage = styled.textarea`
+  min-height: 55px;
   width: 100%;
   margin-top: 2%;
   border-radius: 20px;
