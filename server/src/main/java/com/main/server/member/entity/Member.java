@@ -31,7 +31,8 @@ public class Member extends Auditable {
 
     private Integer playlistCount = 0;
 
-    private Integer numberOfFollower = 0;
+    private Integer followersCount = 0;
+    private Integer followingsCount = 0;
 
 
     @Builder

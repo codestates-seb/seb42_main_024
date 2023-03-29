@@ -26,6 +26,8 @@ public class FollowService {
         Member target = findMemberService.id(id);
         //followRepository memberId가 없으면
         if (!followRepository.existsByFollowerAndTarget(follower,target)) {
+            target.setFollowersCount(target.getFollowersCount()+1);
+            follower.setFollowingsCount(follower.getFollowingsCount() + 1);
             //followRepository에 추가
             followRepository.save(new Follow(follower, target));
         } //아니면 삭제
