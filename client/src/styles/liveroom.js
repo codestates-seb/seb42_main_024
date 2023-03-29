@@ -19,6 +19,9 @@ export const LiveroomMainBackground = styled.div`
   justify-content: center;
   align-items: center;
   z-index: 1;
+  user-select: none;
+  -webkit-user-drag: none;
+  object-fit: fill;
   ::after {
     width: 100%;
     height: 100%;
@@ -40,12 +43,20 @@ export const LiveroomCover = styled.div`
 `;
 
 export const LiveAlbumCover = styled.img`
+  position: relative;
+  z-index: 5;
   user-select: none;
   -webkit-user-drag: none;
   width: 600px;
   height: 600px;
   border-radius: 50%;
-  border: 10px solid var(--color8);
+  border: 10px solid rgba(0, 0, 0, 0);
+  @keyframes rotate_image {
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  animation: rotate_image 30s linear infinite;
 `;
 
 export const LiveRoomBtnContianer = styled.div`
@@ -67,6 +78,7 @@ export const LiveRoomBtn = styled.button`
 `;
 
 export const LiveroomSoundBackground = styled.div`
+  z-index: 7;
   position: absolute;
   top: 0;
   border-radius: 50%;
@@ -95,5 +107,75 @@ export const PlayList = styled.div`
   background-color: rgba(255, 255, 255, 0.1);
   top: 50%;
   transform: translate(0, -50%);
+  height: 700px;
+  display: flex;
+  .swiper-slide {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+`;
+
+export const PlaySongTitle = styled.div`
+  font-size: 20px;
+  margin-top: 10px;
+  color: var(--color9);
+`;
+
+export const PlayThumbnailContainer = styled.div`
+  -webkit-user-drag: none;
+  width: 600px;
   height: 600px;
+  border-radius: 50%;
+  overflow: hidden;
+  position: relative;
+  box-sizing: border-box;
+`;
+
+export const PlayThumbnail = styled.img`
+  user-select: none;
+  -webkit-user-drag: none;
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  border: 10px solid rgba(0, 0, 0, 0);
+  position: relative;
+  z-index: 5;
+`;
+
+export const ProgessContinaer = styled.div.attrs((props) => ({
+  style: {
+    height: props.songProgress + '%',
+    backgroundColor: props.bgrColor,
+    zIndex: props.zIndex,
+  },
+}))`
+  position: absolute;
+  width: 600px;
+  top: 0;
+  left: 0;
+`;
+
+// export const ProgessContinaer = styled.div`
+//   position: absolute;
+//   width: 600px;
+//   height: ${(props) => props.songProgress || 0}%;
+//   background-color: ${(props) => props.bgrColor || 'red'};
+//   top: 0;
+//   left: 0;
+//   z-index: ${(props) => props.zIndex || 3};
+// `;
+
+export const CDShape = styled.div`
+  width: 25%;
+  height: 25%;
+  border: 5px solid var(--color8);
+  border-radius: 50%;
+  position: absolute;
+  z-index: 6;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) !important;
+  background-color: var(--color1);
 `;

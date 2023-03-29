@@ -1,3 +1,5 @@
+import { useEffect } from 'react';
+
 import {
   ChattingContianer,
   CommonChatMessage,
@@ -6,8 +8,15 @@ import {
   UserMessage,
 } from '../../styles/chatting';
 
-function Chatting({ chatData }) {
+function Chatting({ chatData, setMembers }) {
   const isEnter = chatData?.type !== 'TALK';
+  useEffect(() => {
+    if (isEnter) {
+      console.log(chatData?.memberName);
+      setMembers((prev) => [...prev, chatData.memberName]);
+    }
+  }, []);
+
   return (
     <ChattingContianer>
       {isEnter ? (

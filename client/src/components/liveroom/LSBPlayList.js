@@ -10,9 +10,9 @@ function LSBPlayList({ playListData }) {
   return (
     <PlayMusicContainer>
       <MusicInfo>
-        <MisicThumnail src={playListData.thumbnail}></MisicThumnail>
+        <MisicThumnail src={playListData?.thumbnail}></MisicThumnail>
         <MusicInfoText>
-          <MusicTitle>{playListData.title}</MusicTitle>
+          <MusicTitle>{playListData?.title}</MusicTitle>
         </MusicInfoText>
       </MusicInfo>
     </PlayMusicContainer>

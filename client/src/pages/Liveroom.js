@@ -5,14 +5,13 @@ import { useParams } from 'react-router-dom';
 
 import { Stomp } from '@stomp/stompjs';
 import axios from 'axios';
+import { createBrowserHistory } from 'history';
 import * as SockJS from 'sockjs-client';
-import { Navigation } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 import LiveroomPopup from '../components/liveroom/LiveroomPopup';
 import LiveroomSidebar from '../components/liveroom/LiveroomSideBar';
 import { API } from '../config';
-// import Nav from '../components/nav/Nav';
 import {
   LiveroomContainer,
   LiveroomCover,
@@ -20,11 +19,17 @@ import {
   LiveroomMainBackground,
   LiveroomSoundBackground,
   PlayList,
+  PlayThumbnail,
+  PlaySongTitle,
+  PlayThumbnailContainer,
+  ProgessContinaer,
+  CDShape,
 } from '../styles/liveroom';
 import 'animate.css';
 
 function Liveroom() {
   const { liveroomid } = useParams();
+  const history = createBrowserHistory();
   const roomid = liveroomid.slice(1, liveroomid.length);
   const [openSideBarSetting, setOpenSideBarSetting] = useState(false);
   const [message, setMessage] = useState('');
@@ -39,12 +44,15 @@ function Liveroom() {
   const [volume, setVolume] = useState(0);
   const [a, setA] = useState(0);
   const [playMusic, setPlayMusic] = useState(true);
+  const [roomOwner, setRoomOwner] = useState('');
   const [members, setMembers] = useState([]);
   const [nowPlaySong, setNowPlaySong] = useState([]);
   const [userNickName, setUserNickName] = useState();
   const [isEnd, setIsEnd] = useState(false);
   const [openMusicPlayList, setOpenMusicPlayList] = useState(false);
   const [nowPlayIndex, setnowPlayIndex] = useState(0);
+  const [readyToPlayMusic, setReadyToPlayMusic] = useState(false);
+  const [songProgress, setSongProgress] = useState(0);
 
   const volumeHandler = (e) => {
     if (isDrag) {
@@ -64,8 +72,9 @@ function Liveroom() {
       setOpenSideBarSetting((prev) => !prev);
     }
   };
-  const nextSongHandler = () => {
-    if (!isEnd) {
+  const nextSongHandler = (elsevalue) => {
+    const realIsEnd = elsevalue && isEnd;
+    if (!realIsEnd) {
       axios
         .post(
           `${API.LIVEROOM}/${roomid}/songs/next`,
@@ -80,6 +89,7 @@ function Liveroom() {
           }
         )
         .then((e) => {
+          songProgress;
           console.log(e);
         });
     }
@@ -107,6 +117,7 @@ function Liveroom() {
             const roomData = e.data.data;
             console.log(roomData);
             setMembers(roomData.members);
+            setRoomOwner(roomData.owner);
             setUserNickName(userData.nickname);
 
             if (!roomData.members.includes(userData.nickname)) {
@@ -167,15 +178,27 @@ function Liveroom() {
           songData.nowSong.videoId,
           songData.time,
           songData.nowSong.thumbnail,
+          songData.nowSong,
         ]);
       });
   }, [changeSong]);
 
+  useEffect(() => {
+    if (readyToPlayMusic) {
+      history.listen(() => {
+        sockClient.disconnect();
+      });
+    }
+  }, [readyToPlayMusic]);
+
   return (
     <LiveroomContainer>
-      {/* <Nav></Nav> */}
       {openSideBarSetting ? (
         <LiveroomPopup
+          accessToken={accessToken}
+          roomid={roomid}
+          userNickName={userNickName}
+          roomOwner={roomOwner}
           sockClient={sockClient}
           openSideBarSettingHandler={openSideBarSettingHandler}></LiveroomPopup>
       ) : null}
@@ -185,9 +208,16 @@ function Liveroom() {
         muted={playMusic}
         width={0}
         volume={volume}
+        onReady={() => {
+          setReadyToPlayMusic(true);
+        }}
+        onProgress={(e) => {
+          setSongProgress((e.played.toFixed(4) * 100).toFixed(2));
+        }}
         onEnded={nextSongHandler}
       />
       <LiveroomMainBackground
+        className='allow'
         backgroundurl={nowPlaySong[2]}
         onMouseMove={(e) => {
           volumeHandler(e);
@@ -197,32 +227,48 @@ function Liveroom() {
           setA(volume);
         }}
         onClick={(e) => {
-          setPlayMusic(false);
-          if (!e.target.className.includes('disallow')) {
+          if (readyToPlayMusic) {
+            setPlayMusic(false);
+          }
+          if (e.target.className.includes('allow')) {
             setOpenMusicPlayList(false);
           }
         }}>
         {openMusicPlayList ? (
-          <PlayList className='disallow'>
+          <PlayList>
             <Swiper
               initialSlide={nowPlayIndex}
               className='swiper'
-              modules={[Navigation]}
               spaceBetween={50}
               slidesPerView={1}
-              navigation
-              pagination={{ clickable: true }}
+              scrollbar={{ draggable: true }}
               autoplay={{ delay: 1000 }}>
               {songs.map((e) => {
-                return <SwiperSlide key={e.videoId}>{e.title}</SwiperSlide>;
+                return (
+                  <SwiperSlide key={e.videoId}>
+                    <PlayThumbnail src={e.thumbnail}></PlayThumbnail>
+                    <PlaySongTitle>{e.title}</PlaySongTitle>
+                  </SwiperSlide>
+                );
               })}
             </Swiper>
           </PlayList>
         ) : (
           <LiveroomCover>
-            <LiveAlbumCover
-              onMouseEnter={() => setIsAlbumCoverHover(true)}
-              src={nowPlaySong[2]}></LiveAlbumCover>
+            <PlayThumbnailContainer>
+              <LiveAlbumCover
+                onMouseEnter={() => setIsAlbumCoverHover(true)}
+                src={nowPlaySong[2]}></LiveAlbumCover>
+              <ProgessContinaer
+                bgrColor='red'
+                songProgress={songProgress}
+                zIndex={4}></ProgessContinaer>
+              <ProgessContinaer
+                songProgress={100}
+                bgrColor={'var(--color9)'}
+                zIndex={3}></ProgessContinaer>
+              <CDShape></CDShape>
+            </PlayThumbnailContainer>
             {isAlbumCoverHover ? (
               <LiveroomSoundBackground
                 onMouseLeave={() => {
@@ -252,9 +298,13 @@ function Liveroom() {
         )}
       </LiveroomMainBackground>
       <LiveroomSidebar
+        roomOwner={roomOwner}
+        nowPlaySong={nowPlaySong}
+        nextSongHandler={nextSongHandler}
         setChangeSong={setChangeSong}
         roomid={roomid}
         members={members}
+        setMembers={setMembers}
         message={message}
         setMessage={setMessage}
         sockClient={sockClient}

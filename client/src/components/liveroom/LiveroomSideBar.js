@@ -20,18 +20,22 @@ function LiveroomSideBar({
   setMessage,
   sockClient,
   chatDatas,
-  songs,
   openSideBarSettingHandler,
   members,
+  setMembers,
   roomid,
   userNickName,
   setChangeSong,
+  nextSongHandler,
+  nowPlaySong,
+  roomOwner,
 }) {
   const [isSettingModalOpen, setIsSettingModalOpen] = useState(false);
   return (
     <LiveroomSideBarContainer>
       <LSBHeaderContainer>
         <BsFillGearFill
+          className={roomOwner === userNickName ? null : 'hide'}
           onClick={() => setIsSettingModalOpen(true)}></BsFillGearFill>
         <LSBOutBtn
           className='allow'
@@ -47,13 +51,14 @@ function LiveroomSideBar({
           {members.length}
         </LSBMemberContainer>
         <LSBPlayListWrap>
-          {songs?.map((e) => {
-            return <LSBPlayList key={e.key} playListData={e}></LSBPlayList>;
-          })}
+          <LSBPlayList
+            key={nowPlaySong?.[3]?.videoid}
+            playListData={nowPlaySong?.[3]}></LSBPlayList>
         </LSBPlayListWrap>
       </LSBPlayListContainer>
       <LSBChatContianer>
         <LSBChat
+          setMembers={setMembers}
           roomid={roomid}
           message={message}
           setMessage={setMessage}
@@ -63,6 +68,7 @@ function LiveroomSideBar({
       </LSBChatContianer>
       {isSettingModalOpen ? (
         <LiveroomSetter
+          nextSongHandler={nextSongHandler}
           setChangeSong={setChangeSong}
           chatroomId={roomid}
           setIsSettingModalOpen={setIsSettingModalOpen}></LiveroomSetter>
