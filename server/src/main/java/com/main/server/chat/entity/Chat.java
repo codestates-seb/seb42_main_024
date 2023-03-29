@@ -19,9 +19,7 @@ public class Chat extends Auditable {
 
     private Long memberId;
 
-    @ManyToOne
-    @JoinColumn(name = "chatroom_id")
-    private Chatroom chatroom;
+    private Long chatroomId;
 
     private String content;
 
@@ -30,7 +28,7 @@ public class Chat extends Auditable {
                  Chatroom chatroom,
                  String content) {
         this.memberId = memberId;
-        this.chatroom = chatroom;
+        this.chatroomId = chatroom.getChatroomId();
         this.content = content;
     }
 }
