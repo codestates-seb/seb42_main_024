@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from 'react';
+import { useRef } from 'react';
 import { useSelector } from 'react-redux';
 
 import axios from 'axios';
@@ -11,19 +11,10 @@ import {
   PlaylistCommentContainer,
 } from '../../../styles/playlistComment';
 
-const PlaylistComment = ({ boardId }) => {
-  const [commentsData, setCommentsData] = useState(null);
-
+const PlaylistComment = ({ boardId, commentsData, setCommentsData }) => {
   const user = useSelector((state) => state.user);
   // ref
   const commentRef = useRef(null);
-
-  useEffect(() => {
-    axios.get(`${API.BOARD}/${boardId}`).then((res) => {
-      const comments = res.data.data.comments;
-      setCommentsData(comments);
-    });
-  }, []);
 
   const handlePostComment = () => {
     if (commentRef.current.value.length !== 0 && user) {
@@ -79,7 +70,6 @@ const PlaylistComment = ({ boardId }) => {
           </div>
         </div>
         <div className='commentWrapper'>
-          {/* // TODO: comment 응답객체 수정 후 적용 */}
           {commentsData?.map((comment) => (
             <Comment
               key={comment.commentId}
