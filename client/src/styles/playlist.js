@@ -75,93 +75,128 @@ export const PlaylistInfoMain = styled.div`
   }
   .footer {
     height: 120px;
-    .heart {
-      width: 15px;
-      background-color: transparent;
-      color: white;
-      border: none;
-      &.voted {
-        color: var(--color10);
+    .voteInfo {
+      width: 160px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 5px;
+      .likeContainer {
+        width: 50px;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 5px;
+        .btnWrapper {
+          height: 100%;
+          .heart {
+            width: 15px;
+            background-color: transparent;
+            color: white;
+            border: none;
+            font-size: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            &.voted {
+              color: var(--color10);
+            }
+          }
+          .likeCnt {
+          }
+        }
+      }
+      .viewContainer {
+        width: 100px;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        gap: 5px;
+        .views {
+        }
+        .viewCnt {
+        }
       }
     }
-    .infoBtns {
+  }
+
+  .infoBtns {
+    height: 30px;
+    width: fit-content;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 18px;
+    button {
+      width: 80px;
       height: 30px;
-      width: fit-content;
+      border-radius: 5px;
+      border: none;
+      font-size: 15px;
       display: flex;
       justify-content: center;
       align-items: center;
-      gap: 18px;
-      button {
-        width: 80px;
-        height: 30px;
-        border-radius: 5px;
+      gap: 5px;
+      &.btn1 {
+        background-color: var(--color9);
+        &:hover {
+          opacity: 0.7;
+        }
+      }
+      &.btn2 {
+        background-color: var(--color2);
+        color: var(--color9);
+        &:hover {
+          opacity: 0.7;
+        }
+      }
+      &.clicked {
+        background-color: var(--color3);
+        color: var(--color9);
+        opacity: 0.7;
+        &:hover {
+          opacity: 0.5;
+        }
+      }
+      &.deleteBtn {
+        background-color: var(--color10);
+        opacity: 0.7;
+        color: white;
         border: none;
-        font-size: 15px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 5px;
-        &.btn1 {
-          background-color: var(--color9);
-          &:hover {
-            opacity: 0.7;
-          }
-        }
-        &.btn2 {
-          background-color: var(--color2);
-          color: var(--color9);
-          &:hover {
-            opacity: 0.7;
-          }
-        }
-        &.clicked {
-          background-color: var(--color3);
-          color: var(--color9);
-          opacity: 0.7;
-          &:hover {
-            opacity: 0.5;
-          }
-        }
-        &.deleteBtn {
-          background-color: var(--color10);
-          opacity: 0.7;
-          color: white;
-          border: none;
-          &:hover {
-            opacity: 0.5;
-          }
+        &:hover {
+          opacity: 0.5;
         }
       }
     }
-    .deleteModal {
-      position: absolute;
-      top: 293px;
-      background-color: var(--color3);
-      border: 1px solid var(--color4);
-      border-radius: 5px;
-      width: fit-content;
-      height: fit-content;
-      padding: 10px;
-      .msg {
-        font-size: 15px;
-      }
-      .deleteBtns {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 10px;
-        button {
-          width: 50px;
-          border: none;
-          border-radius: 5px;
-          &:hover {
-            cursor: pointer;
-          }
-          button.delete {
-            background-color: var(--color9);
-          }
-          button.cancel {
-          }
+  }
+  .deleteModal {
+    position: absolute;
+    top: 303px;
+    background-color: var(--color3);
+    border: 1px solid var(--color4);
+    border-radius: 5px;
+    width: fit-content;
+    height: fit-content;
+    padding: 10px;
+    .msg {
+      font-size: 15px;
+    }
+    .deleteBtns {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      button {
+        width: 50px;
+        border: none;
+        border-radius: 5px;
+        &:hover {
+          cursor: pointer;
+        }
+        button.delete {
+          background-color: var(--color9);
+        }
+        button.cancel {
         }
       }
     }
