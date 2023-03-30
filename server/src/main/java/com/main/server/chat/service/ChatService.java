@@ -50,7 +50,7 @@ public class ChatService {
             chatroomRepository.save(chatroom);
         } else {
             template.convertAndSend("/sub/chat/room/" + dto.getChatroomId(),
-                    dto.toResponseDto(null).isErrorType("방의 정원이 초과했습니다."));
+                    dto.toResponseDto(null).isSystemType("Full"));
         }
     }
 
