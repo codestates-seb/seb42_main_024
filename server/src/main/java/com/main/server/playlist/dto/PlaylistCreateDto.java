@@ -15,8 +15,8 @@ import java.util.List;
 @NoArgsConstructor
 public class PlaylistCreateDto {
 
+    @NotBlank(message = "제목을 넣어주세요.")
     @Size(min = 3, max = 50 ,message = "제목의 길이는 3이상 50이하여야 합니다.")
-    @Pattern(regexp = "^[ㄱ-ㅎ|ㅏ-ㅣ|가-핳|a-z|A-Z|0-9]+$", message = "한글, 숫자, 알파벳만 사용 가능합니다.")
     private String title;
 
     @NotBlank
