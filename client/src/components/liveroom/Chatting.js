@@ -12,7 +12,6 @@ function Chatting({ chatData, setMembers }) {
   const isEnter = chatData?.type !== 'TALK';
   useEffect(() => {
     if (isEnter) {
-      console.log(chatData?.type);
       setMembers((prev) => [...prev, chatData.memberName]);
       if (chatData?.type === 'LEAVE') {
         setMembers((prev) => {
