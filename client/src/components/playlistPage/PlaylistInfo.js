@@ -146,7 +146,7 @@ const PlaylistInfo = ({
         },
       })
       .then((res) => setIsHearted(res.data.data.hasLiked));
-  }, [boardData, playlistData]);
+  }, []);
 
   return (
     <PlaylistInfoContainer>
@@ -272,7 +272,7 @@ const VoteInfo = ({ isHearted, setIsHearted, boardData, boardId }) => {
 
   useEffect(() => {
     setLikeCnt(boardData?.likeCount);
-  }, [boardData]);
+  }, []);
 
   // 플리 좋아요 클릭
   const handleVote = () => {

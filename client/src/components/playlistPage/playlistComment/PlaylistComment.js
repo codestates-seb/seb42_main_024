@@ -23,7 +23,7 @@ const PlaylistComment = ({ boardId }) => {
       const comments = res.data.data.comments;
       setCommentsData(comments);
     });
-  }, [commentsData]);
+  }, []);
 
   const handlePostComment = () => {
     if (commentRef.current.value.length !== 0 && user) {
