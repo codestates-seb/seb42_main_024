@@ -218,7 +218,6 @@ export const PlaylistInfoContainer = styled.div`
   .info {
     width: 584px;
     height: 360px;
-    /* background-color: pink; */
   }
 `;
 

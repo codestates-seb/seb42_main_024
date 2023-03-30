@@ -4,7 +4,7 @@ export const MyPageContainer = styled.div`
   margin-left: 250px;
   width: 100%;
   height: 100vh;
-  background-color: pink;
+  background-color: black;
 `;
 
 export const MyListsContainer = styled.div`
