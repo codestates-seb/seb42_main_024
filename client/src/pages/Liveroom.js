@@ -64,7 +64,7 @@ function Liveroom() {
   const [isDone, setIsDone] = useState(false);
 
   const volumeHandler = (e) => {
-    if (isDrag) {
+    if (isDrag && readyToPlayMusic) {
       setVolume(() => {
         const value = a + (isDrag - e.clientY) / 350;
         if (value >= 1) {
@@ -187,26 +187,30 @@ function Liveroom() {
           sockClient={sockClient}
           openSideBarSettingHandler={openSideBarSettingHandler}></LiveroomPopup>
       ) : null}
-      <ReactPlayer
-        url={`https://www.youtube.com/watch?v=${nowPlaySong[0]}?t=${nowPlaySong[1]}`}
-        playing={true}
-        muted={playMusic}
-        width={0}
-        volume={volume}
-        onReady={() => {
-          setReadyToPlayMusic(false);
-        }}
-        onProgress={(e) => {
-          setSongProgress((e.played.toFixed(4) * 100).toFixed(2));
-        }}
-        onEnded={nextSongHandler}
-      />
+      {nowPlaySong[0] ? (
+        <ReactPlayer
+          url={`https://www.youtube.com/watch?v=${nowPlaySong[0]}?t=${nowPlaySong[1]}`}
+          playing={true}
+          muted={playMusic}
+          width={0}
+          volume={volume}
+          onReady={() => {
+            setReadyToPlayMusic(true);
+          }}
+          onProgress={(e) => {
+            setSongProgress((e.played.toFixed(4) * 100).toFixed(2));
+          }}
+          onEnded={nextSongHandler}
+        />
+      ) : null}
       <LiveroomMainBackground
         className='allow'
         backgroundurl={nowPlaySong[2]}
         onMouseMove={(e) => {
           volumeHandler(e);
-          if (!readyToPlayMusic) {
+        }}
+        onMouseDown={() => {
+          if (readyToPlayMusic) {
             setPlayMusic(false);
           }
         }}
@@ -215,7 +219,12 @@ function Liveroom() {
           setA(volume);
         }}
         onClick={(e) => {
-          if (e?.target?.className?.includes('allow')) {
+          if (typeof e?.target?.className === 'object') {
+            setOpenMusicPlayList(false);
+          } else if (
+            e?.target?.className?.includes('allow') &&
+            readyToPlayMusic
+          ) {
             setOpenMusicPlayList(false);
           }
         }}>
