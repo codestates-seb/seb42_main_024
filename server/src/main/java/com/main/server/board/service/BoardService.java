@@ -39,22 +39,7 @@ public class BoardService {
 
     private FindLikeService findLikeService;
     private FindBoardService findBoardService;
-
-
-    @PostConstruct
-    public void init() {
-
-        Member member = Member.builder().build();
-        member.setMemberId(1L);
-
-        Board board = Board.builder()
-                .member(member)
-                .boardContent("content")
-                .boardTitle("title")
-                .build();
-
-        boardRepository.save(board);
-    }
+    
 
     public Board saveBoard(Board board) {
         String time = "";

@@ -47,7 +47,7 @@ public class ChatroomController {
     }
 
     @GetMapping("/{chatroom-id}")
-    public ResponseEntity getChatroom(@PathVariable("chatroom-id") Long chatroomId) {
+    public ResponseEntity getChatroom(@PathVariable("chatroom-id") @Positive Long chatroomId) {
         ChatroomResponseDto responseDto = ChatroomResponseDto
                 .createByChatroom(
                         chatroomService.findChatroomById(chatroomId));
@@ -57,7 +57,7 @@ public class ChatroomController {
     }
 
     @GetMapping
-    public ResponseEntity getChatrooms(@RequestParam("id") Long id) {
+    public ResponseEntity getChatrooms(@RequestParam("id") @Positive Long id) {
         Long chatroomId = id != null ? Math.max(0, id) : 0;
         List<ChatroomSimpleDto> chatroomList = chatroomService.findChatrooms(chatroomId).stream()
                 .map(ChatroomSimpleDto::createByChatroom)
@@ -78,15 +78,15 @@ public class ChatroomController {
     }
 
     @GetMapping("/{chatroom-id}/songs")
-    public ResponseEntity getSong(@PathVariable("chatroom-id") Long chatroomId) {
+    public ResponseEntity getSong(@PathVariable("chatroom-id") @Positive Long chatroomId) {
         ChatSongResponseDto responseDto = chatroomService.getSongAtRoom(chatroomId);
         return ResponseEntity.status(HttpStatus.OK)
                 .body(new ResponseDto(responseDto, 200));
     }
 
     @PatchMapping("/{chatroom-id}")
-    public ResponseEntity updateChatroom(@PathVariable @Valid Long chatroomId,
-                                         @RequestBody ChatroomUpdateDto dto,
+    public ResponseEntity updateChatroom(@PathVariable("chatroom-id") @Positive Long chatroomId,
+                                         @RequestBody @Valid ChatroomUpdateDto dto,
                                          @AuthenticationPrincipal String email) {
         
         Chatroom findChatroom = chatroomService.findChatroomById(chatroomId);
@@ -101,7 +101,7 @@ public class ChatroomController {
     }
 
     @PostMapping("/{chatroom-id}/songs")
-    public ResponseEntity addSong(@PathVariable("chatroom-id") @Valid Long chatroomId,
+    public ResponseEntity addSong(@PathVariable("chatroom-id") @Positive Long chatroomId,
                                   @RequestBody ChatSong chatSong,
                                   @AuthenticationPrincipal String email) {
         // 방장만 노래 추가 가능

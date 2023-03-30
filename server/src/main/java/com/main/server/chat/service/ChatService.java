@@ -65,7 +65,6 @@ public class ChatService {
         if (PropertyVariable.SAVE_CHAT) {
             Chat chat = Chat.builder() // DB에 채팅내역 저장
                     .memberId(dto.getMemberId())
-                    .chatroom(chatroom)
                     .content(dto.getMessage())
                     .build();
 
