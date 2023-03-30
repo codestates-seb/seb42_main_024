@@ -16,11 +16,13 @@ const Playlist = () => {
   // props - axios data
   const [boardData, setBoardData] = useState(null);
   const [playlistData, setPlaylistData] = useState(null);
+  const [commentsData, setCommentsData] = useState(null);
 
   useEffect(() => {
     axios.get(`${API.BOARD}/${boardId}`).then((res) => {
       setBoardData(res.data.data.board);
       setPlaylistData(res.data.data.playlist);
+      setCommentsData(res.data.data.comments);
     });
   }, []);
 
@@ -40,7 +42,11 @@ const Playlist = () => {
         playlistData={playlistData}
         setPlaylistData={setPlaylistData}
       />
-      <PlaylistComment boardId={boardId} />
+      <PlaylistComment
+        boardId={boardId}
+        commentsData={commentsData}
+        setCommentsData={setCommentsData}
+      />
     </PlaylistPageContainer>
   );
 };
