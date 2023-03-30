@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { BsHeart, BsHeartFill } from 'react-icons/bs';
 import { FaPlay } from 'react-icons/fa';
 import { IoMdAddCircleOutline, IoMdClose } from 'react-icons/io';
@@ -27,8 +27,7 @@ const PlaylistInfo = ({
   playlistData,
   setPlaylistData,
 }) => {
-  console.log(boardData);
-  const memberId = useSelector((state) => state.user.memberId);
+  const user = useSelector((state) => state.user);
 
   const dispatch = useDispatch();
 
@@ -39,9 +38,6 @@ const PlaylistInfo = ({
   // ref
   const boardTitleRef = useRef(null);
   const boardDescRef = useRef(null);
-  // 플리 설명 더보기 모달
-  // const [isInfoModalOpen, setIsInfoModalOpen] = useState(false);
-  // const toggleIsInfoModalOpen = () => setIsInfoModalOpen((prev) => !prev);
   // 곡 추가 모달
   const [isAddSongModalOpen, setIsAddSongModalOpen] = useState(false);
   // 곡 추가 리스트
@@ -50,22 +46,20 @@ const PlaylistInfo = ({
   const [deleteBtnClicked, setDeleteBtnClicked] = useState(false);
 
   const navigate = useNavigate();
-
   // 삭제 버튼
   const handleDelete = () => {
     const storedAccessToken = localStorage.getItem('accessToken');
     axios
-      .delete(`${API.BOARD}/${boardId}`, {
+      .delete(`${API.BOARD}/${boardId}/${user.memberId}`, {
         headers: {
           Authorization: `${storedAccessToken}`,
           accept: 'application/json',
         },
       })
-      .then(console.log)
-      .catch(console.log);
-    setDeleteBtnClicked(false);
-    // TODO: navigate -> mainPage or myPage
-    navigate('/');
+      .then(() => {
+        setDeleteBtnClicked(false);
+        navigate('/');
+      });
   };
 
   // 완료 버튼
@@ -79,32 +73,20 @@ const PlaylistInfo = ({
     const storedAccessToken = localStorage.getItem('accessToken');
 
     // eslint-disable-next-line
-    axios
-      .all([
-        axios.patch(`${API.BOARD}/${boardId}/${memberId}`, requestBody, {
-          headers: {
-            Authorization: `${storedAccessToken}`,
-            accept: 'application/json',
-          },
-        }),
-        axios.patch(
-          `${API.PLAYLIST}/${playlistData.playlistId}`,
-          playlistData,
-          {
-            headers: {
-              Authorization: `${storedAccessToken}`,
-              accept: 'application/json',
-            },
-          }
-        ),
-      ])
-      .then(
-        // eslint-disable-next-line
-        axios.spread((res1, res2) => {
-          console.log('PATCH /boards: ', res1);
-          console.log('PATCH /playlists: ', res2);
-        })
-      );
+    axios.all([
+      axios.patch(`${API.BOARD}/${boardId}/${user.memberId}`, requestBody, {
+        headers: {
+          Authorization: `${storedAccessToken}`,
+          accept: 'application/json',
+        },
+      }),
+      axios.patch(`${API.PLAYLIST}/${playlistData.playlistId}`, playlistData, {
+        headers: {
+          Authorization: `${storedAccessToken}`,
+          accept: 'application/json',
+        },
+      }),
+    ]);
     // 수정 버튼 !isClicked
     setIsEditing(false);
     setDeleteBtnClicked(false);
@@ -143,27 +125,20 @@ const PlaylistInfo = ({
     setIsEditing(false);
   };
 
-  const [isVote, setIsVote] = useState(false);
+  const [isHearted, setIsHearted] = useState(null);
 
-  const handleVote = () => {
-    if (!isVote) {
-      setIsVote(true);
-      const storedAccessToken = localStorage.getItem('accessToken');
-      axios
-        .post(
-          `${API.LIKE}/${boardId}`,
-          { vote: 'string' },
-          {
-            headers: {
-              Authorization: `${storedAccessToken}`,
-              accept: 'application/json',
-            },
-          }
-        )
-        .then(console.log)
-        .catch(console.log);
-    }
-  };
+  // 좋아요를 누른 플리인가? : isHearted
+  useEffect(() => {
+    const storedAccessToken = localStorage.getItem('accessToken');
+    axios
+      .get(`${API.LIKE}/status/${boardId}`, {
+        headers: {
+          Authorization: `${storedAccessToken}`,
+          accept: 'application/json',
+        },
+      })
+      .then((res) => setIsHearted(res.data.data.hasLiked));
+  }, [boardData, playlistData]);
 
   return (
     <PlaylistInfoContainer>
@@ -183,7 +158,6 @@ const PlaylistInfo = ({
                 ref={boardTitleRef}
                 className='title'
                 defaultValue={boardData?.boardTitle}
-                onChange={(e) => console.log(e.target.offsetHeight)}
               />
             )}
             {/* 플리 설명 */}
@@ -197,48 +171,31 @@ const PlaylistInfo = ({
                 defaultValue={boardData?.boardContent}
               />
             )}
-            {/* 플리 설명 더보기 버튼 */}
-            {/* {!isEditing && (
-              <button onClick={toggleIsInfoModalOpen} className='moreInfo'>
-                더보기
-              </button>
-            )} */}
-            {/* {isEditing && <div className='emptySpace'></div>} */}
-
-            {/* 플리 설명 더보기 모달 */}
-            {/* <PlaylistInfoModal
-            isOpen={isInfoModalOpen}
-            shouldCloseOnEsc={true}
-            shouldCloseOnOverlayClick={true}
-            onRequestClose={toggleIsInfoModalOpen}>
-            <IoMdClose onClick={toggleIsInfoModalOpen} className='closeIcon' />
-            <div className='title'>{boardData?.boardTitle}</div>
-            <div className='desc'>{boardData?.boardContent}</div>
-          </PlaylistInfoModal> */}
           </div>
           {/* 버튼 */}
           <div className='footer'>
-            <button
-              className={isVote ? 'heart voted' : 'heart'}
-              onClick={handleVote}>
-              {isVote ? <BsHeartFill /> : <BsHeart />}
-            </button>
+            <VoteInfo
+              isHearted={isHearted}
+              setIsHearted={setIsHearted}
+              boardData={boardData}
+              boardId={boardId}
+            />
             <div className='infoBtns'>
               <button className='btn1' onClick={handlePlayBtnClick}>
                 <FaPlay />
                 <div>재생</div>
               </button>
-              {boardData?.memberId === memberId && isEditing && (
+              {boardData?.memberId === user.memberId && isEditing && (
                 <button className='clicked' onClick={handleCancelBtnClick}>
                   <div>취소</div>
                 </button>
               )}
-              {boardData?.memberId === memberId && !isEditing && (
+              {boardData?.memberId === user.memberId && !isEditing && (
                 <button className='btn1' onClick={handleEditBtnClick}>
                   <div>수정</div>
                 </button>
               )}
-              {boardData?.memberId === memberId && isEditing && (
+              {boardData?.memberId === user.memberId && isEditing && (
                 <button
                   onClick={() => setDeleteBtnClicked(true)}
                   className='deleteBtn'>
@@ -299,6 +256,53 @@ const PlaylistInfo = ({
         </PlaylistInfoMain>
       </div>
     </PlaylistInfoContainer>
+  );
+};
+
+const VoteInfo = ({ isHearted, setIsHearted, boardData, boardId }) => {
+  const [likeCnt, setLikeCnt] = useState(0);
+
+  useEffect(() => {
+    setLikeCnt(boardData?.likeCount);
+  }, [boardData]);
+
+  // 플리 좋아요 클릭
+  const handleVote = () => {
+    const storedAccessToken = localStorage.getItem('accessToken');
+    axios
+      .post(
+        `${API.LIKE}/up/${boardId}`,
+        {},
+        {
+          headers: {
+            Authorization: `${storedAccessToken}`,
+            accept: 'application/json',
+          },
+        }
+      )
+      .then(() => {
+        if (isHearted) setLikeCnt(likeCnt - 1);
+        else setLikeCnt(likeCnt + 1);
+        setIsHearted((prev) => !prev);
+      });
+  };
+  return (
+    <div className='voteInfo'>
+      <div className='likeContainer'>
+        <div className='btnWrapper'>
+          <button
+            className={isHearted === true ? 'heart voted' : 'heart'}
+            onClick={handleVote}>
+            {isHearted === true ? <BsHeartFill /> : <BsHeart />}
+          </button>
+        </div>
+        {likeCnt >= 0 && <div className='likeCnt'> {likeCnt}</div>}
+      </div>
+      <div className='viewContainer'>
+        <div className='views'>조회수</div>
+        <div className='viewCnt'>{boardData?.viewCount}</div>
+      </div>
+    </div>
   );
 };
 

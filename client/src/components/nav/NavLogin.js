@@ -33,10 +33,16 @@ const NavLogin = ({ logoutHandler }) => {
     <>
       <NavList>
         <NavItems>
-          <div className='nav-userinfo'>
-            <img className='profile-pic' src={user.picture} alt='profile-pic' />
-            <UserInfo>{user.nickname}</UserInfo>
-          </div>
+          <Link to='/mypage'>
+            <div className='nav-userinfo'>
+              <img
+                className='profile-pic'
+                src={user.picture}
+                alt='profile-pic'
+              />
+              <UserInfo>{user.nickname}</UserInfo>
+            </div>
+          </Link>
         </NavItems>
         <NavItems>
           <Link to={'/'} className='nav-home-link'>

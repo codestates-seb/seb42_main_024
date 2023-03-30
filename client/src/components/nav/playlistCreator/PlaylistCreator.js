@@ -2,6 +2,7 @@ import 'animate.css';
 import { useRef, useState } from 'react';
 import { MdClose } from 'react-icons/md';
 import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 import axios from 'axios';
 
@@ -24,6 +25,8 @@ const PlaylistCreator = ({
 
   const user = useSelector((state) => state.user);
 
+  const naviagte = useNavigate();
+
   // 플리 만들기 버튼 클릭
   const handleCreatePlaylist = () => {
     const storedAccessToken = localStorage.getItem('accessToken');
@@ -45,8 +48,10 @@ const PlaylistCreator = ({
         },
       };
 
-      axios.post(`${API.BOARD}`, requestBody, requestHeader).catch(console.log);
-      closePlaylistCreator();
+      axios.post(`${API.BOARD}`, requestBody, requestHeader).then((res) => {
+        closePlaylistCreator();
+        naviagte(`/playlist/${res.data}`);
+      });
     } else {
       setIsAlertModalOpen(true);
       setTimeout(() => {
