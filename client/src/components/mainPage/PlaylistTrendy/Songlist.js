@@ -5,7 +5,7 @@ const SongList = ({ songList }) => {
     return null;
   }
 
-  const rowCount = songList.length < 9 ? 2 : 3;
+  const rowCount = songList.length < 5 ? 1 : songList.length < 9 ? 2 : 3;
 
   return (
     <SongListContainer rowCount={rowCount}>

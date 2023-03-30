@@ -382,7 +382,7 @@ export const PlaylistPageContainer = styled.div`
 
 // MainPage - PlaylistTrendy component
 export const PlaylistTrendyContainer = styled.div`
-  width: 1200px;
+  width: 1080px;
   height: 350px;
   display: flex;
   position: absolute;
@@ -391,24 +391,30 @@ export const PlaylistTrendyContainer = styled.div`
 `;
 
 export const PlaylistImageContainer = styled.div`
-  width: 410px;
+  width: 350px;
   height: 100%;
   position: relative;
   overflow: hidden;
+  display: flex;
+  align-items: center;
+
   img {
     width: 100%;
-    height: 100%;
+    height: 80%;
     object-fit: fill;
     &.blurred {
       filter: blur(10px);
     }
   }
   button.playBtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     position: absolute;
-    top: 0;
+    top: 30px;
     left: 0;
     width: 100%;
-    height: 100%;
+    height: 80%;
     border: none;
     background: none;
     .icon {
@@ -418,7 +424,7 @@ export const PlaylistImageContainer = styled.div`
 `;
 
 export const PlaylistTrendyInfoContainer = styled(PlaylistInfoMain)`
-  width: 850px;
+  width: 730px;
   background-color: var(--color11);
   color: var(--color9);
   padding-left: 25px;
@@ -439,12 +445,17 @@ export const PlaylistTrendyInfoContainer = styled(PlaylistInfoMain)`
 
 export const SongListContainer = styled.div`
   width: 450px;
-  margin-top: ${(props) => (props.rowCount === 2 ? '45px' : '15px')};
+  margin-top: ${(props) =>
+    props.rowCount === 1 ? '70px' : props.rowCount === 2 ? '45px' : '15px'};
   margin-bottom: 15px;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: ${(props) =>
-    props.rowCount === 2 ? 'repeat(2, 1fr)' : 'repeat(3, 1fr)'};
+    props.rowCount === 1
+      ? 'repeat(1, 1fr)'
+      : props.rowCount === 2
+      ? 'repeat(2, 1fr)'
+      : 'repeat(3, 1fr)'};
   gap: 20px;
   align-items: center;
 `;
@@ -460,12 +471,12 @@ export const Song = styled.div`
   .info {
     color: var(--color9);
     margin-left: 10px;
-    width: 115px;
+    width: 95px;
     .title {
       font-size: 15px;
       font-family: var(--ft-pretendardExtraBold);
       margin: 5px 0;
-      width: 115px;
+      width: 95px;
       height: 15px;
       overflow: hidden;
       white-space: nowrap;
@@ -478,7 +489,7 @@ export const Song = styled.div`
 // MainPage - PlaylistThumbnail
 export const PlaylistThumbnailContainer = styled.div`
   background-color: var(--color1);
-  width: 260px;
+  width: 245px;
   margin-right: 20px;
   margin-bottom: 20px;
   color: var(--color9);
