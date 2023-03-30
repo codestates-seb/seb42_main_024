@@ -36,14 +36,15 @@ const Comment = ({ comment, commentsData, setCommentsData }) => {
   const getTimeDiff = (createdAt) => {
     const createdAtDate = new Date(createdAt);
     const now = new Date();
-    const timeDiff = now.getTime() - createdAtDate.getTime();
+    const timeDiff =
+      now.getTime() - createdAtDate.getTime() - 9 * 60 * 60 * 1000;
     if (timeDiff / (24 * 60 * 60 * 1000) >= 1)
       return `${Math.floor(timeDiff / (24 * 60 * 60 * 1000))}일 전`;
     if (timeDiff / (60 * 60 * 1000) >= 1)
       return `${Math.floor(timeDiff / (60 * 60 * 1000))}시간 전`;
     if (timeDiff / (60 * 1000) >= 1)
       return `${Math.floor(timeDiff / (60 * 1000))}분 전`;
-    return `${Math.floor(timeDiff / 1000)}초 전`;
+    return `방금`;
   };
 
   // 수정 버튼

@@ -23,7 +23,7 @@ const PlaylistComment = ({ boardId }) => {
       const comments = res.data.data.comments;
       setCommentsData(comments);
     });
-  }, []);
+  }, [commentsData]);
 
   const handlePostComment = () => {
     if (commentRef.current.value.length !== 0) {
@@ -33,15 +33,12 @@ const PlaylistComment = ({ boardId }) => {
         boardId,
         commentContent: commentRef.current.value,
       };
-      axios
-        .post(`${API.COMMENT}`, requestBody, {
-          headers: {
-            Authorization: `${storedAccessToken}`,
-            accept: 'application/json',
-          },
-        })
-        .then(console.log)
-        .catch(console.log);
+      axios.post(`${API.COMMENT}`, requestBody, {
+        headers: {
+          Authorization: `${storedAccessToken}`,
+          accept: 'application/json',
+        },
+      });
       commentRef.current.value = '';
       // 컴포넌트 단위 리렌더링을 위해
       setCommentsData([...commentsData, requestBody]);
@@ -58,7 +55,6 @@ const PlaylistComment = ({ boardId }) => {
       if (!e.shiftKey) {
         e.preventDefault();
         e.stopPropagation();
-        console.log(commentRef.current.value);
         handlePostComment();
       }
     }

@@ -75,93 +75,128 @@ export const PlaylistInfoMain = styled.div`
   }
   .footer {
     height: 120px;
-    .heart {
-      width: 15px;
-      background-color: transparent;
-      color: white;
-      border: none;
-      &.voted {
-        color: var(--color10);
+    .voteInfo {
+      width: 160px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 5px;
+      .likeContainer {
+        width: 50px;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 5px;
+        .btnWrapper {
+          height: 100%;
+          .heart {
+            width: 15px;
+            background-color: transparent;
+            color: white;
+            border: none;
+            font-size: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            &.voted {
+              color: var(--color10);
+            }
+          }
+          .likeCnt {
+          }
+        }
+      }
+      .viewContainer {
+        width: 100px;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        gap: 5px;
+        .views {
+        }
+        .viewCnt {
+        }
       }
     }
-    .infoBtns {
+  }
+
+  .infoBtns {
+    height: 30px;
+    width: fit-content;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 18px;
+    button {
+      width: 80px;
       height: 30px;
-      width: fit-content;
+      border-radius: 5px;
+      border: none;
+      font-size: 15px;
       display: flex;
       justify-content: center;
       align-items: center;
-      gap: 18px;
-      button {
-        width: 80px;
-        height: 30px;
-        border-radius: 5px;
+      gap: 5px;
+      &.btn1 {
+        background-color: var(--color9);
+        &:hover {
+          opacity: 0.7;
+        }
+      }
+      &.btn2 {
+        background-color: var(--color2);
+        color: var(--color9);
+        &:hover {
+          opacity: 0.7;
+        }
+      }
+      &.clicked {
+        background-color: var(--color3);
+        color: var(--color9);
+        opacity: 0.7;
+        &:hover {
+          opacity: 0.5;
+        }
+      }
+      &.deleteBtn {
+        background-color: var(--color10);
+        opacity: 0.7;
+        color: white;
         border: none;
-        font-size: 15px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 5px;
-        &.btn1 {
-          background-color: var(--color9);
-          &:hover {
-            opacity: 0.7;
-          }
-        }
-        &.btn2 {
-          background-color: var(--color2);
-          color: var(--color9);
-          &:hover {
-            opacity: 0.7;
-          }
-        }
-        &.clicked {
-          background-color: var(--color3);
-          color: var(--color9);
-          opacity: 0.7;
-          &:hover {
-            opacity: 0.5;
-          }
-        }
-        &.deleteBtn {
-          background-color: var(--color10);
-          opacity: 0.7;
-          color: white;
-          border: none;
-          &:hover {
-            opacity: 0.5;
-          }
+        &:hover {
+          opacity: 0.5;
         }
       }
     }
-    .deleteModal {
-      position: absolute;
-      top: 293px;
-      background-color: var(--color3);
-      border: 1px solid var(--color4);
-      border-radius: 5px;
-      width: fit-content;
-      height: fit-content;
-      padding: 10px;
-      .msg {
-        font-size: 15px;
-      }
-      .deleteBtns {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 10px;
-        button {
-          width: 50px;
-          border: none;
-          border-radius: 5px;
-          &:hover {
-            cursor: pointer;
-          }
-          button.delete {
-            background-color: var(--color9);
-          }
-          button.cancel {
-          }
+  }
+  .deleteModal {
+    position: absolute;
+    top: 303px;
+    background-color: var(--color3);
+    border: 1px solid var(--color4);
+    border-radius: 5px;
+    width: fit-content;
+    height: fit-content;
+    padding: 10px;
+    .msg {
+      font-size: 15px;
+    }
+    .deleteBtns {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      button {
+        width: 50px;
+        border: none;
+        border-radius: 5px;
+        &:hover {
+          cursor: pointer;
+        }
+        button.delete {
+          background-color: var(--color9);
+        }
+        button.cancel {
         }
       }
     }
@@ -348,7 +383,7 @@ export const PlaylistPageContainer = styled.div`
 
 // MainPage - PlaylistTrendy component
 export const PlaylistTrendyContainer = styled.div`
-  width: 1260px;
+  width: 1200px;
   height: 350px;
   display: flex;
   position: absolute;
@@ -390,57 +425,27 @@ export const PlaylistTrendyInfoContainer = styled(PlaylistInfoMain)`
   padding-left: 25px;
 
   .title {
-    margin: 15px 0;
-    font-size: 45px;
+    margin: 20px 0;
+    font-size: 33px;
   }
 
   .desc {
     width: 90%;
     height: 35px;
-  }
-
-  .moreInfo {
-    margin: 10px 0;
-    background-color: var(--color11);
-    border: 1px solid var(--color9);
-    border-radius: 5px;
-    color: var(--color9);
-    width: 40px;
-    height: 20px;
-  }
-
-  .btns {
-    height: 30px;
-    width: fit-content;
     display: flex;
-    justify-content: center;
     align-items: center;
-    gap: 18px;
-    .btn1 {
-      width: 80px;
-      height: 30px;
-      border-radius: 5px;
-      border: none;
-      font-size: 15px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 5px;
-      &.btn1 {
-        background-color: var(--color9);
-        &:hover {
-          opacity: 0.7;
-        }
-      }
-    }
+    margin: 5px 0;
   }
 `;
 
 export const SongListContainer = styled.div`
   width: 450px;
-  margin: 15px 0;
+  margin-top: ${(props) => (props.rowCount === 2 ? '45px' : '15px')};
+  margin-bottom: 15px;
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: ${(props) =>
+    props.rowCount === 2 ? 'repeat(2, 1fr)' : 'repeat(3, 1fr)'};
   gap: 20px;
   align-items: center;
 `;
@@ -456,29 +461,23 @@ export const Song = styled.div`
   .info {
     color: var(--color9);
     margin-left: 10px;
+    width: 115px;
     .title {
       font-size: 15px;
       font-family: var(--ft-pretendardExtraBold);
       margin: 5px 0;
-      width: 85px;
+      width: 115px;
       height: 15px;
       overflow: hidden;
       white-space: nowrap;
       text-overflow: ellipsis;
       word-break: break-all;
     }
-    .artist {
-      font-size: 12px;
-      font-family: var(--ft-pretendardThin);
-    }
   }
 `;
 
 // MainPage - PlaylistThumbnail
 export const PlaylistThumbnailContainer = styled.div`
-  /* width: 260px;
-  color: var(--color9);
-  position: relative; */
   background-color: var(--color1);
   width: 260px;
   margin-right: 20px;
@@ -489,15 +488,10 @@ export const PlaylistThumbnailContainer = styled.div`
 
   img.playlistImg {
     width: 100%;
-    height: 260px;
     object-fit: cover;
+    margin-bottom: 5px;
   }
-  img.onAir {
-    width: 30px;
-    position: absolute;
-    right: 3px;
-    bottom: 42px;
-  }
+
   .title {
     font-family: var(--ft-pretendardSemiBold);
     font-size: 15px;
@@ -512,9 +506,6 @@ export const PlaylistThumbnailContainer = styled.div`
     display: flex;
     justify-content: space-between;
     font-family: var(--ft-pretendardLight);
-    .playtime {
-      font-size: 10px;
-    }
     .author {
       display: flex;
       gap: 3px;

@@ -8,8 +8,8 @@ import { PlaylistThumbnailContainer } from '../../styles/playlist';
 const PlaylistThumbnail = ({ playlist }) => {
   return (
     <>
-      <PlaylistThumbnailContainer key={playlist.playlistId}>
-        <Link to={`/playlist/${playlist.playlistId - 1}`}>
+      <PlaylistThumbnailContainer key={playlist.boardId}>
+        <Link to={`/playlist/${playlist.boardId}`}>
           <img
             src={playlist.boardThumb}
             alt='playlist thumbnail'

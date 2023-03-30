@@ -29,6 +29,7 @@ const Main = () => {
   const [trendyList, setTrendyList] = useState(null);
   const [pageNum, setPageNum] = useState(1);
 
+  // slider Title 설정
   const sliderTitle = [
     '지금 가장 인기 있는 리스트',
     '오늘의 추천 플레이리스트',
@@ -41,7 +42,7 @@ const Main = () => {
     '이 노래 모르면 바보',
     '집중할 때 듣기 좋은 노래',
   ];
-
+  // react-slick 설정
   const settings = {
     className: 'center',
     infinite: true,
@@ -53,6 +54,7 @@ const Main = () => {
     },
   };
 
+  // InfiniteScroll 사용을 위해 데이터를 가져오는 함수
   const fetchMoreData = useCallback(() => {
     if (displayCount >= sliderTitle.length) {
       setHasMore(false);
@@ -61,10 +63,12 @@ const Main = () => {
     setDisplayCount((count) => count + 3);
   }, [displayCount, sliderTitle.length]);
 
+  // PlaylistTrendy에 들어갈 데이터를 랜덤으로 가져옴
   useEffect(() => {
     const getTrendy = async () => {
       try {
-        const response = await axios.get(`${API.BOARD}/4`);
+        const getRandomBoard = Math.floor(Math.random() * 20);
+        const response = await axios.get(`${API.BOARD}/${getRandomBoard}`);
         setTrendyBoard(response.data.data.board);
         setTrendyList(response.data.data.playlist);
       } catch (e) {
@@ -74,6 +78,7 @@ const Main = () => {
     getTrendy();
   }, []);
 
+  // Slider에 들어갈 데이터를 가져옴
   useEffect(() => {
     const getPlaylist = async () => {
       if (pageNum > 5) {
@@ -82,9 +87,11 @@ const Main = () => {
       try {
         const response = await axios.get(`${API.BOARD}?page=${pageNum}`);
         const newData = {};
+        // newData에 playlistId를 키로 사용하고 값을 할당
         response.data.data.forEach((item) => {
           newData[item.playlistId] = item;
         });
+        // 이전 상태의 playlist와 newData를 합쳐 상태 업데이트
         setPlaylist((prev) => ({ ...prev, ...newData }));
         setPageNum((count) => count + 1);
       } catch (e) {
@@ -94,14 +101,16 @@ const Main = () => {
     getPlaylist();
   }, [pageNum]);
 
+  // InfiniteScroll 동작 시 보여질 Slider 갯수
   const visiblePlaylist = sliderTitle.slice(0, displayCount);
-  const sortedPlaylist = Object.values(playlist).sort(
-    (a, b) => b.viewCount - a.viewCount
-  );
-  const firstSlider = sortedPlaylist.slice(0, 6);
-  const otherSlider = sortedPlaylist.filter(
+  // 인기 리스트에 출력할 Playlist
+  const firstSlider = Object.values(playlist)
+    .sort((a, b) => b.viewCount - a.viewCount)
+    .slice(0, 6);
+  // 인기 리스트에 사용한 데이터를 제외하고 나머지 리스트에 랜덤으로 출력
+  const otherSlider = Object.values(playlist).filter(
     (item) =>
-      !firstSlider.find((fsItem) => fsItem.playlistId === item.playlistId)
+      !firstSlider.some((fsItem) => fsItem.playlistId === item.playlistId)
   );
 
   return (

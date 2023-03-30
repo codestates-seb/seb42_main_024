@@ -27,47 +27,34 @@ const Nav = () => {
   const REDIRECT_URL = process.env.REACT_APP_REDIRECT_URL;
   const oAuthURL = `${REDIRECT_URL}`;
 
+  // backend로 redirect
   const oAuthHandler = () => {
     window.location.assign(oAuthURL);
   };
 
-  const loginTime = () => {
-    const currentTime = new Date().getTime();
-    localStorage.setItem('loginTime', currentTime);
-  };
-
-  const isLoginExpired = () => {
-    const loginTime = localStorage.getItem('loginTime');
-    const currentTime = new Date().getTime();
-    const expired = 60 * 1000 * 30;
-
-    return currentTime - loginTime > expired;
-  };
-
+  // 로그인 상태 확인
   const checkLoginStatus = async () => {
+    // localStorage에서 토큰 가져옴
     const storedAccessToken = localStorage.getItem('accessToken');
-
     if (storedAccessToken) {
-      if (isLoginExpired()) {
-        logoutHandler();
-      } else {
-        try {
-          const response = await axios.get(`${API.MEMBER}/auth`, {
-            headers: {
-              Authorization: `${storedAccessToken}`,
-              accept: 'application/json',
-            },
-          });
-          setData(response);
-          dispatch(setUserData(user));
-          dispatch(setUserData(response.data));
-        } catch (e) {
-          console.log(`OAuth token expired`);
-        }
+      try {
+        const response = await axios.get(`${API.MEMBER}/auth`, {
+          headers: {
+            Authorization: `${storedAccessToken}`,
+            accept: 'application/json',
+          },
+        });
+        setData(response);
+        dispatch(setUserData(user));
+        dispatch(setUserData(response.data));
+      } catch (e) {
+        console.log(`OAuth token expired`);
       }
     }
   };
 
+  // backend에서 URL로 전달받은 Authorization, Refresh를 분류하여 localStorage에 저장
+  // localStorage에 저장 후 ROOT URL로 이동
   useEffect(() => {
     const url = new URL(window.location.href);
     const searchParams = new URLSearchParams(url.search);
@@ -80,7 +67,6 @@ const Nav = () => {
       if (accessToken) {
         localStorage.setItem('accessToken', accessToken);
         localStorage.setItem('refreshToken', refreshToken);
-        loginTime();
       }
 
       searchParams.delete('Authorization');
@@ -90,15 +76,8 @@ const Nav = () => {
           searchParams.toString() ? '?' + searchParams.toString() : ''
         }`
       );
-    } else {
-      checkLoginStatus();
     }
-
-    const interval = setInterval(() => {
-      checkLoginStatus();
-    }, 1000 * 60 * 5);
-
-    return () => clearInterval(interval);
+    checkLoginStatus();
   }, []);
 
   const openModal = () => {
@@ -109,7 +88,6 @@ const Nav = () => {
     dispatch(deleteUserData());
     localStorage.removeItem('accessToken');
     localStorage.removeItem('refreshToken');
-    localStorage.removeItem('loginTime');
   };
 
   return (

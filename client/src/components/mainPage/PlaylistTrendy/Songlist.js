@@ -4,9 +4,12 @@ const SongList = ({ songList }) => {
   if (!songList) {
     return null;
   }
+
+  const rowCount = songList.length < 9 ? 2 : 3;
+
   return (
-    <SongListContainer>
-      {songList.slice(0, 10).map((song) => (
+    <SongListContainer rowCount={rowCount}>
+      {songList.slice(0, 12).map((song) => (
         <Song key={song.songId}>
           <img src={song.thumbnail} alt='song thumbnail' />
           <div className='info'>

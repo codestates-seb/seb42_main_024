@@ -138,7 +138,7 @@ export const CommentContainer = styled.div`
       background-color: rgba(217, 217, 217, 0.5);
       position: absolute;
       top: 30px;
-      width: 50px;
+      width: 60px;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -147,6 +147,7 @@ export const CommentContainer = styled.div`
       border-radius: 5px;
       button {
         width: 100%;
+        height: 20px;
         background-color: transparent;
         border: none;
         &:hover {
