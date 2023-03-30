@@ -50,15 +50,6 @@ export const PlayBoxTitle = styled.span`
   font-size: 15px;
   font-family: var(--ft-pretendardBold);
   text-indent: 0;
-  animation: marquee 20s linear infinite;
-  @keyframes marquee {
-    from {
-      text-indent: 0;
-    }
-    to {
-      text-indent: -100%;
-    }
-  }
 `;
 export const PlayBoxContent = styled.span`
   font-family: var(--ft-pretendardRegular);
