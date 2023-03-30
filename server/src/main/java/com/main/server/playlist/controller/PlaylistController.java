@@ -15,11 +15,15 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+import javax.validation.constraints.Positive;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Validated
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/playlists")
@@ -29,7 +33,7 @@ public class PlaylistController {
     private final PlaylistService playlistService;
 
     @PostMapping
-    public ResponseEntity createPlaylist(@RequestBody PlaylistCreateDto dto,
+    public ResponseEntity createPlaylist(@RequestBody @Valid PlaylistCreateDto dto,
                                          @AuthenticationPrincipal String email) {
         Playlist playlist = playlistService.createPlaylist(dto, email);
 
@@ -38,7 +42,7 @@ public class PlaylistController {
     }
 
     @GetMapping("/{playlist-id}")
-    public ResponseEntity getPlaylist(@PathVariable("playlist-id") Long playlistId) {
+    public ResponseEntity getPlaylist(@PathVariable("playlist-id") @Positive Long playlistId) {
         return ResponseEntity.status(HttpStatus.OK)
                 .body(PlaylistResponseDto.createByEntity(playlistService.findPlaylistById(playlistId)));
     }
@@ -55,7 +59,7 @@ public class PlaylistController {
     }
 
     @PatchMapping("/{playlist-id}")
-    public ResponseEntity updatePlaylist(@PathVariable("playlist-id") Long playlistId,
+    public ResponseEntity updatePlaylist(@PathVariable("playlist-id") @Positive Long playlistId,
                                          @RequestBody PlaylistUpdateDto dto) {
         Playlist playlist = playlistService.findPlaylistById(playlistId);
         playlistService.updatePlaylist(playlist, dto);
