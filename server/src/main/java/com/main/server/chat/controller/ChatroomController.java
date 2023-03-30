@@ -57,7 +57,7 @@ public class ChatroomController {
     }
 
     @GetMapping
-    public ResponseEntity getChatrooms(@RequestParam("id") @Positive Long id) {
+    public ResponseEntity getChatrooms(@RequestParam("id") Long id) {
         Long chatroomId = id != null ? Math.max(0, id) : 0;
         List<ChatroomSimpleDto> chatroomList = chatroomService.findChatrooms(chatroomId).stream()
                 .map(ChatroomSimpleDto::createByChatroom)
