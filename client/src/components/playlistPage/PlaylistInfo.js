@@ -48,50 +48,58 @@ const PlaylistInfo = ({
   const navigate = useNavigate();
   // 삭제 버튼
   const handleDelete = () => {
-    const storedAccessToken = localStorage.getItem('accessToken');
-    axios
-      .delete(`${API.BOARD}/${boardId}/${user.memberId}`, {
-        headers: {
-          Authorization: `${storedAccessToken}`,
-          accept: 'application/json',
-        },
-      })
-      .then(() => {
-        setDeleteBtnClicked(false);
-        navigate('/');
-      });
+    if (user) {
+      const storedAccessToken = localStorage.getItem('accessToken');
+      axios
+        .delete(`${API.BOARD}/${boardId}/${user.memberId}`, {
+          headers: {
+            Authorization: `${storedAccessToken}`,
+            accept: 'application/json',
+          },
+        })
+        .then(() => {
+          setDeleteBtnClicked(false);
+          navigate('/');
+        });
+    }
   };
 
   // 완료 버튼
   const handleCompleteEditting = () => {
-    // PATCH /boards
-    const requestBody = {
-      boardTitle: boardTitleRef.current.value,
-      boardContent: boardDescRef.current.value,
-      boardThumb: playlistData.songList[0].thumbnail,
-    };
-    const storedAccessToken = localStorage.getItem('accessToken');
+    if (user) {
+      // PATCH /boards
+      const requestBody = {
+        boardTitle: boardTitleRef.current.value,
+        boardContent: boardDescRef.current.value,
+        boardThumb: playlistData.songList[0].thumbnail,
+      };
+      const storedAccessToken = localStorage.getItem('accessToken');
 
-    // eslint-disable-next-line
-    axios.all([
-      axios.patch(`${API.BOARD}/${boardId}/${user.memberId}`, requestBody, {
-        headers: {
-          Authorization: `${storedAccessToken}`,
-          accept: 'application/json',
-        },
-      }),
-      axios.patch(`${API.PLAYLIST}/${playlistData.playlistId}`, playlistData, {
-        headers: {
-          Authorization: `${storedAccessToken}`,
-          accept: 'application/json',
-        },
-      }),
-    ]);
-    // 수정 버튼 !isClicked
-    setIsEditing(false);
-    setDeleteBtnClicked(false);
-    setBoardData({ ...boardData, ...requestBody });
-    navigate(`/playlist/${boardId}`);
+      // eslint-disable-next-line
+      axios.all([
+        axios.patch(`${API.BOARD}/${boardId}/${user.memberId}`, requestBody, {
+          headers: {
+            Authorization: `${storedAccessToken}`,
+            accept: 'application/json',
+          },
+        }),
+        axios.patch(
+          `${API.PLAYLIST}/${playlistData.playlistId}`,
+          playlistData,
+          {
+            headers: {
+              Authorization: `${storedAccessToken}`,
+              accept: 'application/json',
+            },
+          }
+        ),
+      ]);
+      // 수정 버튼 !isClicked
+      setIsEditing(false);
+      setDeleteBtnClicked(false);
+      setBoardData({ ...boardData, ...requestBody });
+      navigate(`/playlist/${boardId}`);
+    }
   };
 
   // 곡 추가 창 닫기
@@ -185,17 +193,17 @@ const PlaylistInfo = ({
                 <FaPlay />
                 <div>재생</div>
               </button>
-              {boardData?.memberId === user.memberId && isEditing && (
+              {boardData?.memberId === user?.memberId && isEditing && (
                 <button className='clicked' onClick={handleCancelBtnClick}>
                   <div>취소</div>
                 </button>
               )}
-              {boardData?.memberId === user.memberId && !isEditing && (
+              {boardData?.memberId === user?.memberId && !isEditing && (
                 <button className='btn1' onClick={handleEditBtnClick}>
                   <div>수정</div>
                 </button>
               )}
-              {boardData?.memberId === user.memberId && isEditing && (
+              {boardData?.memberId === user?.memberId && isEditing && (
                 <button
                   onClick={() => setDeleteBtnClicked(true)}
                   className='deleteBtn'>

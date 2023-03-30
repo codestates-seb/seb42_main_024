@@ -14,7 +14,7 @@ import {
 const PlaylistComment = ({ boardId }) => {
   const [commentsData, setCommentsData] = useState(null);
 
-  const memberId = useSelector((state) => state.user.memberId);
+  const user = useSelector((state) => state.user);
   // ref
   const commentRef = useRef(null);
 
@@ -26,10 +26,10 @@ const PlaylistComment = ({ boardId }) => {
   }, [commentsData]);
 
   const handlePostComment = () => {
-    if (commentRef.current.value.length !== 0) {
+    if (commentRef.current.value.length !== 0 && user) {
       const storedAccessToken = localStorage.getItem('accessToken');
       const requestBody = {
-        memberId,
+        memberId: user.memberId,
         boardId,
         commentContent: commentRef.current.value,
       };
