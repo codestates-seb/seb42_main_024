@@ -9,14 +9,16 @@ import { CommentContainer } from '../../../styles/playlistComment';
 
 const Comment = ({ comment, commentsData, setCommentsData }) => {
   const [memberInfo, setMemberInfo] = useState({});
-  const memberId = useSelector((state) => state.user.memberId);
+  const user = useSelector((state) => state.user);
   const editCommentRef = useRef(null);
   const [isHovering, setIsHovering] = useState(false);
   const [isOptionModalOpen, setIsOptionModalOpen] = useState(false);
   useEffect(() => {
-    axios
-      .get(`${API.MEMBER}/${comment?.memberId}`)
-      .then((res) => setMemberInfo(res.data));
+    if (comment?.memberId) {
+      axios
+        .get(`${API.MEMBER}/${comment?.memberId}`)
+        .then((res) => setMemberInfo(res.data));
+    }
   }, []);
 
   const handleMouseDown = (e) => e.preventDefault();
@@ -49,10 +51,10 @@ const Comment = ({ comment, commentsData, setCommentsData }) => {
 
   // 수정 버튼
   const handleEdit = (commentId) => {
-    if (commentId !== undefined) {
+    if (commentId !== undefined && user) {
       const storedAccessToken = localStorage.getItem('accessToken');
       axios.patch(
-        `${API.COMMENT}/${commentId}/${memberId}`,
+        `${API.COMMENT}/${commentId}/${user?.memberId}`,
         { commentContent: editCommentRef.current.value },
         {
           headers: {
@@ -78,9 +80,9 @@ const Comment = ({ comment, commentsData, setCommentsData }) => {
 
   // 삭제 버튼
   const handleDelete = (commentId) => {
-    if (commentId !== undefined) {
+    if (commentId !== undefined && user) {
       const storedAccessToken = localStorage.getItem('accessToken');
-      axios.delete(`${API.COMMENT}/${commentId}/${memberId}`, {
+      axios.delete(`${API.COMMENT}/${commentId}/${user?.memberId}`, {
         headers: {
           Authorization: `${storedAccessToken}`,
           accept: 'application/json',
@@ -104,10 +106,10 @@ const Comment = ({ comment, commentsData, setCommentsData }) => {
           <div className='name'>{memberInfo?.nickname}</div>
           <div className='createdAt'>{getTimeDiff(comment?.createdAt)}</div>
         </div>
-        {comment.memberId !== memberId && (
+        {comment.memberId !== user?.memberId && (
           <div className='comment'>{comment.commentContent}</div>
         )}
-        {comment.memberId === memberId && (
+        {comment.memberId === user?.memberId && (
           <div className='editableCommentWrapper'>
             <input
               type='text'
@@ -123,29 +125,30 @@ const Comment = ({ comment, commentsData, setCommentsData }) => {
         )}
       </div>
       {/* 수정, 삭제 */}
-      {comment.memberId === memberId && (isHovering || isOptionModalOpen) && (
-        <div className='udModalOpenerWrapper'>
-          <button className='udModalOpener' onClick={handleModalOpen}>
-            <HiOutlineDotsVertical />
-          </button>
-          {isOptionModalOpen && (
-            <div className='option-modal'>
-              <button
-                className='editBtn'
-                onClick={() => handleEdit(comment.commentId)}
-                onMouseDown={handleMouseDown}>
-                수정
-              </button>
-              <button
-                className='deleteBtn'
-                onClick={() => handleDelete(comment.commentId)}
-                onMouseDown={handleMouseDown}>
-                삭제
-              </button>
-            </div>
-          )}
-        </div>
-      )}
+      {comment.memberId === user?.memberId &&
+        (isHovering || isOptionModalOpen) && (
+          <div className='udModalOpenerWrapper'>
+            <button className='udModalOpener' onClick={handleModalOpen}>
+              <HiOutlineDotsVertical />
+            </button>
+            {isOptionModalOpen && (
+              <div className='option-modal'>
+                <button
+                  className='editBtn'
+                  onClick={() => handleEdit(comment.commentId)}
+                  onMouseDown={handleMouseDown}>
+                  수정
+                </button>
+                <button
+                  className='deleteBtn'
+                  onClick={() => handleDelete(comment.commentId)}
+                  onMouseDown={handleMouseDown}>
+                  삭제
+                </button>
+              </div>
+            )}
+          </div>
+        )}
     </CommentContainer>
   );
 };
