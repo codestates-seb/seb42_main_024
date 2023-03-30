@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import axios from 'axios';
-
+import axiosCall from '../../axios/axiosCall';
+import { API } from '../../config';
 import {
   LiveroomPopupContainer,
   LiveroomPopupView,
@@ -17,19 +17,13 @@ function LiveroomPopup({
   roomOwner,
   userNickName,
   roomid,
-  accessToken,
 }) {
   const navigate = useNavigate();
   const [popupText, setPopupText] = useState('방을 나가시겠습니까?');
   const [checkDeleteRoom, setCheckDeleteRoom] = useState(false);
 
   const deleteRoomHandler = () => {
-    axios.delete(`http://15.165.199.44:8080/api/rooms/${roomid}`, {
-      headers: {
-        Authorization: `${accessToken}`,
-        accept: 'application/json',
-      },
-    });
+    axiosCall(`${API.LIVEROOM + '/' + roomid}`, 'delete');
   };
   return (
     <LiveroomPopupContainer

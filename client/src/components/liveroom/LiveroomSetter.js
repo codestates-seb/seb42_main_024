@@ -5,6 +5,7 @@ import { MdClose, MdOutlineAddCircleOutline } from 'react-icons/md';
 
 import axios from 'axios';
 
+import axiosCall from '../../axios/axiosCall';
 import { API } from '../../config';
 import {
   LiveroomSetterContianer,
@@ -31,20 +32,14 @@ const LiveroomSetter = ({
   const addNewSong = () => {
     if (newSong !== null) {
       // axios send newSong
-      const storedAccessToken = localStorage.getItem('accessToken');
-      axios
-        .post(`${API.LIVEROOM}/${chatroomId}/songs`, newSong, {
-          headers: {
-            Authorization: `${storedAccessToken}`,
-            accept: 'application/json',
-          },
-        })
-        .then(() => {
+      axiosCall(`${API.LIVEROOM}/${chatroomId}/songs`, 'post', newSong).then(
+        () => {
           setChangeSong((prev) => !prev);
           if (isEnd) {
             nextSongHandler(false);
           }
-        });
+        }
+      );
       // 초기화
       searchRef.current.value = '';
       setNewSong(null);

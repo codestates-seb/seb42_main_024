@@ -69,6 +69,8 @@ export const LiveroomsTitle = styled.div`
   align-items: center;
   font-size: 30px;
   font-weight: 600;
+  overflow: hidden;
+  white-space: nowrap;
 `;
 
 export const LiveroomsMain = styled.div`

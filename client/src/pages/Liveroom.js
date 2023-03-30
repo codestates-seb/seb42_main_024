@@ -11,11 +11,11 @@ import * as SockJS from 'sockjs-client';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 import { togglePause } from '../actions/actions';
+import axiosCall from '../axios/axiosCall';
 import LiveroomPopup from '../components/liveroom/LiveroomPopup';
 import LiveroomSidebar from '../components/liveroom/LiveroomSideBar';
 import { API } from '../config';
 import {
-  LiveroomGuide,
   LiveroomContainer,
   LiveroomCover,
   LiveAlbumCover,
@@ -61,7 +61,6 @@ function Liveroom() {
   const [nowPlayIndex, setnowPlayIndex] = useState(0);
   const [readyToPlayMusic, setReadyToPlayMusic] = useState(false);
   const [songProgress, setSongProgress] = useState(0);
-  const [openLiveroomGuide, setOpenLiveroomGuide] = useState(true);
   const [isDone, setIsDone] = useState(false);
 
   const volumeHandler = (e) => {
@@ -86,111 +85,88 @@ function Liveroom() {
     const realIsEnd = elsevalue || isEnd;
     if (!realIsEnd) {
       setIsEnd(false);
-      axios
-        .post(
-          `${API.LIVEROOM}/${roomid}/songs/next`,
-          {
-            videoId: nowPlaySong[0],
-          },
-          {
-            headers: {
-              Authorization: `${accessToken}`,
-              accept: 'application/json',
-            },
-          }
-        )
-        .then(() => {
-          setIsDone(false);
-        });
+      axiosCall(`${API.LIVEROOM}/${roomid}/songs/next`, 'post', {
+        videoId: nowPlaySong[0],
+      }).then(() => {
+        setIsDone(false);
+      });
     } else {
       setIsDone(true);
     }
   };
 
   useEffect(() => {
-    axios
-      .get(`${API.LIVEROOM}/${roomid}`, {
-        headers: {
-          Authorization: `${accessToken}`,
-          accept: 'application/json',
-        },
-      })
-      .then((e) => {
-        axios
-          .get(`${API.MEMBER}/auth`, {
-            headers: {
-              Authorization: `${accessToken}`,
-              accept: 'application/json',
-            },
-          })
-          .then((user) => {
-            const userData = user.data;
-            const roomData = e.data.data;
-            setMembers(roomData.members);
-            setRoomOwner(roomData.owner);
-            setUserNickName(userData.nickname);
+    axiosCall(`${API.LIVEROOM}/${roomid}`, 'get').then((e) => {
+      axios
+        .get(`${API.MEMBER}/auth`, {
+          headers: {
+            Authorization: `${accessToken}`,
+            accept: 'application/json',
+          },
+        })
+        .then((user) => {
+          const userData = user.data;
+          const roomData = e.data.data;
+          setMembers(roomData.members);
+          setRoomOwner(roomData.owner);
+          setUserNickName(userData.nickname);
 
-            if (!roomData.members.includes(userData.nickname)) {
-              const socket = new SockJS('http://15.165.199.44:8080/ws');
-              const client = Stomp.over(socket);
-              client.connect({}, () => {
-                client.subscribe(`/sub/chat/room/${roomid}`, function (join) {
-                  const receiveData = JSON.parse(join.body);
-                  if (receiveData.type === 'SYSTEM') {
-                    if (receiveData.message === 'NextSong') {
-                      setChangeSong((prev) => !prev);
-                    }
-                  } else {
-                    setChatDatas((prev) => [...prev, receiveData]);
+          if (!roomData.members.includes(userData.nickname)) {
+            const socket = new SockJS('http://15.165.199.44:8080/ws');
+            const client = Stomp.over(socket);
+            client.connect({}, () => {
+              client.subscribe(`/sub/chat/room/${roomid}`, function (join) {
+                const receiveData = JSON.parse(join.body);
+                if (receiveData.type === 'SYSTEM') {
+                  if (receiveData.message === 'NextSong') {
+                    setChangeSong((prev) => !prev);
+                  } else if (
+                    receiveData.message === 'Full' &&
+                    receiveData.memberName === userData.nickname
+                  ) {
+                    alert(`방의 인원이 초과되었습니다.`);
+                    navigate('/');
                   }
-                });
-                client.send(
-                  '/pub/join',
-                  {},
-                  JSON.stringify({
-                    message: message,
-                    memberName: userData.nickname,
-                    chatroomId: roomData.chatroomId,
-                  })
-                );
+                } else {
+                  setChatDatas((prev) => [...prev, receiveData]);
+                }
               });
-              setsockClient(client);
-            } else {
-              alert(`이미 참여중인 방입니다`);
-              navigate('/');
-            }
-          });
-      });
+              client.send(
+                '/pub/join',
+                {},
+                JSON.stringify({
+                  message: message,
+                  memberName: userData.nickname,
+                  chatroomId: roomData.chatroomId,
+                })
+              );
+            });
+            setsockClient(client);
+          } else {
+            alert(`이미 참여중인 방입니다`);
+            navigate('/');
+          }
+        });
+    });
   }, []);
 
   useEffect(() => {
-    axios
-      .get(`${API.LIVEROOM}/${roomid}/songs`, {
-        headers: {
-          Authorization: `${accessToken}`,
-          accept: 'application/json',
-        },
-      })
-      .then((e) => {
-        const songData = e.data.data;
-        if (songData.nextSong.length === 0) {
-          setIsEnd(true);
-        } else {
-          setIsEnd(false);
-        }
-        setnowPlayIndex(songData.pastSong.length);
-        setSongs([
-          ...songData.pastSong,
-          songData.nowSong,
-          ...songData.nextSong,
-        ]);
-        setNowPlaySong([
-          songData.nowSong.videoId,
-          songData.time,
-          songData.nowSong.thumbnail,
-          songData.nowSong,
-        ]);
-      });
+    axiosCall(`${API.LIVEROOM}/${roomid}/songs`, 'get').then((e) => {
+      const songData = e.data.data;
+      if (songData.nextSong.length === 0) {
+        setIsEnd(true);
+      } else {
+        setIsEnd(false);
+      }
+      setnowPlayIndex(songData.pastSong.length);
+      setSongs([...songData.pastSong, songData.nowSong, ...songData.nextSong]);
+      setNowPlaySong([
+        songData.nowSong.videoId,
+        songData.time,
+        songData.nowSong.thumbnail,
+        songData.nowSong,
+      ]);
+    });
   }, [changeSong]);
 
   useEffect(() => {
@@ -203,18 +179,8 @@ function Liveroom() {
 
   return (
     <LiveroomContainer>
-      {openLiveroomGuide ? (
-        <LiveroomGuide
-          onClick={() => {
-            if (readyToPlayMusic) {
-              setPlayMusic(false);
-              setOpenLiveroomGuide(false);
-            }
-          }}></LiveroomGuide>
-      ) : null}
       {openSideBarSetting ? (
         <LiveroomPopup
-          accessToken={accessToken}
           roomid={roomid}
           userNickName={userNickName}
           roomOwner={roomOwner}
@@ -228,7 +194,7 @@ function Liveroom() {
         width={0}
         volume={volume}
         onReady={() => {
-          setReadyToPlayMusic(true);
+          setReadyToPlayMusic(false);
         }}
         onProgress={(e) => {
           setSongProgress((e.played.toFixed(4) * 100).toFixed(2));
@@ -240,13 +206,16 @@ function Liveroom() {
         backgroundurl={nowPlaySong[2]}
         onMouseMove={(e) => {
           volumeHandler(e);
+          if (!readyToPlayMusic) {
+            setPlayMusic(false);
+          }
         }}
         onMouseUp={() => {
           setIsDrag(false);
           setA(volume);
         }}
         onClick={(e) => {
-          if (e.target.className.includes('allow')) {
+          if (e?.target?.className?.includes('allow')) {
             setOpenMusicPlayList(false);
           }
         }}>
