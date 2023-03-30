@@ -32,44 +32,23 @@ const Nav = () => {
     window.location.assign(oAuthURL);
   };
 
-  // 로그인 한 시간을 localStorage에 저장
-  const loginTime = () => {
-    const currentTime = new Date().getTime();
-    localStorage.setItem('loginTime', currentTime);
-  };
-
-  // 로그인 유지 시간 30분으로 설정
-  const isLoginExpired = () => {
-    const loginTime = localStorage.getItem('loginTime');
-    const currentTime = new Date().getTime();
-    const expired = 60 * 1000 * 30;
-
-    return currentTime - loginTime > expired;
-  };
-
   // 로그인 상태 확인
   const checkLoginStatus = async () => {
     // localStorage에서 토큰 가져옴
     const storedAccessToken = localStorage.getItem('accessToken');
-    // 토큰이 localStorage에 있으나 로그인 유지 시간이 만료되었다면 logoutHandler 작동
-    // 그렇지 않을 경우 axios.get으로 서버에 저장되어있는 구글 유저 정보를 가져옴
     if (storedAccessToken) {
-      if (isLoginExpired()) {
-        logoutHandler();
-      } else {
-        try {
-          const response = await axios.get(`${API.MEMBER}/auth`, {
-            headers: {
-              Authorization: `${storedAccessToken}`,
-              accept: 'application/json',
-            },
-          });
-          setData(response);
-          dispatch(setUserData(user));
-          dispatch(setUserData(response.data));
-        } catch (e) {
-          console.log(`OAuth token expired`);
-        }
+      try {
+        const response = await axios.get(`${API.MEMBER}/auth`, {
+          headers: {
+            Authorization: `${storedAccessToken}`,
+            accept: 'application/json',
+          },
+        });
+        setData(response);
+        dispatch(setUserData(user));
+        dispatch(setUserData(response.data));
+      } catch (e) {
+        console.log(`OAuth token expired`);
       }
     }
   };
@@ -88,7 +67,6 @@ const Nav = () => {
       if (accessToken) {
         localStorage.setItem('accessToken', accessToken);
         localStorage.setItem('refreshToken', refreshToken);
-        loginTime();
       }
 
       searchParams.delete('Authorization');
@@ -98,15 +76,8 @@ const Nav = () => {
           searchParams.toString() ? '?' + searchParams.toString() : ''
         }`
       );
-    } else {
-      checkLoginStatus();
     }
-    // 자동 로그아웃 기능을 위해 5분마다 로그인 상태 확인
-    const interval = setInterval(() => {
-      checkLoginStatus();
-    }, 1000 * 60 * 5);
-
-    return () => clearInterval(interval);
+    checkLoginStatus();
   }, []);
 
   const openModal = () => {
@@ -117,7 +88,6 @@ const Nav = () => {
     dispatch(deleteUserData());
     localStorage.removeItem('accessToken');
     localStorage.removeItem('refreshToken');
-    localStorage.removeItem('loginTime');
   };
 
   return (
