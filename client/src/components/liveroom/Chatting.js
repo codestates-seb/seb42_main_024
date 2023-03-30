@@ -12,8 +12,12 @@ function Chatting({ chatData, setMembers }) {
   const isEnter = chatData?.type !== 'TALK';
   useEffect(() => {
     if (isEnter) {
-      console.log(chatData?.memberName);
       setMembers((prev) => [...prev, chatData.memberName]);
+      if (chatData?.type === 'LEAVE') {
+        setMembers((prev) => {
+          return prev.filter((e) => e !== chatData?.memberName);
+        });
+      }
     }
   }, []);
 

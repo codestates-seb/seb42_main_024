@@ -1,7 +1,8 @@
 import styled from 'styled-components';
 
 export const LiveroomsContainer = styled.div`
-  height: ${(props) => +props.heightValue || 350}px;
+  height: ${(props) => +props.heightValue || 450}px;
+  max-width: 510px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -13,8 +14,8 @@ export const LiveroomsContainer = styled.div`
 `;
 
 export const LiveroomsThumbnailContianer = styled.div`
-  width: 85%;
-  height: 85%;
+  width: 450px;
+  height: 450px;
   position: relative;
   margin-bottom: 10px;
   @keyframes rotate_image {
@@ -27,8 +28,8 @@ export const LiveroomsThumbnailContianer = styled.div`
     transform-origin: 50% 50%;
   }
   &.popular {
-    width: 80%;
-    height: 80%;
+    width: 300px;
+    height: 300px;
   }
 `;
 
@@ -68,6 +69,8 @@ export const LiveroomsTitle = styled.div`
   align-items: center;
   font-size: 30px;
   font-weight: 600;
+  overflow: hidden;
+  white-space: nowrap;
 `;
 
 export const LiveroomsMain = styled.div`

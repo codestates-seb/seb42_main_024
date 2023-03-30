@@ -27,8 +27,9 @@ export const PopularLiveroomList = styled.div`
 `;
 
 export const PopularLiveroomListContainer = styled.div`
-  width: 1200px;
-  height: 350px;
+  width: 40%;
+  min-width: 1200px;
+  height: 400px;
 `;
 export const PopularLiveroomListTitle = styled.h2`
   font-size: 30px;
@@ -54,7 +55,9 @@ export const AllLiveroomListTitle = styled.div`
   color: var(--color9);
 `;
 export const AllLiveroomListContainer = styled.div`
-  width: 2000px;
+  min-width: 1500px;
+  max-width: 1800px;
+  width: 90%;
 `;
 export const AllLiveroomListMain = styled.div`
   margin-top: 20px;

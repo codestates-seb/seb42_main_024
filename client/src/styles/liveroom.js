@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 export const LiveroomContainer = styled.div`
+  position: relative;
   width: 100%;
   height: 100vh;
   display: flex;
@@ -56,7 +57,9 @@ export const LiveAlbumCover = styled.img`
       transform: rotate(360deg);
     }
   }
-  animation: rotate_image 30s linear infinite;
+  &:not(.done) {
+    animation: rotate_image 30s linear infinite;
+  }
 `;
 
 export const LiveRoomBtnContianer = styled.div`
@@ -102,9 +105,9 @@ export const LiveroomSoundBackground = styled.div`
   }
 `;
 export const PlayList = styled.div`
-  position: absolute;
   width: 100%;
   background-color: rgba(255, 255, 255, 0.1);
+  position: absolute;
   top: 50%;
   transform: translate(0, -50%);
   height: 700px;
@@ -157,16 +160,6 @@ export const ProgessContinaer = styled.div.attrs((props) => ({
   left: 0;
 `;
 
-// export const ProgessContinaer = styled.div`
-//   position: absolute;
-//   width: 600px;
-//   height: ${(props) => props.songProgress || 0}%;
-//   background-color: ${(props) => props.bgrColor || 'red'};
-//   top: 0;
-//   left: 0;
-//   z-index: ${(props) => props.zIndex || 3};
-// `;
-
 export const CDShape = styled.div`
   width: 25%;
   height: 25%;
@@ -178,4 +171,35 @@ export const CDShape = styled.div`
   left: 50%;
   transform: translate(-50%, -50%) !important;
   background-color: var(--color1);
+`;
+
+export const LiveroomGuide = styled.div`
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 10;
+`;
+
+export const LiveroomEndContainer = styled.div`
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  position: absolute;
+  top: 50%;
+  transform: translate(0, -50%);
+  height: 700px;
+  z-index: 11;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const LiveroomEndText = styled.div`
+  color: var(--color9);
+  word-break: keep-all;
+  font-size: 120px;
+  font-weight: 600;
 `;

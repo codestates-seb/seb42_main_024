@@ -20,7 +20,6 @@ function LSBChat({
   const scrollRef = useRef();
   useEffect(() => {
     scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
-    console.log(scrollRef.current.scrollTop);
   }, [chatDatas]);
   const changeMessageHandler = (e) => {
     setMessage(e.target.value);
