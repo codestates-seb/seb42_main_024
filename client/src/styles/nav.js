@@ -80,6 +80,7 @@ export const NavItems = styled.li`
   .nav-create-liveroom,
   .nav-add-playlist,
   .nav-logout,
+  .nav-mypage-link,
   .nav-liveroom-link,
   .nav-home-link {
     display: flex;

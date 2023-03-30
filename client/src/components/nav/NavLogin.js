@@ -33,7 +33,7 @@ const NavLogin = ({ logoutHandler }) => {
     <>
       <NavList>
         <NavItems>
-          <Link to='/mypage'>
+          <Link to={'/mypage'} className='nav-mypage-link'>
             <div className='nav-userinfo'>
               <img
                 className='profile-pic'
