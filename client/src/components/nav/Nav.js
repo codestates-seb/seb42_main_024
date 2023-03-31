@@ -4,7 +4,8 @@ import { Link, useLocation } from 'react-router-dom';
 
 import axios from 'axios';
 
-import Modal from './Modal';
+import InducedModal from './InducedModal';
+import LoginModal from './LoginModal';
 import NavLogin from './NavLogin';
 import NavLogout from './NavLogout';
 
@@ -14,7 +15,9 @@ import { API } from '../../config';
 import { NavContainer, NavFooter } from '../../styles/nav';
 
 const Nav = () => {
-  const [modalOpen, setModalOpen] = useState(false);
+  const [loginModalOpen, setLoginModalOpen] = useState(false);
+  const [inducedModalOpen, setInducedModalOpen] = useState(false);
+  const [hasInducedModal, setHasInducedModal] = useState(false);
   //eslint-disable-next-line no-unused-vars
   const [data, setData] = useState(null);
 
@@ -78,10 +81,24 @@ const Nav = () => {
       );
     }
     checkLoginStatus();
-  }, []);
 
-  const openModal = () => {
-    setModalOpen(true);
+    if (!isLogin && !hasInducedModal) {
+      const timer = setTimeout(() => {
+        setInducedModalOpen(true);
+        setHasInducedModal(true);
+      }, 60000);
+      return () => {
+        clearTimeout(timer);
+      };
+    }
+  }, [isLogin, hasInducedModal]);
+
+  const openLoginModal = () => {
+    setLoginModalOpen(true);
+  };
+
+  const openInducedModal = () => {
+    setInducedModalOpen(true);
   };
 
   const logoutHandler = () => {
@@ -102,18 +119,28 @@ const Nav = () => {
         <NavLogin user={user} logoutHandler={logoutHandler} />
       ) : (
         <>
-          <NavLogout openModal={openModal} />
-          {modalOpen && !isLogin && (
-            <Modal
-              isLogin={isLogin}
-              setModalOpen={setModalOpen}
+          <NavLogout
+            openLoginModal={openLoginModal}
+            openInducedModal={openInducedModal}
+          />
+          {loginModalOpen && (
+            <LoginModal
+              setLoginModalOpen={setLoginModalOpen}
+              oAuthHandler={oAuthHandler}
+            />
+          )}
+          {!loginModalOpen && !isLogin && inducedModalOpen && (
+            <InducedModal
+              setInducedModalOpen={setInducedModalOpen}
               oAuthHandler={oAuthHandler}
             />
           )}
         </>
       )}
       <NavFooter>
-        <p>CodeStates SEB 42th</p>
+        <p>CodeStates SEB 42th Team24</p>
+        <p>FE 김유원 김찬희 하지웅 황민혁</p>
+        <p>BE 강동우 고한성 문희승 유지건</p>
       </NavFooter>
     </NavContainer>
   );

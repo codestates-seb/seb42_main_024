@@ -8,6 +8,7 @@ import PlaylistInfo from '../components/playlistPage/PlaylistInfo';
 import PlaylistList from '../components/playlistPage/PlaylistList';
 import { API } from '../config';
 import { PlaylistPageContainer } from '../styles/playlist';
+import useScrollTop from '../util/useScrollTop';
 
 const Playlist = () => {
   const { boardId } = useParams();
@@ -25,6 +26,8 @@ const Playlist = () => {
       setCommentsData(res.data.data.comments);
     });
   }, []);
+
+  useScrollTop();
 
   return (
     <PlaylistPageContainer>

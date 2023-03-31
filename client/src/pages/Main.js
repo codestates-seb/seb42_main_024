@@ -42,6 +42,7 @@ const Main = () => {
     '이 노래 모르면 바보',
     '집중할 때 듣기 좋은 노래',
   ];
+
   // react-slick 설정
   const settings = {
     className: 'center',
@@ -67,7 +68,7 @@ const Main = () => {
   useEffect(() => {
     const getTrendy = async () => {
       try {
-        const getRandomBoard = Math.floor(Math.random() * 20);
+        const getRandomBoard = Math.floor(Math.random() * 21) + 1;
         const response = await axios.get(`${API.BOARD}/${getRandomBoard}`);
         setTrendyBoard(response.data.data.board);
         setTrendyList(response.data.data.playlist);

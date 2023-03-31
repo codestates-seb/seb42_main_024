@@ -5,14 +5,14 @@ import { Link } from 'react-router-dom';
 
 import { NavList, NavItems, Home, LiveRoom, Login } from '../../styles/nav';
 
-const NavLogout = ({ openModal }) => {
+const NavLogout = ({ openLoginModal }) => {
   return (
     <>
       <NavList>
         <NavItems>
           <div className='nav-userinfo'>
             <FaUserCircle className='user-circle' />
-            <Login onClick={openModal}>LOGIN</Login>
+            <Login onClick={openLoginModal}>LOGIN</Login>
           </div>
         </NavItems>
         <NavItems>
@@ -24,7 +24,9 @@ const NavLogout = ({ openModal }) => {
           </Link>
           <div className='nav-liveroom'>
             <IoRadio />
-            <LiveRoom onClick={openModal}>로그인하고 라이브 즐기기</LiveRoom>
+            <LiveRoom onClick={openLoginModal}>
+              로그인하고 라이브 즐기기
+            </LiveRoom>
           </div>
         </NavItems>
       </NavList>
