@@ -181,6 +181,25 @@ export const LiveroomGuide = styled.div`
   right: 0;
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const LiveroomGuideview = styled.div`
+  width: 560px;
+  min-height: 670px;
+  background-color: var(--color1);
+  border-radius: 20px;
+  padding: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  -webkit-user-drag: none;
+  user-select: none;
+  .swiper-pagination-bullet {
+    background-color: var(--color9);
+  }
 `;
 
 export const LiveroomEndContainer = styled.div`
