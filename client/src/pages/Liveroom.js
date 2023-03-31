@@ -356,7 +356,7 @@ function Liveroom() {
             ) : null}
           </LiveroomCover>
         )}
-        {isDone && !openGuideMenu ? (
+        {isDone ? (
           <LiveroomEndContainer>
             <LiveroomEndText>노래가 종료되었습니다</LiveroomEndText>
           </LiveroomEndContainer>
