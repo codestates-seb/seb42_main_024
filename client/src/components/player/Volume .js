@@ -39,6 +39,7 @@ function Volume({ volume, onVolumeChange }) {
         value={volume}
         volume={volume}
         onChange={handleVolumeChange}
+        onClick={(e) => e.stopPropagation()}
       />
     </VolumeWarp>
   );
