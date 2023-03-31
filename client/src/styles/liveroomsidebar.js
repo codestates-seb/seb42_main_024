@@ -67,3 +67,5 @@ export const LSBPlayListWrap = styled.div`
   flex-direction: column;
   justify-content: space-around;
 `;
+
+export const LSBOutBtnContainer = styled.div``;

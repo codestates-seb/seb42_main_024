@@ -13,6 +13,7 @@ import {
   LSBPlayListContainer,
   LSBPlayListWrap,
   LiveroomSideBarContainer,
+  LSBOutBtnContainer,
 } from '../../styles/liveroomsidebar';
 
 function LiveroomSideBar({
@@ -29,6 +30,7 @@ function LiveroomSideBar({
   nextSongHandler,
   nowPlaySong,
   roomOwner,
+  setOpenGuideMenu,
 }) {
   const [isSettingModalOpen, setIsSettingModalOpen] = useState(false);
   return (
@@ -37,13 +39,22 @@ function LiveroomSideBar({
         <BsFillGearFill
           className={roomOwner === userNickName ? null : 'hide'}
           onClick={() => setIsSettingModalOpen(true)}></BsFillGearFill>
-        <LSBOutBtn
-          className='allow'
-          onClick={(e) => {
-            openSideBarSettingHandler(e);
-          }}>
-          나가기
-        </LSBOutBtn>
+        <LSBOutBtnContainer>
+          <LSBOutBtn
+            className='allow'
+            onClick={() => {
+              setOpenGuideMenu(true);
+            }}>
+            도움말
+          </LSBOutBtn>
+          <LSBOutBtn
+            className='allow'
+            onClick={(e) => {
+              openSideBarSettingHandler(e);
+            }}>
+            나가기
+          </LSBOutBtn>
+        </LSBOutBtnContainer>
       </LSBHeaderContainer>
       <LSBPlayListContainer>
         <LSBMemberContainer>

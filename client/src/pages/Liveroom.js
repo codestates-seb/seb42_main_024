@@ -8,10 +8,17 @@ import { Stomp } from '@stomp/stompjs';
 import axios from 'axios';
 import { createBrowserHistory } from 'history';
 import * as SockJS from 'sockjs-client';
+import { Pagination } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css/pagination';
 
 import { togglePause } from '../actions/actions';
+import liveChat from '../assets/liveChat.gif';
+import livePlayListCheck from '../assets/livePlayListCheck.gif';
+import Logo from '../assets/Logo.png';
+import volumeControl from '../assets/volumeControl.gif';
 import axiosCall from '../axios/axiosCall';
+import LiveroomGuider from '../components/liveroom/LiveroomGuider';
 import LiveroomPopup from '../components/liveroom/LiveroomPopup';
 import LiveroomSidebar from '../components/liveroom/LiveroomSideBar';
 import { API } from '../config';
@@ -29,6 +36,8 @@ import {
   CDShape,
   LiveroomEndContainer,
   LiveroomEndText,
+  LiveroomGuide,
+  LiveroomGuideview,
 } from '../styles/liveroom';
 import 'animate.css';
 
@@ -49,8 +58,8 @@ function Liveroom() {
   const [changeSong, setChangeSong] = useState(false);
   const [isAlbumCoverHover, setIsAlbumCoverHover] = useState(false);
   const [isDrag, setIsDrag] = useState(false);
-  const [volume, setVolume] = useState(0);
-  const [a, setA] = useState(0);
+  const [volume, setVolume] = useState(0.5);
+  const [volumeControlValue, setVolumeControlValue] = useState(0.5);
   const [playMusic, setPlayMusic] = useState(true);
   const [roomOwner, setRoomOwner] = useState('');
   const [members, setMembers] = useState([]);
@@ -62,11 +71,40 @@ function Liveroom() {
   const [readyToPlayMusic, setReadyToPlayMusic] = useState(false);
   const [songProgress, setSongProgress] = useState(0);
   const [isDone, setIsDone] = useState(false);
+  const [openGuideMenu, setOpenGuideMenu] = useState(
+    true && !localStorage.getItem('wasOpenGuideMenu')
+  );
+
+  const liveroomGuideData = [
+    {
+      key: 'logo',
+      img: Logo,
+      text: 'Liveroom에 오신것을 환영합니다!!',
+    },
+    {
+      key: 'volumeControl',
+      img: volumeControl,
+      text: `드래그를 통해
+      볼륨을 조절할 수 있습니다.`,
+    },
+    {
+      key: 'livePlayListCheck',
+      img: livePlayListCheck,
+      text: `더블 클릭시
+      현재 플레이리스트를 볼 수 있습니다.`,
+    },
+    {
+      key: 'liveChat',
+      img: liveChat,
+      text: `채팅으로
+      방에 있는 사람들과 소통해보세요 !`,
+    },
+  ];
 
   const volumeHandler = (e) => {
     if (isDrag && readyToPlayMusic) {
       setVolume(() => {
-        const value = a + (isDrag - e.clientY) / 350;
+        const value = volumeControlValue + (isDrag - e.clientY) / 350;
         if (value >= 1) {
           return 1;
         } else if (value <= 0) {
@@ -172,13 +210,45 @@ function Liveroom() {
   useEffect(() => {
     if (readyToPlayMusic) {
       history.listen(() => {
-        sockClient.disconnect();
+        sockClient?.disconnect();
       });
     }
   }, [readyToPlayMusic]);
 
   return (
-    <LiveroomContainer>
+    <LiveroomContainer
+      onClick={() => {
+        if (readyToPlayMusic) {
+          setPlayMusic(false);
+        }
+      }}>
+      {openGuideMenu ? (
+        <LiveroomGuide
+          onMouseDown={() => {
+            if (readyToPlayMusic) {
+              localStorage.setItem('wasOpenGuideMenu', readyToPlayMusic);
+              setPlayMusic(false);
+              setOpenGuideMenu(false);
+            }
+          }}>
+          <LiveroomGuideview>
+            <Swiper
+              modules={[Pagination]}
+              spaceBetween={50}
+              slidesPerView={1}
+              pagination={{ clickable: true }}
+              scrollbar={{ draggable: true }}>
+              {liveroomGuideData.map((e) => {
+                return (
+                  <SwiperSlide key={e.key}>
+                    <LiveroomGuider guideData={e}></LiveroomGuider>
+                  </SwiperSlide>
+                );
+              })}
+            </Swiper>
+          </LiveroomGuideview>
+        </LiveroomGuide>
+      ) : null}
       {openSideBarSetting ? (
         <LiveroomPopup
           roomid={roomid}
@@ -209,14 +279,9 @@ function Liveroom() {
         onMouseMove={(e) => {
           volumeHandler(e);
         }}
-        onMouseDown={() => {
-          if (readyToPlayMusic) {
-            setPlayMusic(false);
-          }
-        }}
         onMouseUp={() => {
           setIsDrag(false);
-          setA(volume);
+          setVolumeControlValue(volume);
         }}
         onClick={(e) => {
           if (typeof e?.target?.className === 'object') {
@@ -279,7 +344,7 @@ function Liveroom() {
                 }}
                 onMouseUp={() => {
                   setIsDrag(false);
-                  setA(volume);
+                  setVolumeControlValue(volume);
                 }}
                 onDoubleClick={() => setOpenMusicPlayList(true)}>
                 {volume === 0 ? (
@@ -291,13 +356,14 @@ function Liveroom() {
             ) : null}
           </LiveroomCover>
         )}
-        {isDone ? (
+        {isDone && !openGuideMenu ? (
           <LiveroomEndContainer>
             <LiveroomEndText>노래가 종료되었습니다</LiveroomEndText>
           </LiveroomEndContainer>
         ) : null}
       </LiveroomMainBackground>
       <LiveroomSidebar
+        setOpenGuideMenu={setOpenGuideMenu}
         roomOwner={roomOwner}
         nowPlaySong={nowPlaySong}
         nextSongHandler={nextSongHandler}
