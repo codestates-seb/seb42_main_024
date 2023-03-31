@@ -6,7 +6,7 @@ import axios from 'axios';
 import PlaylistThumbnail from '../components/mainPage/PlaylistThumbnail';
 import PlaylistTrendy from '../components/mainPage/PlaylistTrendy/PlaylistTrendy';
 import { API } from '../config';
-import { MainContent, StyledSlider } from '../styles/main';
+import { MainContent, SliderTitle, StyledSlider } from '../styles/main';
 
 const getSliderData = (idx, data, item) => {
   const startIdx = (idx * item) % data.length;
@@ -130,7 +130,7 @@ const Main = () => {
             idx === 0 ? firstSlider : getSliderData(idx - 1, otherSlider, 6);
           return (
             <React.Fragment key={`section-${idx}`}>
-              <div className='playlist-name'>{title}</div>
+              <SliderTitle>{title}</SliderTitle>
               <StyledSlider
                 key={`slider-${idx}`}
                 {...settings}

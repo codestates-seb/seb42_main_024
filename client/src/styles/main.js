@@ -7,16 +7,16 @@ import 'slick-carousel/slick/slick-theme.css';
 
 export const MainContent = styled.div`
   padding-bottom: 520px;
+`;
 
-  .playlist-name {
-    width: 500px;
-    color: var(--color9);
-    font-size: 30px;
-    display: block;
-    position: relative;
-    left: 315px;
-    top: 430px;
-  }
+export const SliderTitle = styled.div`
+  width: 500px;
+  color: var(--color9);
+  font-size: 30px;
+  display: block;
+  position: relative;
+  left: 315px;
+  top: 430px;
 `;
 
 export const StyledSlider = styled(Slider)`

@@ -25,9 +25,7 @@ const LoginModal = ({ setLoginModalOpen, oAuthHandler }) => {
       <LoginButton
         onClick={oAuthHandler}
         onMouseOver={() => setIsHover(true)}
-        onFocus={() => setIsHover(true)}
-        onMouseOut={() => setIsHover(false)}
-        onBlur={() => setIsHover(false)}>
+        onMouseOut={() => setIsHover(false)}>
         {!isHover && <img src={GoogleLogin} alt='login hover' />}
         {isHover && <img src={GoogleLoginHover} alt='login hover' />}
       </LoginButton>

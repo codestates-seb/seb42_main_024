@@ -56,6 +56,7 @@ export const InducedModalCloseBtn = styled.button`
   position: absolute;
   right: 10px;
   top: 10px;
+  background-color: rgba(0, 0, 0, 0);
 
   .close {
     color: var(--color9);
