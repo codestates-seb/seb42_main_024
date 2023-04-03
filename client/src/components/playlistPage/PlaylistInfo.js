@@ -269,10 +269,19 @@ const PlaylistInfo = ({
 
 const VoteInfo = ({ isHearted, setIsHearted, boardData, boardId }) => {
   const [likeCnt, setLikeCnt] = useState(0);
+  const [memberInfo, setMemberInfo] = useState({});
 
   useEffect(() => {
     setLikeCnt(boardData?.likeCount);
-  }, []);
+  }, [boardData?.likeCount]);
+
+  useEffect(() => {
+    if (boardData?.memberId) {
+      axios
+        .get(`${API.MEMBER}/${boardData?.memberId}`)
+        .then((res) => setMemberInfo(res.data));
+    }
+  }, [boardData?.memberId]);
 
   // 플리 좋아요 클릭
   const handleVote = () => {
@@ -294,8 +303,17 @@ const VoteInfo = ({ isHearted, setIsHearted, boardData, boardId }) => {
         setIsHearted((prev) => !prev);
       });
   };
+
   return (
     <div className='voteInfo'>
+      <div className='authorContianer'>
+        <img
+          src={memberInfo?.picture}
+          alt='member profile'
+          className='profile'
+        />
+        <div className='author'>{memberInfo?.nickname}</div>
+      </div>
       <div className='likeContainer'>
         <div className='btnWrapper'>
           <button
@@ -304,7 +322,7 @@ const VoteInfo = ({ isHearted, setIsHearted, boardData, boardId }) => {
             {isHearted === true ? <BsHeartFill /> : <BsHeart />}
           </button>
         </div>
-        {likeCnt >= 0 && <div className='likeCnt'> {likeCnt}</div>}
+        <div className='likeCnt'>{likeCnt}</div>
       </div>
       <div className='viewContainer'>
         <div className='views'>조회수</div>
