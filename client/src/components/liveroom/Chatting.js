@@ -1,5 +1,7 @@
 import { useEffect } from 'react';
+import { usePageVisibility } from 'react-page-visibility';
 
+import alarms from '../../assets/alarm.mp3';
 import {
   ChattingContianer,
   CommonChatMessage,
@@ -10,7 +12,14 @@ import {
 
 function Chatting({ chatData, setMembers }) {
   const isEnter = chatData?.type !== 'TALK';
+
+  const isVisible = usePageVisibility();
+
   useEffect(() => {
+    const audio = new Audio(alarms);
+    const alarmhandler = () => {
+      audio.play();
+    };
     if (isEnter) {
       setMembers((prev) => [...prev, chatData.memberName]);
       if (chatData?.type === 'LEAVE') {
@@ -18,6 +27,9 @@ function Chatting({ chatData, setMembers }) {
           return prev.filter((e) => e !== chatData?.memberName);
         });
       }
+    }
+    if (!isEnter && !isVisible) {
+      alarmhandler();
     }
   }, []);
 

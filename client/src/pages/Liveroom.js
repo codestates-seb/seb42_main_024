@@ -74,7 +74,6 @@ function Liveroom() {
   const [openGuideMenu, setOpenGuideMenu] = useState(
     true && !localStorage.getItem('wasOpenGuideMenu')
   );
-
   const liveroomGuideData = [
     {
       key: 'logo',
@@ -234,11 +233,14 @@ function Liveroom() {
       }}>
       {openGuideMenu ? (
         <LiveroomGuide
-          onMouseDown={() => {
+          className='allow'
+          onMouseDown={(e) => {
             if (readyToPlayMusic) {
               localStorage.setItem('wasOpenGuideMenu', readyToPlayMusic);
               setPlayMusic(false);
-              setOpenGuideMenu(false);
+              if (e.target.className?.includes('allow')) {
+                setOpenGuideMenu(false);
+              }
             }
           }}>
           <LiveroomGuideview>

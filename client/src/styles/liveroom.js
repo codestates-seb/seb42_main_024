@@ -222,3 +222,5 @@ export const LiveroomEndText = styled.div`
   font-size: 120px;
   font-weight: 600;
 `;
+
+export const AlarmContainer = styled.audio``;
