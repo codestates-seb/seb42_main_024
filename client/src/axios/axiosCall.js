@@ -15,6 +15,11 @@ const axiosCall = async (url, method, data = null) => {
     return res;
   } catch (err) {
     const refresh = localStorage.getItem('refreshToken');
+    console.log(refresh);
+    if (!refresh) {
+      alert('로그인이 만료되었습니다. 다시 로그인해주세요');
+      return 'out';
+    }
     try {
       if (err.response.data.code === 401 && refresh) {
         const refreshRes = await axios.get(`${API.MEMBER}/auth`, {
