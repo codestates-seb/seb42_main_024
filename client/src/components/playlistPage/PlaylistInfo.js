@@ -272,7 +272,7 @@ const VoteInfo = ({ isHearted, setIsHearted, boardData, boardId }) => {
 
   useEffect(() => {
     setLikeCnt(boardData?.likeCount);
-  }, []);
+  }, [boardData?.likeCount]);
 
   // 플리 좋아요 클릭
   const handleVote = () => {
@@ -304,7 +304,7 @@ const VoteInfo = ({ isHearted, setIsHearted, boardData, boardId }) => {
             {isHearted === true ? <BsHeartFill /> : <BsHeart />}
           </button>
         </div>
-        {likeCnt >= 0 && <div className='likeCnt'> {likeCnt}</div>}
+        <div className='likeCnt'>{likeCnt}</div>
       </div>
       <div className='viewContainer'>
         <div className='views'>조회수</div>
