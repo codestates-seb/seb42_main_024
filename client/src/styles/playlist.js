@@ -76,13 +76,27 @@ export const PlaylistInfoMain = styled.div`
   .footer {
     height: 120px;
     .voteInfo {
-      width: 160px;
+      width: 250px;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      gap: 10px;
       margin-bottom: 5px;
+      .authorContianer {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 5px;
+        img.profile {
+          width: 20px;
+          height: 20px;
+          border-radius: 100%;
+          border: none;
+        }
+        .author {
+        }
+      }
       .likeContainer {
-        width: 50px;
         display: flex;
         justify-content: flex-start;
         align-items: center;
@@ -107,7 +121,6 @@ export const PlaylistInfoMain = styled.div`
         }
       }
       .viewContainer {
-        width: 100px;
         display: flex;
         justify-content: flex-end;
         align-items: center;
