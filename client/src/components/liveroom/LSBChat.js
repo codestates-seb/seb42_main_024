@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import Chatting from './Chatting';
 
@@ -18,6 +18,7 @@ function LSBChat({
   setMembers,
 }) {
   const scrollRef = useRef();
+  const [chatAlarmMute, setChatAlarmMute] = useState(false);
   useEffect(() => {
     scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
   }, [chatDatas]);
@@ -55,7 +56,12 @@ function LSBChat({
       <LSBChatDetail ref={scrollRef}>
         {chatDatas.map((e, i) => {
           return (
-            <Chatting key={i} chatData={e} setMembers={setMembers}></Chatting>
+            <Chatting
+              key={i}
+              chatData={e}
+              setMembers={setMembers}
+              chatAlarmMute={chatAlarmMute}
+              setChatAlarmMute={setChatAlarmMute}></Chatting>
           );
         })}
       </LSBChatDetail>
