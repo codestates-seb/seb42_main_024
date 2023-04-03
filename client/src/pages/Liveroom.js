@@ -134,58 +134,68 @@ function Liveroom() {
   };
 
   useEffect(() => {
-    axiosCall(`${API.LIVEROOM}/${roomid}`, 'get').then((e) => {
-      axios
-        .get(`${API.MEMBER}/auth`, {
-          headers: {
-            Authorization: `${accessToken}`,
-            accept: 'application/json',
-          },
-        })
-        .then((user) => {
-          const userData = user.data;
-          const roomData = e.data.data;
-          setMembers(roomData.members);
-          setRoomOwner(roomData.owner);
-          setUserNickName(userData.nickname);
+    axiosCall(`${API.LIVEROOM}/${roomid}`, 'get')
+      .then((e) => {
+        if (e === 'out') {
+          navigate('/');
+        }
+        axios
+          .get(`${API.MEMBER}/auth`, {
+            headers: {
+              Authorization: `${accessToken}`,
+              accept: 'application/json',
+            },
+          })
+          .then((user) => {
+            const userData = user.data;
+            const roomData = e.data.data;
+            setMembers(roomData.members);
+            setRoomOwner(roomData.owner);
+            setUserNickName(userData.nickname);
 
-          if (!roomData.members.includes(userData.nickname)) {
-            const socket = new SockJS('http://15.165.199.44:8080/ws');
-            const client = Stomp.over(socket);
-            client.connect({}, () => {
-              client.subscribe(`/sub/chat/room/${roomid}`, function (join) {
-                const receiveData = JSON.parse(join.body);
-                if (receiveData.type === 'SYSTEM') {
-                  if (receiveData.message === 'NextSong') {
-                    setChangeSong((prev) => !prev);
-                  } else if (
-                    receiveData.message === 'Full' &&
-                    receiveData.memberName === userData.nickname
-                  ) {
-                    alert(`방의 인원이 초과되었습니다.`);
-                    navigate('/');
+            if (!roomData.members.includes(userData.nickname)) {
+              const socket = new SockJS('http://15.165.199.44:8080/ws');
+              const client = Stomp.over(socket);
+              client.connect({}, () => {
+                client.subscribe(`/sub/chat/room/${roomid}`, function (join) {
+                  const receiveData = JSON.parse(join.body);
+                  if (receiveData.type === 'SYSTEM') {
+                    if (receiveData.message === 'NextSong') {
+                      setChangeSong((prev) => !prev);
+                    } else if (
+                      receiveData.message === 'Full' &&
+                      receiveData.memberName === userData.nickname
+                    ) {
+                      alert(`방의 인원이 초과되었습니다.`);
+                      navigate('/');
+                    } else if (receiveData.message === 'ChatroomOver') {
+                      alert(`방장이 방을 삭제했습니다.`);
+                      navigate('/');
+                    }
+                  } else {
+                    setChatDatas((prev) => [...prev, receiveData]);
                   }
-                } else {
-                  setChatDatas((prev) => [...prev, receiveData]);
-                }
+                });
+                client.send(
+                  '/pub/join',
+                  {},
+                  JSON.stringify({
+                    message: message,
+                    memberName: userData.nickname,
+                    chatroomId: roomData.chatroomId,
+                  })
+                );
               });
-              client.send(
-                '/pub/join',
-                {},
-                JSON.stringify({
-                  message: message,
-                  memberName: userData.nickname,
-                  chatroomId: roomData.chatroomId,
-                })
-              );
-            });
-            setsockClient(client);
-          } else {
-            alert(`이미 참여중인 방입니다`);
-            navigate('/');
-          }
-        });
-    });
+              setsockClient(client);
+            } else {
+              alert(`이미 참여중인 방입니다`);
+              navigate('/');
+            }
+          });
+      })
+      .catch(() => {
+        alert('이미 삭제된 방 입니다.');
+      });
   }, []);
 
   useEffect(() => {
