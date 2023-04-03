@@ -61,6 +61,7 @@ function LSBChat({
               chatData={e}
               setMembers={setMembers}
               chatAlarmMute={chatAlarmMute}
+              userNickName={userNickName}
               setChatAlarmMute={setChatAlarmMute}></Chatting>
           );
         })}

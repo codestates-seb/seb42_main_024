@@ -10,7 +10,13 @@ import {
   UserMessage,
 } from '../../styles/chatting';
 
-function Chatting({ chatData, setMembers, chatAlarmMute, setChatAlarmMute }) {
+function Chatting({
+  chatData,
+  setMembers,
+  chatAlarmMute,
+  setChatAlarmMute,
+  userNickName,
+}) {
   const isEnter = chatData?.type !== 'TALK';
 
   const isVisible = usePageVisibility();
@@ -28,17 +34,18 @@ function Chatting({ chatData, setMembers, chatAlarmMute, setChatAlarmMute }) {
         });
       }
     }
-    if (chatData?.message === '/mute') {
+    if (
+      chatData?.message === '/mute' &&
+      userNickName === chatData?.memberName
+    ) {
       setChatAlarmMute(true);
-    } else if (chatData?.message === '/unmute') {
+    } else if (
+      chatData?.message === '/unmute' &&
+      userNickName === chatData?.memberName
+    ) {
       setChatAlarmMute(false);
     }
-    if (
-      !isEnter &&
-      !isVisible &&
-      !chatAlarmMute &&
-      !(chatData?.message === '/mute')
-    ) {
+    if (!isEnter && !isVisible && !chatAlarmMute) {
       alarmhandler();
     }
   }, []);
