@@ -14,7 +14,6 @@ import {
 } from '../../styles/inducedModal';
 
 const InducedModal = ({ setInducedModalOpen, oAuthHandler }) => {
-  const [isHover, setIsHover] = useState(false);
   const [isFadeOut, setIsFadeOut] = useState(false);
 
   const closeInducedModal = () => {
@@ -40,12 +39,9 @@ const InducedModal = ({ setInducedModalOpen, oAuthHandler }) => {
             <br />
             라이브 방송을 즐길 수 있어요!
           </span>
-          <InducedModalLoginBtn
-            onClick={oAuthHandler}
-            onMouseOver={() => setIsHover(true)}
-            onMouseOut={() => setIsHover(false)}>
-            {!isHover && <img src={GoogleLogin} alt='login hover' />}
-            {isHover && <img src={GoogleLoginHover} alt='login hover' />}
+          <InducedModalLoginBtn onClick={oAuthHandler}>
+            <img src={GoogleLogin} alt='login hover' className='default' />
+            <img src={GoogleLoginHover} alt='login hover' className='hover' />
           </InducedModalLoginBtn>
         </InducedModalView>
       </InducedModalBackdrop>

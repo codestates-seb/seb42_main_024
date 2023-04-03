@@ -38,4 +38,16 @@ export const LoginButton = styled.button`
   border: none;
   cursor: pointer;
   background-color: inherit;
+
+  img.hover {
+    display: none;
+  }
+
+  &:hover img.default {
+    display: none;
+  }
+
+  &:hover img.hover {
+    display: inline;
+  }
 `;

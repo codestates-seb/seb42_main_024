@@ -84,6 +84,18 @@ export const InducedModalLoginBtn = styled.button`
   background-color: inherit;
   position: relative;
   top: 35px;
+
+  img.hover {
+    display: none;
+  }
+
+  &:hover img.default {
+    display: none;
+  }
+
+  &:hover img.hover {
+    display: inline;
+  }
 `;
 
 //eslint-disable-next-line no-unused-vars
