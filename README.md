@@ -1,5 +1,20 @@
 ## 샵밥두비두바링두비두바루루룽
 
+<div  align="center">
+  <img width="80%" src="http://mainprojects4.s3-website.ap-northeast-2.amazonaws.com/9de1623c0ee671f360ea.png" alt="roobits">
+</div>
+
+</br>
+
+- **`팀 명` :**  샵밥두비두바링두비두바루루룽
+- **`프로젝트 명` :** 샵밥두비두바링두비두바루루룽
+- **`프로젝트 기간` :** 2023.03.04 - 2023.04.07
+- **`한줄 소개` :** ddunidubab ! 음악을 공유할 수 있는 사이트입니다
+- **`팀원` :** 문희승, 강동우, 고한성, 유지건, 김찬희, 황민혁, 김유원, 하지웅
+- **`배포 링크` :** http://mainprojects4.s3-website.ap-northeast-2.amazonaws.com/
+
+<br/>
+
 ## 규칙
 
 ### @ 깃허브 커밋 컨벤션
