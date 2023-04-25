@@ -18,6 +18,9 @@
 - **`테이블 명세서`** : https://codestates.notion.site/ERD-9783a0db5d9f462380d17382b9788322
 <br/>
 
+## 프로젝트 설명
+
+
 ## 팀원
 
 | **문희승<br>(BE, 팀장)** | **강동우<br>(BE)** | **고한성<br>(BE)** | **유지건<br>(BE)** |
@@ -106,5 +109,3 @@ song entity 추가
 
     - CI : github Actions
     - CD : AWS lightsale
-## 프로젝트 설
-
