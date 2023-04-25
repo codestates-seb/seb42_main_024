@@ -20,11 +20,11 @@
 
 ## 팀원
 
-| 문희승<br>(BE, 팀장) | 강동우<br>(BE) | 고한성<br>(BE) | 유지건<br>(BE) |
+| **문희승<br>(BE, 팀장)** | **강동우<br>(BE)** | **고한성<br>(BE)** | **유지건<br>(BE)** |
 | :---: | :---: | :---: | :---: |
 | <img src='https://user-images.githubusercontent.com/111185089/234260352-17ecb893-384a-41a2-b382-0b9951a1637e.jpg' width='100px' height='100px'> | <img src='https://user-images.githubusercontent.com/111185089/234261553-624c5778-7f88-4886-b931-bb58fa0d5e40.jpg' width='100px' height='100px'> | <img src='https://user-images.githubusercontent.com/111185089/234262139-d5dd2a30-b6cf-4b14-b1ff-43266115ef30.jpg' width='100px' height='100px'> | <img src='https://user-images.githubusercontent.com/111185089/234263831-36e61826-a1a6-4476-bbac-9f4b847f572d.jpg' width='100px' height='100px'> |
 | - 빌드, 배포<br/>- 서버, 데이터베이스<br/>- DevOps | -Member & Spring Security<br/>- Playlist, Chatroom | -Like, Follow | - Board<br/>- Comment<br/>- Global |
-| 김찬희<br>(FE, 부팀장) | 황민혁 <br>(FE) | 김유원 <br>(FE) | 하지웅 <br>(FE) |
+| **김찬희<br>(FE, 부팀장)** | **황민혁 <br>(FE)** | **김유원 <br>(FE)** | **하지웅 <br>(FE)** |
 | <img src='https://user-images.githubusercontent.com/111185089/234260352-17ecb893-384a-41a2-b382-0b9951a1637e.jpg' width='100px' height='100px'> |  |  |  |
 | 123 | 123 | 123 | 123 |
 
