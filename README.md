@@ -24,28 +24,9 @@
 | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
 
 
-BE
-
-    <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=Python&logoColor=white">
-        spring sercurity
-        OAuth2
-        JWT 
-        - MySql
-        - gson
-        - p6spy
-        - Java 11
-        - SpringWeb
-        - SpringDataJpa
-        - Lombok
-
-        ## Mapper : 
-        - git book
-        - restdocs
-        - swagger 
-
-
-
-    - IntelliJ IDEA
+## BE
+<img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=Python&logoColor=white">
+ 
 
 2023 03 09 16:19
 audit 추가
