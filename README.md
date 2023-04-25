@@ -23,11 +23,11 @@
 
 ## 😀팀원
 
-| **문희승<br>(BE, 팀장)** | **강동우<br>(BE)** | **고한성<br>(BE)** | **유지건<br>(BE)** |
+| **💾문희승<br>(BE, 팀장)** | **💾강동우<br>(BE)** | **💾고한성<br>(BE)** | **💾유지건<br>(BE)** |
 | :---: | :---: | :---: | :---: |
 | <img src='https://user-images.githubusercontent.com/111185089/234260352-17ecb893-384a-41a2-b382-0b9951a1637e.jpg' width='150px' height='150px'> | <img src='https://user-images.githubusercontent.com/111185089/234261553-624c5778-7f88-4886-b931-bb58fa0d5e40.jpg' width='150px' height='150px'> | <img src='https://user-images.githubusercontent.com/111185089/234262139-d5dd2a30-b6cf-4b14-b1ff-43266115ef30.jpg' width='150px' height='150px'> | <img src='https://user-images.githubusercontent.com/111185089/234263831-36e61826-a1a6-4476-bbac-9f4b847f572d.jpg' width='150px' height='150px'> |
 | **- 빌드, 배포<br/>- 서버, 데이터베이스<br/>- DevOps** | **-Member & Spring Security<br/>- Playlist, Chatroom** | **-Like, Follow** | **- Board<br/>- Comment<br/>- Global** |
-| **김찬희<br>(FE, 부팀장)** | **황민혁 <br>(FE)** | **김유원 <br>(FE)** | **하지웅 <br>(FE)** |
+| **🖥김찬희<br>(FE, 부팀장)** | **🖥황민혁 <br>(FE)** | **🖥김유원 <br>(FE)** | **🖥하지웅 <br>(FE)** |
 | <img src='https://user-images.githubusercontent.com/111185089/234265197-c45c234a-8f40-4ad5-bf06-9e716548395e.jpg' width='150px' height='150px'> | <img src='https://user-images.githubusercontent.com/111185089/234265225-4fb9393c-b674-4153-be1a-768ad8bdf379.jpg' width='150px' height='150px'> | <img src='https://user-images.githubusercontent.com/111185089/234265233-de0e6929-72b4-4dc6-93db-2275f587da5b.jpg' width='150px' height='150px'> | <img src='https://user-images.githubusercontent.com/111185089/234265243-912ecf60-66a6-4311-9900-2f867bcb18b1.jpg' width='150px' height='150px'> |
 | **- Palyer<br/>- Create Live room<br/>- Redux<br/>- Figma** | **-Redux<br/>- Playlist Page<br/>- 곡 추가UI** | **- Google Oauth<br/>  Login<br/>- Main Page** | **-LiveRoom<br/>- LiveRoom ListPage** |
 
