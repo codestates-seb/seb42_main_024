@@ -36,21 +36,8 @@ like entity 추가
 member entity 추가
 song entity 추가
 
-### @ FE
-
-    - React 18.2.0
-        - JavaScript ES6+
-        - Node.js
-        - Webpack
-        - Babel
-        - React
-        - Styledcomponents
-        - Axios
-        - Redux
-
-    - Node 18.12.1
-    - Visual Studio Code
-
+## FE
+<img src="https://img.shields.io/badge/react-61DAFB?style=for-the-badge&logo=react&logoColor=white"> <img src="https://img.shields.io/badge/redux-764ABC?style=for-the-badge&logo=redux&logoColor=white"> <img src="https://img.shields.io/badge/axios-5A29E4?style=for-the-badge&logo=axios&logoColor=white">
 
 ### @ 깃허브 커밋 컨벤션
 
