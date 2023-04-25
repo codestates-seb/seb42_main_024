@@ -22,6 +22,8 @@
 
 | 문희승<br>(BE, 팀장) | 강동우<br>(BE) | 고한성<br>(BE) | 유지건<br>(BE) | 김찬희<br>(FE, 부팀장) | 황민혁 <br>(FE) | 김유원 <br>(FE) | 하지웅 <br>(FE) |
 | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| ![문희승](https://imageurl) | ![강동우](https://imageurl) | ![고한성](https://imageurl) | ![유지건](https://imageurl) | ![김찬희](https://imageurl) | ![황민혁](https://imageurl) | ![김유원](https://imageurl) | ![하지웅](https://imageurl) |
+
 
 ## BE
 <img src="https://img.shields.io/badge/spring-6DB33F?style=for-the-badge&logo=spring&logoColor=white"> <img src="https://img.shields.io/badge/spring boot-6DB33F?style=for-the-badge&logo=spring boot&logoColor=white"> <img src="https://img.shields.io/badge/spring data jpa-6DB33F?style=for-the-badge&logo=spring data jpa&logoColor=white"> <img src="https://img.shields.io/badge/spring boot security jpa-6DB33F?style=for-the-badge&logo=spring boot security&logoColor=white"> <img src="https://img.shields.io/badge/spring websocket-6DB33F?style=for-the-badge&logo=spring websocket&logoColor=white"><br/>
@@ -104,5 +106,4 @@ song entity 추가
 ## 프로젝트 설명
 
 - 작성 필요
-![화면 캡처 2023-04-25 194556](https://user-images.githubusercontent.com/111185089/234254092-b20b31a7-55ed-4dbb-8f1e-4d0f0fa05b95.jpg)
 
