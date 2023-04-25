@@ -28,7 +28,7 @@
 
 ### @ BE
 
-    <img src="https://img.shields.io/badge/Spring-#6DB33F?style=for-the-badge&logo=Spring&logoColor=white">
+    <img src="https://img.shields.io/badge/spring-FF0000?style=flat-square&logo=spring&logoColor=white">
         - spring sercurity
         - OAuth2
         - JWT 
