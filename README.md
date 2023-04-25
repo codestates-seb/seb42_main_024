@@ -20,6 +20,12 @@
 | 문희승<br>(BE, 팀장) | 강동우<br>(BE) | 고한성<br>(BE) | 유지건<br>(BE) | 김찬희<br>(FE, 부팀장) | 황민혁 <br>(FE) | 김유원 <br>(FE) | 하지웅 <br>(FE) |
 | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
 
+
+## Project Wiki
+
+프로젝트 팀 정보, 기획, 아키텍쳐에 대한 자세한 안내입니다.
+https://www.notion.so/codestates/688b486bbbba4d3c8c13b781e44a7a79
+
 ## 규칙
 
 ### @ 깃허브 커밋 컨벤션
@@ -135,9 +141,4 @@ song entity 추가
 ## 프로젝트 설명
 
 - 작성 필요
-
-## Project Wiki
-
-프로젝트 팀 정보, 기획, 아키텍쳐에 대한 자세한 안내입니다.
-https://www.notion.so/codestates/688b486bbbba4d3c8c13b781e44a7a79
 
