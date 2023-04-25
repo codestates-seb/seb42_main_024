@@ -31,7 +31,7 @@
 | <img src='https://user-images.githubusercontent.com/111185089/234265197-c45c234a-8f40-4ad5-bf06-9e716548395e.jpg' width='150px' height='150px'> | <img src='https://user-images.githubusercontent.com/111185089/234265225-4fb9393c-b674-4153-be1a-768ad8bdf379.jpg' width='150px' height='150px'> | <img src='https://user-images.githubusercontent.com/111185089/234265233-de0e6929-72b4-4dc6-93db-2275f587da5b.jpg' width='150px' height='150px'> | <img src='https://user-images.githubusercontent.com/111185089/234265243-912ecf60-66a6-4311-9900-2f867bcb18b1.jpg' width='150px' height='150px'> |
 | **- Palyer<br/>- Create Live room<br/>- Redux<br/>- Figma** | **-Redux<br/>- Playlist Page<br/>- 곡 추가UI** | **- Google Oauth<br/>  Login<br/>- Main Page** | **-LiveRoom<br/>- LiveRoom ListPage** |
 
-## BE
+## 💾BE
 <img src="https://img.shields.io/badge/spring-6DB33F?style=for-the-badge&logo=spring&logoColor=white"> <img src="https://img.shields.io/badge/spring boot-6DB33F?style=for-the-badge&logo=spring boot&logoColor=white"> <img src="https://img.shields.io/badge/spring data jpa-6DB33F?style=for-the-badge&logo=spring data jpa&logoColor=white"> <img src="https://img.shields.io/badge/spring boot security jpa-6DB33F?style=for-the-badge&logo=spring boot security&logoColor=white"> <img src="https://img.shields.io/badge/spring websocket-6DB33F?style=for-the-badge&logo=spring websocket&logoColor=white"><br/>
 <img src="https://img.shields.io/badge/mysql-4479A1?style=for-the-badge&logo=mysql&logoColor=white"> <img src="https://img.shields.io/badge/oauth2.0-EB5424?style=for-the-badge&logo=auth0&logoColor=white">
  
@@ -43,7 +43,7 @@ like entity 추가
 member entity 추가
 song entity 추가
 
-## FE
+## 🖥FE
 <img src="https://img.shields.io/badge/react-61DAFB?style=for-the-badge&logo=react&logoColor=white"> <img src="https://img.shields.io/badge/redux-764ABC?style=for-the-badge&logo=redux&logoColor=white"> <img src="https://img.shields.io/badge/axios-5A29E4?style=for-the-badge&logo=axios&logoColor=white"> <img src="https://img.shields.io/badge/javascript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=white"> <img src="https://img.shields.io/badge/styledcomponents-DB7093?style=for-the-badge&logo=styledcomponents&logoColor=white">
 
 ### @ 깃허브 커밋 컨벤션
