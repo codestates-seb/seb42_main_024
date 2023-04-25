@@ -23,7 +23,7 @@
 | 문희승<br>(BE, 팀장) | 강동우<br>(BE) | 고한성<br>(BE) | 유지건<br>(BE) | 김찬희<br>(FE, 부팀장) | 황민혁 <br>(FE) | 김유원 <br>(FE) | 하지웅 <br>(FE) |
 | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
 
-
+<img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=Python&logoColor=white">
 ## 개발환경
 <img src="https://img.shields.io/badge/spring-FF0000?style=flat-square&logo=spring&logoColor=white">
 ## @ BE
