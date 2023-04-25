@@ -25,7 +25,7 @@
 
 
 ## BE
-<img src="https://img.shields.io/badge/spring-6DB33F?style=for-the-badge&logo=spring&logoColor=white"> <img src="https://img.shields.io/badge/spring boot-6DB33F?style=for-the-badge&logo=spring boot&logoColor=white"> <img src="https://img.shields.io/badge/spring data jpa-6DB33F?style=for-the-badge&logo=spring data jpa&logoColor=white">
+<img src="https://img.shields.io/badge/spring-6DB33F?style=for-the-badge&logo=spring&logoColor=white"> <img src="https://img.shields.io/badge/spring boot-6DB33F?style=for-the-badge&logo=spring boot&logoColor=white"> <img src="https://img.shields.io/badge/spring data jpa-6DB33F?style=for-the-badge&logo=spring data jpa&logoColor=white"> <img src="https://img.shields.io/badge/spring boot security jpa-6DB33F?style=for-the-badge&logo=spring boot security&logoColor=white"> 
  
 
 2023 03 09 16:19
