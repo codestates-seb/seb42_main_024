@@ -13,13 +13,15 @@
 - **`팀원` :** 문희승, 강동우, 고한성, 유지건, 김찬희, 황민혁, 김유원, 하지웅
 - **`배포 링크` :** http://mainprojects4.s3-website.ap-northeast-2.amazonaws.com/
 - **`프로젝트 위키`** : https://www.notion.so/codestates/688b486bbbba4d3c8c13b781e44a7a79
-
+- **`기술발표영상`** : https://www.youtube.com/watch?v=gNzR4NlBv1g
+- **`서비스 메뉴얼`** : https://codestates.notion.site/93ef374689a548e1b168b403cf8fb3b6
+- **`테이블 명세서`** : https://codestates.notion.site/ERD-9783a0db5d9f462380d17382b9788322
 <br/>
 
 ## 팀원
 
 | 문희승<br>(BE, 팀장) | 강동우<br>(BE) | 고한성<br>(BE) | 유지건<br>(BE) | 김찬희<br>(FE, 부팀장) | 황민혁 <br>(FE) | 김유원 <br>(FE) | 하지웅 <br>(FE) |
-| :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| :-ㅁㄴㅇㅁㄴㅇ--: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
 
 ## 규칙
 
