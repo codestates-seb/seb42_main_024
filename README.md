@@ -24,6 +24,53 @@
 | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
 
 ## 규칙
+## 개발환경
+
+### @ BE
+
+    - Spring Boot 2.7.9
+        - spring sercurity
+        - OAuth2
+        - JWT 
+        - MySql
+        - gson
+        - p6spy
+        - Java 11
+        - SpringWeb
+        - SpringDataJpa
+        - Lombok
+
+        ## Mapper : 
+        - git book
+        - restdocs
+        - swagger 
+
+
+
+    - IntelliJ IDEA
+
+2023 03 09 16:19
+audit 추가
+comment entity 추가
+like entity 추가
+member entity 추가
+song entity 추가
+
+### @ FE
+
+    - React 18.2.0
+        - JavaScript ES6+
+        - Node.js
+        - Webpack
+        - Babel
+        - React
+        - Styledcomponents
+        - Axios
+        - Redux
+
+    - Node 18.12.1
+    - Visual Studio Code
+
 
 ### @ 깃허브 커밋 컨벤션
 
@@ -83,53 +130,6 @@
         - print width 75
         - tab width 2
         - bracket same line 체크
-
-## 개발환경
-
-### @ BE
-
-    - Spring Boot 2.7.9
-        - spring sercurity
-        - OAuth2
-        - JWT 
-        - MySql
-        - gson
-        - p6spy
-        - Java 11
-        - SpringWeb
-        - SpringDataJpa
-        - Lombok
-
-        ## Mapper : 
-        - git book
-        - restdocs
-        - swagger 
-
-
-
-    - IntelliJ IDEA
-
-2023 03 09 16:19
-audit 추가
-comment entity 추가
-like entity 추가
-member entity 추가
-song entity 추가
-
-### @ FE
-
-    - React 18.2.0
-        - JavaScript ES6+
-        - Node.js
-        - Webpack
-        - Babel
-        - React
-        - Styledcomponents
-        - Axios
-        - Redux
-
-    - Node 18.12.1
-    - Visual Studio Code
 
 ### @배포 
 
