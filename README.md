@@ -24,11 +24,11 @@
 | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
 
 
-**개발환경
+## 개발환경
 
-## @ BE
+## BE
 
-    <img src="https://img.shields.io/badge/spring-FF0000?style=flat-square&logo=spring&logoColor=white">
+    <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=Python&logoColor=white">
         - spring sercurity
         - OAuth2
         - JWT 
