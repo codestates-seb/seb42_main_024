@@ -22,8 +22,6 @@
 
 | 문희승<br>(BE, 팀장) | 강동우<br>(BE) | 고한성<br>(BE) | 유지건<br>(BE) | 김찬희<br>(FE, 부팀장) | 황민혁 <br>(FE) | 김유원 <br>(FE) | 하지웅 <br>(FE) |
 | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| <img src='https://user-images.githubusercontent.com/111185089/234258121-c50545ce-f6cc-4423-bd92-3cb26e4eacdf.jpg' |
-
 
 ## BE
 <img src="https://img.shields.io/badge/spring-6DB33F?style=for-the-badge&logo=spring&logoColor=white"> <img src="https://img.shields.io/badge/spring boot-6DB33F?style=for-the-badge&logo=spring boot&logoColor=white"> <img src="https://img.shields.io/badge/spring data jpa-6DB33F?style=for-the-badge&logo=spring data jpa&logoColor=white"> <img src="https://img.shields.io/badge/spring boot security jpa-6DB33F?style=for-the-badge&logo=spring boot security&logoColor=white"> <img src="https://img.shields.io/badge/spring websocket-6DB33F?style=for-the-badge&logo=spring websocket&logoColor=white"><br/>
