@@ -26,7 +26,7 @@
 | - 빌드, 배포<br/>- 서버, 데이터베이스<br/>- DevOps | -Member & Spring Security<br/>- Playlist, Chatroom | -Like, Follow | - Board<br/>- Comment<br/>- Global |
 | **김찬희<br>(FE, 부팀장)** | **황민혁 <br>(FE)** | **김유원 <br>(FE)** | **하지웅 <br>(FE)** |
 | <img src='https://user-images.githubusercontent.com/111185089/234265197-c45c234a-8f40-4ad5-bf06-9e716548395e.jpg' width='100px' height='100px'> | <img src='https://user-images.githubusercontent.com/111185089/234265225-4fb9393c-b674-4153-be1a-768ad8bdf379.jpg' width='100px' height='100px'> | <img src='https://user-images.githubusercontent.com/111185089/234265233-de0e6929-72b4-4dc6-93db-2275f587da5b.jpg' width='100px' height='100px'> | <img src='https://user-images.githubusercontent.com/111185089/234265243-912ecf60-66a6-4311-9900-2f867bcb18b1.jpg' width='100px' height='100px'> |
-| 123 | 123 | 123 | 123 |
+| - Palyer<br/>- Create Live<br/>room<br/>- Redux<br/>- Figma | 123 | 123 | 123 |
 
 ## BE
 <img src="https://img.shields.io/badge/spring-6DB33F?style=for-the-badge&logo=spring&logoColor=white"> <img src="https://img.shields.io/badge/spring boot-6DB33F?style=for-the-badge&logo=spring boot&logoColor=white"> <img src="https://img.shields.io/badge/spring data jpa-6DB33F?style=for-the-badge&logo=spring data jpa&logoColor=white"> <img src="https://img.shields.io/badge/spring boot security jpa-6DB33F?style=for-the-badge&logo=spring boot security&logoColor=white"> <img src="https://img.shields.io/badge/spring websocket-6DB33F?style=for-the-badge&logo=spring websocket&logoColor=white"><br/>
