@@ -20,10 +20,9 @@
 
 ## 팀원
 
-| 문희승<br>(BE, 팀장) | 강동우<br>(BE) | 고한성<br>(BE) | 유지건<br>(BE) |
-  김찬희<br>(FE, 부팀장) | 황민혁 <br>(FE) | 김유원 <br>(FE) | 하지웅 <br>(FE) |
+| 문희승<br>(BE, 팀장) | 강동우<br>(BE) | 고한성<br>(BE) | 유지건<br>(BE) | 김찬희<br>(FE, 부팀장) | 황민혁 <br>(FE) | 김유원 <br>(FE) | 하지웅 <br>(FE) |
 | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| <img src='https://imageurl'> | ![강동우](https://imageurl) | ![고한성](https://imageurl) | ![유지건](https://imageurl) | ![김찬희](https://imageurl) | ![황민혁](https://imageurl) | ![김유원](https://imageurl) | ![하지웅](https://imageurl) |
+| <img src='https://imageurl'> | <img src='https://imageurl'> | <img src='https://imageurl'> | <img src='https://imageurl'> | <img src='https://imageurl'> | <img src='https://imageurl'> | <img src='https://imageurl'> | <img src='https://imageurl'> |
 
 
 ## BE
