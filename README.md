@@ -22,7 +22,7 @@
 
 | 문희승<br>(BE, 팀장) | 강동우<br>(BE) | 고한성<br>(BE) | 유지건<br>(BE) | 김찬희<br>(FE, 부팀장) | 황민혁 <br>(FE) | 김유원 <br>(FE) | 하지웅 <br>(FE) |
 | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| <img src='https://user-images.githubusercontent.com/111185089/234254092-b20b31a7-55ed-4dbb-8f1e-4d0f0fa05b95.jpg'> |
+| <img src='https://user-images.githubusercontent.com/111185089/234254092-b20b31a7-55ed-4dbb-8f1e-4d0f0fa05b95.jpg' width:100> |
 
 
 ## BE
