@@ -12,7 +12,7 @@
 - **`한줄 소개` :** ddunidubab ! 음악을 공유할 수 있는 사이트입니다
 - **`팀원` :** 문희승, 강동우, 고한성, 유지건, 김찬희, 황민혁, 김유원, 하지웅
 - **`배포 링크` :** http://mainprojects4.s3-website.ap-northeast-2.amazonaws.com/
-- **'프로젝트 위키' : https://www.notion.so/codestates/688b486bbbba4d3c8c13b781e44a7a79
+- **`프로젝트 위키`** : https://www.notion.so/codestates/688b486bbbba4d3c8c13b781e44a7a79
 
 <br/>
 
